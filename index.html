@@ -2,71 +2,92 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-  <title>יין בוטיק בן דוברה</title>
+  <title>יקב בוטיק בן דוברה</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Heebo:wght@400;700&family=Varela+Round&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>יין בוטיק בן דוברה</h1>
+    <div class="header-content">
+      <h1>יקב בוטיק בן דוברה</h1>
+      <p class="subtitle">יין של נשמה. שורש. שליחות.</p>
+    </div>
     <nav>
-      <a href="#shop">חנות</a>
+      <a href="#shop">החנות שלנו</a>
+      <a href="#philosophy">סוד הקסם</a>
       <a href="#gallery">גלריה</a>
       <a href="#about">עלינו</a>
-      <a href="#contact">צור קשר</a>
+      <a href="#contact">יצירת קשר</a>
     </nav>
   </header>
 
   <main>
     <section id="shop">
-      <h2>החנות שלנו</h2>
+      <h2>היינות המובחרים שלנו</h2>
       <div class="grid">
         <div class="card">
-          <img src="1.png" alt="יין אדום">
-          <h3>יין אדום יוקרתי</h3>
-          <p>₪120</p>
-          <a class="buy-btn" href="#contact">מעוניין</a>
+          <img src="1.png" alt="יין אדום יוקרתי">
+          <h3>קברנה סוביניון "שורשים"</h3>
+          <p>יין אדום עם אופי, כזה שלא שוכחים. מומלץ לשתות ליד אח מבוערת, או לפחות ליד תנור ספירלה.</p>
+          <p class="price">₪120</p>
+          <a class="buy-btn" href="#contact">אני מעוניין</a>
         </div>
         <div class="card">
-          <img src="2.png" alt="יין לבן">
-          <h3>יין לבן יבש</h3>
-          <p>₪95</p>
-          <a class="buy-btn" href="#contact">מעוניין</a>
+          <img src="2.png" alt="יין לבן יבש">
+          <h3>שרדונה "רוח קדים"</h3>
+          <p>יין לבן קליל ומרענן שמרגיש כמו חופשה בבקבוק. אם תצמידו לאוזן, אולי תשמעו גלים.</p>
+          <p class="price">₪95</p>
+          <a class="buy-btn" href="#contact">אני מעוניין</a>
+        </div>
+        <div class="card">
+          <img src="3.png" alt="יין רוזה">
+          <h3>רוזה "שקיעה ורודה"</h3>
+          <p>יין מושלם לדייטים, או סתם כשרוצים להרגיש רומנטיים עם נטפליקס. מתאים במיוחד לפיצה.</p>
+          <p class="price">₪105</p>
+          <a class="buy-btn" href="#contact">אני מעוניין</a>
         </div>
       </div>
+    </section>
+    
+    <section id="philosophy" class="text-section">
+        <h2>סוד הקסם שלנו</h2>
+        <p>שואלים אותנו הרבה מה הסוד שלנו. ובכן, הוא מורכב מכמה דברים: ענבים שגדלים באהבה, מסורת שעוברת מדור לדור, והכי חשוב - אנחנו משמיעים לכרמים מוזיקה קלאסית. הגפנים ממש אוהבות את מוצרט, אבל מתלוננות על בטהובן כי הוא "דרמטי מדי". התוצאה? יין רגוע, שמח והרמוני. בדיוק כמונו.</p>
     </section>
 
     <section id="gallery">
-      <h2>גלריה</h2>
+      <h2>רגעים מהיקב</h2>
       <div class="gallery-grid">
-        <img src="1.png" alt="תמונה 1">
-        <img src="2.png" alt="תמונה 2">
-        <img src="3.png" alt="תמונה 3">
-        <img src="4.png" alt="תמונה 4">
-        <img src="5.png" alt="תמונה 5">
+        <img src="1.png" alt="בקבוק יין אדום על חבית עץ">
+        <img src="2.png" alt="כוס יין לבן צונן">
+        <img src="3.png" alt="שורה של בקבוקי יין רוזה">
+        <img src="4.png" alt="כרם ענבים בשעת בוקר מוקדמת">
+        <img src="5.png" alt="חבית יין במרתף היקב">
       </div>
     </section>
 
-    <section id="about">
-      <h2>עלינו</h2>
-      <p>יקב בן דוברה הוא יקב בוטיק משפחתי שהוקם באהבת אמת לגפן וליין איכותי. כל בקבוק נבצר ונבנה מתוך חזון של טוהר, איכות ומסורת יהודית.</p>
-    </section>
+    <section id="about" class="text-section"></section>
 
     <section id="contact">
-      <h2>צור קשר</h2>
+      <h2>דברו איתנו</h2>
+      <p>רוצים לקפוץ לטעימות? לשאול שאלה? או סתם להגיד שלום? השאירו פרטים ונחזור אליכם עם חיוך (ובדרך כלל גם עם יין).</p>
       <form action="https://formspree.io/f/moqglqrr" method="POST">
         <input type="text" name="name" placeholder="שם מלא" required>
         <input type="email" name="email" placeholder="אימייל" required>
-        <textarea name="message" placeholder="ההודעה שלך" required></textarea>
-        <button type="submit">שלח הודעה</button>
+        <textarea name="message" placeholder="מה תרצו להגיד לנו?" required></textarea>
+        <button type="submit">שליחה</button>
       </form>
     </section>
   </main>
 
   <footer>
-    © כל הזכויות שמורות ליקב בן דוברה
+    <p>© כל הזכויות שמורות ליקב בן דוברה, 2025</p>
   </footer>
+
+  <div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
 
   <script src="script.js"></script>
 </body>
