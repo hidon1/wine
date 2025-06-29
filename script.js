@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
-          // שים לב לקובץ ה about.json שלך צריך להיות תמונה בשם about-background.jpg
           aboutSection.innerHTML = `
             <h2>${data.title}</h2>
             <img src="${data.image}" alt="תמונה של היקב">
@@ -65,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. הפעלת הגלריה הקופצת (Lightbox)
   function setupLightbox() {
     const modal = document.getElementById("imageModal");
-    if (!modal) return; // במידה והמודל לא קיים, הפסק את הפונקציה
+    if (!modal) return;
 
     const modalImg = document.getElementById("modalImage");
     const galleryImages = document.querySelectorAll(".gallery-grid img");
@@ -78,12 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // סגירת החלון בלחיצה על האיקס
     closeModal.onclick = () => {
       modal.style.display = "none";
     }
     
-    // סגירת החלון בלחיצה מחוץ לתמונה
     window.onclick = (event) => {
       if (event.target == modal) {
         modal.style.display = "none";
@@ -91,7 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // הפעלת הפונקציות המרכזיות לאחר טעינת הדף
+  // 5. הפעלת תמונות רקע מתחלפות
+  function setupBackgroundSlideshow() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('#background-container .background-slide');
+    if (slides.length === 0) return;
+
+    // הצגת התמונה הראשונה באופן מיידי
+    slides[currentSlide].classList.add('active');
+
+    setInterval(() => {
+      // הסתרת התמונה הנוכחית
+      slides[currentSlide].classList.remove('active');
+      
+      // מעבר לתמונה הבאה (באופן מעגלי)
+      currentSlide = (currentSlide + 1) % slides.length;
+      
+      // הצגת התמונה הבאה
+      slides[currentSlide].classList.add('active');
+    }, 10000); // החלפה כל 10 שניות (10000 מילישניות)
+  }
+
+  // הפעלת כל הפונקציות לאחר טעינת הדף
   loadAboutSection();
   setupLightbox();
+  setupBackgroundSlideshow();
 });
