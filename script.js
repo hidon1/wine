@@ -1,38 +1,96 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // גלילה חלקה בעת לחיצה על קישורים בתפריט
-  const links = document.querySelectorAll("nav a");
-  links.forEach(link => {
+  
+  // 1. גלילה חלקה לקישורי התפריט
+  const navLinks = document.querySelectorAll("nav a");
+  navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) {
+      const targetId = link.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
     });
   });
 
-  // טיפול בשליחת טופס
-  const form = document.querySelector("form");
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  // 2. טיפול בשליחת טופס יצירת קשר
+  const contactForm = document.querySelector("#contact form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      // שליחה ל-Formspree
-      const data = new FormData(form);
-      fetch(form.action, {
+      const data = new FormData(contactForm);
+      fetch(contactForm.action, {
         method: "POST",
         body: data,
         headers: { "Accept": "application/json" }
       }).then(response => {
         if (response.ok) {
-          alert("ההודעה נשלחה בהצלחה!");
-          form.reset();
+          alert("ההודעה נשלחה בהצלחה! ניצור קשר בקרוב.");
+          contactForm.reset();
         } else {
-          alert("אירעה שגיאה בשליחת ההודעה. נסה שוב.");
+          alert("אירעה שגיאה בשליחת ההודעה. אנא נסו שוב.");
         }
       }).catch(() => {
-        alert("שגיאה ברשת. בדוק את החיבור שלך.");
+        alert("שגיאת רשת. אנא בדקו את חיבור האינטרנט שלכם.");
       });
     });
   }
+
+  // 3. טעינת תוכן "אודות" מקובץ JSON
+  function loadAboutSection() {
+    fetch('about.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          aboutSection.innerHTML = `
+            <h2>${data.title}</h2>
+            <img src="${data.image}" alt="תמונה של היקב">
+            <h3>${data.subtitle}</h3>
+            ${data.paragraphs.map(p => `<p>${p}</p>`).join('')}
+          `;
+        }
+      })
+      .catch(error => {
+        console.error('בעיה בטעינת קובץ ה-JSON:', error);
+        const aboutSection = document.getElementById('about');
+        if(aboutSection) aboutSection.innerHTML = "<p>אירעה שגיאה בטעינת התוכן. נסו לרענן את הדף.</p>";
+      });
+  }
+  
+  // 4. הפעלת הגלריה הקופצת (Lightbox)
+  function setupLightbox() {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const galleryImages = document.querySelectorAll(".gallery-grid img");
+    const closeModal = document.querySelector(".close-modal");
+
+    galleryImages.forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    // סגירת החלון בלחיצה על האיקס
+    closeModal.onclick = () => {
+      modal.style.display = "none";
+    }
+    
+    // סגירת החלון בלחיצה מחוץ לתמונה
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+
+  // הפעלת הפונקציות לאחר טעינת הדף
+  loadAboutSection();
+  setupLightbox();
 });
