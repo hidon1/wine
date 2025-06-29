@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>יין בוטיק בן דוברה</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Heebo:wght@400;700&family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>יין בוטיק בן דוברה</h1>
+    <nav>
+      <a href="#shop">חנות</a>
+      <a href="#gallery">גלריה</a>
+      <a href="#about">עלינו</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="shop">
+      <h2>החנות שלנו</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="1.png" alt="יין אדום">
+          <h3>יין אדום יוקרתי</h3>
+          <p>₪120</p>
+          <a class="buy-btn" href="#contact">מעוניין</a>
+        </div>
+        <div class="card">
+          <img src="2.png" alt="יין לבן">
+          <h3>יין לבן יבש</h3>
+          <p>₪95</p>
+          <a class="buy-btn" href="#contact">מעוניין</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>גלריה</h2>
+      <div class="gallery-grid">
+        <img src="1.png" alt="תמונה 1">
+        <img src="2.png" alt="תמונה 2">
+        <img src="3.png" alt="תמונה 3">
+        <img src="4.png" alt="תמונה 4">
+        <img src="5.png" alt="תמונה 5">
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>עלינו</h2>
+      <p>יקב בן דוברה הוא יקב בוטיק משפחתי שהוקם באהבת אמת לגפן וליין איכותי. כל בקבוק נבצר ונבנה מתוך חזון של טוהר, איכות ומסורת יהודית.</p>
+    </section>
+
+    <section id="contact">
+      <h2>צור קשר</h2>
+      <form action="https://formspree.io/f/moqglqrr" method="POST">
+        <input type="text" name="name" placeholder="שם מלא" required>
+        <input type="email" name="email" placeholder="אימייל" required>
+        <textarea name="message" placeholder="ההודעה שלך" required></textarea>
+        <button type="submit">שלח הודעה</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © כל הזכויות שמורות ליקב בן דוברה
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
