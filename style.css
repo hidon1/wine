@@ -1,109 +1,280 @@
+/* הוסף תמונה בשם background.jpg לתיקייה כדי שהרקע יעבוד */
+body::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  z-index: -1;
+  background: url(background.jpg) no-repeat center center;
+  background-size: cover;
+}
+
 body {
   margin: 0;
   font-family: 'Heebo', 'Assistant', 'Varela Round', sans-serif;
   direction: rtl;
-  background: #f5f7fa;
+  background-color: #fdfaf6; /* צבע רקע במידה והתמונה לא נטענת */
   scroll-behavior: smooth;
 }
+
+/* Header and Navigation */
 header {
-  background: #cce7ff;
-  padding: 1em;
+  background: #2c0e08; /* צבע חום-יין כהה */
+  color: #f5e6d3; /* צבע קרם בהיר */
+  padding: 2em 1em;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
+
+header .header-content {
+  animation: fadeInDown 1s ease-out;
+}
+
 header h1 {
   margin: 0;
-  font-size: 2.5em;
-  color: #003366;
+  font-size: 3em;
+  font-family: 'Varela Round', sans-serif;
 }
+
+header .subtitle {
+  margin: 0.5em 0 0;
+  font-size: 1.2em;
+  opacity: 0.9;
+}
+
 nav {
-  margin-top: 1em;
+  margin-top: 1.5em;
+  animation: fadeInDown 1.5s ease-out;
 }
+
 nav a {
-  margin: 0 1em;
+  margin: 0 0.5em;
   text-decoration: none;
-  color: #003366;
+  color: #f5e6d3;
   font-weight: bold;
-  padding: 0.5em 1em;
-  background: #ffffff;
+  padding: 0.6em 1.2em;
+  border: 1px solid #f5e6d3;
   border-radius: 25px;
   transition: background 0.3s, color 0.3s;
 }
+
 nav a:hover {
-  background: #d6ecff;
-  color: #000;
+  background: #f5e6d3;
+  color: #2c0e08;
 }
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Content Sections */
 section {
-  padding: 2em;
-  max-width: 1000px;
+  padding: 3em 2em;
+  max-width: 1100px;
   margin: auto;
 }
+
+section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #2c0e08;
+    margin-bottom: 1em;
+}
+
+.text-section {
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
 .grid, .gallery-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
 }
+
+/* Product Cards */
 .card {
   background: #fff;
   border-radius: 12px;
-  padding: 1em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 220px;
+  padding: 1.5em;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  width: 280px;
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-bottom: 4px solid #b48c63; /* הדגשה בצבע זהב */
 }
+
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
+
 .card img {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
+  height: 200px;
+  object-fit: contain;
   border-radius: 8px;
 }
+
+.card h3 {
+    color: #2c0e08;
+    font-size: 1.4em;
+    margin: 1em 0 0.5em;
+}
+
+.card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.card .price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c0e08;
+    margin: 1em 0;
+}
+
 .buy-btn {
   display: inline-block;
   margin-top: 1em;
-  background: #005599;
+  background: #b48c63; /* צבע זהב */
   color: #fff;
-  padding: 0.5em 1em;
-  border-radius: 6px;
+  padding: 0.7em 1.5em;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.buy-btn:hover {
+    background-color: #2c0e08;
+}
+
+
+/* Gallery & Lightbox Modal */
+#gallery .gallery-grid img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s, opacity 0.3s;
+  cursor: pointer;
+}
+
+#gallery .gallery-grid img:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  animation: zoomIn 0.5s;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #bbb;
   text-decoration: none;
 }
+
+/* About Section */
+#about img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 1em auto;
+    display: block;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Contact Form */
 form {
   background: #fff;
-  padding: 2em;
+  padding: 2.5em;
   border-radius: 10px;
-  max-width: 400px;
+  max-width: 500px;
   margin: auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
-input, textarea, button {
+
+input, textarea {
   width: 100%;
-  margin: 0.5em 0;
-  padding: 0.8em;
+  box-sizing: border-box;
+  margin: 0.7em 0;
+  padding: 1em;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-family: 'Heebo', sans-serif;
 }
+
 button {
-  background: #003366;
+  width: 100%;
+  background: #2c0e08;
   color: white;
   border: none;
   font-weight: bold;
+  padding: 1em;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+button:hover {
+    background-color: #b48c63;
+}
+
+/* Footer */
 footer {
   text-align: center;
-  padding: 1em;
-  background: #003366;
-  color: white;
-}
-.gallery-grid img {
-  width: 180px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-.gallery-grid img:hover {
-  transform: scale(1.05);
+  padding: 2em;
+  background: #2c0e08;
+  color: #f5e6d3;
+  margin-top: 2em;
 }
