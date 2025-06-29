@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        targetElement.scrollIntoView({ behavior: "smooth" });
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
@@ -40,14 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadAboutSection() {
     fetch('about.json')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
       .then(data => {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
+          // שים לב לקובץ ה about.json שלך צריך להיות תמונה בשם about-background.jpg
           aboutSection.innerHTML = `
             <h2>${data.title}</h2>
             <img src="${data.image}" alt="תמונה של היקב">
@@ -66,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. הפעלת הגלריה הקופצת (Lightbox)
   function setupLightbox() {
     const modal = document.getElementById("imageModal");
+    if (!modal) return; // במידה והמודל לא קיים, הפסק את הפונקציה
+
     const modalImg = document.getElementById("modalImage");
     const galleryImages = document.querySelectorAll(".gallery-grid img");
     const closeModal = document.querySelector(".close-modal");
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // הפעלת הפונקציות לאחר טעינת הדף
+  // הפעלת הפונקציות המרכזיות לאחר טעינת הדף
   loadAboutSection();
   setupLightbox();
 });
