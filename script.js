@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
+        // הגלילה החלקה והאיטית נשלטת בעיקר על ידי ה-CSS
         targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
@@ -94,19 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll('#background-container .background-slide');
     if (slides.length === 0) return;
 
-    // הצגת התמונה הראשונה באופן מיידי
     slides[currentSlide].classList.add('active');
 
     setInterval(() => {
-      // הסתרת התמונה הנוכחית
       slides[currentSlide].classList.remove('active');
-      
-      // מעבר לתמונה הבאה (באופן מעגלי)
       currentSlide = (currentSlide + 1) % slides.length;
-      
-      // הצגת התמונה הבאה
       slides[currentSlide].classList.add('active');
-    }, 10000); // החלפה כל 10 שניות (10000 מילישניות)
+    }, 10000);
   }
 
   // הפעלת כל הפונקציות לאחר טעינת הדף
