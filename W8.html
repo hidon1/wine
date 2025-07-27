@@ -67,7 +67,6 @@
         }
         body.dark-mode .container,
         body.dark-mode .input-group,
-        body.dark-mode .data-row,
         body.dark-mode .modal-content,
         body.dark-mode .step-preview-card {
             background-color: var(--dark-card-background);
@@ -109,6 +108,7 @@
             border-color: var(--dark-border-color);
         }
         body.dark-mode input[type="number"]:focus, body.dark-mode input[type="text"]:focus, body.dark-mode textarea:focus, body.dark-mode select:focus {
+            outline: none;
             border-color: var(--dark-primary-color);
             box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
         }
@@ -118,9 +118,7 @@
         body.dark-mode button:not(.delete):not(.step-nav-button):hover {
             background-color: var(--dark-secondary-color);
         }
-        body.dark-mode .data-row span, body.dark-mode .data-row .value {
-            color: var(--dark-text-color);
-        }
+        /* .data-row specific dark mode rules removed */
         body.dark-mode .graph-container {
             background-color: #3a3a5e; /* Darker graph background */
             border-color: #555588;
@@ -128,9 +126,7 @@
         body.dark-mode .graph-scale span {
             color: var(--dark-light-text-color);
         }
-        body.dark-mode .change-indicator {
-            color: var(--dark-light-text-color);
-        }
+        /* .change-indicator specific dark mode rules removed */
         body.dark-mode .history-list li {
             background-color: #3a3a5e;
             border-color: #555588;
@@ -271,6 +267,8 @@
         .top-section-wrapper {
             background-color: var(--top-section-background);
             padding-top: 25px; /* Matches original body padding-top */
+            padding-left: 25px; /* Add side padding matching container */
+            padding-right: 25px; /* Add side padding matching container */
             border-bottom-left-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -283,7 +281,7 @@
 
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 20px auto; /* Existing margin */
             background-color: var(--card-background);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
@@ -504,8 +502,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* --- Data Display Section --- */
-        .data-display-section {
+        /* --- Data Display Section (Removed) --- */
+        /* .data-display-section {
             margin-top: 40px;
         }
 
@@ -545,7 +543,7 @@
             min-width: 80px;
             text-align: center;
             transition: color var(--animation-speed);
-        }
+        } */
 
         .graph-container {
             flex-grow: 1; /* Allows graph to take available space */
@@ -599,8 +597,6 @@
             min-width: unset; /* Override data-row span */
             font-weight: normal;
         }
-
-        /* Removed change-indicator style block */
 
         /* --- History Modal --- */
         .modal {
@@ -1467,7 +1463,7 @@
         .project-details-card {
             position: absolute;
             top: 20px; /* Aligned with hamburger button */
-            left: 20px; /* Adjusted for RTL */
+            right: 20px; /* Adjusted to left for RTL */
             width: 250px;
             background-color: var(--card-background);
             border-radius: var(--border-radius);
@@ -1478,6 +1474,8 @@
             font-family: 'Heebo', sans-serif;
             text-align: right; /* RTL */
             transition: all var(--animation-speed) ease-in-out; /* Smooth transition for hover/active effects */
+            max-height: calc(100vh - 100px); /* Limit height to prevent overflow, leave room for top/bottom margin */
+            overflow-y: auto; /* Enable scrolling within the card */
         }
         .project-details-card:hover {
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--secondary-color); /* Enhanced hover shadow/glow */
@@ -1501,7 +1499,7 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
-        .project-details-item:last-child {
+        .project-details-item:last-of-type { /* Use last-of-type to target the actual last detail item before the add button */
             border-bottom: none; /* No border for last item */
         }
         .project-details-item:hover {
@@ -1518,6 +1516,7 @@
             color: var(--text-color);
             flex-grow: 1; /* Allow value to take space */
             text-align: left; /* Align value to left */
+            min-width: 50px; /* Ensure editable area is visible */
         }
         .project-details-item input[type="text"],
         .project-details-item input[type="number"],
@@ -1550,6 +1549,7 @@
             font-size: 0.7em;
             cursor: pointer;
             margin-left: 5px;
+            flex-shrink: 0; /* Prevent button from shrinking */
             transition: background-color 0.2s ease;
         }
         .project-details-item.custom-property .delete-custom-prop-btn:hover {
@@ -1786,7 +1786,7 @@
         /* --- Responsive adjustments --- */
         @media (max-width: 768px) {
             body { padding: 0; padding-bottom: 150px; } /* Less padding on body */
-            .top-section-wrapper { padding-top: 10px; border-radius: 0; } /* Adjust for mobile */
+            .top-section-wrapper { padding-top: 10px; border-radius: 0; padding-left: 10px; padding-right: 10px; } /* Adjust for mobile */
             .container { padding: 20px; margin: 10px auto; } /* Less padding/margin for container */
             .hamburger-menu-btn { top: 10px; right: 10px; width: 35px; height: 35px; gap: 5px;}
             .hamburger-menu-btn span { width: 20px; height: 2px;}
@@ -1810,12 +1810,8 @@
             .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea { padding: 10px; font-size: 0.9em; }
             .input-group button { padding: 10px 15px; font-size: 0.9em; }
 
-            .data-display-section { margin-top: 20px; }
-            .data-row { flex-direction: column; align-items: flex-start; padding: 10px 15px; margin-bottom: 10px; }
-            .data-row span { min-width: unset; margin-bottom: 5px; font-size: 1em; }
-            .data-row .value { font-size: 1.2em; min-width: unset; text-align: right; }
-            .graph-container { margin: 10px 0; width: 100%; height: 30px; }
-            .graph-scale { display: none; } /* Hide for very small graphs */
+            /* .data-display-section is removed */
+            /* .data-row is removed */
             /* .change-indicator is removed */
 
             .modal-content { width: 95%; padding: 20px; max-height: 95vh; }
@@ -1863,9 +1859,12 @@
             .project-details-card {
                 position: relative; /* Change to relative or static for mobile to fit layout */
                 top: unset;
-                left: unset;
-                margin-top: 20px; /* Add some margin from above elements */
-                width: 100%; /* Take full width */
+                left: unset; /* unset left for mobile */
+                right: unset; /* unset right for mobile */
+                margin: 20px auto; /* Center on mobile */
+                width: calc(100% - 40px); /* Take full width minus padding */
+                max-height: unset; /* Remove max-height for mobile if it causes issues */
+                overflow-y: visible; /* Allow content to push height on mobile */
                 box-shadow: var(--shadow); /* Simpler shadow on mobile */
                 border: 1px solid var(--border-color); /* Simpler border on mobile */
             }
@@ -1959,9 +1958,7 @@
 
             <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(139, 0, 0, 0.75), rgba(0, 0, 0, 0)); margin: 40px 0;">
 
-            <div class="data-display-section" id="currentStageDataDisplaySection">
-                </div>
-        </div>
+            </div>
     </div>
 
     <div class="dashboard-section" id="fixedDashboardSection">
@@ -2111,7 +2108,7 @@
                     'harvestDate': { name: 'תאריך בציר', type: 'date', placeholder: 'בחר תאריך' },
                     'generalNotes': { name: 'הערות נוספות', type: 'text', placeholder: 'יין בעל פוטנציאל יישון' }
                 },
-                customMetrics: {} // To store custom properties added by the user
+                customMetrics: {} // This is a placeholder for custom metric definitions, not the data itself
             },
             'stage1': {
                 name: 'בציר',
@@ -2202,9 +2199,9 @@
             },
         };
         
-        let projects = loadProjects(); // Load all projects from localStorage
-        let currentProjectId = localStorage.getItem('currentProjectId') || Object.keys(projects)[0]; 
-        let currentStageId = localStorage.getItem('currentStageId') || 'stage1'; 
+        let projects = loadProjects(); /* */
+        let currentProjectId = localStorage.getItem('currentProjectId') || Object.keys(projects)[0]; /* */
+        let currentStageId = localStorage.getItem('currentStageId') || 'stage1'; /* */
 
         // Ensure currentProjectId and currentStageId are valid after loading
         if (!currentProjectId || !projects[currentProjectId]) {
@@ -2236,7 +2233,7 @@
         const stepCardsGrid = document.getElementById('stepCardsGrid');
         const currentStageContent = document.getElementById('currentStageContent');
         const currentStageInputSection = document.getElementById('currentStageInputSection');
-        const currentStageDataDisplaySection = document.getElementById('currentStageDataDisplaySection');
+        // const currentStageDataDisplaySection = document.getElementById('currentStageDataDisplaySection'); // Removed
 
         // Fixed Dashboard Elements
         const fixedDashboardSection = document.getElementById('fixedDashboardSection');
@@ -2302,23 +2299,23 @@
 
         // --- Dark Mode Logic ---
         function loadDarkModeState() {
-            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            const isDarkMode = localStorage.getItem('darkMode') === 'true'; /* */
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
                 darkModeToggle.checked = true;
             } else {
                 document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'false');
+                localStorage.setItem('darkMode', 'false'); /* */
             }
         }
 
         darkModeToggle.addEventListener('change', () => {
             if (darkModeToggle.checked) {
                 document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'true');
+                localStorage.setItem('darkMode', 'true'); /* */
             } else {
                 document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'false');
+                localStorage.setItem('darkMode', 'false'); /* */
             }
         });
 
@@ -2349,8 +2346,8 @@
             datePickerModal.style.display = 'none'; 
 
             // Ensure main content is visible
-            document.querySelector('.container').style.display = 'block'; // Show main container
-            document.querySelector('.top-section-wrapper').style.display = 'block'; // Show top section
+            document.querySelector('.container').style.display = 'block';
+            document.querySelector('.top-section-wrapper').style.display = 'block';
             currentStageContent.style.display = 'block';
             stageNavContainer.style.display = 'flex';
             projectDetailsCard.style.display = 'block'; 
@@ -2393,7 +2390,7 @@
         }
 
         function loadProjects() {
-            const storedProjects = localStorage.getItem('projects');
+            const storedProjects = localStorage.getItem('projects'); /* */
             let loaded = storedProjects ? JSON.parse(storedProjects) : {};
             
             // If no projects at all, create a default one
@@ -2466,7 +2463,7 @@
         }
 
         function saveAllProjects() {
-            localStorage.setItem('projects', JSON.stringify(projects));
+            localStorage.setItem('projects', JSON.stringify(projects)); /* */
         }
 
         function updateProjectDisplay() {
@@ -2479,9 +2476,9 @@
         function openProjectManagementModal() {
             closeSidebar();
             // Hide main content temporarily while modal is open
-            document.querySelector('.container').style.display = 'none'; // Hide main container
-            document.querySelector('.top-section-wrapper').style.display = 'none'; // Hide top section
-            fixedDashboardSection.style.display = 'none'; // Hide fixed dashboard
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.top-section-wrapper').style.display = 'none';
+            fixedDashboardSection.style.display = 'none';
 
             projectManagementModal.style.display = 'flex';
             renderProjectList();
@@ -2537,8 +2534,8 @@
             if (newProjectName && newProjectName.trim() !== '') {
                 newProjectName = newProjectName.trim();
                 const newProjectId = `project_${Date.now()}`;
-                projects[newProjectId] = createNewProjectData(newProjectName); // Use helper function
-                saveAllProjects();
+                projects[newProjectId] = createNewProjectData(newProjectName); /* */
+                saveAllProjects(); /* */
                 switchProject(newProjectId); // Switch to new project automatically
                 renderProjectList(); // Re-render list
             }
@@ -2546,7 +2543,7 @@
 
         function switchProject(id) {
             currentProjectId = id;
-            localStorage.setItem('currentProjectId', currentProjectId);
+            localStorage.setItem('currentProjectId', currentProjectId); /* */
             loadCurrentStageContent(); 
             updateProjectDisplay(); // This also calls loadCurrentStageContent and updateProjectDetailsCard
             closeProjectManagementModal();
@@ -2563,8 +2560,8 @@
                          projects[currentProjectId] = createNewProjectData('פרויקט ראשי');
                     }
                 }
-                saveAllProjects();
-                localStorage.setItem('currentProjectId', currentProjectId); // Update localStorage for current project ID
+                saveAllProjects(); /* */
+                localStorage.setItem('currentProjectId', currentProjectId); /* */
                 updateProjectDisplay(); // This will load new project's data
                 renderProjectList(); // Update project list in modal
             }
@@ -2595,7 +2592,7 @@
             const newName = editProjectNameInput.value.trim();
             if (newName !== '' && newName !== projects[currentProjectId].name) {
                 projects[currentProjectId].name = newName;
-                saveAllProjects();
+                saveAllProjects(); /* */
                 updateProjectDisplay();
             }
             currentProjectNameDisplay.style.display = 'inline-block';
@@ -2623,7 +2620,7 @@
 
         function switchStage(stageId) {
             currentStageId = stageId;
-            localStorage.setItem('currentStageId', currentStageId);
+            localStorage.setItem('currentStageId', currentStageId); /* */
             renderStageNavigation(); // Update active button
             loadCurrentStageContent();
         }
@@ -2635,7 +2632,7 @@
                 // Fallback to first regular stage if invalid
                 currentStageId = Object.keys(stagesConfig).find(id => id !== 'wineDetails'); // Get first non-wineDetails stage
                 if (!currentStageId) { /* Handle case with no regular stages, though unlikely */ return; }
-                localStorage.setItem('currentStageId', currentStageId);
+                localStorage.setItem('currentStageId', currentStageId); /* */
                 renderStageNavigation();
                 loadCurrentStageContent(); // Recursive call
                 return;
@@ -2645,9 +2642,9 @@
             
             // Clear previous content
             currentStageInputSection.innerHTML = '';
-            currentStageDataDisplaySection.innerHTML = '';
+            // currentStageDataDisplaySection.innerHTML = ''; // Removed
 
-            // Render inputs and data displays for current stage metrics
+            // Render inputs for current stage metrics
             for (const metricId in stageConfig.metrics) {
                 const metric = stageConfig.metrics[metricId];
 
@@ -2705,28 +2702,10 @@
                         });
                     }
                 }
-
-
-                // Create Data Display Row
-                const dataRow = document.createElement('div');
-                dataRow.className = 'data-row';
-                dataRow.id = `${metricId}Row`;
-                // Pass stageId and metricId to openHistoryModal
-                dataRow.setAttribute('onclick', `openHistoryModal('${currentStageId}', '${metricId}', '${metric.name}')`);
-                dataRow.innerHTML = `
-                    <span>${metric.name}:</span>
-                    <span class="value" id="current${capitalizeFirstLetter(metricId)}">--</span>
-                    <div class="graph-container" ${metric.type === 'number' ? '' : 'style="display: none;"'}>
-                        <div class="graph-scale"><span></span><span></span></div>
-                        <div class="graph-bar" id="${metricId}Graph"></div>
-                    </div>
-                    `;
-                currentStageDataDisplaySection.appendChild(dataRow);
             }
 
-            // Update all displays for the current stage
-            updateAllStageMetricDisplays();
-            updateDashboardForCurrentStage(); // Updates fixed dashboard
+            // Update fixed dashboard
+            updateDashboardForCurrentStage();
             renderPreviousStageOverview(); // Update previous stages summary
         }
 
@@ -2772,7 +2751,7 @@
                 projects[currentProjectId].stages[stageId][metricId] = [];
             }
             projects[currentProjectId].stages[stageId][metricId].push({ value, timestamp });
-            saveAllProjects();
+            saveAllProjects(); /* */
             
             // Clear input field or reset select
             if (metricConfig.type === 'select') {
@@ -2786,104 +2765,17 @@
                 inputElement.value = '';
             }
 
-
-            updateStageMetricDisplay(stageId, metricId);
             updateDashboardForCurrentStage();
             renderPreviousStageOverview(); // Update summaries
-            updateProjectDetailsCard(); // Update project details card as well
         }
 
-        function updateAllStageMetricDisplays() {
-            const stageConfig = stagesConfig[currentStageId];
-            for (const metricId in stageConfig.metrics) {
-                updateStageMetricDisplay(currentStageId, metricId);
-            }
-        }
+        /* updateAllStageMetricDisplays() is removed as per request */
 
-        function updateStageMetricDisplay(stageId, metricId) {
-            const currentValueElement = document.getElementById(`current${capitalizeFirstLetter(metricId)}`);
-            const graphBarElement = document.getElementById(`${metricId}Graph`);
-            const graphContainer = document.querySelector(`#${metricId}Row .graph-container`);
-            const graphScaleElements = graphContainer ? graphContainer.querySelectorAll('.graph-scale span') : null;
-            const metricConfig = stagesConfig[stageId].metrics[metricId];
-            const precision = metricConfig.precision;
-
-            const currentEntries = projects[currentProjectId].stages[stageId][metricId];
-            if (!currentValueElement) return; // Safeguard if element not found
-
-            if (!currentEntries || currentEntries.length === 0) { // Check if array is defined and has data
-                currentValueElement.textContent = '--';
-                if (graphBarElement) {
-                    graphBarElement.style.width = '0%';
-                    graphBarElement.textContent = '';
-                    graphBarElement.className = 'graph-bar';
-                }
-                // Removed changeIndicatorElement logic
-                if (graphScaleElements && graphScaleElements.length === 2) {
-                    graphScaleElements[0].textContent = '';
-                    graphScaleElements[1].textContent = '';
-                }
-                return;
-            }
-
-            const latestEntry = currentEntries[currentEntries.length - 1];
-            const latestValue = latestEntry.value;
-            currentValueElement.textContent = metricConfig.type === 'number' ? latestValue.toFixed(precision) : latestValue;
-
-            if (metricConfig.type === 'number') { // Only for number metrics
-                if (graphBarElement) graphBarElement.style.display = 'flex'; // Ensure visible
-                if (graphContainer) graphContainer.style.display = 'block'; // Ensure visible
-
-                let previousValue = currentEntries.length > 1 ? currentEntries[currentEntries.length - 2].value : null;
-
-                if (graphBarElement) {
-                    let valuesOnly = currentEntries.map(e => e.value);
-                    let minValue = Math.min(...valuesOnly);
-                    let maxValue = Math.max(...valuesOnly);
-
-                    if (currentEntries.length === 1 || minValue === maxValue) {
-                        const buffer = latestValue * 0.1 || 1;
-                        minValue = latestValue - buffer;
-                        maxValue = latestValue + buffer;
-                        if (minValue === maxValue) {
-                            minValue -= 0.5;
-                            maxValue += 0.5;
-                        }
-                    }
-                    
-                    const range = maxValue - minValue;
-                    let barPosition = ((latestValue - minValue) / range) * 100;
-                    if (isNaN(barPosition) || range === 0) {
-                        barPosition = 50;
-                    }
-
-                    graphBarElement.style.width = `80%`;
-                    graphBarElement.style.left = `${barPosition - 40}%`;
-                    graphBarElement.textContent = latestValue.toFixed(precision);
-                    graphBarElement.className = 'graph-bar'; // Reset classes
-
-                    if (previousValue !== null) {
-                        const difference = latestValue - previousValue;
-                        if (difference > 0) {
-                            graphBarElement.classList.add('positive');
-                        } else if (difference < 0) {
-                            graphBarElement.classList.add('negative');
-                        }
-                    } else {
-                        graphBarElement.classList.add('no-change');
-                    }
-
-                    if (graphScaleElements && graphScaleElements.length === 2) {
-                        graphScaleElements[0].textContent = minValue.toFixed(precision);
-                        graphScaleElements[1].textContent = maxValue.toFixed(precision);
-                    }
-                }
-            } else { // For text metrics, hide graph/change elements if they exist
-                if (graphBarElement) graphBarElement.style.display = 'none';
-                if (graphContainer) graphContainer.style.display = 'none';
-            }
-        }
-
+        /*
+        The updateStageMetricDisplay function is now effectively merged into updateDashboardForCurrentStage
+        and is no longer needed as a standalone function for the main content area data rows.
+        Its previous role was to update the display of individual data rows, which are now removed.
+        */
 
         function updateDashboardForCurrentStage() {
             fixedDashboardGrid.innerHTML = ''; // Update fixed dashboard grid
@@ -2914,9 +2806,32 @@
             historyList.innerHTML = '';
             modalGraphSvg.innerHTML = '';
 
-            const metricConfig = (sectionId === 'wineDetails' ? stagesConfig.wineDetails.metrics[metricId] || projects[currentProjectId].wineDetails.customMetrics[metricId] : stagesConfig[sectionId].metrics[metricId]);
-            const historyEntries = (sectionId === 'wineDetails' ? (projects[currentProjectId].wineDetails[metricId] || projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId).history) : projects[currentProjectId].stages[sectionId][metricId]);
-            const precision = metricConfig ? metricConfig.precision : null; // Custom props may not have precision
+            // Determine if it's a predefined metric or a custom property
+            let metricConfig;
+            let historyEntries;
+            if (sectionId === 'wineDetails') {
+                metricConfig = stagesConfig.wineDetails.metrics[metricId];
+                if (metricConfig) { // Predefined wine detail metric
+                    historyEntries = projects[currentProjectId].wineDetails[metricId];
+                } else { // Custom property for wine details
+                    const customProp = projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId);
+                    if (customProp) {
+                        historyEntries = customProp.history;
+                        // For custom properties, dynamically create a basic metric config for display purposes
+                        metricConfig = { name: customProp.name, type: 'text' }; 
+                        // If values are numeric in custom history, treat as number for graph
+                        if (historyEntries.every(entry => typeof entry.value === 'number')) {
+                            metricConfig.type = 'number';
+                            metricConfig.precision = 2; // Default precision for custom numbers
+                        }
+                    }
+                }
+            } else { // Regular stage metric
+                metricConfig = stagesConfig[sectionId].metrics[metricId];
+                historyEntries = projects[currentProjectId].stages[sectionId][metricId];
+            }
+
+            const precision = metricConfig ? metricConfig.precision : null; // Custom props may not have precision by default
 
             // Hide manual input section as per request
             // manualInputHistory.style.display = 'none';
@@ -3130,13 +3045,12 @@
 
             if (metricDataArray) {
                 metricDataArray.splice(indexToRemove, 1);
-                saveAllProjects();
+                saveAllProjects(); /* */
 
                 // Re-render affected parts based on where the metric belongs
                 if (sectionId === 'wineDetails') {
                     updateProjectDetailsCard();
                 } else {
-                    updateStageMetricDisplay(sectionId, metricId);
                     updateDashboardForCurrentStage();
                     renderPreviousStageOverview();
                 }
@@ -3157,9 +3071,9 @@
         // --- Financial Management (Income/Expenses) Logic ---
         function openFinanceModal() {
             closeSidebar();
-            document.querySelector('.container').style.display = 'none'; // Hide main container
-            document.querySelector('.top-section-wrapper').style.display = 'none'; // Hide top section
-            fixedDashboardSection.style.display = 'none'; // Hide fixed dashboard
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.top-section-wrapper').style.display = 'none';
+            fixedDashboardSection.style.display = 'none';
 
             financeModal.style.display = 'flex';
             renderFinanceList();
@@ -3185,7 +3099,7 @@
             });
 
             projects[currentProjectId].finance.push({ id: Date.now(), type, amount, notes, timestamp });
-            saveAllProjects();
+            saveAllProjects(); /* */
 
             financeAmountInput.value = '';
             financeNotesInput.value = '';
@@ -3312,7 +3226,7 @@
             if (!isNaN(newAmount) && newAmount > 0) {
                 entry.amount = newAmount;
                 entry.notes = newNotes.trim();
-                saveAllProjects();
+                saveAllProjects(); /* */
                 renderFinanceList();
             } else {
                 alert('הסכום שהוזן אינו חוקי.');
@@ -3324,7 +3238,7 @@
                 const initialLength = projects[currentProjectId].finance.length;
                 projects[currentProjectId].finance = projects[currentProjectId].finance.filter(entry => entry.id !== id);
                 if (projects[currentProjectId].finance.length < initialLength) {
-                    saveAllProjects();
+                    saveAllProjects(); /* */
                     renderFinanceList();
                 }
             }
@@ -3333,9 +3247,9 @@
         // --- Global Financial Report Logic ---
         function openGlobalFinanceReportModal() {
             closeSidebar();
-            document.querySelector('.container').style.display = 'none'; // Hide main container
-            document.querySelector('.top-section-wrapper').style.display = 'none'; // Hide top section
-            fixedDashboardSection.style.display = 'none'; // Hide fixed dashboard
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.top-section-wrapper').style.display = 'none';
+            fixedDashboardSection.style.display = 'none';
 
 
             globalFinanceReportModal.style.display = 'flex';
@@ -3447,13 +3361,27 @@
             const projectData = projects[currentProjectId];
             const wineDetailsData = projectData.wineDetails || {}; 
             const projectDetailsCard = document.getElementById('projectDetailsCard');
+            const addCustomPropertyBtn = projectDetailsCard.querySelector('.add-custom-property-btn');
 
-            // Clear existing static and custom properties (except the add button)
-            const existingDetails = projectDetailsCard.querySelectorAll('.project-details-item');
-            existingDetails.forEach(item => {
-                if (!item.hasAttribute('data-metric-id') && !item.classList.contains('add-custom-property-btn')) {
-                    item.remove();
-                }
+            // Remove all existing detail items (both predefined and custom) except the add button
+            projectDetailsCard.querySelectorAll('.project-details-item').forEach(item => {
+                item.remove();
+            });
+
+            // Re-render predefined detail items
+            const predefinedMetrics = ['wineName', 'vintageYear', 'grapeVariety', 'vineyardSource', 'generalNotes', 'harvestDate'];
+            predefinedMetrics.forEach(metricId => {
+                const metricConfig = stagesConfig.wineDetails.metrics[metricId];
+                const item = document.createElement('div');
+                item.className = 'project-details-item';
+                item.setAttribute('data-metric-id', metricId);
+                item.setAttribute('data-section', 'wineDetails');
+                item.innerHTML = `
+                    <span class="detail-label">${metricConfig.name}:</span>
+                    <span class="detail-value editable">--</span>
+                `;
+                projectDetailsCard.insertBefore(item, addCustomPropertyBtn); // Insert before the add button
+                attachEditListenerToDetailItem(item); // Attach listener for editing
             });
 
             // Function to get the latest value of a metric from wineDetails or custom properties
@@ -3473,10 +3401,7 @@
                 return '--';
             };
 
-            // Update text content for each predefined detail item
-            // Ensure listeners are re-attached after updating content.
-            // Using a loop to keep it DRY and consistent for predefined fields.
-            const predefinedMetrics = ['wineName', 'vintageYear', 'grapeVariety', 'vineyardSource', 'generalNotes', 'harvestDate'];
+            // Update text content for each predefined detail item after they are rendered
             predefinedMetrics.forEach(metricId => {
                 const item = projectDetailsCard.querySelector(`[data-metric-id="${metricId}"]`);
                 if (item) {
@@ -3484,15 +3409,10 @@
                     const metricConfig = stagesConfig.wineDetails.metrics[metricId];
                     const precision = metricConfig.type === 'number' ? metricConfig.precision : null;
                     displaySpan.textContent = getLatestWineDetailValue(metricId, precision);
-                    
-                    // Re-attach listener as content might have changed, or to ensure it's there
-                    // This function will also clear old listeners before adding new one
-                    attachEditListenerToDetailItem(item); 
                 }
             });
 
             // Render custom properties
-            const addCustomPropertyBtn = projectDetailsCard.querySelector('.add-custom-property-btn');
             if (projectData.wineDetails.customProperties) {
                 projectData.wineDetails.customProperties.forEach(prop => {
                     const customPropertyItem = document.createElement('div');
@@ -3522,7 +3442,7 @@
                     history: [] // Each custom property has its own history
                 };
                 projects[currentProjectId].wineDetails.customProperties.push(newCustomProperty);
-                saveAllProjects();
+                saveAllProjects(); /* */
                 updateProjectDetailsCard(); // Re-render to show the new field
             }
         }
@@ -3531,7 +3451,7 @@
         function deleteCustomProperty(propId) {
             if (confirm('האם אתה בטוח שברצונך למחוק שדה מותאם אישית זה?')) {
                 projects[currentProjectId].wineDetails.customProperties = projects[currentProjectId].wineDetails.customProperties.filter(prop => prop.id !== propId);
-                saveAllProjects();
+                saveAllProjects(); /* */
                 updateProjectDetailsCard(); // Re-render to remove the field
             }
         }
@@ -3558,7 +3478,14 @@
                 if (stagesConfig.wineDetails.metrics[metricId]) {
                     metricConfig = stagesConfig.wineDetails.metrics[metricId];
                 } else { // It's a custom property
-                    metricConfig = { type: 'text', name: item.querySelector('.detail-label').textContent.replace(':', '') }; // Default to text type for custom
+                    // For custom properties, use the stored history to infer type or default to text
+                    const customProp = projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId);
+                    metricConfig = { type: 'text', name: item.querySelector('.detail-label').textContent.replace(':', '') };
+                    if (customProp && customProp.history.every(entry => typeof entry.value === 'number')) {
+                        metricConfig.type = 'number';
+                        metricConfig.step = 'any';
+                        metricConfig.precision = 2; // Default precision for custom numbers
+                    }
                 }
 
                 currentEditableDetailElement = { item, metricId, section, metricConfig, displaySpan: displaySpan };
@@ -3680,7 +3607,7 @@
 
             // Only update if value has changed and is valid
             const oldValue = displaySpan.textContent === '--' ? '' : displaySpan.textContent;
-            if (newValue !== oldValue && !isNaN(newValue) && newValue !== "") { // Ensure value is meaningful
+            if (newValue !== oldValue && (metricConfig.type === 'number' ? !isNaN(newValue) : newValue !== "")) {
                 updateProjectDetailValue(section, metricId, newValue);
             }
 
@@ -3719,11 +3646,11 @@
 
             if (!metricDataArray) { 
                 console.error("Metric data array not found, initializing:", section, metricId);
-                // Initialize if not found (should be handled by loadProjects, but safeguard)
+                // This case should ideally not happen if project structure is loaded correctly, but as a safeguard:
                 if (section === 'wineDetails') {
                     if (stagesConfig.wineDetails.metrics[metricId]) {
                         projects[currentProjectId].wineDetails[metricId] = [];
-                    } else { // Custom property case should have been caught above
+                    } else { // It's a custom property, this should have been initialized
                         return;
                     }
                 } else {
@@ -3739,11 +3666,10 @@
             } else {
                 metricDataArray.push({ value: newValue, timestamp: timestamp });
             }
-            saveAllProjects();
+            saveAllProjects(); /* */
             updateProjectDetailsCard(); // Update the card after changes
             // If the updated metric is part of the current active stage's inputs, update that too
             if (section === currentStageId) {
-                updateStageMetricDisplay(currentStageId, metricId);
                 updateDashboardForCurrentStage();
             }
             renderPreviousStageOverview(); // Update summaries if relevant
@@ -3850,9 +3776,9 @@
         function openInstructionsModal() {
             closeSidebar();
             // Hide main content temporarily while modal is open
-            document.querySelector('.container').style.display = 'none'; // Hide main container
-            document.querySelector('.top-section-wrapper').style.display = 'none'; // Hide top section
-            fixedDashboardSection.style.display = 'none'; // Hide fixed dashboard
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.top-section-wrapper').style.display = 'none';
+            fixedDashboardSection.style.display = 'none';
             instructionsModal.style.display = 'flex';
         }
 
@@ -3864,9 +3790,9 @@
         // --- Timeline Modal Logic ---
         function openTimelineModal() {
             closeSidebar();
-            document.querySelector('.container').style.display = 'none'; // Hide main container
-            document.querySelector('.top-section-wrapper').style.display = 'none'; // Hide top section
-            fixedDashboardSection.style.display = 'none'; // Hide fixed dashboard
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.top-section-wrapper').style.display = 'none';
+            fixedDashboardSection.style.display = 'none';
 
             timelineModal.style.display = 'flex';
             renderTimeline();
