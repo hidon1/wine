@@ -44,14 +44,15 @@
             --dark-graph-point-color: #B8860B;
             --dark-graph-average-color: #ADFF2F; /* Brighter green for dark mode */
 
-            /* New: Top section background */
-            --top-section-background: #FFEFD5; /* Very light orange/peach */
+            /* New: Top section background - Light Wine Color */
+            --top-section-background: #F8F0E3; /* A very light, warm off-white, like a light Chardonnay */
+            --top-section-border: #D4C6B1; /* A slightly darker shade for border */
         }
 
         body {
             font-family: 'Heebo', sans-serif;
             margin: 0;
-            padding: 0; /* Removed padding from body */
+            padding: 0;
             padding-bottom: 180px; /* Space for fixed dashboard */
             background-color: var(--background-color);
             color: var(--text-color);
@@ -117,7 +118,6 @@
         body.dark-mode button:not(.delete):not(.step-nav-button):hover {
             background-color: var(--dark-secondary-color);
         }
-        /* .data-row specific dark mode rules removed */
         body.dark-mode .graph-container {
             background-color: #3a3a5e; /* Darker graph background */
             border-color: #555588;
@@ -125,7 +125,6 @@
         body.dark-mode .graph-scale span {
             color: var(--dark-light-text-color);
         }
-        /* .change-indicator specific dark mode rules removed */
         body.dark-mode .history-list li {
             background-color: #3a3a5e;
             border-color: #555588;
@@ -264,30 +263,32 @@
 
         /* NEW: Top section wrapper */
         .top-section-wrapper {
-            background-color: var(--top-section-background);
-            padding-top: 5px; /* Reduced padding-top to move content up */
-            padding-left: 25px; /* Add side padding matching container */
-            padding-right: 25px; /* Add side padding matching container */
+            background-color: var(--top-section-background); /* Light wine color */
+            padding-top: 5px; 
+            padding-left: 25px; 
+            padding-right: 25px; 
             border-bottom-left-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: background-color var(--animation-speed);
+            border-bottom: 1px solid var(--top-section-border); /* Subtle border */
         }
         body.dark-mode .top-section-wrapper {
-            background-color: var(--dark-card-background); /* Dark mode equivalent */
+            background-color: var(--dark-card-background);
+            border-color: var(--dark-border-color);
         }
 
 
         .container {
-            max-width: 1200px;
-            margin: 20px auto; /* Existing margin */
+            max-width: 900px; /* Make it narrower */
+            margin: 20px auto; 
             background-color: var(--card-background);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 30px;
             animation: fadeIn var(--animation-speed) ease-out;
             transition: background-color var(--animation-speed), box-shadow var(--animation-speed), border-color var(--animation-speed);
-            position: relative; /* For project details card positioning */
+            position: relative; 
         }
 
         @keyframes fadeIn {
@@ -295,11 +296,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 {
+        h1 { /* This H1 is now removed, but keeping style in case needed for other h1 */
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 5px; /* Reduced margin */
-            margin-top: 0; /* Move to very top */
+            margin-bottom: 5px; 
+            margin-top: 0; 
             font-family: 'Playfair Display', serif;
             font-size: 2.5em;
             font-weight: 700;
@@ -311,18 +312,22 @@
         /* --- Project Name & Edit --- */
         .project-header {
             display: flex;
+            flex-direction: column; /* Stack name and input vertically */
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px; /* Reduced margin */
-            gap: 10px;
+            margin-bottom: 10px; 
+            gap: 5px; /* Reduced gap */
+            padding-top: 5px; /* Added padding to move it slightly down from very top of container */
         }
         #currentProjectName {
             font-family: 'Playfair Display', serif;
-            font-size: 2em;
-            color: var(--secondary-color);
+            font-size: 2.5em; /* Larger font for project name */
+            color: var(--primary-color); /* Use primary color for project name */
             font-weight: 700;
             cursor: pointer;
             transition: color var(--animation-speed);
+            margin-bottom: 0; /* Remove default margin */
+            margin-top: 0; /* Remove default margin */
         }
         #currentProjectName:hover {
             text-decoration: underline;
@@ -337,26 +342,101 @@
             color: var(--text-color);
             transition: background-color var(--animation-speed), color var(--animation-speed), border-color var(--animation-speed);
             box-sizing: border-box;
+            text-align: center; /* Center input text */
+            max-width: 80%; /* Limit width of input */
         }
+
+        /* NEW: Stage Navigation with image in center */
+        .stage-nav-container {
+            display: flex;
+            justify-content: center; /* Center items initially */
+            align-items: center; /* Align items vertically */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 8px; /* Gap between buttons */
+            margin-top: 15px; /* Space above navigation */
+            margin-bottom: 20px; 
+            padding: 10px;
+            background-color: var(--top-section-background); 
+            border-radius: var(--border-radius);
+            transition: background-color var(--animation-speed);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+        }
+        body.dark-mode .stage-nav-container {
+            background-color: var(--dark-card-background); 
+        }
+
+        .stage-nav-button {
+            background-color: var(--light-text-color);
+            color: white;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color var(--animation-speed);
+            flex-shrink: 0; 
+            min-width: 100px;
+            text-align: center;
+        }
+        .stage-nav-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .stage-nav-button.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        body.dark-mode .stage-nav-button {
+            background-color: var(--dark-secondary-color);
+            border-color: var(--dark-border-color);
+            color: var(--dark-text-color);
+        }
+        body.dark-mode .stage-nav-button.active {
+            background-color: var(--dark-primary-color);
+            border-color: var(--dark-primary-color);
+        }
+        body.dark-mode .stage-nav-button:hover {
+            background-color: var(--dark-primary-color);
+        }
+
+        /* Wine bottle icon in the middle */
+        .wine-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 15px; /* Space around the icon */
+        }
+        .wine-icon-container img {
+            width: 70px; /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+        .wine-icon-container img:hover {
+            transform: scale(1.1);
+        }
+
 
         /* --- Dashboard Section (Fixed at Bottom) --- */
         .dashboard-section {
-            position: fixed; /* Fixed position */
-            bottom: 0; /* Align to the bottom */
+            position: fixed; 
+            bottom: 0; 
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-top-left-radius: 30px; /* More prominent top-left curve */
-            border-top-right-radius: 30px; /* More prominent top-right curve */
-            border-bottom-left-radius: 0; /* Flat bottom corners */
+            border-top-left-radius: 30px; 
+            border-top-right-radius: 30px; 
+            border-bottom-left-radius: 0; 
             border-bottom-right-radius: 0;
-            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.2); /* Shadow pointing upwards */
-            padding: 10px 15px; /* Reduced padding for smaller size */
+            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.2); 
+            padding: 10px 15px; 
             color: white;
             text-align: center;
             transition: background var(--animation-speed), box-shadow var(--animation-speed);
-            z-index: 999; /* Stay above other content, but below modals/sidebar */
-            display: flex; /* Use flexbox for grid */
+            z-index: 999; 
+            display: flex; 
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -366,9 +446,9 @@
             text-align: center;
             color: var(--accent-color);
             margin-top: 0;
-            margin-bottom: 5px; /* Reduced margin */
+            margin-bottom: 5px; 
             font-family: 'Playfair Display', serif;
-            font-size: 1.4em; /* Smaller for fixed bar */
+            font-size: 1.4em; 
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             transition: color var(--animation-speed);
@@ -378,9 +458,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* Reduced gap */
-            width: 100%; /* Ensure it takes full width of section */
-            max-width: 1000px; /* Max width for items */
+            gap: 10px; 
+            width: 100%; 
+            max-width: 1000px; 
         }
 
         .dashboard-item {
@@ -388,19 +468,19 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: var(--border-radius);
-            padding: 8px 10px; /* Reduced padding */
+            padding: 8px 10px; 
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-            flex: 1; /* Allow items to grow/shrink */
-            min-width: 70px; /* Further reduced min-width */
-            max-width: 100px; /* Further reduced max width */
+            flex: 1; 
+            min-width: 70px; 
+            max-width: 100px; 
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            min-height: 60px; /* Reduced min height */
+            min-height: 60px; 
         }
 
         .dashboard-item:hover {
@@ -410,10 +490,10 @@
 
         .dashboard-item h3 {
             margin-top: 0;
-            margin-bottom: 2px; /* Reduced margin */
+            margin-bottom: 2px; 
             color: var(--accent-color);
             font-family: 'Heebo', sans-serif;
-            font-size: 0.75em; /* Further reduced font size */
+            font-size: 0.75em; 
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
@@ -422,7 +502,7 @@
         }
 
         .dashboard-item p {
-            font-size: 1.1em; /* Further reduced font size */
+            font-size: 1.1em; 
             font-weight: 700;
             color: white;
             margin: 0;
@@ -501,49 +581,6 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
-        /* --- Data Display Section (Removed) --- */
-        /* .data-display-section {
-            margin-top: 40px;
-        }
-
-        .data-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            margin-bottom: 15px;
-            padding: 15px 25px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-            transition: transform 0.2s ease, background-color 0.3s ease, border-color var(--animation-speed);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .data-row:hover {
-            transform: translateY(-3px);
-            background-color: #fcfafa;
-        }
-
-        .data-row span {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--text-color);
-            min-width: 120px;
-            transition: color var(--animation-speed);
-        }
-
-        .data-row .value {
-            font-size: 1.4em;
-            color: var(--secondary-color);
-            font-weight: 700;
-            min-width: 80px;
-            text-align: center;
-            transition: color var(--animation-speed);
-        } */
 
         .graph-container {
             flex-grow: 1; /* Allows graph to take available space */
@@ -668,11 +705,6 @@
             padding-bottom: 10px;
             transition: color var(--animation-speed);
         }
-
-        /* Manual Input for History Modal (Removed as per request) */
-        /* .manual-input-history {
-            display: none; 
-        } */
 
         /* --- Graph in Modal (Advanced Line/Area Graph) --- */
         .modal-graph-container {
@@ -1353,60 +1385,6 @@
         body.dark-mode .global-finance-project-section .project-balance.positive { color: #8BC34A; }
         body.dark-mode .global-finance-project-section .project-balance.negative { color: #EF5350; }
 
-        /* --- Stage Navigation --- */
-        .stage-nav-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            gap: 8px;
-            margin-bottom: 20px; /* Reduced margin */
-            padding: 10px;
-            background-color: var(--top-section-background); /* Matches top section background */
-            border-radius: var(--border-radius);
-            transition: background-color var(--animation-speed);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
-        }
-        body.dark-mode .stage-nav-container {
-            background-color: var(--dark-card-background); /* Dark mode equivalent */
-        }
-
-        .stage-nav-button {
-            background-color: var(--light-text-color);
-            color: white;
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.2s ease, border-color var(--animation-speed);
-            flex-shrink: 0; /* Prevent shrinking */
-            min-width: 100px;
-            text-align: center;
-        }
-        .stage-nav-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        .stage-nav-button.active {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        body.dark-mode .stage-nav-button {
-            background-color: var(--dark-secondary-color);
-            border-color: var(--dark-border-color);
-            color: var(--dark-text-color);
-        }
-        body.dark-mode .stage-nav-button.active {
-            background-color: var(--dark-primary-color);
-            border-color: var(--dark-primary-color);
-        }
-        body.dark-mode .stage-nav-button:hover {
-            background-color: var(--dark-primary-color);
-        }
-
-
         /* --- Stage Overview (Previous Stages) --- */
         .stage-overview-container {
             margin-bottom: 40px;
@@ -1597,7 +1575,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 }
 
 .add-custom-property-btn {
-    background-color: #87CEEB; /* Changed to SkyBlue */
+    background-color: var(--accent-color); /* Use accent color for this button */
     color: white;
     padding: 8px 15px;
     border: none;
@@ -1610,126 +1588,8 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
     margin-top: 15px;
 }
 .add-custom-property-btn:hover {
-    background-color: #6495ED; /* Darker SkyBlue on hover */
+    background-color: #5A7F1C; /* Darker accent on hover */
 }
-/* Style for custom added properties */
-.project-details-item.custom-property .detail-value {
-    background-color: var(--background-color); /* Slightly different background for custom fields */
-    border-radius: 5px;
-    padding: 2px 5px;
-    min-height: 1.5em; /* Ensure clickable area */
-}
-.project-details-item.custom-property:hover .detail-value {
-     background-color: #f0f0f0;
-}
-.project-details-item.custom-property .delete-custom-prop-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 3px 6px;
-    font-size: 0.7em;
-    cursor: pointer;
-    margin-left: 5px;
-    flex-shrink: 0; /* Prevent button from shrinking */
-    transition: background-color 0.2s ease;
-}
-.project-details-item.custom-property .delete-custom-prop-btn:hover {
-    background-color: #d32f2f;
-}
-
-.add-custom-property-btn {
-    background-color: #87CEEB; /* Changed to SkyBlue */
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    margin-top: 15px;
-}
-.add-custom-property-btn:hover {
-    background-color: #6495ED; /* Darker SkyBlue on hover */
-}
-        /* Scrollbar styling for .project-details-card */
-        .project-details-card::-webkit-scrollbar {
-            width: 8px; /* Width of the scrollbar */
-            background-color: transparent; /* Make it transparent by default */
-        }
-
-        .project-details-card::-webkit-scrollbar-thumb {
-            background-color: transparent; /* Hide the thumb by default */
-            border-radius: 4px; /* Rounded corners for the thumb */
-        }
-
-        .project-details-card::-webkit-scrollbar-track {
-            background-color: transparent; /* Hide the track by default */
-        }
-
-        /* Show scrollbar thumb and track only on hover over the card */
-        .project-details-card:hover::-webkit-scrollbar-thumb {
-            background-color: rgba(139, 0, 0, 0.5); /* Semi-transparent wine red on hover */
-        }
-
-        .project-details-card:hover::-webkit-scrollbar-track {
-            background-color: rgba(139, 0, 0, 0.1); /* Very light semi-transparent wine red on hover */
-        }
-
-        /* Dark mode scrollbar styles */
-        body.dark-mode .project-details-card::-webkit-scrollbar-thumb {
-            background-color: transparent; /* Hide thumb in dark mode by default */
-        }
-        body.dark-mode .project-details-card:hover::-webkit-scrollbar-thumb {
-            background-color: rgba(184, 0, 0, 0.5); /* Semi-transparent dark primary on hover */
-        }
-        body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
-            background-color: rgba(184, 0, 0, 0.1); /* Very light semi-transparent dark primary on hover */
-        }
-        /* Style for custom added properties */
-        .project-details-item.custom-property .detail-value {
-            background-color: var(--background-color); /* Slightly different background for custom fields */
-            border-radius: 5px;
-            padding: 2px 5px;
-            min-height: 1.5em; /* Ensure clickable area */
-        }
-        .project-details-item.custom-property:hover .detail-value {
-             background-color: #f0f0f0;
-        }
-        .project-details-item.custom-property .delete-custom-prop-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 3px 6px;
-            font-size: 0.7em;
-            cursor: pointer;
-            margin-left: 5px;
-            flex-shrink: 0; /* Prevent button from shrinking */
-            transition: background-color 0.2s ease;
-        }
-        .project-details-item.custom-property .delete-custom-prop-btn:hover {
-            background-color: #d32f2f;
-        }
-
-        .add-custom-property-btn {
-            background-color: var(--accent-color); /* Use accent color for this button */
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 700;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            margin-top: 15px;
-        }
-        .add-custom-property-btn:hover {
-            background-color: #5A7F1C; /* Darker accent on hover */
-        }
 
 
         /* --- Date Picker Modal (custom styling for simplicity) --- */
@@ -1951,9 +1811,15 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             .hamburger-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .hamburger-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
             
-            h1 { font-size: 2.2em; margin-bottom: 5px;}
-            .project-header h2 { font-size: 1.6em; }
+            /* h1 is now removed from HTML structure */
+            .project-header h2 { font-size: 2em; } /* Adjust project name size for mobile */
             #editProjectNameInput { font-size: 1.1em; }
+
+            .stage-nav-container { flex-direction: column; /* Stack vertically on small screens */ gap: 10px; }
+            .stage-nav-container > div { width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;} /* Wrap buttons */
+            .wine-icon-container { order: -1; margin-bottom: 10px;} /* Move icon to top */
+            .stage-nav-button { min-width: 90px; padding: 8px 10px; font-size: 0.8em; }
+
 
             .dashboard-section { padding: 10px; } /* Smaller padding for mobile fixed dashboard */
             .dashboard-section h2 { font-size: 1.4em; margin-bottom: 5px;}
@@ -1968,9 +1834,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea { padding: 10px; font-size: 0.9em; }
             .input-group button { padding: 10px 15px; font-size: 0.9em; }
 
-            /* .data-display-section is removed */
-            /* .data-row is removed */
-            /* .change-indicator is removed */
 
             .modal-content { width: 95%; padding: 20px; max-height: 95vh; }
             .close-button { font-size: 24px; top: 5px; left: 10px; }
@@ -1985,7 +1848,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             .history-list li strong { flex-basis: auto; margin-left: 10px; }
             .history-list li span.timestamp { width: 100%; text-align: right; margin-top: 5px; font-size: 0.75em; }
             .history-list li .undo-button { margin-top: 10px; margin-right: 0; width: 100%; padding: 6px 10px; font-size: 0.75em; }
-            /* .manual-input-history is removed */
 
             .sidebar { width: 220px; }
             .sidebar ul li a, .sidebar ul li button { padding: 12px 20px; font-size: 1em; }
@@ -2007,27 +1869,25 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             .global-finance-project-section h4 { font-size: 1.1em; }
             .global-finance-project-section p { font-size: 0.9em; }
 
-            .stage-nav-container { gap: 5px; padding: 5px; }
-            .stage-nav-button { min-width: 70px; padding: 8px 10px; font-size: 0.75em; }
             .step-cards-grid { grid-template-columns: 1fr; gap: 15px; }
             .step-preview-card { padding: 12px 15px; }
             .step-preview-card h5 { font-size: 1em; }
             .step-preview-card p { font-size: 0.8em; }
 
             .project-details-card {
-                position: fixed; /* Keep fixed for mobile also, as per request */
-                top: 10px; /* Adjust top for mobile */
-                left: 10px; /* Adjust left for mobile */
-                width: calc(100vw - 80px); /* Take almost full width on mobile, leave some margin */
-                max-height: calc(100vh - 100px); /* Adjust max-height for mobile */
-                overflow-y: auto; /* Keep scrolling */
-                box-shadow: var(--shadow); /* Keep existing shadow */
-                border: 1px solid var(--border-color); /* Keep existing border */
-                padding: 15px; /* Adjust padding for mobile */
+                position: fixed; 
+                top: 10px; 
+                left: 10px; 
+                width: calc(100vw - 80px); 
+                max-height: calc(100vh - 100px); 
+                overflow-y: auto; 
+                box-shadow: var(--shadow); 
+                border: 1px solid var(--border-color); 
+                padding: 15px; 
             }
             .project-details-card:hover {
-                box-shadow: var(--shadow); /* Keep simpler shadow on hover for mobile */
-                transform: none; /* No transform on mobile hover */
+                box-shadow: var(--shadow); 
+                transform: none; 
             }
         }
     </style>
@@ -2064,58 +1924,58 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
     <div class="top-section-wrapper">
         <div class="container">
-            <h1>מערכת ניטור נתונים</h1>
-            
             <div class="project-header">
                 <h2 id="currentProjectName">פרויקט ראשי</h2>
                 <input type="text" id="editProjectNameInput" style="display:none;">
             </div>
 
-            <div class="project-details-card" id="projectDetailsCard">
-                <h4>פרטי פרויקט</h4>
-                <div class="project-details-item" data-metric-id="wineName" data-section="wineDetails">
-                    <span class="detail-label">שם היין:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                <div class="project-details-item" data-metric-id="vintageYear" data-section="wineDetails">
-                    <span class="detail-label">שנה:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                <div class="project-details-item" data-metric-id="grapeVariety" data-section="wineDetails">
-                    <span class="detail-label">זן הענבים:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                <div class="project-details-item" data-metric-id="vineyardSource" data-section="wineDetails">
-                    <span class="detail-label">מקור הענבים:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                <div class="project-details-item" data-metric-id="generalNotes" data-section="wineDetails">
-                    <span class="detail-label">הערות נוספות:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                 <div class="project-details-item" data-metric-id="harvestDate" data-section="wineDetails">
-                    <span class="detail-label">תאריך בציר:</span>
-                    <span class="detail-value editable">--</span>
-                </div>
-                <button class="add-custom-property-btn" onclick="addCustomProperty()">+ הוסף שדה מותאם אישית</button>
-            </div>
-
             <div class="stage-nav-container" id="stageNavContainer">
                 </div>
-        </div></div><div class="container">
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="project-details-card" id="projectDetailsCard">
+            <h4>פרטי פרויקט</h4>
+            <div class="project-details-item" data-metric-id="wineName" data-section="wineDetails">
+                <span class="detail-label">שם היין:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+            <div class="project-details-item" data-metric-id="vintageYear" data-section="wineDetails">
+                <span class="detail-label">שנה:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+            <div class="project-details-item" data-metric-id="grapeVariety" data-section="wineDetails">
+                <span class="detail-label">זן הענבים:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+            <div class="project-details-item" data-metric-id="vineyardSource" data-section="wineDetails">
+                <span class="detail-label">מקור הענבים:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+            <div class="project-details-item" data-metric-id="generalNotes" data-section="wineDetails">
+                <span class="detail-label">הערות נוספות:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+             <div class="project-details-item" data-metric-id="harvestDate" data-section="wineDetails">
+                <span class="detail-label">תאריך בציר:</span>
+                <span class="detail-value editable">--</span>
+            </div>
+            <button class="add-custom-property-btn" onclick="addCustomProperty()">+ הוסף שדה מותאם אישית</button>
+        </div>
+
         <div class="stage-overview-container" id="stageOverviewContainer" style="display: none;">
             <h4>נתונים משלבים קודמים</h4>
             <div class="step-cards-grid" id="stepCardsGrid">
-                </div>
+            </div>
         </div>
 
         <div id="currentStageContent">
             <div class="input-section" id="currentStageInputSection">
-                </div>
+            </div>
 
             <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(139, 0, 0, 0.75), rgba(0, 0, 0, 0)); margin: 40px 0;">
-
-            </div>
+        </div>
     </div>
 
     <div class="dashboard-section" id="fixedDashboardSection">
@@ -2132,7 +1992,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 <svg class="modal-graph-svg" id="modalGraphSvg"></svg>
             </div>
             <ul id="historyList" class="history-list">
-                </ul>
+            </ul>
         </div>
     </div>
 
@@ -2141,7 +2001,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             <span class="close-button" onclick="closeProjectManagementModal()">&times;</span>
             <h3>ניהול פרויקטים</h3>
             <ul id="projectList" class="project-list">
-                </ul>
+            </ul>
             <button class="add-project-btn" onclick="addNewProject()">+ כרטיסייה חדשה</button>
         </div>
     </div>
@@ -2174,7 +2034,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 </div>
             </div>
             <ul id="financeList" class="finance-list">
-                </ul>
+            </ul>
             <div class="finance-balance-total">
                 יתרה נוכחית: <span id="currentBalance">0</span>
             </div>
@@ -2191,7 +2051,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 <div class="total-balance">יתרה כוללת: <span id="globalTotalBalance">0</span></div>
             </div>
             <div id="globalFinanceProjectsDetails">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -2226,7 +2086,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             <span class="close-button" onclick="closeTimelineModal()">&times;</span>
             <h3>ציר זמן - כל המדידות</h3>
             <div class="timeline-container" id="timelineContainer">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -2252,108 +2112,107 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
     <script>
         // --- Global State & Data Storage ---
-        // Define stages and their specific metrics
-        const stagesConfig = {
-            'wineDetails': { // New special "stage" for wine details
-                name: 'פרטי יין', // Shorter name for buttons
-                longName: 'פרטי יין', // No emoji here
-                metrics: {
-                    'wineName': { name: 'שם היין', type: 'text', placeholder: 'קברנה יקב הידון 2024' },
-                    'vintageYear': { name: 'שנה', type: 'number', step: 1, precision: 0, placeholder: '2024' },
-                    'grapeVariety': { name: 'זן הענבים', type: 'select', options: ['קברנה סוביניון', 'מרלו', 'שיראז', 'שרדונה', 'סוביניון בלאן', 'פינו נואר', 'גרנאש', 'זינפנדל','ריזלינג', 'גוורצטרמינר', 'שן בלאן', 'ויונייה', 'ברברה', 'סנג\'ובזה', 'נביולו', 'טמפרניו', 'אחר'], placeholder: 'בחר זן' },
-                    'vineyardSource': { name: 'מקור הענבים', type: 'text', placeholder: 'כרם גליל עליון' },
-                    'harvestDate': { name: 'תאריך בציר', type: 'date', placeholder: 'בחר תאריך' },
-                    'generalNotes': { name: 'הערות נוספות', type: 'text', placeholder: 'יין בעל פוטנציאל יישון' }
-                },
-                customMetrics: {} // This is a placeholder for custom metric definitions, not the data itself
-            },
-            'stage1': {
-                name: 'בציר',
-                longName: 'בציר (איסוף הענבים)',
-                emoji: '🟢',
-                metrics: {
-                    'brix': { name: 'בריקס', type: 'number', step: 0.1, precision: 1, placeholder: '22.5' },
-                    'ph': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.5' },
-                    'ta': { name: 'חומצה כוללת', type: 'number', step: 0.01, precision: 2, placeholder: '6.8' },
-                    'grapeTemp': { name: 'טמפרטורת ענבים', type: 'number', step: 0.1, precision: 1, placeholder: '25.0' },
-                },
-                summaryMetrics: ['brix', 'ph', 'ta'] 
-            },
-            'stage2': {
-                name: 'ריסוק',
-                longName: 'ריסוק והכנה לתסיסה',
-                emoji: '🍇',
-                metrics: {
-                    'so2Added': { name: 'SO₂', type: 'number', step: 0.1, precision: 1, placeholder: '50' },
-                    'enzymesAdded': { name: 'אנזימים', type: 'number', step: 0.1, precision: 1, placeholder: '0.8' },
-                    'mixTemp': { name: 'טמפרטורת תערובת', type: 'number', step: 0.1, precision: 1, placeholder: '18.0' },
-                    'skinLiquidRatio': { name: 'יחס קליפות/נוזלים', type: 'text', placeholder: '1:3' },
-                    'brixStart': { name: 'בריקס התחלה', type: 'number', step: 0.1, precision: 1, placeholder: '23.0' },
-                    'fermentationSync': { name: 'מצב סנכרון', type: 'text', placeholder: 'אושר' }
-                },
-                summaryMetrics: ['so2Added', 'mixTemp', 'brixStart']
-            },
-            'stage3': {
-                name: 'תסיסה אלכוהולית',
-                longName: 'תסיסה אלכוהולית',
-                emoji: '🍷',
-                metrics: {
-                    'brixDaily': { name: 'בריקס יומי', type: 'number', step: 0.1, precision: 1, placeholder: '15.0' },
-                    'phFerment': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.65' },
-                    'fermentTemp': { name: 'טמפרטורת תסיסה', type: 'number', step: 0.1, precision: 1, placeholder: '26.5' },
-                    'yeastAdded': { name: 'שמרים', type: 'text', placeholder: 'EC-1118' },
-                    'yeastFoodAdded': { name: 'מזון שמרים', type: 'text', placeholder: '2 גרם/ליטר' },
-                    'density': { name: 'צפיפות (SG)', type: 'number', step: 0.001, precision: 3, placeholder: '1.050' },
-                    'fermentRate': { name: 'קצב תסיסה', type: 'text', placeholder: 'יציב / מהיר' },
-                    'fermentStartDate': { name: 'תאריך התחלה', type: 'date', placeholder: '20/08/2024' },
-                    'fermentEndDate': { name: 'תאריך סיום', type: 'date', placeholder: '30/08/2024' }
-                },
-                summaryMetrics: ['brixDaily', 'phFerment', 'fermentTemp', 'density']
-            },
-            'stage4': {
-                name: 'תסיסה מלולקטית',
-                longName: 'תסיסה מלולקטית',
-                emoji: '🔁',
-                metrics: {
-                    'phMLF': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.80' },
-                    'malicAcid': { name: 'חומצה מלית', type: 'text', placeholder: 'ירידה קלה' },
-                    'roomTempMLF': { name: 'טמפרטורת חדר', type: 'number', step: 0.1, precision: 1, placeholder: '20.0' },
-                    'mlfStatus': { name: 'מצב תסיסה', type: 'text', placeholder: 'באמצע' },
-                    'bacteriaAdded': { name: 'חיידקים', type: 'text', placeholder: 'Oenococcus oeni' },
-                    'tasteNotesMLF': { name: 'טעמים (רישום ידני)', type: 'text', placeholder: 'חמאתיות עדינה' }
-                },
-                summaryMetrics: ['phMLF', 'roomTempMLF', 'mlfStatus']
-            },
-            'stage5': {
-                name: 'יישון',
-                longName: 'יישון',
-                emoji: '🛢',
-                metrics: {
-                    'containerType': { name: 'סוג מיכל', type: 'text', placeholder: 'חבית עץ אלון צרפתי' },
-                    'agingTime': { name: 'זמן יישון (ימים)', type: 'number', step: 1, precision: 0, placeholder: '180' },
-                    'agingRoomTemp': { name: 'טמפרטורת חדר יישון', type: 'number', step: 0.1, precision: 1, placeholder: '15.0' },
-                    'so2Control': { name: 'פקדי חמצון (SO₂)', type: 'text', placeholder: 'בדיקה חודשית' },
-                    'tasteTextureNotes': { name: 'טעמים ומרקם', type: 'text', placeholder: 'עיגול טעמים, טאנינים רכים' },
-                    'rackingDate': { name: 'תאריך שקיעה', type: 'date', placeholder: '01/03/2025' },
-                    'rackingFrequency': { name: 'תדירות שקיעות', type: 'text', placeholder: 'כל חודשיים' }
-                },
-                summaryMetrics: ['containerType', 'agingTime', 'agingRoomTemp']
-            },
-            'stage6': {
-                name: 'הכנה לבקבוק',
-                longName: 'הכנה לבקבוק',
-                emoji: '🧪',
-                metrics: {
-                    'phFinal': { name: 'pH סופי', type: 'number', step: 0.01, precision: 2, placeholder: '3.75' },
-                    'clarity': { name: 'צלילות', type: 'text', placeholder: 'צלול לגמרי' },
-                    'bottlingDate': { name: 'תאריך בקבוק', type: 'date', placeholder: '15/05/2025' },
-                    'bottleCount': { name: 'כמות בקבוקים', type: 'number', step: 1, precision: 0, placeholder: '750' },
-                    'so2AddedBottle': { name: 'תוספת SO₂', type: 'number', step: 0.1, precision: 1, placeholder: '30' },
-                    'alcoholLevel': { name: 'רמת אלכוהול (%)', type: 'number', step: 0.1, precision: 1, placeholder: '14.2' },
-                    'batchNumber': { name: 'מספר אצווה / תווית', type: 'text', placeholder: 'יין אדום 2024A' }
-                },
-                summaryMetrics: ['phFinal', 'bottleCount', 'alcoholLevel']
-            },
+      const stagesConfig = {
+    'wineDetails': {
+        name: 'פרטי יין',
+        longName: 'פרטי יין',
+        metrics: {
+            'wineName': { name: 'שם היין', type: 'text', placeholder: 'קברנה יקב הידון 2024' },
+            'vintageYear': { name: 'שנה', type: 'number', step: 1, precision: 0, placeholder: '2024' },
+            'grapeVariety': { name: 'זן הענבים', type: 'select', options: ['קברנה סוביניון', 'מרלו', 'שיראז', 'שרדונה', 'סוביניון בלאן', 'פינו נואר', 'גרנאש', 'זינפנדל','ריזלינג', 'גוורצטרמינר', 'שן בלאן', 'ויונייה', 'ברברה', 'סנג\'ובזה', 'נביולו', 'טמפרניו', 'אחר'], placeholder: 'בחר זן' },
+            'vineyardSource': { name: 'מקור הענבים', type: 'text', placeholder: 'כרם גליל עליון' },
+            'harvestDate': { name: 'תאריך בציר', type: 'date', placeholder: 'בחר תאריך' },
+            'generalNotes': { name: 'הערות נוספות', type: 'text', placeholder: 'יין בעל פוטנציאל יישון' }
+        },
+        customMetrics: {}
+    },
+    'stage1': {
+        name: 'בציר', // השם הקצר
+        longName: 'בציר (איסוף הענבים)', // השם המלא שיוצג בכפתורים
+        emoji: '🟢',
+        metrics: {
+            'brix': { name: 'בריקס', type: 'number', step: 0.1, precision: 1, placeholder: '22.5' },
+            'ph': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.5' },
+            'ta': { name: 'חומצה כוללת', type: 'number', step: 0.01, precision: 2, placeholder: '6.8' },
+            'grapeTemp': { name: 'טמפרטורת ענבים', type: 'number', step: 0.1, precision: 1, placeholder: '25.0' },
+        },
+        summaryMetrics: ['brix', 'ph', 'ta'] 
+    },
+    'stage2': {
+        name: 'ריסוק',
+        longName: 'ריסוק והכנה לתסיסה',
+        emoji: '🍇',
+        metrics: {
+            'so2Added': { name: 'SO₂', type: 'number', step: 0.1, precision: 1, placeholder: '50' },
+            'enzymesAdded': { name: 'אנזימים', type: 'number', step: 0.1, precision: 1, placeholder: '0.8' },
+            'mixTemp': { name: 'טמפרטורת תערובת', type: 'number', step: 0.1, precision: 1, placeholder: '18.0' },
+            'skinLiquidRatio': { name: 'יחס קליפות/נוזלים', type: 'text', placeholder: '1:3' },
+            'brixStart': { name: 'בריקס התחלה', type: 'number', step: 0.1, precision: 1, placeholder: '23.0' },
+            'fermentationSync': { name: 'מצב סנכרון', type: 'text', placeholder: 'אושר' }
+        },
+        summaryMetrics: ['so2Added', 'mixTemp', 'brixStart']
+    },
+    'stage3': {
+        name: 'תסיסה אלכוהולית',
+        longName: 'תסיסה אלכוהולית',
+        emoji: '🍷',
+        metrics: {
+            'brixDaily': { name: 'בריקס יומי', type: 'number', step: 0.1, precision: 1, placeholder: '15.0' },
+            'phFerment': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.65' },
+            'fermentTemp': { name: 'טמפרטורת תסיסה', type: 'number', step: 0.1, precision: 1, placeholder: '26.5' },
+            'yeastAdded': { name: 'שמרים', type: 'text', placeholder: 'EC-1118' },
+            'yeastFoodAdded': { name: 'מזון שמרים', type: 'text', placeholder: '2 גרם/ליטר' },
+            'density': { name: 'צפיפות (SG)', type: 'number', step: 0.001, precision: 3, placeholder: '1.050' },
+            'fermentRate': { name: 'קצב תסיסה', type: 'text', placeholder: 'יציב / מהיר' },
+            'fermentStartDate': { name: 'תאריך התחלה', type: 'date', placeholder: '20/08/2024' },
+            'fermentEndDate': { name: 'תאריך סיום', type: 'date', placeholder: '30/08/2024' }
+        },
+        summaryMetrics: ['brixDaily', 'phFerment', 'fermentTemp', 'density']
+    },
+    'stage4': {
+        name: 'תסיסה מלולקטית',
+        longName: 'תסיסה מלולקטית',
+        emoji: '🔁',
+        metrics: {
+            'phMLF': { name: 'pH', type: 'number', step: 0.01, precision: 2, placeholder: '3.80' },
+            'malicAcid': { name: 'חומצה מלית', type: 'text', placeholder: 'ירידה קלה' },
+            'roomTempMLF': { name: 'טמפרטורת חדר', type: 'number', step: 0.1, precision: 1, placeholder: '20.0' },
+            'mlfStatus': { name: 'מצב תסיסה', type: 'text', placeholder: 'באמצע' },
+            'bacteriaAdded': { name: 'חיידקים', type: 'text', placeholder: 'Oenococcus oeni' },
+            'tasteNotesMLF': { name: 'טעמים (רישום ידני)', type: 'text', placeholder: 'חמאתיות עדינה' }
+        },
+        summaryMetrics: ['phMLF', 'roomTempMLF', 'mlfStatus']
+    },
+    'stage5': {
+        name: 'יישון',
+        longName: 'יישון',
+        emoji: '🛢',
+        metrics: {
+            'containerType': { name: 'סוג מיכל', type: 'text', placeholder: 'חבית עץ אלון צרפתי' },
+            'agingTime': { name: 'זמן יישון (ימים)', type: 'number', step: 1, precision: 0, placeholder: '180' },
+            'agingRoomTemp': { name: 'טמפרטורת חדר יישון', type: 'number', step: 0.1, precision: 1, placeholder: '15.0' },
+            'so2Control': { name: 'פקדי חמצון (SO₂)', type: 'text', placeholder: 'בדיקה חודשית' },
+            'tasteTextureNotes': { name: 'טעמים ומרקם', type: 'text', placeholder: 'עיגול טעמים, טאנינים רכים' },
+            'rackingDate': { name: 'תאריך שקיעה', type: 'date', placeholder: '01/03/2025' },
+            'rackingFrequency': { name: 'תדירות שקיעות', type: 'text', placeholder: 'כל חודשיים' }
+        },
+        summaryMetrics: ['containerType', 'agingTime', 'agingRoomTemp']
+    },
+    'stage6': {
+        name: 'הכנה לבקבוק',
+        longName: 'הכנה לבקבוק',
+        emoji: '🧪',
+        metrics: {
+            'phFinal': { name: 'pH סופי', type: 'number', step: 0.01, precision: 2, placeholder: '3.75' },
+            'clarity': { name: 'צלילות', type: 'text', placeholder: 'צלול לגמרי' },
+            'bottlingDate': { name: 'תאריך בקבוק', type: 'date', placeholder: '15/05/2025' },
+            'bottleCount': { name: 'כמות בקבוקים', type: 'number', step: 1, precision: 0, placeholder: '750' },
+            'so2AddedBottle': { name: 'תוספת SO₂', type: 'number', step: 0.1, precision: 1, placeholder: '30' },
+            'alcoholLevel': { name: 'רמת אלכוהול (%)', type: 'number', step: 0.1, precision: 1, placeholder: '14.2' },
+            'batchNumber': { name: 'מספר אצווה / תווית', type: 'text', placeholder: 'יין אדום 2024A' }
+        },
+        summaryMetrics: ['phFinal', 'bottleCount', 'alcoholLevel']
+    },
         };
         
         let projects = loadProjects();
@@ -2390,7 +2249,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         const stepCardsGrid = document.getElementById('stepCardsGrid');
         const currentStageContent = document.getElementById('currentStageContent');
         const currentStageInputSection = document.getElementById('currentStageInputSection');
-        // const currentStageDataDisplaySection = document.getElementById('currentStageDataDisplaySection'); // Removed
 
         // Fixed Dashboard Elements
         const fixedDashboardSection = document.getElementById('fixedDashboardSection');
@@ -2402,9 +2260,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         const modalTitle = document.getElementById('modalTitle');
         const historyList = document.getElementById('historyList');
         const modalGraphSvg = document.getElementById('modalGraphSvg');
-        // const manualInputHistory = document.getElementById('manualInputHistory'); // Removed
-        // const manualValueInput = document.getElementById('manualValueInput'); // Removed
-        // const manualTimestampInput = document.getElementById('manualTimestampInput'); // Removed
 
 
         const projectManagementModal = document.getElementById('projectManagementModal');
@@ -2443,15 +2298,11 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         window.onload = () => {
             loadDarkModeState();
             renderAllMainContent(); // This function now handles all initial rendering
-            // attachProjectDetailsEditListeners(); // Called by updateProjectDetailsCard now
         };
 
         function renderAllMainContent() {
             updateProjectDisplay(); // Updates project name, and triggers loadCurrentStageContent
             renderStageNavigation(); // Renders stage buttons
-            // loadCurrentStageContent() is called by updateProjectDisplay()
-            // updateProjectDetailsCard() is called by updateProjectDisplay()
-            // renderPreviousStageOverview() is called by loadCurrentStageContent()
         }
 
         // --- Dark Mode Logic ---
@@ -2760,19 +2611,52 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         // --- Stage Management Logic ---
         function renderStageNavigation() {
             stageNavContainer.innerHTML = '';
-            for (const stageId in stagesConfig) {
-                if (stageId === 'wineDetails') continue; // Skip wineDetails in stage nav
 
+            const stageOrder = Object.keys(stagesConfig).filter(id => id !== 'wineDetails');
+            const leftSideStages = stageOrder.slice(0, 3);
+            const rightSideStages = stageOrder.slice(3, 6); // Up to 6 total stages for now
+
+            const leftDiv = document.createElement('div');
+            const rightDiv = document.createElement('div');
+
+            leftSideStages.forEach(stageId => {
                 const stage = stagesConfig[stageId];
                 const button = document.createElement('button');
                 button.className = 'stage-nav-button';
-                button.textContent = `${stage.longName}`; // Use longName for navigation
+                button.textContent = `${stage.longName}`; 
                 button.onclick = () => switchStage(stageId);
                 if (stageId === currentStageId) {
                     button.classList.add('active');
                 }
-                stageNavContainer.appendChild(button);
-            }
+                leftDiv.appendChild(button);
+            });
+
+            const wineIconContainer = document.createElement('div');
+            wineIconContainer.className = 'wine-icon-container';
+            const wineIconLink = document.createElement('a');
+            wineIconLink.href = "#"; // Or a specific link if desired
+            wineIconLink.onclick = (e) => { e.preventDefault(); /* Optional: add specific action for icon click */ };
+            const wineIconImg = document.createElement('img');
+            wineIconImg.src = "image_00b206.png"; // Path to your uploaded image
+            wineIconImg.alt = "Wine Icon";
+            wineIconLink.appendChild(wineIconImg);
+            wineIconContainer.appendChild(wineIconLink);
+            
+            rightSideStages.forEach(stageId => {
+                const stage = stagesConfig[stageId];
+                const button = document.createElement('button');
+                button.className = 'stage-nav-button';
+                button.textContent = `${stage.longName}`; 
+                button.onclick = () => switchStage(stageId);
+                if (stageId === currentStageId) {
+                    button.classList.add('active');
+                }
+                rightDiv.appendChild(button);
+            });
+
+            stageNavContainer.appendChild(leftDiv);
+            stageNavContainer.appendChild(wineIconContainer);
+            stageNavContainer.appendChild(rightDiv);
         }
 
         function switchStage(stageId) {
@@ -2799,7 +2683,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             
             // Clear previous content
             currentStageInputSection.innerHTML = '';
-            // currentStageDataDisplaySection.innerHTML = ''; // Removed
 
             // Render inputs for current stage metrics
             for (const metricId in stageConfig.metrics) {
@@ -2926,14 +2809,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             renderPreviousStageOverview(); // Update summaries
         }
 
-        /* updateAllStageMetricDisplays() is removed as per request */
-
-        /*
-        The updateStageMetricDisplay function is now effectively merged into updateDashboardForCurrentStage
-        and is no longer needed as a standalone function for the main content area data rows.
-        Its previous role was to update the display of individual data rows, which are now removed.
-        */
-
         function updateDashboardForCurrentStage() {
             fixedDashboardGrid.innerHTML = ''; // Update fixed dashboard grid
             const stageMetrics = stagesConfig[currentStageId].metrics;
@@ -2989,9 +2864,6 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             }
 
             const precision = metricConfig ? metricConfig.precision : null; // Custom props may not have precision by default
-
-            // Hide manual input section as per request
-            // manualInputHistory.style.display = 'none';
 
             // Determine if graph should be shown based on metric type
             if (metricConfig && metricConfig.type === 'number' && historyEntries && historyEntries.length > 0) {
@@ -3776,6 +3648,8 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             displaySpan.style.display = 'block'; // Show the span again
             currentEditableDetailElement = null; // Reset the global variable
             updateProjectDetailsCard(); // Refresh card to ensure consistency
+            // Note: Dashboard for current stage is updated by loadCurrentStageContent if current stage input is updated
+            // renderPreviousStageOverview is also called by loadCurrentStageContent
         }
 
         // This function handles updating *any* metric in either 'wineDetails' or a regular 'stage'
