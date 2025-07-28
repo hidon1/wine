@@ -1577,6 +1577,40 @@
 .add-custom-property-btn:hover {
     background-color: #6495ED; /* Darker SkyBlue on hover */
 }
+        /* Scrollbar styling for .project-details-card */
+        .project-details-card::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+            background-color: transparent; /* Make it transparent by default */
+        }
+
+        .project-details-card::-webkit-scrollbar-thumb {
+            background-color: transparent; /* Hide the thumb by default */
+            border-radius: 4px; /* Rounded corners for the thumb */
+        }
+
+        .project-details-card::-webkit-scrollbar-track {
+            background-color: transparent; /* Hide the track by default */
+        }
+
+        /* Show scrollbar thumb and track only on hover over the card */
+        .project-details-card:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(139, 0, 0, 0.5); /* Semi-transparent wine red on hover */
+        }
+
+        .project-details-card:hover::-webkit-scrollbar-track {
+            background-color: rgba(139, 0, 0, 0.1); /* Very light semi-transparent wine red on hover */
+        }
+
+        /* Dark mode scrollbar styles */
+        body.dark-mode .project-details-card::-webkit-scrollbar-thumb {
+            background-color: transparent; /* Hide thumb in dark mode by default */
+        }
+        body.dark-mode .project-details-card:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(184, 0, 0, 0.5); /* Semi-transparent dark primary on hover */
+        }
+        body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
+            background-color: rgba(184, 0, 0, 0.1); /* Very light semi-transparent dark primary on hover */
+        }
         /* Style for custom added properties */
         .project-details-item.custom-property .detail-value {
             background-color: var(--background-color); /* Slightly different background for custom fields */
