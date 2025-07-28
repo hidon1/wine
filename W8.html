@@ -108,7 +108,6 @@
             border-color: var(--dark-border-color);
         }
         body.dark-mode input[type="number"]:focus, body.dark-mode input[type="text"]:focus, body.dark-mode textarea:focus, body.dark-mode select:focus {
-            outline: none;
             border-color: var(--dark-primary-color);
             box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
         }
@@ -266,7 +265,7 @@
         /* NEW: Top section wrapper */
         .top-section-wrapper {
             background-color: var(--top-section-background);
-            padding-top: 25px; /* Matches original body padding-top */
+            padding-top: 5px; /* Reduced padding-top to move content up */
             padding-left: 25px; /* Add side padding matching container */
             padding-right: 25px; /* Add side padding matching container */
             border-bottom-left-radius: var(--border-radius);
@@ -299,9 +298,10 @@
         h1 {
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 5px; /* Reduced margin */
+            margin-top: 0; /* Move to very top */
             font-family: 'Playfair Display', serif;
-            font-size: 2.5em; /* Slightly smaller for top area */
+            font-size: 2.5em;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
@@ -313,12 +313,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px; /* Reduced margin */
+            margin-bottom: 10px; /* Reduced margin */
             gap: 10px;
         }
         #currentProjectName {
             font-family: 'Playfair Display', serif;
-            font-size: 2em; /* Slightly smaller for top area */
+            font-size: 2em;
             color: var(--secondary-color);
             font-weight: 700;
             cursor: pointer;
@@ -329,7 +329,7 @@
         }
         #editProjectNameInput {
             font-family: 'Heebo', sans-serif;
-            font-size: 1.3em; /* Slightly smaller */
+            font-size: 1.3em;
             padding: 5px 10px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -351,7 +351,7 @@
             border-bottom-left-radius: 0; /* Flat bottom corners */
             border-bottom-right-radius: 0;
             box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.2); /* Shadow pointing upwards */
-            padding: 15px 20px; /* Adjusted padding */
+            padding: 10px 15px; /* Reduced padding for smaller size */
             color: white;
             text-align: center;
             transition: background var(--animation-speed), box-shadow var(--animation-speed);
@@ -366,9 +366,9 @@
             text-align: center;
             color: var(--accent-color);
             margin-top: 0;
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 5px; /* Reduced margin */
             font-family: 'Playfair Display', serif;
-            font-size: 1.6em; /* Slightly smaller for fixed bar */
+            font-size: 1.4em; /* Smaller for fixed bar */
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             transition: color var(--animation-speed);
@@ -378,7 +378,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px; /* Increased gap for better spacing */
+            gap: 10px; /* Reduced gap */
             width: 100%; /* Ensure it takes full width of section */
             max-width: 1000px; /* Max width for items */
         }
@@ -388,19 +388,19 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: var(--border-radius);
-            padding: 10px 15px;
+            padding: 8px 10px; /* Reduced padding */
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
             flex: 1; /* Allow items to grow/shrink */
-            min-width: 100px; /* Smaller min-width for more items per row */
-            max-width: 150px; /* Adjusted max width */
+            min-width: 70px; /* Further reduced min-width */
+            max-width: 100px; /* Further reduced max width */
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            min-height: 80px; /* Ensure a minimum height for uniformity */
+            min-height: 60px; /* Reduced min height */
         }
 
         .dashboard-item:hover {
@@ -410,10 +410,10 @@
 
         .dashboard-item h3 {
             margin-top: 0;
-            margin-bottom: 3px;
+            margin-bottom: 2px; /* Reduced margin */
             color: var(--accent-color);
             font-family: 'Heebo', sans-serif;
-            font-size: 0.85em; /* Slightly smaller */
+            font-size: 0.75em; /* Further reduced font size */
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
@@ -422,7 +422,7 @@
         }
 
         .dashboard-item p {
-            font-size: 1.3em; /* Slightly smaller */
+            font-size: 1.1em; /* Further reduced font size */
             font-weight: 700;
             color: white;
             margin: 0;
@@ -1460,76 +1460,123 @@
         }
 
         /* --- Project Details Card (Status Symbol) --- */
-        .project-details-card {
-            position: absolute;
-            top: 20px; /* Aligned with hamburger button */
-            right: 20px; /* Adjusted to left for RTL */
-            width: 250px;
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 10px var(--primary-color); /* More prominent shadow with glow */
-            border: 2px solid var(--primary-color); /* Solid border in theme color */
-            padding: 15px 20px;
-            z-index: 500; /* Below sidebar/modals */
-            font-family: 'Heebo', sans-serif;
-            text-align: right; /* RTL */
-            transition: all var(--animation-speed) ease-in-out; /* Smooth transition for hover/active effects */
-            max-height: calc(100vh - 100px); /* Limit height to prevent overflow, leave room for top/bottom margin */
-            overflow-y: auto; /* Enable scrolling within the card */
-        }
-        .project-details-card:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--secondary-color); /* Enhanced hover shadow/glow */
-            transform: translateY(-3px) scale(1.01); /* Slight lift and scale on hover */
-        }
-        .project-details-card h4 {
-            font-size: 1.1em;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            text-align: center;
-            border-bottom: 1px dashed var(--secondary-color); /* Decorative border */
-            padding-bottom: 8px;
-        }
-        .project-details-item {
-            display: flex; /* For label and value on one line */
-            justify-content: space-between; /* Space them out */
-            align-items: center;
-            padding: 5px 0;
-            border-bottom: 1px dashed var(--border-color); /* Dotted line separator */
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .project-details-item:last-of-type { /* Use last-of-type to target the actual last detail item before the add button */
-            border-bottom: none; /* No border for last item */
-        }
-        .project-details-item:hover {
-            background-color: #f9f9f9;
-        }
-        .project-details-item .detail-label {
-            font-size: 0.9em;
-            color: var(--light-text-color);
-            margin-right: 5px;
-        }
-        .project-details-item .detail-value {
-            font-size: 1em;
-            font-weight: 700;
-            color: var(--text-color);
-            flex-grow: 1; /* Allow value to take space */
-            text-align: left; /* Align value to left */
-            min-width: 50px; /* Ensure editable area is visible */
-        }
-        .project-details-item input[type="text"],
-        .project-details-item input[type="number"],
-        .project-details-item select {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.9em;
-            box-sizing: border-box;
-            background-color: var(--card-background);
-            color: var(--text-color);
-        }
+.project-details-card {
+    position: fixed; /* Changed to fixed */
+    top: 15px;      /* Changed to 15px from top */
+    left: 15px;     /* Changed to 15px from left */
+    width: 160px;   /* Reduced width to 160px */
+    height: 250px;  /* Fixed height of 250px */
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 10px var(--primary-color); /* More prominent shadow with glow */
+    border: 2px solid var(--primary-color); /* Solid border in theme color */
+    padding: 15px 10px; /* Adjusted padding for smaller width */
+    z-index: 998; /* Ensures it's above content, below sidebar */
+    font-family: 'Heebo', sans-serif;
+    text-align: right; /* RTL */
+    transition: all var(--animation-speed) ease-in-out; /* Smooth transition for hover/active effects */
+    /* max-height: calc(100vh - 150px); /* This line is now effectively superseded by 'height' */
+    overflow-y: auto; /* Enable scrolling within the card */
+    overflow-x: hidden; /* Hide horizontal scrollbar if content is too wide */
+}
+.project-details-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--secondary-color); /* Enhanced hover shadow/glow */
+    transform: none; /* No transform on hover to keep it fixed in place */
+}
+.project-details-card h4 {
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    text-align: center;
+    border-bottom: 1px dashed var(--secondary-color); /* Decorative border */
+    padding-bottom: 8px;
+}
+.project-details-item {
+    display: flex; /* For label and value on one line */
+    justify-content: space-between; /* Space them out */
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--border-color); /* Dotted line separator */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    word-break: break-word; /* Allow long words to break */
+    overflow-wrap: break-word; /* Modern way to break long words */
+}
+.project-details-item:last-of-type { /* Use last-of-type to target the actual last detail item before the add button */
+    border-bottom: none; /* No border for last item */
+}
+.project-details-item:hover {
+    background-color: #f9f9f9;
+}
+.project-details-item .detail-label {
+    font-size: 0.9em;
+    color: var(--light-text-color);
+    margin-right: 5px;
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+.project-details-item .detail-value {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--text-color);
+    flex-grow: 1; /* Allow value to take space */
+    text-align: left; /* Align value to left */
+    min-width: 30px; /* Ensure editable area is visible */
+}
+.project-details-item input[type="text"],
+.project-details-item input[type="number"],
+.project-details-item select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+/* Style for custom added properties */
+.project-details-item.custom-property .detail-value {
+    background-color: var(--background-color); /* Slightly different background for custom fields */
+    border-radius: 5px;
+    padding: 2px 5px;
+    min-height: 1.5em; /* Ensure clickable area */
+}
+.project-details-item.custom-property:hover .detail-value {
+     background-color: #f0f0f0;
+}
+.project-details-item.custom-property .delete-custom-prop-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 6px;
+    font-size: 0.7em;
+    cursor: pointer;
+    margin-left: 5px;
+    flex-shrink: 0; /* Prevent button from shrinking */
+    transition: background-color 0.2s ease;
+}
+.project-details-item.custom-property .delete-custom-prop-btn:hover {
+    background-color: #d32f2f;
+}
+
+.add-custom-property-btn {
+    background-color: #87CEEB; /* Changed to SkyBlue */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+.add-custom-property-btn:hover {
+    background-color: #6495ED; /* Darker SkyBlue on hover */
+}
         /* Style for custom added properties */
         .project-details-item.custom-property .detail-value {
             background-color: var(--background-color); /* Slightly different background for custom fields */
@@ -1857,16 +1904,15 @@
             .step-preview-card p { font-size: 0.8em; }
 
             .project-details-card {
-                position: relative; /* Change to relative or static for mobile to fit layout */
-                top: unset;
-                left: unset; /* unset left for mobile */
-                right: unset; /* unset right for mobile */
-                margin: 20px auto; /* Center on mobile */
-                width: calc(100% - 40px); /* Take full width minus padding */
-                max-height: unset; /* Remove max-height for mobile if it causes issues */
-                overflow-y: visible; /* Allow content to push height on mobile */
-                box-shadow: var(--shadow); /* Simpler shadow on mobile */
-                border: 1px solid var(--border-color); /* Simpler border on mobile */
+                position: fixed; /* Keep fixed for mobile also, as per request */
+                top: 10px; /* Adjust top for mobile */
+                left: 10px; /* Adjust left for mobile */
+                width: calc(100vw - 80px); /* Take almost full width on mobile, leave some margin */
+                max-height: calc(100vh - 100px); /* Adjust max-height for mobile */
+                overflow-y: auto; /* Keep scrolling */
+                box-shadow: var(--shadow); /* Keep existing shadow */
+                border: 1px solid var(--border-color); /* Keep existing border */
+                padding: 15px; /* Adjust padding for mobile */
             }
             .project-details-card:hover {
                 box-shadow: var(--shadow); /* Keep simpler shadow on hover for mobile */
@@ -2199,9 +2245,9 @@
             },
         };
         
-        let projects = loadProjects(); /* */
-        let currentProjectId = localStorage.getItem('currentProjectId') || Object.keys(projects)[0]; /* */
-        let currentStageId = localStorage.getItem('currentStageId') || 'stage1'; /* */
+        let projects = loadProjects();
+        let currentProjectId = localStorage.getItem('currentProjectId') || Object.keys(projects)[0];
+        let currentStageId = localStorage.getItem('currentStageId') || 'stage1';
 
         // Ensure currentProjectId and currentStageId are valid after loading
         if (!currentProjectId || !projects[currentProjectId]) {
@@ -2299,23 +2345,23 @@
 
         // --- Dark Mode Logic ---
         function loadDarkModeState() {
-            const isDarkMode = localStorage.getItem('darkMode') === 'true'; /* */
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
                 darkModeToggle.checked = true;
             } else {
                 document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'false'); /* */
+                localStorage.setItem('darkMode', 'false');
             }
         }
 
         darkModeToggle.addEventListener('change', () => {
             if (darkModeToggle.checked) {
                 document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'true'); /* */
+                localStorage.setItem('darkMode', 'true');
             } else {
                 document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'false'); /* */
+                localStorage.setItem('darkMode', 'false');
             }
         });
 
@@ -2390,7 +2436,7 @@
         }
 
         function loadProjects() {
-            const storedProjects = localStorage.getItem('projects'); /* */
+            const storedProjects = localStorage.getItem('projects');
             let loaded = storedProjects ? JSON.parse(storedProjects) : {};
             
             // If no projects at all, create a default one
@@ -2463,7 +2509,7 @@
         }
 
         function saveAllProjects() {
-            localStorage.setItem('projects', JSON.stringify(projects)); /* */
+            localStorage.setItem('projects', JSON.stringify(projects));
         }
 
         function updateProjectDisplay() {
@@ -2534,8 +2580,8 @@
             if (newProjectName && newProjectName.trim() !== '') {
                 newProjectName = newProjectName.trim();
                 const newProjectId = `project_${Date.now()}`;
-                projects[newProjectId] = createNewProjectData(newProjectName); /* */
-                saveAllProjects(); /* */
+                projects[newProjectId] = createNewProjectData(newProjectName);
+                saveAllProjects();
                 switchProject(newProjectId); // Switch to new project automatically
                 renderProjectList(); // Re-render list
             }
@@ -2543,14 +2589,14 @@
 
         function switchProject(id) {
             currentProjectId = id;
-            localStorage.setItem('currentProjectId', currentProjectId); /* */
+            localStorage.setItem('currentProjectId', currentProjectId);
             loadCurrentStageContent(); 
             updateProjectDisplay(); // This also calls loadCurrentStageContent and updateProjectDetailsCard
             closeProjectManagementModal();
         }
 
         function deleteProject(id) {
-            if (confirm(`האם אתה בטוח שברצונך למחוק את הפרויקט "${projects[id].name}"? כל הנתונים יימחקו לצמיתות.`)) {
+            if (confirm('האם אתה בטוח שברצונך למחוק את הפרויקט "${projects[id].name}"? כל הנתונים יימחקו לצמיתות.')) {
                 delete projects[id];
                 if (currentProjectId === id) {
                     // Switch to the first available project after deletion
@@ -2560,8 +2606,8 @@
                          projects[currentProjectId] = createNewProjectData('פרויקט ראשי');
                     }
                 }
-                saveAllProjects(); /* */
-                localStorage.setItem('currentProjectId', currentProjectId); /* */
+                saveAllProjects();
+                localStorage.setItem('currentProjectId', currentProjectId);
                 updateProjectDisplay(); // This will load new project's data
                 renderProjectList(); // Update project list in modal
             }
@@ -2592,7 +2638,7 @@
             const newName = editProjectNameInput.value.trim();
             if (newName !== '' && newName !== projects[currentProjectId].name) {
                 projects[currentProjectId].name = newName;
-                saveAllProjects(); /* */
+                saveAllProjects();
                 updateProjectDisplay();
             }
             currentProjectNameDisplay.style.display = 'inline-block';
@@ -2620,7 +2666,7 @@
 
         function switchStage(stageId) {
             currentStageId = stageId;
-            localStorage.setItem('currentStageId', currentStageId); /* */
+            localStorage.setItem('currentStageId', currentStageId);
             renderStageNavigation(); // Update active button
             loadCurrentStageContent();
         }
@@ -2632,7 +2678,7 @@
                 // Fallback to first regular stage if invalid
                 currentStageId = Object.keys(stagesConfig).find(id => id !== 'wineDetails'); // Get first non-wineDetails stage
                 if (!currentStageId) { /* Handle case with no regular stages, though unlikely */ return; }
-                localStorage.setItem('currentStageId', currentStageId); /* */
+                localStorage.setItem('currentStageId', currentStageId);
                 renderStageNavigation();
                 loadCurrentStageContent(); // Recursive call
                 return;
@@ -2751,7 +2797,7 @@
                 projects[currentProjectId].stages[stageId][metricId] = [];
             }
             projects[currentProjectId].stages[stageId][metricId].push({ value, timestamp });
-            saveAllProjects(); /* */
+            saveAllProjects();
             
             // Clear input field or reset select
             if (metricConfig.type === 'select') {
@@ -3045,7 +3091,7 @@
 
             if (metricDataArray) {
                 metricDataArray.splice(indexToRemove, 1);
-                saveAllProjects(); /* */
+                saveAllProjects();
 
                 // Re-render affected parts based on where the metric belongs
                 if (sectionId === 'wineDetails') {
@@ -3056,9 +3102,10 @@
                 }
                 // Re-open modal if it was open for the same metric
                 if (currentMetricTypeForModal.sectionId === sectionId && currentMetricTypeForModal.metricId === metricId) {
-                    const metricConfig = (sectionId === 'wineDetails' ? stagesConfig.wineDetails.metrics[metricId] || projects[currentProjectId].wineDetails.customMetrics[metricId] : stagesConfig[sectionId].metrics[metricId]);
                     // Need to handle custom properties for metricName
-                    const metricDisplayName = metricConfig ? metricConfig.name : (projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId) ? projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId).name : 'שדה מותאם אישית');
+                    const metricDisplayName = (sectionId === 'wineDetails' && !stagesConfig.wineDetails.metrics[metricId]) 
+                                            ? projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId).name 
+                                            : stagesConfig[sectionId].metrics[metricId].name;
                     openHistoryModal(sectionId, metricId, metricDisplayName);
                 }
             } else {
@@ -3099,8 +3146,7 @@
             });
 
             projects[currentProjectId].finance.push({ id: Date.now(), type, amount, notes, timestamp });
-            saveAllProjects(); /* */
-
+            saveAllProjects();
             financeAmountInput.value = '';
             financeNotesInput.value = '';
             renderFinanceList(); // Re-render with applied filters
@@ -3226,7 +3272,7 @@
             if (!isNaN(newAmount) && newAmount > 0) {
                 entry.amount = newAmount;
                 entry.notes = newNotes.trim();
-                saveAllProjects(); /* */
+                saveAllProjects();
                 renderFinanceList();
             } else {
                 alert('הסכום שהוזן אינו חוקי.');
@@ -3238,7 +3284,7 @@
                 const initialLength = projects[currentProjectId].finance.length;
                 projects[currentProjectId].finance = projects[currentProjectId].finance.filter(entry => entry.id !== id);
                 if (projects[currentProjectId].finance.length < initialLength) {
-                    saveAllProjects(); /* */
+                    saveAllProjects();
                     renderFinanceList();
                 }
             }
@@ -3442,7 +3488,7 @@
                     history: [] // Each custom property has its own history
                 };
                 projects[currentProjectId].wineDetails.customProperties.push(newCustomProperty);
-                saveAllProjects(); /* */
+                saveAllProjects();
                 updateProjectDetailsCard(); // Re-render to show the new field
             }
         }
@@ -3451,7 +3497,7 @@
         function deleteCustomProperty(propId) {
             if (confirm('האם אתה בטוח שברצונך למחוק שדה מותאם אישית זה?')) {
                 projects[currentProjectId].wineDetails.customProperties = projects[currentProjectId].wineDetails.customProperties.filter(prop => prop.id !== propId);
-                saveAllProjects(); /* */
+                saveAllProjects();
                 updateProjectDetailsCard(); // Re-render to remove the field
             }
         }
@@ -3505,15 +3551,17 @@
                 } else if (metricConfig.type === 'select') {
                     inputElement = document.createElement('select');
                     inputElement.innerHTML = `<option value="" disabled>--בחר--</option>`;
-                    metricConfig.options.forEach(option => {
-                        const optionElem = document.createElement('option');
-                        optionElem.value = option;
-                        optionElem.textContent = option;
-                        if (option === currentValue) {
-                            optionElem.selected = true;
-                        }
-                        inputElement.appendChild(optionElem);
-                    });
+                    if (metricConfig.options) { /* Check if options exist for this metric */
+                        metricConfig.options.forEach(option => {
+                            const optionElem = document.createElement('option');
+                            optionElem.value = option;
+                            optionElem.textContent = option;
+                            if (option === currentValue) {
+                                optionElem.selected = true;
+                            }
+                            inputElement.appendChild(optionElem);
+                        });
+                    }
                     const otherOption = document.createElement('option');
                     otherOption.value = 'other_input_field';
                     otherOption.textContent = 'אחר...';
@@ -3535,7 +3583,7 @@
                         }
                     });
                     // If current value is not in options, assume it's an "other" value
-                    if (currentValue && !metricConfig.options.includes(currentValue) && currentValue !== '--') {
+                    if (currentValue && metricConfig.options && !metricConfig.options.includes(currentValue) && currentValue !== '--') {
                         inputElement.value = 'other_input_field';
                         otherInput.value = currentValue;
                         otherInput.style.display = 'block';
@@ -3666,7 +3714,7 @@
             } else {
                 metricDataArray.push({ value: newValue, timestamp: timestamp });
             }
-            saveAllProjects(); /* */
+            saveAllProjects();
             updateProjectDetailsCard(); // Update the card after changes
             // If the updated metric is part of the current active stage's inputs, update that too
             if (section === currentStageId) {
