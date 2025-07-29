@@ -1801,95 +1801,157 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             transition: color var(--animation-speed);
         }
 
-        /* --- Responsive adjustments --- */
-        @media (max-width: 768px) {
-            body { padding: 0; padding-bottom: 150px; } /* Less padding on body */
-            .top-section-wrapper { padding-top: 10px; border-radius: 0; padding-left: 10px; padding-right: 10px; } /* Adjust for mobile */
-            .container { padding: 20px; margin: 10px auto; } /* Less padding/margin for container */
-            .hamburger-menu-btn { top: 10px; right: 10px; width: 35px; height: 35px; gap: 5px;}
-            .hamburger-menu-btn span { width: 20px; height: 2px;}
-            .hamburger-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .hamburger-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-            
-            /* h1 is now removed from HTML structure */
-            .project-header h2 { font-size: 2em; } /* Adjust project name size for mobile */
-            #editProjectNameInput { font-size: 1.1em; }
+      @media (max-width: 768px) {
+    body { padding: 0; padding-bottom: 120px; } /* התאמת ריפוד עבור לוח מחוונים קבוע */
+    .top-section-wrapper { padding-top: 5px; border-radius: 0; padding-left: 10px; padding-right: 10px; } /* התאמה למובייל */
+    .container { padding: 15px; margin: 10px auto; } /* ריפוד/שוליים קטנים יותר לקונטיינר */
+    .hamburger-menu-btn { top: 5px; right: 10px; width: 35px; height: 35px; gap: 5px;}
+    .hamburger-menu-btn span { width: 20px; height: 2px;}
+    .hamburger-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    
+    .project-header h2 { font-size: 1.8em; } /* התאמת גודל שם הפרויקט למובייל */
+    #editProjectNameInput { font-size: 1em; }
 
-            .stage-nav-container { flex-direction: column; /* Stack vertically on small screens */ gap: 10px; }
-            .stage-nav-container > div { width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;} /* Wrap buttons */
-            .wine-icon-container { order: -1; margin-bottom: 10px;} /* Move icon to top */
-            .stage-nav-button { min-width: 90px; padding: 8px 10px; font-size: 0.8em; }
-
-
-            .dashboard-section { padding: 10px; } /* Smaller padding for mobile fixed dashboard */
-            .dashboard-section h2 { font-size: 1.4em; margin-bottom: 5px;}
-            .dashboard-grid { justify-content: space-around; } /* More balanced layout */
-            .dashboard-item { padding: 5px 8px; min-width: unset; width: 30%; font-size: 0.75em; min-height: 70px; } /* Three columns on mobile, smaller */
-            .dashboard-item h3 { font-size: 0.7em; }
-            .dashboard-item p { font-size: 1.1em; }
-
-            .input-section { grid-template-columns: 1fr; gap: 15px; margin-bottom: 30px; padding-top: 10px; }
-            .input-group { padding: 15px; }
-            .input-group label { font-size: 1em; }
-            .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea { padding: 10px; font-size: 0.9em; }
-            .input-group button { padding: 10px 15px; font-size: 0.9em; }
+    .stage-nav-container { flex-direction: column; /* סידור אנכי במסכים קטנים */ gap: 8px; padding: 8px;}
+    .stage-nav-container > div { width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;} /* עטיפת כפתורים */
+    .wine-icon-container { order: -1; margin-bottom: 8px; margin-left: 0; margin-right: 0;} /* העברת אייקון לראש ומרכוז */
+    .wine-icon-container img { width: 50px; } /* אייקון יין קטן יותר */
+    .stage-nav-button { min-width: 80px; padding: 7px 8px; font-size: 0.75em; }
 
 
-            .modal-content { width: 95%; padding: 20px; max-height: 95vh; }
-            .close-button { font-size: 24px; top: 5px; left: 10px; }
-            .modal-content h3 { font-size: 1.5em; margin-bottom: 15px; padding-bottom: 8px; }
-            .modal-graph-container { height: 180px; margin: 15px auto 20px auto; }
-            .modal-graph-label-x { font-size: 8px; transform: rotate(-60deg); transform-origin: center center; }
-            .modal-graph-label-y { font-size: 8px; }
-            .modal-graph-average-label { font-size: 9px; text-anchor: end; x: 95%; }
+    .dashboard-section { padding: 8px; /* ריפוד קטן יותר ללוח מחוונים קבוע במובייל */
+        border-top-left-radius: 20px; /* רדיוס קטן יותר למובייל */
+        border-top-right-radius: 20px;
+    } 
+    .dashboard-section h2 { font-size: 1.2em; margin-bottom: 5px;}
+    .dashboard-grid { justify-content: space-between; gap: 5px; /* מרווח הדוק יותר */ }
+    .dashboard-item { padding: 5px; min-width: unset; width: 48%; /* שתי עמודות במובייל */ font-size: 0.7em; min-height: 55px; } 
+    .dashboard-item h3 { font-size: 0.65em; } /* כותרת קטנה יותר */
+    .dashboard-item p { font-size: 1em; }
 
-            .history-list { max-height: 200px; margin-top: 15px; }
-            .history-list li { flex-wrap: wrap; justify-content: flex-end; padding: 10px; margin-bottom: 5px; font-size: 0.9em; }
-            .history-list li strong { flex-basis: auto; margin-left: 10px; }
-            .history-list li span.timestamp { width: 100%; text-align: right; margin-top: 5px; font-size: 0.75em; }
-            .history-list li .undo-button { margin-top: 10px; margin-right: 0; width: 100%; padding: 6px 10px; font-size: 0.75em; }
+    .input-section { 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* שתי עמודות במובייל, רוחב מינימלי קטן יותר */
+        gap: 15px; 
+        margin-bottom: 20px; 
+        padding-top: 10px; 
+    }
+    .input-group { padding: 12px; }
+    .input-group label { font-size: 0.9em; margin-bottom: 8px;}
+    .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea { 
+        width: calc(100% - 16px); /* התאמה לריפוד */
+        padding: 8px; 
+        margin-bottom: 10px; 
+        font-size: 0.85em; 
+    }
+    .input-group button { padding: 8px 12px; font-size: 0.85em; }
 
-            .sidebar { width: 220px; }
-            .sidebar ul li a, .sidebar ul li button { padding: 12px 20px; font-size: 1em; }
-            .sidebar .divider { margin: 10px 15px; }
-            .sidebar-footer { padding: 15px 20px; }
 
-            .project-modal-content, .finance-modal-content, .global-finance-modal-content, .instructions-modal-content, .timeline-modal-content, #datePickerModal .modal-content { padding: 15px; }
-            .finance-input-group { gap: 10px; padding: 10px; }
-            .finance-input-buttons { flex-direction: column; gap: 8px; }
-            .finance-input-buttons button { padding: 8px 12px; font-size: 0.9em; }
-            .finance-list { max-height: 180px; }
-            .finance-list li { padding: 8px 12px; margin-bottom: 5px; font-size: 0.9em; }
-            .finance-item-actions button { margin-right: 5px; font-size: 0.8em; }
-            .finance-balance-total { font-size: 1.1em; padding-top: 10px; }
-            .finance-filter-section { flex-direction: column; gap: 8px; }
-            .finance-filter-section button, .finance-filter-section select, .finance-filter-section input[type="date"] { width: 100%; }
+    .modal-content { width: 95%; padding: 15px; max-height: 95vh; }
+    .close-button { font-size: 24px; top: 5px; left: 10px; }
+    .modal-content h3 { font-size: 1.4em; margin-bottom: 10px; padding-bottom: 6px; }
+    .modal-graph-container { height: 160px; margin: 10px auto 15px auto; }
+    .modal-graph-label-x { font-size: 7px; transform: rotate(-60deg); transform-origin: center center; }
+    .modal-graph-label-y { font-size: 7px; }
+    .modal-graph-average-label { font-size: 8px; text-anchor: end; x: 95%; }
 
-            .global-finance-report-summary { font-size: 1em; padding-bottom: 10px; }
-            .global-finance-project-section h4 { font-size: 1.1em; }
-            .global-finance-project-section p { font-size: 0.9em; }
+    .history-list { max-height: 180px; margin-top: 10px; }
+    .history-list li { flex-wrap: wrap; justify-content: flex-end; padding: 8px; margin-bottom: 5px; font-size: 0.85em; }
+    .history-list li strong { flex-basis: auto; margin-left: 8px; font-size: 1em; }
+    .history-list li span.timestamp { width: 100%; text-align: right; margin-top: 3px; font-size: 0.7em; }
+    .history-list li .undo-button { margin-top: 8px; margin-right: 0; width: 100%; padding: 5px 8px; font-size: 0.7em; }
 
-            .step-cards-grid { grid-template-columns: 1fr; gap: 15px; }
-            .step-preview-card { padding: 12px 15px; }
-            .step-preview-card h5 { font-size: 1em; }
-            .step-preview-card p { font-size: 0.8em; }
+    .sidebar { width: 200px; padding-top: 60px; }
+    .sidebar ul li a, .sidebar ul li button { padding: 10px 15px; font-size: 0.9em; }
+    .sidebar .divider { margin: 8px 10px; }
+    .sidebar-footer { padding: 10px 15px; font-size: 0.8em;}
+    .theme-switch { gap: 8px; }
+    .switch { position: relative; display: inline-block; width: 35px; height: 18px; } /* התאמת גודל סליידר למובייל */
+    .slider { border-radius: 18px; } /* התאמת רדיוס גבול סליידר */
+    .slider:before { height: 14px; width: 14px; left: 2px; bottom: 2px; } /* התאמת גודל טאגל */
+    input:checked + .slider:before { transform: translateX(17px); }
 
-            .project-details-card {
-                position: fixed; 
-                top: 10px; 
-                left: 10px; 
-                width: calc(100vw - 80px); 
-                max-height: calc(100vh - 100px); 
-                overflow-y: auto; 
-                box-shadow: var(--shadow); 
-                border: 1px solid var(--border-color); 
-                padding: 15px; 
-            }
-            .project-details-card:hover {
-                box-shadow: var(--shadow); 
-                transform: none; 
-            }
-        }
+
+    .project-modal-content, .finance-modal-content, .global-finance-modal-content, .instructions-modal-content, .timeline-modal-content, #datePickerModal .modal-content { padding: 15px; }
+    .finance-input-group { gap: 8px; padding: 10px; }
+    .finance-input-buttons { flex-direction: column; gap: 6px; }
+    .finance-input-buttons button { padding: 7px 10px; font-size: 0.85em; }
+    .finance-list { max-height: 160px; }
+    .finance-list li { padding: 7px 10px; margin-bottom: 4px; font-size: 0.85em; }
+    .finance-item-actions button { margin-right: 4px; font-size: 0.75em; }
+    .finance-balance-total { font-size: 1em; padding-top: 8px; }
+    .finance-filter-section { flex-direction: column; gap: 6px; padding: 8px; }
+    .finance-filter-section button, .finance-filter-section select, .finance-filter-section input[type="date"] { width: 100%; padding: 7px; font-size: 0.85em; }
+
+    .global-finance-report-summary { font-size: 0.9em; padding-bottom: 8px; }
+    .global-finance-project-section h4 { font-size: 1em; }
+    .global-finance-project-section p { font-size: 0.85em; }
+
+    .step-cards-grid { grid-template-columns: 1fr; gap: 10px; }
+    .step-preview-card { padding: 10px 12px; }
+    .step-preview-card h5 { font-size: 0.95em; }
+    .step-preview-card p { font-size: 0.75em; }
+
+    .project-details-card {
+        position: fixed; 
+        top: 10px; 
+        left: 10px; 
+        width: 140px; /* רוחב קבוע קטן יותר */
+        height: 220px; /* גובה קבוע לאפשרות גלילה */
+        padding: 10px; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+        border: 1px solid var(--border-color); 
+        overflow-y: auto; /* אפשור גלילה */
+    }
+    .project-details-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* שמירה על צל עדין בריחוף */
+        transform: none; 
+    }
+    .project-details-card h4 {
+        font-size: 1em;
+        margin-bottom: 8px;
+        padding-bottom: 5px;
+    }
+    .project-details-item {
+        padding: 3px 0;
+    }
+    .project-details-item .detail-label {
+        font-size: 0.8em;
+        margin-right: 3px;
+    }
+    .project-details-item .detail-value {
+        font-size: 0.9em;
+        min-width: 25px;
+    }
+    .project-details-item input[type="text"],
+    .project-details-item input[type="number"],
+    .project-details-item select {
+        padding: 3px;
+        font-size: 0.8em;
+    }
+    .project-details-item.custom-property .delete-custom-prop-btn {
+        padding: 2px 4px;
+        font-size: 0.6em;
+        margin-left: 3px;
+    }
+    .add-custom-property-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+        margin-top: 10px;
+    }
+
+    /* סגנון פס גלילה לכרטיסיית פרטי פרויקט במובייל (אם נדרש, עדין) */
+    .project-details-card::-webkit-scrollbar {
+        width: 6px; 
+    }
+    .project-details-card:hover::-webkit-scrollbar-thumb {
+        background-color: rgba(139, 0, 0, 0.3); 
+    }
+    body.dark-mode .project-details-card:hover::-webkit-scrollbar-thumb {
+        background-color: rgba(184, 0, 0, 0.3); 
+    }
+
+}
     </style>
 </head>
 <body>
