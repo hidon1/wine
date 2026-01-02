@@ -52,9 +52,10 @@ body {
 
 /* -- כותרת עליונה וניווט -- */
 header.hero {
-  background: linear-gradient(120deg, rgba(92,11,27,0.94), rgba(92,11,27,0.82)), url('1000.png');
+  background-image: linear-gradient(120deg, rgba(92,11,27,0.94), rgba(92,11,27,0.82)), image-set(url('1000.png') type('image/png') 1x);
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
   color: #f5e6d3;
   padding: 2.5em 1.5em 3.5em;
   box-shadow: 0 15px 40px rgba(0,0,0,0.35);
@@ -299,9 +300,28 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
 .cart-summary button {
   width: auto;
   min-width: 160px;
+  background: var(--primary);
+  color: #f5e6d3;
+  border: none;
+  padding: 0.8em 1.4em;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.cart-summary button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.14); }
 
 .cart-empty { color: #6b5b50; }
+.cart-message {
+  min-height: 24px;
+  margin-top: 0.5em;
+  color: var(--primary-dark);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cart-message.show { opacity: 1; }
 
 .testimonial-grid {
   display: grid;
@@ -338,8 +358,8 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
 /* -- טופס יצירת קשר -- */
 form { padding: 2.5em; max-width: 500px; margin: auto; }
 input, textarea { width: 100%; box-sizing: border-box; margin: 0.7em 0; padding: 1em; border-radius: 6px; border: 1px solid #ccc; font-family: 'Heebo', sans-serif; background: #f9f9f9; }
-form button { width: 100%; background: #a42a28; color: white; border: none; font-weight: bold; padding: 1em; border-radius: 6px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s; }
-form button:hover { background-color: #b48c63; }
+form button { width: 100%; background: var(--primary); color: white; border: none; font-weight: bold; padding: 1em; border-radius: 6px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s; }
+form button:hover { background-color: var(--accent); }
 
 /* -- כותרת תחתונה -- */
 footer { text-align: center; padding: 2em; background: var(--primary-dark); color: #f5e6d3; margin-top: 2em; }
@@ -348,4 +368,11 @@ footer { text-align: center; padding: 2em; background: var(--primary-dark); colo
   .hero-grid { grid-template-columns: 1fr; }
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
   .cta-band { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  nav { width: 100%; }
+  nav a { width: 100%; text-align: center; }
+  .hero-actions .primary-btn, .hero-actions .ghost-btn, .buy-btn, .cart-summary button { width: 100%; text-align: center; }
+  .hero-badges span { width: 100%; text-align: center; }
 }

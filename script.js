@@ -16,12 +16,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. סל קניות מודרני
   const cartState = [];
+  const MESSAGE_DURATION = 3200;
+  const currency = new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' });
   const cartItemsEl = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
   const cartCountEl = document.getElementById("cart-count");
   const navCartCountEl = document.getElementById("nav-cart-count");
   const cartToggle = document.getElementById("cart-toggle");
   const checkoutBtn = document.getElementById("checkout-btn");
+  const cartMessage = document.getElementById("cart-message");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const announce = (message) => {
+    if (!cartMessage) return;
+    cartMessage.textContent = message;
+    cartMessage.classList.add("show");
+    setTimeout(() => cartMessage.classList.remove("show"), MESSAGE_DURATION);
+  };
 
   const updateCartBadge = (qty) => {
     if (cartCountEl) cartCountEl.textContent = `${qty} פריטים`;
@@ -48,32 +59,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const row = document.createElement("div");
       row.className = "cart-item";
-      row.innerHTML = `
-        <strong>${item.name}</strong>
-        <div class="qty-controls">
-          <button class="qty-btn" aria-label="הפחת כמות" data-index="${index}" data-action="decrease">-</button>
-          <span>${item.qty}</span>
-          <button class="qty-btn" aria-label="הוסף כמות" data-index="${index}" data-action="increase">+</button>
-        </div>
-        <span>₪${(item.price * item.qty).toLocaleString('he-IL')}</span>
-      `;
+
+      const nameEl = document.createElement("strong");
+      nameEl.textContent = item.name;
+
+      const controls = document.createElement("div");
+      controls.className = "qty-controls";
+
+      const decBtn = document.createElement("button");
+      decBtn.className = "qty-btn";
+      decBtn.setAttribute("aria-label", "הפחת כמות");
+      decBtn.dataset.index = index;
+      decBtn.dataset.action = "decrease";
+      decBtn.textContent = "-";
+
+      const qtySpan = document.createElement("span");
+      qtySpan.textContent = item.qty;
+
+      const incBtn = document.createElement("button");
+      incBtn.className = "qty-btn";
+      incBtn.setAttribute("aria-label", "הוסף כמות");
+      incBtn.dataset.index = index;
+      incBtn.dataset.action = "increase";
+      incBtn.textContent = "+";
+
+      controls.append(decBtn, qtySpan, incBtn);
+
+      const priceEl = document.createElement("span");
+      priceEl.textContent = currency.format(item.price * item.qty);
+
+      row.append(nameEl, controls, priceEl);
       cartItemsEl.appendChild(row);
     });
 
-    cartTotalEl.textContent = `₪${total.toLocaleString('he-IL')}`;
+    cartTotalEl.textContent = currency.format(total);
     updateCartBadge(qty);
 
-    cartItemsEl.querySelectorAll(".qty-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const index = Number(btn.dataset.index);
-        const action = btn.dataset.action;
-        if (action === "increase") cartState[index].qty += 1;
-        if (action === "decrease") cartState[index].qty = Math.max(0, cartState[index].qty - 1);
-        if (cartState[index].qty === 0) cartState.splice(index, 1);
-        renderCart();
-      });
-    });
   };
+
+  if (cartItemsEl) {
+    cartItemsEl.addEventListener("click", (event) => {
+      const btn = event.target.closest(".qty-btn");
+      if (!btn) return;
+      const index = Number(btn.dataset.index);
+      const action = btn.dataset.action;
+      if (Number.isNaN(index)) return;
+      if (action === "increase") cartState[index].qty += 1;
+      if (action === "decrease") cartState[index].qty = Math.max(0, cartState[index].qty - 1);
+      if (cartState[index].qty === 0) cartState.splice(index, 1);
+      renderCart();
+    });
+  }
 
   const addToCart = (name, price) => {
     const existing = cartState.find(item => item.name === name);
@@ -83,7 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
       cartState.push({ name, price, qty: 1 });
     }
     renderCart();
-    document.getElementById("cart")?.scrollIntoView({ behavior: "smooth" });
+    announce("הפריט נוסף לסל");
+    if (!prefersReducedMotion) {
+      document.getElementById("cart")?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   document.querySelectorAll(".add-to-cart").forEach(btn => {
@@ -103,11 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
       if (cartState.length === 0) {
-        alert("הסל ריק. הוסיפו יינות כדי לסיים הזמנה.");
+        announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה.");
         return;
       }
       const total = cartState.reduce((sum, item) => sum + item.price * item.qty, 0);
-      alert(`הזמנתכם התקבלה! סה\"כ לתשלום: ₪${total.toLocaleString('he-IL')}. ניצור קשר לאישור המשלוח.`);
+      announce(`הזמנתכם התקבלה! סה״כ לתשלום: ${currency.format(total)}. ניצור קשר לאישור המשלוח.`);
     });
   }
 
