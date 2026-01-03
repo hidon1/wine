@@ -230,8 +230,8 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
   gap: 18px;
   align-items: stretch;
 }
-/* 180px הוא רוחב עמודה מינימלי לשמירת פריסה קומפקטית במסכים רגילים */
-/* auto-fit מצמצם לעמודה אחת במסכים צרים יותר מ-180px */
+/* 220px הוא רוחב עמודה מינימלי לשמירת פריסה קומפקטית במסכים רגילים */
+/* auto-fit מצמצם לעמודה אחת במסכים צרים יותר מ-220px */
 .card {
   background: #fff;
   border-radius: 12px;
