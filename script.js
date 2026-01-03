@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const TRUNCATION_SUFFIX = "\n(המשך הפרטים קוצר לצורך שליחה)";
   const URL_PARAM_BUFFER = 300; // נושא, פרמטרים ותחביר query
   const BODY_TRUNCATION_LENGTH = MAX_GMAIL_URL_LENGTH - URL_PARAM_BUFFER - TRUNCATION_SUFFIX.length;
+  const PER_UNIT_LABEL = "ליחידה";
+  const formatPerUnit = (price, qty) => `${qty} × ${currency.format(price)} ${PER_UNIT_LABEL}`;
   const truncateBody = (text) => {
     if (text.length <= BODY_TRUNCATION_LENGTH) return text;
     return `${text.slice(0, BODY_TRUNCATION_LENGTH)}${TRUNCATION_SUFFIX}`;
@@ -70,8 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const row = document.createElement("div");
       row.className = "cart-item";
 
+      const info = document.createElement("div");
+      info.className = "cart-info";
+
       const nameEl = document.createElement("strong");
       nameEl.textContent = item.name;
+
+      const metaEl = document.createElement("span");
+      metaEl.className = "cart-meta";
+      metaEl.textContent = formatPerUnit(item.price, item.qty);
+
+      info.append(nameEl, metaEl);
 
       const controls = document.createElement("div");
       controls.className = "qty-controls";
@@ -96,9 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
       controls.append(decBtn, qtySpan, incBtn);
 
       const priceEl = document.createElement("span");
+      priceEl.className = "line-total";
       priceEl.textContent = currency.format(item.price * item.qty);
 
-      row.append(nameEl, controls, priceEl);
+      row.append(info, controls, priceEl);
       cartItemsEl.appendChild(row);
     });
 
