@@ -226,7 +226,7 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
 /* -- כרטיסי מוצר -- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
   align-items: stretch;
 }
@@ -245,8 +245,11 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
   margin: 0 auto;
   width: 100%;
   max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(209,164,100,0.05), rgba(92,11,27,0.06)); opacity: 0; transition: opacity 0.3s; }
+.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(209,164,100,0.05), rgba(92,11,27,0.06)); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
 .card:hover { transform: translateY(-6px); box-shadow: 0 14px 26px rgba(0,0,0,0.12); }
 .card:hover::after { opacity: 1; }
 .card img {
@@ -261,7 +264,7 @@ section h2 { text-align: center; font-size: 2.5em; color: var(--primary-dark); m
 .card h3 { color: #2c0e08; font-size: 1.2em; margin: 0.8em 0 0.4em; }
 .card p { color: #555; line-height: 1.5; font-size: 0.96em; }
 .card .price { font-size: 1.2em; font-weight: 800; color: #2c0e08; margin: 0.6em 0; }
-.buy-btn { display: inline-block; margin-top: 0.6em; background: var(--primary); color: #fff; padding: 0.65em 1.25em; border-radius: 18px; text-decoration: none; font-weight: bold; transition: background-color 0.3s, transform 0.2s; border: none; cursor: pointer; }
+.buy-btn { display: inline-block; margin-top: auto; background: var(--primary); color: #fff; padding: 0.65em 1.25em; border-radius: 18px; text-decoration: none; font-weight: bold; transition: background-color 0.3s, transform 0.2s; border: none; cursor: pointer; }
 .buy-btn:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
 /* -- גלריה ולייטבוקס (חלון קופץ) -- */
