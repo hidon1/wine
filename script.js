@@ -18,6 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartState = [];
   const MESSAGE_DURATION = 3200;
   const currency = new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' });
+  const MAX_URL_SAFE_LENGTH = 2000; // לאחר מכן Gmail compose נכשל לעיתים
+  const URL_HEADROOM = 200; // מרווח ביטחון מתוך מגבלת ה-2000
+  const MAX_GMAIL_URL_LENGTH = MAX_URL_SAFE_LENGTH - URL_HEADROOM;
+  const TRUNCATION_SUFFIX = "\n(המשך הפרטים קוצר לצורך שליחה)";
+  const URL_PARAM_BUFFER = 300; // נושא, פרמטרים ותחביר query
+  const BODY_TRUNCATION_LENGTH = MAX_GMAIL_URL_LENGTH - URL_PARAM_BUFFER - TRUNCATION_SUFFIX.length;
+  const truncateBody = (text) => {
+    if (text.length <= BODY_TRUNCATION_LENGTH) return text;
+    return `${text.slice(0, BODY_TRUNCATION_LENGTH)}${TRUNCATION_SUFFIX}`;
+  };
   const cartItemsEl = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
   const cartCountEl = document.getElementById("cart-count");
@@ -146,7 +156,33 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       const total = cartState.reduce((sum, item) => sum + item.price * item.qty, 0);
-      announce(`הזמנתכם התקבלה! סה״כ לתשלום: ${currency.format(total)}. ניצור קשר לאישור המשלוח.`);
+      const itemsSummary = cartState
+        .map(item => `${item.name} — כמות: ${item.qty} (סה״כ ${currency.format(item.price * item.qty)})`)
+        .join("\n");
+      const body = [
+        "שלום יקב דורות,",
+        "אני רוצה להזמין את הפריטים הבאים:",
+        itemsSummary,
+        "",
+        `סה״כ לתשלום: ${currency.format(total)}`,
+        "נשמח לאישור הזמנה וחיוב."
+      ].join("\n");
+      const encodedSubject = encodeURIComponent("הזמנה חדשה מאתר יקב דורות");
+
+      let encodedBody = encodeURIComponent(body);
+      let gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&su=${encodedSubject}&body=${encodedBody}`;
+      let mailtoUrl = `mailto:?subject=${encodedSubject}&body=${encodedBody}`;
+
+      if (gmailUrl.length > MAX_GMAIL_URL_LENGTH || mailtoUrl.length > MAX_GMAIL_URL_LENGTH) {
+        encodedBody = encodeURIComponent(truncateBody(body));
+        gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&su=${encodedSubject}&body=${encodedBody}`;
+        mailtoUrl = `mailto:?subject=${encodedSubject}&body=${encodedBody}`;
+      }
+
+      const useMailto = gmailUrl.length > MAX_GMAIL_URL_LENGTH;
+      const targetUrl = useMailto ? mailtoUrl : gmailUrl;
+      window.open(targetUrl, "_blank", "noopener");
+      announce(useMailto ? "פותחים דרך מייל ברירת המחדל עם פרטי הסל." : "פותחים מייל חדש עם פרטי ההזמנה בסל.");
     });
   }
 
