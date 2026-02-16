@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>יקב בוטיק דורות | Dorot Winery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Heebo:wght@400;700&family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,39 +26,31 @@
         </div>
       </div>
       <nav>
-        <a href="#shop">החנות שלנו</a>
-        <a href="#philosophy">סוד הקסם</a>
+        <a href="#shop">היינות שלנו</a>
+        <a href="#philosophy">פילוסופיית היקב</a>
+        <a href="#experience">חוויית אירוח</a>
+        <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
-        <a href="#testimonials">תגובות</a>
         <a href="#about">עלינו</a>
         <a href="#contact">יצירת קשר</a>
       </nav>
       <button id="cart-toggle" class="cart-toggle" aria-label="פתיחת סל הקניות">🛒 <span id="nav-cart-count">0</span></button>
     </div>
+
     <div class="header-content">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">דור שלישי לכרם • יינות בוטיק מקומיים</p>
-          <h1>יין שמספר את סיפור הדורות</h1>
-          <p class="subtitle">ביקב בוטיק דורות אנחנו מחברים מסורת עתיקה עם עיצוב מודרני, צבעי יין עמוקים וחוויית רכישה פשוטה.</p>
-          <div class="hero-actions">
-            <a class="primary-btn" href="#shop">טעימות אונליין</a>
-            <a class="ghost-btn" href="#about">גלו את הסיפור</a>
-          </div>
-          <div class="hero-badges">
-            <span>5 יינות חתימה</span>
-            <span>סל קניות מהיר</span>
-            <span>טעימות ביקב</span>
-          </div>
+      <div class="hero-copy">
+        <p class="eyebrow">COLLECTION PRIVÉE • יקב משפחתי מאז 1989</p>
+        <h1>יין אלגנטי, איטי ומדויק<br>לרגעים שמבקשים יוקרה שקטה</h1>
+        <p class="subtitle">ברוכים הבאים ליקב דורות. יינות פרימיום שנבנים בשכבות של ארומה, עומק וסיומת ארוכה — בדיוק כמו חוויה מקצועית של יקב מוביל.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#shop">לרכישת קולקציית היקב</a>
+          <a class="ghost-btn" href="#philosophy">לקרוא על הטרואר והיישון</a>
         </div>
-        <div class="hero-card">
-          <div class="hero-card-inner">
-            <p class="card-label">Blend of the Year</p>
-            <h3>מורשת 2022</h3>
-            <p>100% חביות עץ צרפתיות • ארומה עמוקה</p>
-            <div class="mini-price">₪145</div>
-            <button type="button" class="mini-cta add-to-cart" data-name='בלנד "מורשת דורות" מהיר' data-price="145">הוספה מהירה לסל</button>
-          </div>
+        <div class="hero-badges">
+          <span>חביות עץ אלון צרפתי</span>
+          <span>משלוח פרימיום בקירור</span>
+          <span>התאמת יין לארוחה</span>
+          <span>תמיכה אישית לסומלייה ביתי</span>
         </div>
       </div>
     </div>
@@ -66,8 +58,8 @@
 
   <main>
     <section id="shop">
-      <h2>היינות המובחרים של יקב דורות</h2>
-      <p class="section-intro">חמישה יינות בוטיק, כל אחד עם סיפור ואופי משלו. בחרו, הוסיפו לסל והזמנה כבר בדרך.</p>
+      <h2>קולקציית יינות פרימיום</h2>
+      <p class="section-intro">כל בקבוק בקולקציה שלנו נבחר לייצר איזון בין אלגנטיות, גוף ודיוק. הוסיפו מוצרים — והסל החכם יופיע בצד באופן מיידי.</p>
       <div class="grid">
         <div class="card">
           <img src="1.png" alt="קברנה סוביניון">
@@ -107,58 +99,42 @@
       </div>
     </section>
 
-    <section id="cart" class="cart-section">
-      <div class="cart-header">
-        <div>
-          <h2>סל הקניות</h2>
-          <p>בחרו יינות, נהנו מחוויית רכישה מהירה ומאובטחת.</p>
-        </div>
-        <span class="cart-pill" id="cart-count">0 פריטים</span>
-      </div>
-      <div id="cart-items" class="cart-items"></div>
-      <div id="cart-message" class="cart-message" aria-live="polite"></div>
-      <div class="cart-summary">
-        <div class="summary-row">
-          <span>סה"כ</span>
-          <strong id="cart-total">₪0</strong>
-        </div>
-        <button id="checkout-btn" type="button">סיום הזמנה</button>
-      </div>
-    </section>
-
     <section id="philosophy" class="text-section">
-        <h2>סוד הקסם שלנו</h2>
-        <p>אנו מאמינים שיין טוב הוא חיבור בין אדמה, אדם ועיצוב. הענבים גדלים על טרסות אבן עתיקות, מקבלים טיפול ידני ומשלבים חדשנות עם מסורת. את הצבעים, הריחות והצלילים מהכרם הבאנו גם למיתוג ולחוויית הרכישה החדשה באתר.</p>
+      <h2>פילוסופיית היקב</h2>
+      <p>אנחנו עובדים בגישת "Luxury with Restraint" — פחות רעש, יותר עומק. הענבים נבצרים בשעות הבוקר המוקדמות, עוברים מיון ידני, ותהליך יישון מבוקר שמבליט מורכבות, ניקיון ואלגנטיות. כל יין מקבל אפיון הגשה, טמפרטורה מומלצת והתאמה קולינרית מקצועית.</p>
     </section>
 
     <section id="experience" class="feature-section">
       <div class="feature-card">
-        <h3>טעימות בוטיק</h3>
-        <p>סלון יין מעוצב, מוזיקה עדינה ואנשי יקב שמספרים את הסיפור מאחורי כל בקבוק.</p>
+        <h3>חוויית טעימה מקצועית</h3>
+        <p>אירוח ביקב עם מדריך טעימה, כוסות פרימיום ודיון על כל שכבת ארומה.</p>
       </div>
       <div class="feature-card">
-        <h3>קפסולת עיצוב</h3>
-        <p>שילבנו את לוגו הבית עם צבע הרקע של הכותרת הראשית, כך שהמותג ירגיש חלק מהיין.</p>
+        <h3>מועדון אספנים</h3>
+        <p>גישה מוקדמת לבצירים מוגבלים, הטבות לחברים וערבי יין פרטיים.</p>
       </div>
       <div class="feature-card">
-        <h3>משלוחים מהירים</h3>
-        <p>הזמנה בסל קניות חכם, חשבונית למייל ומשלוח ממוזג לשמירה על הטמפרטורה.</p>
+        <h3>ייעוץ התאמה קולינרי</h3>
+        <p>מתאימים יין לתפריט האירוח שלכם — בשר, דגים, גבינות וקינוחים.</p>
       </div>
     </section>
 
     <section id="testimonials">
-      <h2>תגובות מאנשים</h2>
+      <h2>ביקורות לקוחות</h2>
       <div class="testimonial-grid">
         <div class="testimonial-card">
-          <p class="quote">"העיצוב החדש מרגיש כמו ביקור ביקב עצמו. הרוזה הגיע קריר עם פתק אישי. חוויה מושלמת."</p>
+          <div class="rating">★★★★★</div>
+          <p class="quote">"האתר מרגיש כמו מגזין יין יוקרתי. הזמנו בלנד מורשת, והכול היה מדויק — מאריזה ועד טעמים."</p>
           <div class="name">שירי, תל אביב</div>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"סל הקניות ברור ומהיר. לחצתי הוספה, וזהו – קיבלתי אישור ומשלוח יום למחרת."</p>
+          <div class="rating">★★★★★</div>
+          <p class="quote">"הסל בצד נוח מאוד. מוסיפים בקבוקים, משווים מחירים, ומסיימים הזמנה בלי בלגן."</p>
           <div class="name">אלעד, חיפה</div>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"בלנד מורשת דורות הוא האהוב עלינו. האריזה והצבעים באתר תואמים בדיוק את מה שמקבלים בבקבוק."</p>
+          <div class="rating">★★★★★</div>
+          <p class="quote">"העיצוב עדין, נקי ומקצועי. ממש מרגישים שהמותג מדבר בשפה של יין איכותי."</p>
           <div class="name">נועה, ירושלים</div>
         </div>
       </div>
@@ -179,15 +155,15 @@
 
     <section class="cta-band">
       <div>
-        <h2>בואו לטעימות ביקב דורות</h2>
-        <p>עיצוב מודרני, סל קניות חדש וחוויה אישית. השאירו פרטים ונסגור לכם ביקור.</p>
+        <h2>הזמינו סשן טעימה פרטי ביקב</h2>
+        <p>אירוח בעיצוב מוקפד, התאמת יין לארוחה וחוויית בוטיק מלאה.</p>
       </div>
-      <a class="primary-btn" href="#contact">קבעו ביקור</a>
+      <a class="primary-btn" href="#contact">קביעת ביקור</a>
     </section>
 
     <section id="contact">
       <h2>דברו איתנו</h2>
-      <p>רוצים לקפוץ לטעימות? לשאול שאלה? או סתם להגיד שלום? השאירו פרטים ונחזור אליכם עם חיוך (ובדרך כלל גם עם יין).</p>
+      <p>רוצים לקפוץ לטעימות? לקבל המלצה לבקבוק מתנה? השאירו פרטים ונחזור עם התאמה מדויקת.</p>
       <form action="https://formspree.io/f/moqglqrr" method="POST">
         <input type="text" name="name" placeholder="שם מלא" required>
         <input type="email" name="email" placeholder="אימייל" required>
@@ -196,6 +172,26 @@
       </form>
     </section>
   </main>
+
+  <aside id="cart" class="cart-drawer" aria-live="polite">
+    <div class="cart-header">
+      <div>
+        <h2>סל הקניות</h2>
+        <p>הסל מופיע רק כשמוסיפים מוצרים.</p>
+      </div>
+      <button id="cart-close" class="cart-close" aria-label="סגירת סל">✕</button>
+    </div>
+    <span class="cart-pill" id="cart-count">0 פריטים</span>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-message" class="cart-message" aria-live="polite"></div>
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>סה"כ</span>
+        <strong id="cart-total">₪0</strong>
+      </div>
+      <button id="checkout-btn" type="button">סיום הזמנה</button>
+    </div>
+  </aside>
 
   <footer>
     <p>© כל הזכויות שמורות ליקב בוטיק דורות, 2025</p>
