@@ -13,7 +13,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Heebo', 'Assistant', sans-serif;
+  font-family: 'Rubik', 'Heebo', 'Assistant', sans-serif;
   direction: rtl;
   background: linear-gradient(170deg, #f8f4ef, #fdfbf8 35%, #f7f2eb);
   color: var(--ink);
@@ -22,7 +22,8 @@ body {
 
 h1, h2, h3 {
   font-family: 'Cormorant Garamond', 'Heebo', serif;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  font-weight: 700;
 }
 
 #background-container {
@@ -53,7 +54,7 @@ h1, h2, h3 {
 }
 
 header.hero {
-  padding: 1.8em 1.5em 3em;
+  padding: 2em 1.7em 3.4em;
   margin: 1em;
   border-radius: 24px;
   background: linear-gradient(130deg, rgba(255, 248, 238, 0.96), rgba(255, 255, 255, 0.9));
@@ -66,6 +67,7 @@ header.hero {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
+  overflow: hidden;
   position: sticky;
   top: 12px;
   z-index: 20;
@@ -76,25 +78,52 @@ header.hero {
   border-radius: 16px;
 }
 
-.brand-mark { display: flex; align-items: center; gap: 0.75em; }
-.brand-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  border-radius: 14px;
-  padding: 0.35em;
-  background: rgba(255,255,255,0.75);
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  animation: fadeSlideIn 1s ease 0.15s both;
 }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-small { font-size: 0.82em; color: var(--muted); }
-.brand-name { font-size: 1.4em; font-weight: 700; color: var(--wine-deep); }
+
+.brand-logo {
+  width: clamp(120px, 11vw, 170px);
+  height: clamp(120px, 11vw, 170px);
+  object-fit: contain;
+  border-radius: 22px;
+  padding: 0.45em;
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(249, 240, 233, 0.92));
+  border: 1px solid rgba(95, 29, 47, 0.16);
+  box-shadow: 0 14px 28px rgba(74, 25, 40, 0.18);
+  animation: logoFloat 6.2s ease-in-out infinite;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.brand-small {
+  font-size: 1em;
+  font-weight: 600;
+  color: #78645d;
+  letter-spacing: 0.08em;
+}
+
+.brand-name {
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  color: var(--wine-deep);
+}
 
 nav { display: flex; align-items: center; gap: 0.5em; flex-wrap: wrap; }
 nav a {
   text-decoration: none;
   color: var(--wine-deep);
   font-weight: 600;
-  font-size: 0.95em;
+  font-size: 0.98em;
   padding: 0.5em 0.95em;
   border-radius: 999px;
   border: 1px solid rgba(95, 29, 47, 0.17);
@@ -117,10 +146,22 @@ nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px);
 .header-content { margin-top: 2em; }
 .hero-copy { max-width: 900px; }
 .eyebrow { margin: 0; color: var(--wine); font-weight: 700; letter-spacing: 0.08em; font-size: 0.82em; }
-.hero-copy h1 { margin: 0.4em 0; font-size: clamp(2.2rem, 4vw, 3.55rem); line-height: 1.16; color: var(--wine-deep); }
-.subtitle { max-width: 780px; font-size: 1.08em; color: #44332e; }
+.hero-copy h1 {
+  margin: 0.4em 0;
+  font-size: clamp(2.45rem, 4.2vw, 3.9rem);
+  line-height: 1.13;
+  color: var(--wine-deep);
+  animation: fadeSlideIn 1s ease 0.25s both;
+}
+.subtitle {
+  max-width: 780px;
+  font-size: 1.16em;
+  color: #44332e;
+  font-weight: 500;
+  animation: fadeSlideIn 1s ease 0.35s both;
+}
 
-.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75em; margin-top: 1.2em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75em; margin-top: 1.2em; animation: fadeSlideIn 1s ease 0.5s both; }
 .primary-btn, .ghost-btn {
   display: inline-block;
   text-decoration: none;
@@ -133,7 +174,7 @@ nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px);
 .ghost-btn { color: var(--wine); border: 1px solid rgba(95, 29, 47, 0.25); }
 .primary-btn:hover, .ghost-btn:hover { transform: translateY(-2px); }
 
-.hero-badges { display: flex; flex-wrap: wrap; gap: 0.55em; margin-top: 1.2em; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 0.55em; margin-top: 1.2em; animation: fadeSlideIn 1s ease 0.65s both; }
 .hero-badges span {
   background: rgba(255,255,255,0.85);
   border: 1px solid rgba(95, 29, 47, 0.12);
@@ -385,6 +426,8 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 
 @media (max-width: 960px) {
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
+  .brand-logo { width: clamp(96px, 24vw, 128px); height: clamp(96px, 24vw, 128px); }
+  .brand-name { font-size: clamp(1.8rem, 7vw, 2.35rem); }
   .cta-band { flex-direction: column; align-items: flex-start; }
 }
 
@@ -394,4 +437,26 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   nav a { width: 100%; text-align: center; }
   .hero-actions .primary-btn, .hero-actions .ghost-btn { width: 100%; text-align: center; }
   .hero-badges span { width: 100%; text-align: center; }
+}
+
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.99);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }

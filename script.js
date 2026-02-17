@@ -255,6 +255,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+
+  const setupScrollReveal = () => {
+    const revealItems = document.querySelectorAll("section, .card, .feature-card, .testimonial-card, .faq-item");
+    revealItems.forEach((item) => item.classList.add("reveal-on-scroll"));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  };
+
   const setupBackgroundSlideshow = () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll("#background-container .background-slide");
@@ -272,4 +292,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadAboutSection();
   setupLightbox();
   setupBackgroundSlideshow();
+  setupScrollReveal();
 });
