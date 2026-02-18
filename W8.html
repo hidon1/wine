@@ -59,6 +59,7 @@
             direction: rtl; /* Right-to-left for Hebrew */
             line-height: 1.6;
             overflow-x: hidden;
+            touch-action: pan-y;
             transition: background-color var(--animation-speed), color var(--animation-speed);
         }
 
@@ -86,6 +87,7 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
         body.dark-mode .dashboard-item:hover {
+            transform: none;
             background-color: rgba(255, 255, 255, 0.2);
         }
         body.dark-mode .dashboard-item h3, body.dark-mode .dashboard-item p {
@@ -264,9 +266,9 @@
         /* NEW: Top section wrapper */
         .top-section-wrapper {
             background-color: var(--top-section-background); /* Light wine color */
-            padding-top: 5px; 
-            padding-left: 25px; 
-            padding-right: 25px; 
+            padding-top: 5px;
+            padding-left: 25px;
+            padding-right: 25px;
             border-bottom-left-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -281,14 +283,14 @@
 
         .container {
             max-width: 900px; /* Make it narrower */
-            margin: 20px auto; 
+            margin: 20px auto;
             background-color: var(--card-background);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 30px;
             animation: fadeIn var(--animation-speed) ease-out;
             transition: background-color var(--animation-speed), box-shadow var(--animation-speed), border-color var(--animation-speed);
-            position: relative; 
+            position: relative;
         }
 
         @keyframes fadeIn {
@@ -299,8 +301,8 @@
         h1 { /* This H1 is now removed, but keeping style in case needed for other h1 */
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 5px; 
-            margin-top: 0; 
+            margin-bottom: 5px;
+            margin-top: 0;
             font-family: 'Playfair Display', serif;
             font-size: 2.5em;
             font-weight: 700;
@@ -308,14 +310,14 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
             transition: color var(--animation-speed);
         }
-        
+
         /* --- Project Name & Edit --- */
         .project-header {
             display: flex;
             flex-direction: column; /* Stack name and input vertically */
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
             gap: 5px; /* Reduced gap */
             padding-top: 5px; /* Added padding to move it slightly down from very top of container */
         }
@@ -354,15 +356,15 @@
             flex-wrap: wrap; /* Allow wrapping on small screens */
             gap: 8px; /* Gap between buttons */
             margin-top: 15px; /* Space above navigation */
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             padding: 10px;
-            background-color: var(--top-section-background); 
+            background-color: var(--top-section-background);
             border-radius: var(--border-radius);
             transition: background-color var(--animation-speed);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         body.dark-mode .stage-nav-container {
-            background-color: var(--dark-card-background); 
+            background-color: var(--dark-card-background);
         }
 
         .stage-nav-button {
@@ -375,7 +377,7 @@
             font-size: 0.9em;
             font-weight: 700;
             transition: background-color 0.3s ease, transform 0.2s ease, border-color var(--animation-speed);
-            flex-shrink: 0; 
+            flex-shrink: 0;
             min-width: 100px;
             text-align: center;
         }
@@ -421,22 +423,22 @@
 
         /* --- Dashboard Section (Fixed at Bottom) --- */
         .dashboard-section {
-            position: fixed; 
-            bottom: 0; 
+            position: fixed;
+            bottom: 0;
             left: 0;
             width: 100%;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-top-left-radius: 30px; 
-            border-top-right-radius: 30px; 
-            border-bottom-left-radius: 0; 
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.2); 
-            padding: 10px 15px; 
+            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
             color: white;
             text-align: center;
             transition: background var(--animation-speed), box-shadow var(--animation-speed);
-            z-index: 999; 
-            display: flex; 
+            z-index: 999;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -446,9 +448,9 @@
             text-align: center;
             color: var(--accent-color);
             margin-top: 0;
-            margin-bottom: 5px; 
+            margin-bottom: 5px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.4em; 
+            font-size: 1.4em;
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             transition: color var(--animation-speed);
@@ -458,9 +460,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; 
-            width: 100%; 
-            max-width: 1000px; 
+            gap: 10px;
+            width: 100%;
+            max-width: 1000px;
         }
 
         .dashboard-item {
@@ -468,32 +470,32 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: var(--border-radius);
-            padding: 8px 10px; 
+            padding: 8px 10px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-            flex: 1; 
-            min-width: 70px; 
-            max-width: 100px; 
+            flex: 1;
+            min-width: 70px;
+            max-width: 100px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            min-height: 60px; 
+            min-height: 60px;
         }
 
         .dashboard-item:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: none;
             background-color: rgba(255, 255, 255, 0.25);
         }
 
         .dashboard-item h3 {
             margin-top: 0;
-            margin-bottom: 2px; 
+            margin-bottom: 2px;
             color: var(--accent-color);
             font-family: 'Heebo', sans-serif;
-            font-size: 0.75em; 
+            font-size: 0.75em;
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
@@ -502,10 +504,11 @@
         }
 
         .dashboard-item p {
-            font-size: 1.1em; 
+            font-size: 1.1em;
             font-weight: 700;
             color: white;
             margin: 0;
+            min-height: 1.3em;
             font-family: 'Playfair Display', serif;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
@@ -534,7 +537,27 @@
         }
 
         .input-group:hover {
-            transform: translateY(-3px);
+            transform: none;
+        }
+
+        .finance-attachment-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .finance-attachment-row input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .finance-attachment-note {
+            font-size: 0.82em;
+            color: var(--light-text-color);
         }
 
         .input-group label {
@@ -1809,7 +1832,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
     .hamburger-menu-btn span { width: 20px; height: 2px;}
     .hamburger-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    
+
     .project-header h2 { font-size: 1.8em; } /* התאמת גודל שם הפרויקט למובייל */
     #editProjectNameInput { font-size: 1em; }
 
@@ -1823,26 +1846,26 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
     .dashboard-section { padding: 8px; /* ריפוד קטן יותר ללוח מחוונים קבוע במובייל */
         border-top-left-radius: 20px; /* רדיוס קטן יותר למובייל */
         border-top-right-radius: 20px;
-    } 
+    }
     .dashboard-section h2 { font-size: 1.2em; margin-bottom: 5px;}
     .dashboard-grid { justify-content: space-between; gap: 5px; /* מרווח הדוק יותר */ }
-    .dashboard-item { padding: 5px; min-width: unset; width: 48%; /* שתי עמודות במובייל */ font-size: 0.7em; min-height: 55px; } 
+    .dashboard-item { padding: 5px; min-width: unset; width: 48%; /* שתי עמודות במובייל */ font-size: 0.7em; min-height: 55px; }
     .dashboard-item h3 { font-size: 0.65em; } /* כותרת קטנה יותר */
     .dashboard-item p { font-size: 1em; }
 
-    .input-section { 
+    .input-section {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* שתי עמודות במובייל, רוחב מינימלי קטן יותר */
-        gap: 15px; 
-        margin-bottom: 20px; 
-        padding-top: 10px; 
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-top: 10px;
     }
     .input-group { padding: 12px; }
     .input-group label { font-size: 0.9em; margin-bottom: 8px;}
-    .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea { 
+    .input-group input[type="number"], .input-group input[type="text"], .input-group select, .input-group textarea {
         width: calc(100% - 16px); /* התאמה לריפוד */
-        padding: 8px; 
-        margin-bottom: 10px; 
-        font-size: 0.85em; 
+        padding: 8px;
+        margin-bottom: 10px;
+        font-size: 0.85em;
     }
     .input-group button { padding: 8px 12px; font-size: 0.85em; }
 
@@ -1893,19 +1916,19 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
     .step-preview-card p { font-size: 0.75em; }
 
     .project-details-card {
-        position: fixed; 
-        top: 10px; 
-        left: 10px; 
+        position: fixed;
+        top: 10px;
+        left: 10px;
         width: 140px; /* רוחב קבוע קטן יותר */
         height: 220px; /* גובה קבוע לאפשרות גלילה */
-        padding: 10px; 
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
-        border: 1px solid var(--border-color); 
+        padding: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border-color);
         overflow-y: auto; /* אפשור גלילה */
     }
     .project-details-card:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* שמירה על צל עדין בריחוף */
-        transform: none; 
+        transform: none;
     }
     .project-details-card h4 {
         font-size: 1em;
@@ -1942,13 +1965,13 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
     /* סגנון פס גלילה לכרטיסיית פרטי פרויקט במובייל (אם נדרש, עדין) */
     .project-details-card::-webkit-scrollbar {
-        width: 6px; 
+        width: 6px;
     }
     .project-details-card:hover::-webkit-scrollbar-thumb {
-        background-color: rgba(139, 0, 0, 0.3); 
+        background-color: rgba(139, 0, 0, 0.3);
     }
     body.dark-mode .project-details-card:hover::-webkit-scrollbar-thumb {
-        background-color: rgba(184, 0, 0, 0.3); 
+        background-color: rgba(184, 0, 0, 0.3);
     }
 
 }
@@ -1995,7 +2018,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 </div>
         </div>
     </div>
-    
+
     <div class="container">
         <div class="project-details-card" id="projectDetailsCard">
             <h4>פרטי פרויקט</h4>
@@ -2090,6 +2113,11 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 <input type="number" id="financeAmount" placeholder="הכנס סכום">
                 <label for="financeNotes">הערות:</label>
                 <textarea id="financeNotes" placeholder="הכנס הערות (אופציונלי)" rows="3"></textarea>
+                <div class="finance-attachment-row">
+                    <label for="financeAttachment">קובץ קבלה / תמונה:</label>
+                    <input type="file" id="financeAttachment" accept="image/*,.pdf" capture="environment">
+                    <span class="finance-attachment-note">במובייל אפשר לבחור מצלמה או קובץ מהטלפון.</span>
+                </div>
                 <div class="finance-input-buttons">
                     <button class="add-income-btn" onclick="addFinanceEntry('income')">הוסף הכנסה</button>
                     <button class="add-expense-btn" onclick="addFinanceEntry('expense')">הוסף הוצאה</button>
@@ -2198,7 +2226,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             'ta': { name: 'חומצה כוללת', type: 'number', step: 0.01, precision: 2, placeholder: '6.8' },
             'grapeTemp': { name: 'טמפרטורת ענבים', type: 'number', step: 0.1, precision: 1, placeholder: '25.0' },
         },
-        summaryMetrics: ['brix', 'ph', 'ta'] 
+        summaryMetrics: ['brix', 'ph', 'ta']
     },
     'stage2': {
         name: 'ריסוק',
@@ -2276,7 +2304,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         summaryMetrics: ['phFinal', 'bottleCount', 'alcoholLevel']
     },
         };
-        
+
         let projects = loadProjects();
         let currentProjectId = localStorage.getItem('currentProjectId') || Object.keys(projects)[0];
         let currentStageId = localStorage.getItem('currentStageId') || 'stage1';
@@ -2294,7 +2322,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             currentStageId = 'stage1';
             localStorage.setItem('currentStageId', currentStageId);
         }
-        
+
         // --- DOM Elements ---
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const sidebar = document.getElementById('sidebar');
@@ -2330,6 +2358,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         const financeModal = document.getElementById('financeModal');
         const financeAmountInput = document.getElementById('financeAmount');
         const financeNotesInput = document.getElementById('financeNotes');
+        const financeAttachmentInput = document.getElementById('financeAttachment');
         const financeList = document.getElementById('financeList');
         const currentBalanceDisplay = document.getElementById('currentBalance');
         const filterTypeSelect = document.getElementById('filterType');
@@ -2413,14 +2442,14 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             globalFinanceReportModal.style.display = 'none';
             instructionsModal.style.display = 'none';
             timelineModal.style.display = 'none';
-            datePickerModal.style.display = 'none'; 
+            datePickerModal.style.display = 'none';
 
             // Ensure main content is visible
             document.querySelector('.container').style.display = 'block';
             document.querySelector('.top-section-wrapper').style.display = 'block';
             currentStageContent.style.display = 'block';
             stageNavContainer.style.display = 'flex';
-            projectDetailsCard.style.display = 'block'; 
+            projectDetailsCard.style.display = 'block';
             fixedDashboardSection.style.display = 'flex'; // Show fixed dashboard
 
             // Also ensure stage overview is restored if applicable
@@ -2462,9 +2491,9 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         function loadProjects() {
             const storedProjects = localStorage.getItem('projects');
             let loaded = storedProjects ? JSON.parse(storedProjects) : {};
-            
+
             // If no projects at all, create a default one
-            if (Object.keys(loaded).length === 0) { 
+            if (Object.keys(loaded).length === 0) {
                 loaded['default_project'] = createNewProjectData('פרויקט ראשי');
             }
 
@@ -2503,9 +2532,23 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
                 // Ensure finance array exists and migrate old 'expenses'
                 if (!project.finance) {
-                    project.finance = project.expenses || []; 
-                    if (project.expenses) delete project.expenses; 
+                    project.finance = project.expenses || [];
+                    if (project.expenses) delete project.expenses;
                 }
+                project.finance = project.finance.map((entry, index) => {
+                    const entryDate = parseFinanceEntryDate(entry);
+                    const stableId = entry.id || Number(`${entryDate.getTime()}${index}`);
+                    return {
+                        ...entry,
+                        id: stableId,
+                        createdAt: entry.createdAt || entryDate.toISOString(),
+                        timestamp: entry.timestamp || entryDate.toLocaleString('he-IL', {
+                            year: 'numeric', month: '2-digit', day: '2-digit',
+                            hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+                        }),
+                        attachmentName: entry.attachmentName || ''
+                    };
+                });
 
                 // Ensure stages object exists
                 if (!project.stages) {
@@ -2530,6 +2573,43 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 }
             }
             return loaded;
+        }
+
+        function getStableTimestampData(date = new Date()) {
+            const iso = date.toISOString();
+            const display = date.toLocaleString('he-IL', {
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            });
+            return { iso, display };
+        }
+
+        function parseFinanceEntryDate(entry) {
+            if (entry.createdAt) {
+                const d = new Date(entry.createdAt);
+                if (!Number.isNaN(d.getTime())) return d;
+            }
+            if (entry.timestamp) {
+                const parts = entry.timestamp.match(/(\d{2})\/(\d{2})\/(\d{4})(?:, (\d{2}):(\d{2}):(\d{2}))?/);
+                if (parts) {
+                    const year = parseInt(parts[3], 10);
+                    const month = parseInt(parts[2], 10) - 1;
+                    const day = parseInt(parts[1], 10);
+                    const hour = parseInt(parts[4] || 0, 10);
+                    const minute = parseInt(parts[5] || 0, 10);
+                    const second = parseInt(parts[6] || 0, 10);
+                    return new Date(year, month, day, hour, minute, second);
+                }
+            }
+            return new Date();
+        }
+
+        function formatFinanceTimestamp(entry) {
+            const entryDate = parseFinanceEntryDate(entry);
+            return entryDate.toLocaleString('he-IL', {
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            });
         }
 
         function saveAllProjects() {
@@ -2583,7 +2663,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 actionsDiv.appendChild(switchBtn);
 
                 // Cannot delete default_project unless it's the only one left
-                if (id !== 'default_project' || Object.keys(projects).length > 1) { 
+                if (id !== 'default_project' || Object.keys(projects).length > 1) {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.textContent = 'מחק';
                     deleteBtn.className = 'delete';
@@ -2593,7 +2673,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     };
                     actionsDiv.appendChild(deleteBtn);
                 }
-                
+
                 listItem.appendChild(actionsDiv);
                 projectList.appendChild(listItem);
             });
@@ -2614,7 +2694,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         function switchProject(id) {
             currentProjectId = id;
             localStorage.setItem('currentProjectId', currentProjectId);
-            loadCurrentStageContent(); 
+            loadCurrentStageContent();
             updateProjectDisplay(); // This also calls loadCurrentStageContent and updateProjectDetailsCard
             closeProjectManagementModal();
         }
@@ -2624,7 +2704,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 delete projects[id];
                 if (currentProjectId === id) {
                     // Switch to the first available project after deletion
-                    currentProjectId = Object.keys(projects)[0]; 
+                    currentProjectId = Object.keys(projects)[0];
                     if (!currentProjectId) { // If no projects left, re-create the default one
                          currentProjectId = 'default_project';
                          projects[currentProjectId] = createNewProjectData('פרויקט ראשי');
@@ -2685,7 +2765,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 const stage = stagesConfig[stageId];
                 const button = document.createElement('button');
                 button.className = 'stage-nav-button';
-                button.textContent = `${stage.longName}`; 
+                button.textContent = `${stage.longName}`;
                 button.onclick = () => switchStage(stageId);
                 if (stageId === currentStageId) {
                     button.classList.add('active');
@@ -2703,12 +2783,12 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             wineIconImg.alt = "Wine Icon";
             wineIconLink.appendChild(wineIconImg);
             wineIconContainer.appendChild(wineIconLink);
-            
+
             rightSideStages.forEach(stageId => {
                 const stage = stagesConfig[stageId];
                 const button = document.createElement('button');
                 button.className = 'stage-nav-button';
-                button.textContent = `${stage.longName}`; 
+                button.textContent = `${stage.longName}`;
                 button.onclick = () => switchStage(stageId);
                 if (stageId === currentStageId) {
                     button.classList.add('active');
@@ -2742,7 +2822,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             }
 
             fixedDashboardStageName.textContent = `${stageConfig.longName}`; // Update fixed dashboard title
-            
+
             // Clear previous content
             currentStageInputSection.innerHTML = '';
 
@@ -2769,7 +2849,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 } else { // text or number
                     inputElementHTML = `<input type="${metric.type}" id="${metricId}Input" ${metric.type === 'number' ? `step="${metric.step}"` : ''} placeholder="${metric.placeholder || ''}">`;
                 }
-                
+
                 inputGroup.innerHTML = `
                     <label for="${metricId}Input">${metric.name}:</label>
                     ${inputElementHTML}
@@ -2854,7 +2934,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             }
             projects[currentProjectId].stages[stageId][metricId].push({ value, timestamp });
             saveAllProjects();
-            
+
             // Clear input field or reset select
             if (metricConfig.type === 'select') {
                 inputElement.value = ""; // Reset select to placeholder
@@ -2880,7 +2960,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 const displayValue = currentEntries && currentEntries.length > 0
                     ? (metricConfig.type === 'number' ? currentEntries[currentEntries.length - 1].value.toFixed(metricConfig.precision) : currentEntries[currentEntries.length - 1].value)
                     : '--';
-                
+
                 const dashboardItem = document.createElement('div');
                 dashboardItem.className = 'dashboard-item';
                 dashboardItem.setAttribute('onclick', `openHistoryModal('${currentStageId}', '${metricId}', '${metricConfig.name}')`);
@@ -2896,7 +2976,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         // --- History Modal Functions ---
         function openHistoryModal(sectionId, metricId, metricName) {
             currentMetricTypeForModal = { sectionId, metricId }; // Store both IDs
-            modalTitle.textContent = `היסטוריית ${metricName} (${stagesConfig[sectionId].name})`; 
+            modalTitle.textContent = `היסטוריית ${metricName} (${stagesConfig[sectionId].name})`;
             historyList.innerHTML = '';
             modalGraphSvg.innerHTML = '';
 
@@ -2912,7 +2992,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     if (customProp) {
                         historyEntries = customProp.history;
                         // For custom properties, dynamically create a basic metric config for display purposes
-                        metricConfig = { name: customProp.name, type: 'text' }; 
+                        metricConfig = { name: customProp.name, type: 'text' };
                         // If values are numeric in custom history, treat as number for graph
                         if (historyEntries.every(entry => typeof entry.value === 'number')) {
                             metricConfig.type = 'number';
@@ -2927,17 +3007,9 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
             const precision = metricConfig ? metricConfig.precision : null; // Custom props may not have precision by default
 
-            // Determine if graph should be shown based on metric type
-            if (metricConfig && metricConfig.type === 'number' && historyEntries && historyEntries.length > 0) {
-                modalGraphSvg.style.display = 'block'; // Ensure SVG is visible
-                historyModal.style.display = 'flex'; // Display modal first
-                setTimeout(() => { // Small delay to ensure SVG dimensions are ready
-                    drawModalGraph(historyEntries, precision);
-                }, 50);
-            } else {
-                modalGraphSvg.style.display = 'none'; // Hide graph if not a number metric or no data
-                historyModal.style.display = 'flex'; // Still display modal with history list
-            }
+            // גרף מוסתר בכוונה כדי למנוע קפיצות/תזוזות במסך במובייל ובדשבורד.
+            modalGraphSvg.style.display = 'none';
+            historyModal.style.display = 'flex';
 
             if (historyEntries && historyEntries.length > 0) {
                 historyEntries.slice().reverse().forEach((entry, index) => {
@@ -2949,7 +3021,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     } else {
                         displayValue = entry.value;
                     }
-                    
+
                     listItem.innerHTML = `
                         <strong>${displayValue}</strong>
                         <span class="timestamp">${entry.timestamp}</span>
@@ -2973,7 +3045,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
             const svgWidth = modalGraphSvg.clientWidth;
             const svgHeight = modalGraphSvg.clientHeight;
-            
+
             const paddingTop = 25;
             const paddingBottom = 40;
             const paddingLeft = 40;
@@ -2989,7 +3061,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
 
             if (entries.length === 1 || minValue === maxValue) {
-                const buffer = (values[0] * 0.1) || 1; 
+                const buffer = (values[0] * 0.1) || 1;
                 minValue = values[0] - buffer;
                 maxValue = values[0] + buffer;
                 if (minValue === maxValue) {
@@ -3025,7 +3097,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
             let linePath = '';
             let areaPath = `M ${paddingLeft} ${yScale(minValue)}`;
-            
+
             entries.forEach((entry, i) => {
                 const x = xScale(i);
                 const y = yScale(entry.value);
@@ -3049,13 +3121,13 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 const datePart = entry.timestamp.split(',')[0];
                 const timePart = entry.timestamp.split(',')[1] ? entry.timestamp.split(',')[1].trim() : '';
 
-                const interval = Math.ceil(entries.length / 5); 
+                const interval = Math.ceil(entries.length / 5);
                 if (entries.length <= 2 || i % interval === 0 || i === entries.length - 1) {
                     const textX = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                     textX.setAttribute('x', x);
                     textX.setAttribute('y', svgHeight - paddingBottom + 10);
                     textX.classList.add('modal-graph-label-x');
-                    
+
                     const tspanDate = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
                     tspanDate.setAttribute('x', x);
                     tspanDate.setAttribute('dy', '0em');
@@ -3069,7 +3141,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                         tspanTime.textContent = timePart;
                         textX.appendChild(tspanTime);
                     }
-                    
+
                     textX.setAttribute('transform', `rotate(-45 ${x}, ${svgHeight - paddingBottom + 10})`);
                     modalGraphSvg.appendChild(textX);
                 }
@@ -3148,8 +3220,8 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 // Re-open modal if it was open for the same metric
                 if (currentMetricTypeForModal.sectionId === sectionId && currentMetricTypeForModal.metricId === metricId) {
                     // Need to handle custom properties for metricName
-                    const metricDisplayName = (sectionId === 'wineDetails' && !stagesConfig.wineDetails.metrics[metricId]) 
-                                            ? projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId).name 
+                    const metricDisplayName = (sectionId === 'wineDetails' && !stagesConfig.wineDetails.metrics[metricId])
+                                            ? projects[currentProjectId].wineDetails.customProperties.find(prop => prop.id === metricId).name
                                             : stagesConfig[sectionId].metrics[metricId].name;
                     openHistoryModal(sectionId, metricId, metricDisplayName);
                 }
@@ -3179,21 +3251,28 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         function addFinanceEntry(type) { // 'income' or 'expense'
             const amount = parseFloat(financeAmountInput.value);
             const notes = financeNotesInput.value.trim();
+            const attachmentFile = financeAttachmentInput && financeAttachmentInput.files ? financeAttachmentInput.files[0] : null;
 
             if (isNaN(amount) || amount <= 0) {
                 alert('אנא הזן סכום חוקי (חיובי) עבור התנועה.');
                 return;
             }
 
-            const timestamp = new Date().toLocaleString('he-IL', {
-                year: 'numeric', month: 'numeric', day: 'numeric',
-                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            const now = getStableTimestampData();
+            const financeId = Date.now() + Math.floor(Math.random() * 1000);
+            projects[currentProjectId].finance.push({
+                id: financeId,
+                type,
+                amount,
+                notes,
+                createdAt: now.iso,
+                timestamp: now.display,
+                attachmentName: attachmentFile ? attachmentFile.name : ''
             });
-
-            projects[currentProjectId].finance.push({ id: Date.now(), type, amount, notes, timestamp });
             saveAllProjects();
             financeAmountInput.value = '';
             financeNotesInput.value = '';
+            if (financeAttachmentInput) financeAttachmentInput.value = '';
             renderFinanceList(); // Re-render with applied filters
         }
 
@@ -3204,27 +3283,11 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             const filterStartDate = filterStartDateInput.value ? new Date(filterStartDateInput.value) : null;
             const filterEndDate = filterEndDateInput.value ? new Date(filterEndDateInput.value) : null;
 
-            // Sort entries by timestamp in descending order
+            // Sort entries by true creation timestamp in descending order
             const sortedEntries = projects[currentProjectId].finance.slice().sort((a, b) => {
-                // Parse timestamp string to Date objects for accurate comparison
-                // The regex handles both "DD/MM/YYYY, HH:MM:SS" and "DD/MM/YYYY" formats
-                const parseDateString = (ts) => {
-                    const parts = ts.match(/(\d{2})\/(\d{2})\/(\d{4})(?:, (\d{2}):(\d{2}):(\d{2}))?/);
-                    if (parts) {
-                        const year = parseInt(parts[3], 10);
-                        const month = parseInt(parts[2], 10) - 1; // Month is 0-indexed
-                        const day = parseInt(parts[1], 10);
-                        const hour = parseInt(parts[4] || 0, 10);
-                        const minute = parseInt(parts[5] || 0, 10);
-                        const second = parseInt(parts[6] || 0, 10);
-                        return new Date(year, month, day, hour, minute, second);
-                    }
-                    return new Date(ts); // Fallback for other formats, might be less reliable
-                };
-
-                const dateA = parseDateString(a.timestamp);
-                const dateB = parseDateString(b.timestamp);
-                return dateB.getTime() - dateA.getTime(); // Use getTime() for numerical comparison
+                const dateA = parseFinanceEntryDate(a);
+                const dateB = parseFinanceEntryDate(b);
+                return dateB.getTime() - dateA.getTime();
             });
 
 
@@ -3236,18 +3299,20 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     shouldDisplay = false;
                 }
 
+                const entryDate = parseFinanceEntryDate(entry);
+
                 if (filterStartDate) {
-                    const entryDate = new Date(entry.timestamp.split(',')[0].split('/').reverse().join('-')); // Convert DD/MM/YYYY to YYYY-MM-DD
-                    entryDate.setHours(0,0,0,0); // Normalize to start of day for comparison
-                    if (entryDate < filterStartDate) {
+                    const normalizedStart = new Date(filterStartDate);
+                    normalizedStart.setHours(0, 0, 0, 0);
+                    if (entryDate < normalizedStart) {
                         shouldDisplay = false;
                     }
                 }
 
                 if (filterEndDate) {
-                    const entryDate = new Date(entry.timestamp.split(',')[0].split('/').reverse().join('-')); // Convert DD/MM/YYYY to YYYY-MM-DD
-                    entryDate.setHours(23,59,59,999); // Normalize to end of day for comparison
-                    if (entryDate > filterEndDate) {
+                    const normalizedEnd = new Date(filterEndDate);
+                    normalizedEnd.setHours(23, 59, 59, 999);
+                    if (entryDate > normalizedEnd) {
                         shouldDisplay = false;
                     }
                 }
@@ -3255,7 +3320,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 if (shouldDisplay) {
                     const listItem = document.createElement('li');
                     listItem.setAttribute('data-finance-id', entry.id);
-                    
+
                     const displayAmount = (entry.type === 'expense' ? '-' : '+') + entry.amount.toFixed(2); // Show + for income
                     const amountClass = entry.type; // 'income' or 'expense'
 
@@ -3263,7 +3328,8 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                         <div class="finance-item-details">
                             <span class="amount ${amountClass}">${displayAmount} ₪</span>
                             <div class="notes">${entry.notes || 'אין הערות'}</div>
-                            <span class="timestamp" style="font-size:0.8em; color:var(--light-text-color);">${entry.timestamp}</span>
+                            <div class="notes">קובץ: ${entry.attachmentName || 'ללא קובץ מצורף'}</div>
+                            <span class="timestamp" style="font-size:0.8em; color:var(--light-text-color);">${formatFinanceTimestamp(entry)}</span>
                         </div>
                         <div class="finance-item-actions">
                             <button onclick="editFinanceEntry(${entry.id})">ערוך</button>
@@ -3450,7 +3516,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
         // --- Project Details Card Logic ---
         function updateProjectDetailsCard() {
             const projectData = projects[currentProjectId];
-            const wineDetailsData = projectData.wineDetails || {}; 
+            const wineDetailsData = projectData.wineDetails || {};
             const projectDetailsCard = document.getElementById('projectDetailsCard');
             const addCustomPropertyBtn = projectDetailsCard.querySelector('.add-custom-property-btn');
 
@@ -3580,7 +3646,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 }
 
                 currentEditableDetailElement = { item, metricId, section, metricConfig, displaySpan: displaySpan };
-                
+
                 let currentValue = displaySpan.textContent === '--' ? '' : displaySpan.textContent;
                 let inputElement;
 
@@ -3588,10 +3654,10 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 if (metricConfig.type === 'date') {
                     showDatePicker(currentValue, (selectedDate) => {
                         updateProjectDetailValue(section, metricId, selectedDate);
-                        displaySpan.style.display = 'block'; 
+                        displaySpan.style.display = 'block';
                         currentEditableDetailElement = null; // Reset
                     });
-                    displaySpan.style.display = 'none'; 
+                    displaySpan.style.display = 'none';
                     return; // Exit as date picker is modal
                 } else if (metricConfig.type === 'select') {
                     inputElement = document.createElement('select');
@@ -3617,7 +3683,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     otherInput.placeholder = 'הכנס ערך אחר';
                     otherInput.style.display = 'none'; // Initially hidden
                     otherInput.style.marginTop = '5px';
-                    
+
                     inputElement.addEventListener('change', () => {
                         if (inputElement.value === 'other_input_field') {
                             otherInput.style.display = 'block';
@@ -3654,7 +3720,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                     }
                     inputElement.value = currentValue;
                     inputElement.placeholder = metricConfig.placeholder || '';
-                    
+
                     item.appendChild(inputElement);
                     inputElement.focus();
                     inputElement.select(); // Select existing text for quick overwrite
@@ -3669,7 +3735,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 }
                 displaySpan.style.display = 'none';
             };
-            
+
             displaySpan.addEventListener('click', newClickHandler);
             item._displaySpanClickHandler = newClickHandler; // Store handler for future removal
         }
@@ -3679,7 +3745,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             if (!currentEditableDetailElement) return;
 
             const { item, metricId, section, metricConfig, displaySpan, inputElement, otherInput } = currentEditableDetailElement;
-            
+
             let newValue;
             if (metricConfig.type === 'select') {
                 if (inputElement.value === 'other_input_field' && otherInput) {
@@ -3733,13 +3799,13 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             } else { // It's a regular stage ID
                 metricDataArray = projects[currentProjectId].stages[section][metricId];
             }
-            
+
             const timestamp = new Date().toLocaleString('he-IL', {
                 year: 'numeric', month: 'numeric', day: 'numeric',
                 hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
             });
 
-            if (!metricDataArray) { 
+            if (!metricDataArray) {
                 console.error("Metric data array not found, initializing:", section, metricId);
                 // This case should ideally not happen if project structure is loaded correctly, but as a safeguard:
                 if (section === 'wineDetails') {
@@ -3841,7 +3907,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
 
             const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 for Sunday, 1 for Monday...
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
+
             const startDayIndex = firstDayOfMonth; // 0 (Sunday) is first column
 
             for (let i = 0; i < startDayIndex; i++) {
@@ -3943,7 +4009,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             for (const stageId in currentProject.stages) { // Iterate over actual stages in project data
                 const stageConfig = stagesConfig[stageId];
                 if (!stageConfig || stageId === 'wineDetails') continue; // Skip if config not found or it's wineDetails
-                
+
                 for (const metricId in stageConfig.metrics) {
                     const metricConfig = stageConfig.metrics[metricId];
                     const entries = currentProject.stages[stageId][metricId];
@@ -3973,7 +4039,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'timeline-event';
                 // Add delay for sequential animation
-                eventDiv.style.animationDelay = `${index * 0.1}s`; 
+                eventDiv.style.animationDelay = `${index * 0.1}s`;
                 eventDiv.innerHTML = `
                     <div class="timeline-event-content">
                         <h4>${entry.metricName} (${entry.sectionName})</h4>
@@ -4010,7 +4076,7 @@ body.dark-mode .project-details-card:hover::-webkit-scrollbar-track {
             // IMPORTANT: Only close datePickerModal if the click is on the modal backdrop itself
             // and not on the elements *within* the date picker content.
             // The close button for datePickerModal also exists.
-            if (event.target === datePickerModal && !event.target.closest('.date-picker-modal-content')) { 
+            if (event.target === datePickerModal && !event.target.closest('.date-picker-modal-content')) {
                 closeDatePickerModal();
             }
             if (event.target === sidebarOverlay) {
