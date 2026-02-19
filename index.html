@@ -1138,7 +1138,13 @@ document.addEventListener("DOMContentLoaded", () => {
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       const targetId = link.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+      if (!targetId || targetId === "#" || !targetId.startsWith("#")) return;
+      let targetElement;
+      try {
+        targetElement = document.querySelector(targetId);
+      } catch {
+        return;
+      }
       if (!targetElement) return;
       e.preventDefault();
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1161,9 +1167,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const storage = firebaseApp ? firebase.storage() : null;
 
   const additivesConfig = [
-    { id: "disulfite", label: "דיסולפית", unit: "מ"ג/ל" },
+    { id: "disulfite", label: "דיסולפית", unit: 'מ"ג/ל' },
     { id: "yeast_nutrient", label: "מזין שמרים", unit: "גרם" },
-    { id: "acid_correction", label: "תיקון חומצה", unit: "מ"ל" },
+    { id: "acid_correction", label: "תיקון חומצה", unit: 'מ"ל' },
   ];
 
   const additivesState = {};
