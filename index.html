@@ -252,7 +252,15 @@ footer p {
   box-shadow: 0 4px 12px rgba(95, 29, 47, 0.08);
 }
 .card:hover { transform: translateY(-8px); box-shadow: 0 20px 32px rgba(95, 29, 47, 0.18); }
-.card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; margin-bottom: 0.5em; }
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 0.5em;
+  background: linear-gradient(170deg, #fffaf5, #fff);
+  padding: 0.35em;
+}
 .card h3 { margin: 0.75em 0 0.35em; font-size: 1.5rem; color: var(--wine-deep); }
 .card p { margin: 0; color: var(--muted); font-size: 0.97em; line-height: 1.6; }
 .card .price { font-size: 1.35em; font-weight: 800; color: var(--wine); margin: 0.7em 0; }
@@ -322,8 +330,6 @@ footer p {
 .cta-band h2 { text-align: right; margin: 0 0 0.3em; color: #fff; }
 .cta-band p { margin: 0; color: #f4e8e2; }
 .cta-band .primary-btn { background: #fff; color: var(--wine-deep); }
-
-#about img { max-width: min(520px, 100%); border-radius: 12px; display: block; margin: 1em auto; }
 
 form { max-width: 540px; margin: 0 auto; }
 input, textarea {
@@ -454,24 +460,79 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 
 .faq-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.9em;
+  grid-template-columns: 1fr;
+  gap: 0.75em;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .faq-item {
   background: #fff;
   border: 1px solid rgba(95, 29, 47, 0.08);
   border-radius: 14px;
-  padding: 1.1em;
+  overflow: hidden;
 }
 
-.faq-item h3 {
-  margin: 0 0 0.35em;
+.faq-question {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1.06rem;
+  font-weight: 700;
+  text-align: right;
+  padding: 1.05em 1.2em;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: var(--wine-deep);
 }
 
+.faq-question::before {
+  content: "+";
+  font-size: 1.2rem;
+  color: var(--wine);
+  margin-inline-start: 0.7em;
+}
+
+.faq-item.open .faq-question::before { content: "−"; }
+
+.faq-answer {
+  display: none;
+  padding: 0 1.2em 1.1em;
+}
+
+.faq-item.open .faq-answer { display: block; }
+
 .faq-item p {
   margin: 0;
+  color: #5d4a44;
+}
+
+.site-facts {
+  margin-top: 1.8em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75em;
+}
+
+.fact-item {
+  background: #fff;
+  border: 1px solid rgba(95, 29, 47, 0.08);
+  border-radius: 12px;
+  padding: 0.95em;
+  text-align: center;
+}
+
+.fact-item strong {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--wine-deep);
+}
+
+.fact-item span {
+  font-size: 0.95rem;
   color: #5d4a44;
 }
 
@@ -528,10 +589,10 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 <body>
 
   <div id="background-container">
-    <div class="background-slide" style="background-image: url('bg1.jpg');"></div>
-    <div class="background-slide" style="background-image: url('bg2.jpg');"></div>
-    <div class="background-slide" style="background-image: url('bg3.jpg');"></div>
-    <div class="background-slide" style="background-image: url('bg4.jpg');"></div>
+    <div class="background-slide" style="background-image: url('gallery3.jpg');"></div>
+    <div class="background-slide" style="background-image: url('קברנה 25.png');"></div>
+    <div class="background-slide" style="background-image: url('מרלו 25.png');"></div>
+    <div class="background-slide" style="background-image: url('קברנה 24.png');"></div>
   </div>
 
   <header class="hero">
@@ -545,8 +606,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       </div>
       <nav>
         <a href="#shop">היינות שלנו</a>
-        <a href="#story">סיפור היין</a>
-        <a href="#experience">חוויית אירוח</a>
+        <a href="#story">הסיפור שלנו</a>
         <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
         <a href="#about">עלינו</a>
@@ -604,28 +664,14 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     </section>
 
     <section id="story" class="text-section">
-      <h2>הדרך של דורות</h2>
+      <h2>הסיפור שלנו</h2>
       <img src="1000.png" alt="יקב דורות" class="story-image">
-      <p>בכל עונה אנחנו מתחילים מחדש, עם אותה מחויבות לאיכות: להקשיב לכרם, לזהות את הרגע המדויק לבציר, ולעבוד בסבלנות עד שהיין מרגיש שלם.</p>
-      <p><strong>הבציר:</strong> הענבים נקטפים ידנית לפנות בוקר כדי לשמור על רעננות, איזון טבעי וריכוז טעמים מדויק שמגיע נקי למכלים.</p>
-      <p><strong>המיון והתסיסה:</strong> לאחר קליטה עדינה, אנחנו ממיינים כל אשכול ומבצעים תסיסה מבוקרת לכל זן בנפרד, כדי להבליט את האופי המדויק שלו.</p>
-      <p><strong>היישון וההשבחה:</strong> חלק מהיינות מתיישנים בחביות אלון וחלקם במכלי נירוסטה, לפי הסגנון הרצוי. כך מתקבל איזון בין פרי חי, מבנה אלגנטי וסיומת נעימה.</p>
-      <p><strong>התוצאה:</strong> יינות עם זהות ברורה, עומק ודיוק — כאלה שכיף לפתוח בבית, לארח איתם חברים, ולהרגיש בכל לגימה את העבודה שנעשתה מאחוריהם.</p>
-    </section>
-
-    <section id="experience" class="feature-section">
-      <div class="feature-card">
-        <h3>טעימות באווירה ביתית</h3>
-        <p>מפגשי טעימה חמים עם הסבר ברור, התאמה אישית וזמן לשאלות על כל בקבוק.</p>
-      </div>
-      <div class="feature-card">
-        <h3>מועדון לקוחות דורות</h3>
-        <p>עדכונים לבצירים חדשים, הטבות בלעדיות והזמנות מוקדמות לאירועים ביקב.</p>
-      </div>
-      <div class="feature-card">
-        <h3>התאמת יין לארוחה</h3>
-        <p>אנחנו בונים איתכם שילובים קולינריים מדויקים — מארוחות חג ועד אירוח אינטימי.</p>
-      </div>
+      <p>ביקב דורות היין נולד מתוך תפיסת עולם של בית יהודי חם: קדושה לצד שמחה, הקפדה לצד לב רחב. אנחנו מאמינים שבקבוק יין טוב אינו רק טעם, אלא דרך לחבר בין אנשים סביב שולחן של שבת, סעודת מצווה, אירוסין, או ערב משפחתי פשוט ומלא הודיה.</p>
+      <p><strong>הכרם והאדמה:</strong> כל חלקה נבחנת לאורך השנה בעין מקצועית ובסבלנות. אנחנו עוקבים אחר ההבשלה, האקלים והאיזון הטבעי של הגפן כדי לבחור את רגע הבציר המדויק, כזה שמייצר פרי איכותי, עמוק ונקי.</p>
+      <p><strong>הבציר והעבודה ביקב:</strong> הענבים נבצרים בעדינות, ממוינים בקפדנות ומטופלים בכבוד גדול לחומר הגלם. התסיסה מנוהלת בצורה מבוקרת, וכל זן מקבל את הזמן והמסלול שמתאים לו, כדי שהאופי הייחודי שלו יבוא לידי ביטוי מלא.</p>
+      <p><strong>כשרות למהדרין:</strong> היקב פועל ברוח עולם התורה וההלכה, עם הקפדה על כל פרטי הכשרות. היין מיוצר בכשרות מהודרת, בעבודה של אברכים יראי שמיים, כדי שתוכלו להגיש אותו בשולחן יהודי בלב רגוע ובשמחה אמיתית.</p>
+      <p><strong>ליווי אישי מכל הלב:</strong> חשוב לנו לא רק מה יש בבקבוק, אלא גם מה מרגישים כשמזמינים. לכן אנחנו מלווים כל לקוח בעצה טובה, בהקשבה ובשירות נעים ומכבד — בין אם מדובר בבקבוק אחד לשבת ובין אם בהזמנה גדולה לאירוע.</p>
+      <p>זו הדרך שלנו בדורות: לקחת מסורת עתיקה של יין, לחבר אותה לעבודה מקצועית מודרנית, ולהגיש לכם תוצאה נקייה, מאוזנת ומרגשת — יין שמוסיף כבוד לשולחן, עומק לשיחה, ונועם לכל רגע של ביחד.</p>
     </section>
 
     <section id="testimonials">
@@ -652,18 +698,22 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     <section id="gallery">
       <h2>תמונות מהכרם והיקב</h2>
       <div class="gallery-grid">
-        <img src="gallery1.jpg" alt="תמונה מהיקב 1">
-        <img src="gallery2.jpg" alt="תמונה מהיקב 2">
-        <img src="gallery3.jpg" alt="תמונה מהיקב 3">
-        <img src="bg1.jpg" alt="כרמים זהובים">
-        <img src="bg2.jpg" alt="חביות יין">
+        <img src="gallery3.jpg" alt="תמונה מהכרם 1">
+        <img src="1000.png" alt="מותג דורות 2">
+        <img src="קברנה 25.png" alt="בקבוק דורות 3">
+        <img src="מרלו 25.png" alt="בקבוק דורות 4">
+        <img src="קברנה 24.png" alt="בקבוק דורות 5">
+        <img src="gallery3.jpg" alt="תמונה מהכרם 6">
+        <img src="1000.png" alt="מותג דורות 7">
+        <img src="קברנה 25.png" alt="בקבוק דורות 8">
+        <img src="מרלו 25.png" alt="בקבוק דורות 9">
+        <img src="קברנה 24.png" alt="בקבוק דורות 10">
       </div>
     </section>
 
     <section id="about" class="text-section">
       <h2>עלינו</h2>
-      <img src="about-background.jpg" alt="תמונה של היקב">
-      <h3>יקב דורות הוא בית יין ישראלי שמחבר מסורת, חדשנות ואירוח מכל הלב.</h3>
+      <h3>יקב דורות הוא בית יין משפחתי עם לב יהודי חם, שירות עדין ויחס אישי.</h3>
       <p>אנחנו עובדים כצוות משפחתי עם אנשי מקצוע שמלווים את היין משלב הקרקע ועד השלב שבו הבקבוק נפתח בבית שלכם. כל עונה מתחילה בעבודה מדויקת בכרם: ניהול עומסים, בדיקות הבשלה, ובחירה נקודתית של זמן הבציר לכל חלקה.</p>
       <p>במרכז העבודה שלנו עומדת המחשבה על איזון. אנחנו רוצים שהיין יהיה עשיר אבל לא כבד, עמוק אבל נגיש, חגיגי אבל כזה שנעים לפתוח גם באמצע השבוע. לכן כל סדרה נבנית אחרי טעימות רבות, התאמות ודיוקים קטנים.</p>
       <p>במרתף, כל זן מקבל טיפול שונה: זמני השריה משתנים, תסיסה מבוקרת ומעקב יומי אחר טמפרטורה ומיצוי. בחלק מהסדרות אנחנו בוחרים יישון בעץ אלון לקבלת מורכבות, ובאחרות שומרים על פרופיל רענן ונקי במכלי נירוסטה.</p>
@@ -675,17 +725,39 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <h2>שאלות ותשובות</h2>
       <div class="faq-grid">
         <div class="faq-item">
-          <h3>מתי ההזמנה מגיעה אליי?</h3>
-          <p>ברוב אזורי הארץ המשלוח מגיע תוך 2–5 ימי עסקים עם עדכון לפני מסירה.</p>
+          <button class="faq-question" type="button">האם היין כשר?</button>
+          <div class="faq-answer"><p>כן. היינות כשרים למהדרין, ומיוצרים ביקב תוך הקפדה מלאה על ההלכה ועל תהליך עבודה מוקפד על ידי אברכים יראי שמיים.</p></div>
         </div>
         <div class="faq-item">
-          <h3>אפשר לקבל המלצה אישית?</h3>
-          <p>בהחלט. שלחו לנו מה אתם מגישים, ואנחנו נתאים בקבוק לסגנון, לתקציב ולאופי האירוח.</p>
+          <button class="faq-question" type="button">אפשר לקבל המלצה אישית?</button>
+          <div class="faq-answer"><p>בוודאי. ספרו לנו מה מגישים, כמה סועדים יש ומה סגנון הארוחה, ואנחנו נתאים לכם יין מדויק ונעים לכל שולחן.</p></div>
         </div>
         <div class="faq-item">
-          <h3>היינות מתאימים לאירועים?</h3>
-          <p>כן. ניתן להזמין גם לכמויות גדולות לאירוח פרטי, אירועים עסקיים ומתנות.</p>
+          <button class="faq-question" type="button">היינות מתאימים לאירועים?</button>
+          <div class="faq-answer"><p>כן. ניתן להזמין לאירועים משפחתיים, שבת חתן, בר מצווה, חינה, אירועי קהילה ומתנות מכובדות לאורחים.</p></div>
         </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">איך בוחרים יין לשבת או לחג?</button>
+          <div class="faq-answer"><p>אנחנו ממליצים לפי סוג המנות, מספר האורחים והעדפה אישית — יין קליל לפתיחה, ויין עמוק יותר למנה מרכזית.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">אפשר להזמין כמה סוגים יחד?</button>
+          <div class="faq-answer"><p>בהחלט. רבים מהלקוחות בוחרים שילוב של כמה יינות כדי ליצור חוויה מגוונת, ואנחנו נשמח לבנות עבורכם מארז מאוזן.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">איך מומלץ להגיש את היין?</button>
+          <div class="faq-answer"><p>כדאי לפתוח יין אדום כ-20 דקות לפני ההגשה ולהגיש בכוס מתאימה. נשמח לשלוח הנחיות קצרות לכל בקבוק שתזמינו.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button">יש לכם מארזים למתנה?</button>
+          <div class="faq-answer"><p>כן, יש אפשרות למארזי מתנה מסודרים ומכובדים עם ברכה אישית — מתאים למשפחה, לרבנים, לשכנים ולמארחים.</p></div>
+        </div>
+      </div>
+      <div class="site-facts">
+        <div class="fact-item"><strong>כשרות</strong><span>מהדרין, בהקפדה מלאה</span></div>
+        <div class="fact-item"><strong>שירות אישי</strong><span>ייעוץ התאמה לכל ארוחה</span></div>
+        <div class="fact-item"><strong>בציר מוקפד</strong><span>בחירה מדויקת מכל חלקה</span></div>
+        <div class="fact-item"><strong>מארזים</strong><span>אפשרות למתנה מכובדת</span></div>
       </div>
     </section>
 
@@ -962,6 +1034,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
+const setupFaqAccordion = () => {
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const item = btn.closest(".faq-item");
+        if (!item) return;
+        item.classList.toggle("open");
+      });
+    });
+  };
+
 const setupLightbox = () => {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
@@ -986,7 +1069,7 @@ const setupLightbox = () => {
 
 
   const setupScrollReveal = () => {
-    const revealItems = document.querySelectorAll("section, .card, .feature-card, .testimonial-card, .faq-item");
+    const revealItems = document.querySelectorAll("header.hero, section, .card, .testimonial-card, .faq-item, .footer-grid > div, .hero-copy > *, .hero-badges span");
     revealItems.forEach((item) => item.classList.add("reveal-on-scroll"));
 
     const observer = new IntersectionObserver(
@@ -1018,6 +1101,7 @@ const setupLightbox = () => {
   };
 
   renderCart();
+  setupFaqAccordion();
   setupLightbox();
   setupBackgroundSlideshow();
   setupScrollReveal();
