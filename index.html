@@ -402,13 +402,19 @@ form button {
 .cart-items { overflow: auto; display: flex; flex-direction: column; gap: 0.6em; min-height: 140px; }
 .cart-item {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 0.45em;
   background: #fff;
   border: 1px solid rgba(95, 29, 47, 0.08);
   border-radius: 10px;
   padding: 0.65em;
+}
+.cart-select {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--wine);
+  cursor: pointer;
 }
 .cart-info { display: flex; flex-direction: column; }
 .cart-meta { color: var(--muted); font-size: 0.88em; }
@@ -437,6 +443,7 @@ form button {
 }
 .cart-summary { margin-top: auto; border-top: 1px solid rgba(95, 29, 47, 0.1); padding-top: 0.7em; }
 .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.6em; }
+.summary-row small { color: var(--muted); }
 .cart-summary button {
   width: 100%;
   border: none;
@@ -1050,7 +1057,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     <div class="cart-header">
       <div>
         <h2>סל הקניות</h2>
-        <p>הסל מופיע רק כשמוסיפים מוצרים.</p>
+        <p>בחרו מוצרים עם וי לחישוב הסכום והרכישה.</p>
       </div>
       <button id="cart-close" class="cart-close" aria-label="סגירת סל">✕</button>
     </div>
@@ -1079,7 +1086,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <div>
         <h3>יצירת קשר</h3>
         <p>טלפון: 0556775956</p>
-        <p>אימייל: d0556775956@gmail.com</p>
+        <p id="contact-email" data-email="d0556775956@gmail.com">אימייל: d0556775956@gmail.com</p>
       </div>
       <div>
         <h3>שעות פעילות</h3>
@@ -1308,6 +1315,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const URL_PARAM_BUFFER = 300;
   const BODY_TRUNCATION_LENGTH = MAX_GMAIL_URL_LENGTH - URL_PARAM_BUFFER - TRUNCATION_SUFFIX.length;
   const formatPerUnit = (price, qty) => `${qty} × ${currency.format(price)} ליחידה`;
+  const getSelectedItems = () => cartState.filter((item) => item.selected);
 
   const cartEl = document.getElementById("cart");
   const cartItemsEl = document.getElementById("cart-items");
@@ -1319,7 +1327,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartClose = document.getElementById("cart-close");
   const checkoutBtn = document.getElementById("checkout-btn");
   const cartMessage = document.getElementById("cart-message");
-  const supplierEmail = "d0556775956@gmail.com";
+  const supplierEmail = document.querySelector("#contact-email")?.dataset.email || "d0556775956@gmail.com";
 
   const truncateBody = (text) => (text.length <= BODY_TRUNCATION_LENGTH ? text : `${text.slice(0, BODY_TRUNCATION_LENGTH)}${TRUNCATION_SUFFIX}`);
 
@@ -1358,12 +1366,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
     let qty = 0;
 
+    let selectedTotal = 0;
+    let selectedQty = 0;
+
     cartState.forEach((item, index) => {
       total += item.price * item.qty;
       qty += item.qty;
+      if (item.selected) {
+        selectedTotal += item.price * item.qty;
+        selectedQty += item.qty;
+      }
 
       const row = document.createElement("div");
       row.className = "cart-item";
+
+      const selectInput = document.createElement("input");
+      selectInput.type = "checkbox";
+      selectInput.className = "cart-select";
+      selectInput.checked = Boolean(item.selected);
+      selectInput.setAttribute("aria-label", `בחירת ${item.name} לחישוב סופי`);
+      selectInput.addEventListener("change", () => {
+        item.selected = selectInput.checked;
+        renderCart();
+      });
 
       const info = document.createElement("div");
       info.className = "cart-info";
@@ -1404,12 +1429,20 @@ document.addEventListener("DOMContentLoaded", () => {
       priceEl.className = "line-total";
       priceEl.textContent = currency.format(item.price * item.qty);
 
-      row.append(info, qtyControls, priceEl);
+      row.append(selectInput, info, qtyControls, priceEl);
       cartItemsEl.appendChild(row);
     });
 
-    cartTotalEl.textContent = currency.format(total);
+    cartTotalEl.textContent = currency.format(selectedTotal);
+    cartTotalEl.title = `סכום כל המוצרים בסל: ${currency.format(total)}`;
     updateCartBadge(qty);
+
+    const selectedInfo = document.createElement("small");
+    selectedInfo.textContent = `נבחרו ${selectedQty} פריטים לחישוב`;
+    const summaryRow = cartTotalEl.closest('.summary-row');
+    const oldInfo = summaryRow?.querySelector('small');
+    if (oldInfo) oldInfo.remove();
+    summaryRow?.appendChild(selectedInfo);
   };
 
   const changeQty = (index, delta) => {
@@ -1428,7 +1461,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addToCart = (name, price) => {
     const existing = cartState.find((item) => item.name === name);
     if (existing) existing.qty += 1;
-    else cartState.push({ name, price, qty: 1 });
+    else cartState.push({ name, price, qty: 1, selected: true });
     renderCart();
     openCart();
     announce("הפריט נוסף לסל");
@@ -1454,16 +1487,25 @@ document.addEventListener("DOMContentLoaded", () => {
       announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה.");
       return;
     }
-    const total = cartState.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const itemsSummary = cartState
+
+    const selectedItems = getSelectedItems();
+    if (!selectedItems.length) {
+      announce("יש לבחור לפחות מוצר אחד (עם וי) לפני רכישה.");
+      return;
+    }
+
+    const total = selectedItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const qty = selectedItems.reduce((sum, item) => sum + item.qty, 0);
+    const itemsSummary = selectedItems
       .map((item) => `${item.name} — כמות: ${item.qty} (סה״כ ${currency.format(item.price * item.qty)})`)
       .join("\n");
     const body = [
-      "שלום וברכה,",
-      "אני מעוניין לרכוש טעינות עם השם של היין מהמוצרים הבאים:",
+      "ברוכים הבאים, שלום וברכה,",
+      `אני מעוניין לרכוש ${qty} פריטים מהמוצרים הבאים:`,
       itemsSummary,
       "",
-      `סכום סופי: ${currency.format(total)}`,
+      `סכום סופי לתשלום: ${currency.format(total)}`,
+      "תודה רבה!",
     ].join("\n");
 
     const encodedSubject = encodeURIComponent("בקשת רכישה מאתר יקב דורות");
@@ -1476,7 +1518,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.open(gmailUrl, "_blank", "noopener");
-    announce("פותחים מייל חדש עם פרטי ההזמנה.");
+    announce("פותחים מייל Gmail חדש עם פרטי ההזמנה.");
   });
 
   const contactForm = document.querySelector("#contact form");
