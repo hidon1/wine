@@ -554,10 +554,71 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   color: #5d4a44;
 }
 
+.tracker-panel {
+  background: linear-gradient(150deg, #fff, #fdf8f1);
+  border: 1px solid rgba(95, 29, 47, 0.12);
+  border-radius: 18px;
+  padding: 1.1em;
+}
+
+.tracker-mode-switch {
+  display: flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+.tracker-mode-btn {
+  border: 1px solid rgba(95, 29, 47, 0.2);
+  background: #fff;
+  color: var(--wine-deep);
+  border-radius: 999px;
+  padding: 0.5em 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tracker-mode-btn.active {
+  background: var(--wine);
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(95, 29, 47, 0.2);
+}
+
+.tracker-add-metric {
+  display: flex;
+  gap: 0.6em;
+  margin-bottom: 1em;
+}
+
+.tracker-add-metric input,
+.history-grid input,
+.history-grid textarea,
+.tracker-input-row input,
+.tracker-input-row textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(95, 29, 47, 0.2);
+  padding: 0.65em 0.8em;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.tracker-add-metric button,
+.tracker-input-row button,
+.history-actions button {
+  border: none;
+  border-radius: 10px;
+  background: var(--wine);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.65em 1em;
+  cursor: pointer;
+}
+
 .tracking-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.9em;
 }
 
 .tracker-card {
@@ -569,36 +630,25 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 }
 
 .tracker-card h3 {
-  margin: 0 0 0.8em;
+  margin: 0 0 0.5em;
   color: var(--wine-deep);
 }
 
+.tracker-card p {
+  margin: 0;
+  color: #6c5650;
+  font-size: 0.9rem;
+}
+
 .tracker-input-row {
-  display: flex;
-  gap: 0.6em;
-  align-items: center;
-}
-
-.tracker-input-row input {
-  flex: 1;
-  border-radius: 10px;
-  border: 1px solid rgba(95, 29, 47, 0.2);
-  padding: 0.65em 0.8em;
-  font-size: 1rem;
-}
-
-.tracker-input-row button {
-  border: none;
-  border-radius: 10px;
-  background: var(--wine);
-  color: #fff;
-  font-weight: 700;
-  padding: 0.65em 1em;
-  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55em;
+  margin-top: 0.8em;
 }
 
 .tracker-dashboard {
-  margin-top: 1.4em;
+  margin-top: 1.2em;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0.8em;
@@ -610,6 +660,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   border-radius: 14px;
   padding: 0.95em;
   cursor: pointer;
+  text-align: right;
 }
 
 .tracker-total-card h4 {
@@ -621,6 +672,11 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   font-size: 1.7rem;
   font-weight: 800;
   color: #412028;
+}
+
+.tracker-card-hint {
+  color: #6c5650;
+  font-size: 0.86rem;
 }
 
 .tracker-history-modal {
@@ -910,10 +966,21 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 
 
     <section id="additives-tracker">
-      <h2>תוספות ומדדים נוספים</h2>
-      <p class="section-intro">הנתונים כאן רציפים ואינם קשורים לשלבים. כל עדכון מתווסף לסכום המצטבר ומופיע בדשבורד.</p>
-      <div id="tracker-form-cards" class="tracking-layout"></div>
-      <div id="tracker-dashboard" class="tracker-dashboard"></div>
+      <h2>תוספות ונתונים נוספים</h2>
+      <p class="section-intro">במסך זה רואים רק את נתוני התוספות/נתונים נוספים. בתוספות כל ערך מצטבר לסך הכל, ובנתונים נוספים כל עדכון נשמר כשורה עצמאית.</p>
+      <div class="tracker-panel">
+        <div class="tracker-mode-switch">
+          <button type="button" class="tracker-mode-btn active" data-mode="additives">תוספות</button>
+          <button type="button" class="tracker-mode-btn" data-mode="additional">נתונים נוספים</button>
+        </div>
+        <div class="tracker-add-metric">
+          <input id="tracker-new-metric-name" type="text" placeholder="הוספת מדד חדש (למשל שפייה)">
+          <input id="tracker-new-metric-unit" type="text" placeholder="יחידה (לא חובה)">
+          <button id="tracker-new-metric-btn" type="button">הוסף מדד</button>
+        </div>
+        <div id="tracker-form-cards" class="tracking-layout"></div>
+        <div id="tracker-dashboard" class="tracker-dashboard"></div>
+      </div>
     </section>
 
     <section id="contact">
@@ -979,11 +1046,12 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <div class="cart-header">
         <div>
           <h3 id="tracker-history-title">היסטוריית עדכונים</h3>
-          <p>כאן אפשר לערוך זמן, לעדכן ערך ולהעלות תמונה לכל עדכון.</p>
+          <p>כאן אפשר לערוך נתונים, זמן והערות, ולהוסיף תמונה לכל שורת עדכון.</p>
         </div>
         <button id="tracker-history-close" class="cart-close" type="button" aria-label="סגירה">✕</button>
       </div>
       <div id="tracker-history-list"></div>
+      <div id="tracker-history-summary" class="tracker-card-hint"></div>
     </div>
   </div>
 
@@ -1025,19 +1093,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const db = firebaseApp ? firebase.firestore() : null;
   const storage = firebaseApp ? firebase.storage() : null;
 
-  const additivesConfig = [
-    { id: "disulfite", label: "דיסולפית", unit: "מ"ג/ל" },
-    { id: "yeast_nutrient", label: "מזין שמרים", unit: "גרם" },
-    { id: "acid_correction", label: "תיקון חומצה", unit: "מ"ל" },
-  ];
+  const trackerDefaults = {
+    additives: [
+      { id: "disulfite", label: "ביסולפיט", unit: "גרם" },
+    ],
+    additional: [
+      { id: "shefiya", label: "שפייה", unit: "" },
+    ],
+  };
 
-  const additivesState = {};
+  const trackerState = {
+    mode: "additives",
+    additives: {},
+    additional: {},
+    metrics: {
+      additives: [...trackerDefaults.additives],
+      additional: [...trackerDefaults.additional],
+    },
+  };
+
   const formCardsEl = document.getElementById("tracker-form-cards");
   const dashboardEl = document.getElementById("tracker-dashboard");
   const historyModalEl = document.getElementById("tracker-history-modal");
   const historyListEl = document.getElementById("tracker-history-list");
   const historyTitleEl = document.getElementById("tracker-history-title");
+  const historySummaryEl = document.getElementById("tracker-history-summary");
   const historyCloseBtn = document.getElementById("tracker-history-close");
+  const modeButtons = document.querySelectorAll(".tracker-mode-btn");
+  const addMetricNameEl = document.getElementById("tracker-new-metric-name");
+  const addMetricUnitEl = document.getElementById("tracker-new-metric-unit");
+  const addMetricBtn = document.getElementById("tracker-new-metric-btn");
+
   let activeHistoryMetric = null;
 
   const sanitizeNumber = (value) => {
@@ -1045,78 +1131,128 @@ document.addEventListener("DOMContentLoaded", () => {
     return Number.isFinite(num) ? num : 0;
   };
 
-  const recalcTotals = () => {
-    Object.values(additivesState).forEach((metric) => {
-      metric.total = metric.updates.reduce((sum, row) => sum + sanitizeNumber(row.value), 0);
+  const metricDocPath = (mode) => `${mode}Metrics`;
+
+  const getStateBucket = (mode) => trackerState[mode];
+  const getMetrics = (mode) => trackerState.metrics[mode];
+
+  const recalcMetric = (mode, metricId) => {
+    const metricState = getStateBucket(mode)[metricId];
+    if (!metricState) return;
+    if (mode === "additives") {
+      metricState.total = metricState.updates.reduce((sum, row) => sum + sanitizeNumber(row.value), 0);
+    } else {
+      metricState.total = metricState.updates.length;
+    }
+  };
+
+  const recalcAll = () => {
+    ["additives", "additional"].forEach((mode) => {
+      Object.keys(getStateBucket(mode)).forEach((metricId) => recalcMetric(mode, metricId));
     });
   };
 
-  const saveMetricUpdate = async (metricId, payload) => {
+  const ensureMetricState = (mode, metricId) => {
+    const bucket = getStateBucket(mode);
+    if (!bucket[metricId]) bucket[metricId] = { total: 0, updates: [] };
+    return bucket[metricId];
+  };
+
+  const createMetric = async (mode, label, unit = "") => {
+    const slug = `${label}`.trim().toLowerCase().replace(/\s+/g, "_").replace(/[^\w֐-׿]+/g, "");
+    const metricId = `${slug || "metric"}_${Date.now()}`;
+    const metric = { id: metricId, label: label.trim(), unit: unit.trim() };
+    trackerState.metrics[mode].push(metric);
+    ensureMetricState(mode, metricId);
+    if (db) {
+      await db.collection(metricDocPath(mode)).doc(metricId).set({
+        label: metric.label,
+        unit: metric.unit,
+        createdAt: Date.now(),
+      }, { merge: true });
+    }
+  };
+
+  const saveMetricUpdate = async (mode, metricId, payload) => {
     if (!db) return `${Date.now()}`;
-    const docRef = await db.collection("additivesMetrics").doc(metricId).collection("updates").add(payload);
+    const docRef = await db.collection(metricDocPath(mode)).doc(metricId).collection("updates").add(payload);
     return docRef.id;
   };
 
-  const updateMetricRow = async (metricId, rowId, payload) => {
+  const updateMetricRow = async (mode, metricId, rowId, payload) => {
     if (!db) return;
-    await db.collection("additivesMetrics").doc(metricId).collection("updates").doc(rowId).set(payload, { merge: true });
+    await db.collection(metricDocPath(mode)).doc(metricId).collection("updates").doc(rowId).set(payload, { merge: true });
   };
 
-  const deleteMetricRow = async (metricId, rowId) => {
+  const deleteMetricRow = async (mode, metricId, rowId) => {
     if (!db) return;
-    await db.collection("additivesMetrics").doc(metricId).collection("updates").doc(rowId).delete();
+    await db.collection(metricDocPath(mode)).doc(metricId).collection("updates").doc(rowId).delete();
   };
 
-  const uploadMetricImage = async (metricId, rowId, file) => {
+  const uploadMetricImage = async (mode, metricId, rowId, file) => {
     if (!storage || !file) return "";
-    const ref = storage.ref(`additives/${metricId}/${rowId}/${Date.now()}-${file.name}`);
+    const ref = storage.ref(`${mode}/${metricId}/${rowId}/${Date.now()}-${file.name}`);
     await ref.put(file);
     return ref.getDownloadURL();
   };
 
   const renderDashboard = () => {
     if (!dashboardEl) return;
-    recalcTotals();
-    dashboardEl.innerHTML = additivesConfig.map((metric) => {
-      const state = additivesState[metric.id] || { total: 0 };
+    const mode = trackerState.mode;
+    const metrics = getMetrics(mode);
+    dashboardEl.innerHTML = metrics.map((metric) => {
+      const state = getStateBucket(mode)[metric.id] || { total: 0, updates: [] };
+      const value = mode === "additives" ? (state.total || 0) : state.updates.length;
+      const sub = mode === "additives" ? `${metric.unit || ""}` : `עדכונים: ${state.updates.length}`;
       return `
         <button type="button" class="tracker-total-card" data-open-history="${metric.id}">
           <h4>${metric.label}</h4>
-          <div class="tracker-total-value">${state.total || 0}</div>
-          <div>${metric.unit}</div>
+          <div class="tracker-total-value">${value}</div>
+          <div>${sub}</div>
         </button>
       `;
-    }).join("");
+    }).join("") || "<p>אין מדדים להצגה.</p>";
   };
 
   const renderHistoryModal = (metricId) => {
     if (!historyListEl || !historyTitleEl) return;
-    const metric = additivesConfig.find((item) => item.id === metricId);
-    const state = additivesState[metricId];
+    const mode = trackerState.mode;
+    const metric = getMetrics(mode).find((item) => item.id === metricId);
+    const state = getStateBucket(mode)[metricId];
     if (!metric || !state) return;
     historyTitleEl.textContent = `היסטוריית עדכונים • ${metric.label}`;
     historyListEl.innerHTML = state.updates.length ? state.updates.map((row) => `
       <div class="history-row" data-row-id="${row.id}">
         <div class="history-grid">
           <div>
-            <label>כמות</label>
-            <input type="number" step="any" value="${row.value}">
+            <label>${mode === "additives" ? "כמות" : "נתון"}</label>
+            <input type="text" data-field="value" value="${row.value ?? ""}">
           </div>
           <div>
-            <label>זמן עדכון</label>
-            <input type="datetime-local" value="${row.time}">
+            <label>${mode === "additives" ? "זמן עדכון" : "תאריך"}</label>
+            <input type="datetime-local" data-field="time" value="${row.time}">
+          </div>
+          <div>
+            <label>הערות</label>
+            <textarea rows="2" data-field="notes">${row.notes || ""}</textarea>
           </div>
           <div>
             <label>תמונה</label>
-            <input type="file" accept="image/*">
+            <input type="file" accept="image/*" data-field="image">
           </div>
         </div>
+        ${row.imageUrl ? `<a href="${row.imageUrl}" target="_blank" rel="noopener noreferrer">צפייה בתמונה</a>` : ""}
         <div class="history-actions">
           <button class="history-save-btn" type="button" data-action="save">שמירה</button>
           <button class="history-delete-btn" type="button" data-action="delete">מחיקה</button>
         </div>
       </div>
     `).join("") : "<p>אין עדכונים עדיין.</p>";
+
+    const totalText = mode === "additives"
+      ? `תוצאה מצטברת: ${state.total || 0} ${metric.unit || ""}`
+      : `סה״כ עדכונים: ${state.updates.length}`;
+    if (historySummaryEl) historySummaryEl.textContent = totalText;
   };
 
   const openHistoryModal = (metricId) => {
@@ -1132,44 +1268,53 @@ document.addEventListener("DOMContentLoaded", () => {
     historyModalEl?.setAttribute("aria-hidden", "true");
   };
 
-  const renderAdditives = () => {
+  const renderForms = () => {
+    const mode = trackerState.mode;
+    const metrics = getMetrics(mode);
     if (!formCardsEl) return;
-    formCardsEl.innerHTML = additivesConfig.map((metric) => `
+    formCardsEl.innerHTML = metrics.map((metric) => `
       <article class="tracker-card">
         <h3>${metric.label}</h3>
+        <p>${mode === "additives" ? "עדכון זה מתווסף אוטומטית לסך הכל המצטבר בדשבורד." : "כל עדכון נשמר כשורה עצמאית ואינו מצטבר לערכים קודמים."}</p>
         <div class="tracker-input-row">
-          <input type="number" step="any" placeholder="הזינו נתון" data-metric-input="${metric.id}">
-          <button type="button" data-add-metric="${metric.id}">הוספה</button>
+          <input type="${mode === "additives" ? "number" : "text"}" step="any" placeholder="${mode === "additives" ? "הזינו כמות" : "מה בוצע"}" data-metric-input="${metric.id}">
+          <button type="button" data-add-metric="${metric.id}">${mode === "additives" ? "עדכן" : "שמור"}</button>
         </div>
       </article>
     `).join("");
     renderDashboard();
   };
 
-  const loadAdditives = async () => {
-    additivesConfig.forEach((metric) => {
-      additivesState[metric.id] = { total: 0, updates: [] };
-    });
-
-    if (db) {
-      await Promise.all(additivesConfig.map(async (metric) => {
-        const snapshot = await db.collection("additivesMetrics").doc(metric.id).collection("updates").orderBy("createdAt", "asc").get();
-        additivesState[metric.id].updates = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            value: sanitizeNumber(data.value),
-            time: data.time || new Date().toISOString().slice(0, 16),
-            imageUrl: data.imageUrl || "",
-          };
-        });
-      }));
-    }
-
-    recalcTotals();
-    renderAdditives();
+  const setMode = (mode) => {
+    trackerState.mode = mode;
+    modeButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === mode));
+    renderForms();
   };
 
+  const loadUpdatesForMode = async (mode) => {
+    getMetrics(mode).forEach((metric) => ensureMetricState(mode, metric.id));
+    if (!db) return;
+
+    await Promise.all(getMetrics(mode).map(async (metric) => {
+      const snapshot = await db.collection(metricDocPath(mode)).doc(metric.id).collection("updates").orderBy("createdAt", "asc").get();
+      getStateBucket(mode)[metric.id].updates = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          value: mode === "additives" ? sanitizeNumber(data.value) : (data.value || ""),
+          time: data.time || new Date().toISOString().slice(0, 16),
+          notes: data.notes || "",
+          imageUrl: data.imageUrl || "",
+        };
+      });
+    }));
+  };
+
+  const loadTracker = async () => {
+    await Promise.all([loadUpdatesForMode("additives"), loadUpdatesForMode("additional")]);
+    recalcAll();
+    setMode("additives");
+  };
   const cartState = [];
   const MESSAGE_DURATION = 3200;
   const currency = new Intl.NumberFormat("he-IL", { style: "currency", currency: "ILS" });
@@ -1437,28 +1582,61 @@ const setupLightbox = () => {
   };
 
 
+  modeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => setMode(btn.dataset.mode));
+  });
+
+  addMetricBtn?.addEventListener("click", async () => {
+    const label = addMetricNameEl?.value?.trim();
+    const unit = addMetricUnitEl?.value || "";
+    if (!label) {
+      announce("יש להזין שם למדד.");
+      return;
+    }
+
+    try {
+      await createMetric(trackerState.mode, label, unit);
+      if (addMetricNameEl) addMetricNameEl.value = "";
+      if (addMetricUnitEl) addMetricUnitEl.value = "";
+      renderForms();
+      announce("מדד חדש נוסף בהצלחה.");
+    } catch (error) {
+      announce("שמירת המדד נכשלה.");
+      console.error(error);
+    }
+  });
+
   formCardsEl?.addEventListener("click", async (event) => {
     const btn = event.target.closest("[data-add-metric]");
     if (!btn) return;
     const metricId = btn.dataset.addMetric;
     const input = formCardsEl.querySelector(`[data-metric-input="${metricId}"]`);
-    const value = sanitizeNumber(input?.value);
-    if (!value) {
-      announce("יש להזין ערך מספרי.");
+    const rawValue = input?.value?.trim();
+    const mode = trackerState.mode;
+
+    if (!rawValue) {
+      announce(mode === "additives" ? "יש להזין ערך מספרי." : "יש להזין תיאור לעדכון.");
       return;
     }
 
     const payload = {
-      value,
+      value: mode === "additives" ? sanitizeNumber(rawValue) : rawValue,
       time: new Date().toISOString().slice(0, 16),
+      notes: "",
       createdAt: Date.now(),
       imageUrl: "",
     };
 
+    if (mode === "additives" && !payload.value) {
+      announce("יש להזין ערך מספרי גדול מ-0.");
+      return;
+    }
+
     try {
-      const newId = await saveMetricUpdate(metricId, payload);
-      additivesState[metricId].updates.push({ id: newId, ...payload });
-      recalcTotals();
+      const newId = await saveMetricUpdate(mode, metricId, payload);
+      const state = ensureMetricState(mode, metricId);
+      state.updates.push({ id: newId, ...payload });
+      recalcMetric(mode, metricId);
       renderDashboard();
       if (input) input.value = "";
       announce("העדכון נשמר ונוסף לדשבורד.");
@@ -1486,20 +1664,21 @@ const setupLightbox = () => {
     const rowId = rowEl?.dataset.rowId;
     if (!rowEl || !rowId) return;
 
-    const valueInput = rowEl.querySelector('input[type="number"]');
-    const timeInput = rowEl.querySelector('input[type="datetime-local"]');
-    const fileInput = rowEl.querySelector('input[type="file"]');
+    const valueInput = rowEl.querySelector('[data-field="value"]');
+    const timeInput = rowEl.querySelector('[data-field="time"]');
+    const notesInput = rowEl.querySelector('[data-field="notes"]');
+    const fileInput = rowEl.querySelector('[data-field="image"]');
     const action = actionBtn.dataset.action;
-
-    const state = additivesState[activeHistoryMetric];
-    const rowIndex = state.updates.findIndex((row) => row.id === rowId);
-    if (rowIndex < 0) return;
+    const mode = trackerState.mode;
+    const state = getStateBucket(mode)[activeHistoryMetric];
+    const rowIndex = state?.updates.findIndex((row) => row.id === rowId);
+    if (!state || rowIndex < 0) return;
 
     if (action === "delete") {
       try {
-        await deleteMetricRow(activeHistoryMetric, rowId);
+        await deleteMetricRow(mode, activeHistoryMetric, rowId);
         state.updates.splice(rowIndex, 1);
-        recalcTotals();
+        recalcMetric(mode, activeHistoryMetric);
         renderDashboard();
         renderHistoryModal(activeHistoryMetric);
       } catch (error) {
@@ -1509,17 +1688,18 @@ const setupLightbox = () => {
     }
 
     const payload = {
-      value: sanitizeNumber(valueInput?.value),
+      value: mode === "additives" ? sanitizeNumber(valueInput?.value) : (valueInput?.value || ""),
       time: timeInput?.value || new Date().toISOString().slice(0, 16),
+      notes: notesInput?.value || "",
     };
 
     try {
       if (fileInput?.files?.[0]) {
-        payload.imageUrl = await uploadMetricImage(activeHistoryMetric, rowId, fileInput.files[0]);
+        payload.imageUrl = await uploadMetricImage(mode, activeHistoryMetric, rowId, fileInput.files[0]);
       }
-      await updateMetricRow(activeHistoryMetric, rowId, payload);
+      await updateMetricRow(mode, activeHistoryMetric, rowId, payload);
       state.updates[rowIndex] = { ...state.updates[rowIndex], ...payload };
-      recalcTotals();
+      recalcMetric(mode, activeHistoryMetric);
       renderDashboard();
       renderHistoryModal(activeHistoryMetric);
       announce("העדכון נשמר.");
@@ -1530,7 +1710,7 @@ const setupLightbox = () => {
   });
 
 
-  loadAdditives();
+  loadTracker();
 
   renderCart();
   setupFaqAccordion();
