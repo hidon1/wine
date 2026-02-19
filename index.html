@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>יקב דורות |האתר הרשמי</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Heebo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Heebo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Rubik:wght@400;500;700&family=Varela+Round&family=Noto+Serif+Hebrew:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
 :root {
   --wine: #5f1d2f;
@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Rubik', 'Heebo', 'Assistant', sans-serif;
+  font-family: 'Varela Round', 'Rubik', 'Heebo', 'Assistant', sans-serif;
   direction: rtl;
   background: linear-gradient(170deg, #f8f4ef, #fdfbf8 35%, #f7f2eb);
   color: var(--ink);
@@ -29,7 +29,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', 'Heebo', serif;
+  font-family: 'Noto Serif Hebrew', 'Cormorant Garamond', 'Heebo', serif;
   letter-spacing: 0.03em;
   font-weight: 700;
 }
@@ -94,11 +94,11 @@ header.hero {
 }
 
 .brand-logo {
-  width: clamp(120px, 11vw, 170px);
-  height: clamp(120px, 11vw, 170px);
+  width: clamp(150px, 14vw, 210px);
+  height: clamp(150px, 14vw, 210px);
   object-fit: contain;
-  border-radius: 22px;
-  padding: 0.45em;
+  border-radius: 50%;
+  padding: 0.6em;
   background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(249, 240, 233, 0.92));
   border: 1px solid rgba(95, 29, 47, 0.16);
   box-shadow: 0 14px 28px rgba(74, 25, 40, 0.18);
@@ -136,6 +136,7 @@ nav a {
   border-radius: 999px;
   border: 1px solid rgba(95, 29, 47, 0.17);
   transition: all 0.24s ease;
+  animation: textSoftDrop 0.9s ease both;
 }
 nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px); }
 
@@ -159,14 +160,14 @@ nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px);
   font-size: clamp(2.45rem, 4.2vw, 3.9rem);
   line-height: 1.13;
   color: var(--wine-deep);
-  animation: fadeSlideIn 1s ease 0.25s both;
+  animation: textSoftDrop 1.2s ease 0.25s both;
 }
 .subtitle {
   max-width: 780px;
   font-size: 1.16em;
   color: #44332e;
   font-weight: 500;
-  animation: fadeSlideIn 1s ease 0.35s both;
+  animation: textSoftDrop 1.2s ease 0.35s both;
 }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75em; margin-top: 1.2em; animation: fadeSlideIn 1s ease 0.5s both; }
@@ -201,7 +202,7 @@ section {
   border-radius: 20px;
   box-shadow: 0 14px 40px rgba(30, 21, 16, 0.08);
 }
-section h2 { text-align: center; margin: 0 0 0.6em; font-size: clamp(2.1rem, 3.2vw, 2.9rem); color: var(--wine-deep); }
+section h2 { text-align: center; margin: 0 0 0.6em; font-size: clamp(2.1rem, 3.2vw, 2.9rem); color: var(--wine-deep); animation: textSoftDrop 1.1s ease both; }
 .section-intro { text-align: center; max-width: 760px; margin: 0 auto 2em; color: #5a4b46; font-size: 1.05em; line-height: 1.7; }
 .text-section { text-align: center; max-width: 920px; }
 
@@ -211,6 +212,17 @@ section h2 { text-align: center; margin: 0 0 0.6em; font-size: clamp(2.1rem, 3.2
   line-height: 1.85;
   font-size: 1.05em;
   color: #3d2e29;
+  animation: textSoftDrop 1.15s ease both;
+}
+
+.section-intro,
+.card p,
+.feature-card p,
+.testimonial-card p,
+.faq-item p,
+#contact p,
+footer p {
+  animation: textSoftDrop 1.2s ease both;
 }
 
 .text-section strong {
@@ -498,6 +510,17 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes textSoftDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -533,18 +556,17 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 
     <div class="header-content">
       <div class="hero-copy">
-        <p class="eyebrow">COLLECTION PRIVÉE • יקב משפחתי מאז 1989</p>
-        <h1>יין אלגנטי, איטי ומדויק<br>לרגעים שמבקשים יוקרה שקטה</h1>
-        <p class="subtitle">ברוכים הבאים ליקב דורות. יינות פרימיום שנבנים בשכבות של ארומה, עומק וסיומת ארוכה — בדיוק כמו חוויה מקצועית של יקב מוביל.</p>
+        <h1>יין ישראלי חי ונושם<br>שנוצר לאירוח מרגש וזיכרונות טובים</h1>
+        <p class="subtitle">ברוכים הבאים ליקב דורות — בית ליינות בעבודת יד, לשירות אישי, ולחוויה חמה שמחברת בין כרם, משפחה ושולחן אחד מלא שמחה.</p>
         <div class="hero-actions">
-          <a class="primary-btn" href="#shop">לרכישת קולקציית היקב</a>
-          <a class="ghost-btn" href="#story">לקרוא את סיפור היין</a>
+          <a class="primary-btn" href="#shop">לצפייה בקולקציה החדשה</a>
+          <a class="ghost-btn" href="#story">להכיר את הדרך שלנו</a>
         </div>
         <div class="hero-badges">
-          <span>חביות עץ אלון צרפתי</span>
-          <span>משלוח פרימיום בקירור</span>
-          <span>התאמת יין לארוחה</span>
-          <span>תמיכה אישית לסומלייה ביתי</span>
+          <span>בציר מוקפד מהחלקות הטובות</span>
+          <span>משלוח מאובטח עד הבית</span>
+          <span>התאמה אישית לתפריט ואירוח</span>
+          <span>ליווי מקצועי בכל הזמנה</span>
         </div>
       </div>
     </div>
@@ -552,27 +574,27 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 
   <main>
     <section id="shop">
-      <h2>קולקציית יינות פרימיום</h2>
-      <p class="section-intro">כל בקבוק בקולקציה שלנו נבחר לייצר איזון בין אלגנטיות, גוף ודיוק. הוסיפו מוצרים — והסל החכם יופיע בצד באופן מיידי.</p>
+      <h2>קולקציית דורות</h2>
+      <p class="section-intro">שלושה יינות דגל שנבנו כדי לתת חוויה אחרת בכל פתיחה: עשיר, נעים ומדויק. הוסיפו לסל ותוכלו לסגור הזמנה בקלות ובמהירות.</p>
       <div class="grid">
         <div class="card">
           <img src="קברנה 25.png" alt="קברנה 25">
           <h3>קברנה 25</h3>
-          <p>יין אדום מלא גוף עם ארומות של פירות אדומים, תבלינים ונגיעות של עץ אלון. סיומת ארוכה ואלגנטית.</p>
+          <p>בלנד עשיר עם ניחוחות פטל, דובדבן ותבלין עדין. בחירה נהדרת לארוחות ערב חגיגיות ולשולחן של שישי.</p>
           <p class="price">₪80</p>
           <button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">הוסף לסל</button>
         </div>
         <div class="card">
           <img src="מרלו 25.png" alt="מרלו 25">
           <h3>מרלו 25</h3>
-          <p>יין אדום רך ומאוזן עם טעמי שזיף, פירות יער ושוקולד מריר. מושלם לארוחות מיוחדות.</p>
+          <p>מרלו עגול, רך ומלטף עם פרי בשל וסיום נקי. מתאים במיוחד לפסטות עשירות, גבינות קשות ובשרים קלים.</p>
           <p class="price">₪80</p>
           <button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">הוסף לסל</button>
         </div>
         <div class="card">
           <img src="קברנה 24.png" alt="קברנה 24">
           <h3>קברנה 24</h3>
-          <p>יין אדום עמוק ומורכב עם טעמי דובדבן שחור, טבק וניחוחות של וניל. בציר מעולה וייחודי.</p>
+          <p>יין מורכב לבעלי חיך שאוהבים עומק: פרי כהה, קקאו ומגע עץ מדויק. מומלץ לסטייקים ולארוחות חג משפחתיות.</p>
           <p class="price">₪100</p>
           <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">הוסף לסל</button>
         </div>
@@ -580,53 +602,53 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     </section>
 
     <section id="story" class="text-section">
-      <h2>סיפור היין שלנו</h2>
+      <h2>הדרך של דורות</h2>
       <img src="1000.png" alt="יקב דורות" class="story-image">
-      <p>היין שלנו מתחיל במסע ארוך ומדוקדק – מן הכרמים היפים שלנו, דרך תהליך ייצור מקצועי ומסור, ועד לבקבוק המוגמר שמגיע לידיכם. כל שלב בדרך נעשה מתוך תשומת לב אישית, מקצועיות וחיבור עמוק לאדמה ולמסורת.</p>
-      <p><strong>הבציר:</strong> הענבים נבצרים בשעות הבוקר המוקדמות, כאשר האוויר עדיין קריר והטמפרטורה נמוכה. כך אנו שומרים על רעננות הפרי, על ריכוז הסוכרים והחומציות הטבעית, ומבטיחים שכל אשכול יגיע ליקב במצבו האופטימלי.</p>
-      <p><strong>המיון והתסיסה:</strong> לאחר הבציר, כל אשכול עובר מיון קפדני פעמיים – פעם בכרם ופעם נוספת ביקב. רק הענבים המשובחים ביותר ממשיכים לשלב התסיסה. כל זן מטופל בנפרד, במכלי נירוסטה או בחביות פתוחות, בהתאם לפרופיל הארומטי שאנו שואפים להשיג. כבר כאן נוצרות שכבות הטעם הראשונות: ארומות של פרי שחור עמוק ביינות האדומים, וניחוחות פרי הדר ותפוח ירוק ביינות הלבנים.</p>
-      <p><strong>היישון והבשלה:</strong> לאחר התסיסה, היין מועבר לחביות עץ אלון צרפתי איכותיות, שם הוא מתיישן במשך חודשים רבים. תהליך זה מוסיף עומק, מורכבות ושכבות נוספות של טעם: וניל עדין, קקאו, תבלינים ונגיעות של עץ. כל חבית תורמת את אופייה הייחודי ליין, ואנחנו מקפידים לעקוב אחר התהליך צעד אחר צעד.</p>
-      <p><strong>התוצאה:</strong> יין מאוזן, אלגנטי ומורכב – עם גוף מלא או בינוני, טאנינים עדינים או מודגשים, וסיומת ארוכה ומרשימה. כל בקבוק מגיע עם תיאור מפורט שמסביר בדיוק מה תמצאו בכוס – הארומות, הטעמים, ההמלצות לאוכל מתאים, והטמפרטורה האידיאלית להגשה.</p>
+      <p>בכל עונה אנחנו מתחילים מחדש, עם אותה מחויבות לאיכות: להקשיב לכרם, לזהות את הרגע המדויק לבציר, ולעבוד בסבלנות עד שהיין מרגיש שלם.</p>
+      <p><strong>הבציר:</strong> הענבים נקטפים ידנית לפנות בוקר כדי לשמור על רעננות, איזון טבעי וריכוז טעמים מדויק שמגיע נקי למכלים.</p>
+      <p><strong>המיון והתסיסה:</strong> לאחר קליטה עדינה, אנחנו ממיינים כל אשכול ומבצעים תסיסה מבוקרת לכל זן בנפרד, כדי להבליט את האופי המדויק שלו.</p>
+      <p><strong>היישון וההשבחה:</strong> חלק מהיינות מתיישנים בחביות אלון וחלקם במכלי נירוסטה, לפי הסגנון הרצוי. כך מתקבל איזון בין פרי חי, מבנה אלגנטי וסיומת נעימה.</p>
+      <p><strong>התוצאה:</strong> יינות עם זהות ברורה, עומק ודיוק — כאלה שכיף לפתוח בבית, לארח איתם חברים, ולהרגיש בכל לגימה את העבודה שנעשתה מאחוריהם.</p>
     </section>
 
     <section id="experience" class="feature-section">
       <div class="feature-card">
-        <h3>חוויית טעימה מקצועית</h3>
-        <p>אירוח ביקב עם מדריך טעימה, כוסות פרימיום ודיון על כל שכבת ארומה.</p>
+        <h3>טעימות באווירה ביתית</h3>
+        <p>מפגשי טעימה חמים עם הסבר ברור, התאמה אישית וזמן לשאלות על כל בקבוק.</p>
       </div>
       <div class="feature-card">
-        <h3>מועדון אספנים</h3>
-        <p>גישה מוקדמת לבצירים מוגבלים, הטבות לחברים וערבי יין פרטיים.</p>
+        <h3>מועדון לקוחות דורות</h3>
+        <p>עדכונים לבצירים חדשים, הטבות בלעדיות והזמנות מוקדמות לאירועים ביקב.</p>
       </div>
       <div class="feature-card">
-        <h3>ייעוץ התאמה קולינרי</h3>
-        <p>מתאימים יין לתפריט האירוח שלכם — בשר, דגים, גבינות וקינוחים.</p>
+        <h3>התאמת יין לארוחה</h3>
+        <p>אנחנו בונים איתכם שילובים קולינריים מדויקים — מארוחות חג ועד אירוח אינטימי.</p>
       </div>
     </section>
 
     <section id="testimonials">
-      <h2>ביקורות לקוחות</h2>
+      <h2>מה מספרים עלינו</h2>
       <div class="testimonial-grid">
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p class="quote">"האתר מרגיש כמו מגזין יין יוקרתי. הזמנו בלנד מורשת, והכול היה מדויק — מאריזה ועד טעמים."</p>
+          <p class="quote">"היין הגיע ארוז מעולה, והטעם היה בדיוק מה שחיפשנו לארוחת שישי. שירות מדהים."</p>
           <div class="name">שירי, תל אביב</div>
         </div>
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p class="quote">"הסל בצד נוח מאוד. מוסיפים בקבוקים, משווים מחירים, ומסיימים הזמנה בלי בלגן."</p>
+          <p class="quote">"האתר קל לשימוש, המשלוח הגיע מהר והבקבוקים קיבלו מחמאות מכל האורחים."</p>
           <div class="name">אלעד, חיפה</div>
         </div>
         <div class="testimonial-card">
           <div class="rating">★★★★★</div>
-          <p class="quote">"העיצוב עדין, נקי ומקצועי. ממש מרגישים שהמותג מדבר בשפה של יין איכותי."</p>
+          <p class="quote">"יש תחושה של מותג בוטיק אמיתי — הכל נקי, מדויק, ובעיקר יין מצוין בכוס."</p>
           <div class="name">נועה, ירושלים</div>
         </div>
       </div>
     </section>
 
     <section id="gallery">
-      <h2>רגעים מהיקב</h2>
+      <h2>תמונות מהכרם והיקב</h2>
       <div class="gallery-grid">
         <img src="gallery1.jpg" alt="תמונה מהיקב 1">
         <img src="gallery2.jpg" alt="תמונה מהיקב 2">
@@ -637,38 +659,37 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     </section>
 
     <section id="about" class="text-section">
-      <h2>על יקב בוטיק דורות</h2>
+      <h2>עלינו</h2>
       <img src="about-background.jpg" alt="תמונה של היקב">
-      <h3>יקב משפחתי עם סיפור ארוך, ברור ומדויק על כל יין שיוצא מאיתנו.</h3>
-      <p>יקב בוטיק דורות הוקם מתוך עבודה משפחתית רציפה של שלושה דורות בכרם ובמרתף. אנחנו עובדים בשיטה מסודרת: תכנון כרם בחורף, ניטור עומסי פרי באביב, בציר נקודתי בקיץ ויישון מבוקר לאורך השנה.</p>
-      <p>היינות שלנו מגיעים מכמה חלקות שונות בדרום ובשפלה, וכל חלקה נותנת אופי אחר: חלקה אחת מספקת פרי שחור עמוק, אחרת נותנת חומצה רעננה, וחלקה גבוהה תורמת ארומות פרחוניות ועדינות.</p>
-      <p>את היין אנחנו עושים בשלבים מדויקים: ריסוק עדין, השריה קצרה או ארוכה לפי הזן, תסיסה מבוקרת טמפרטורה, ולאחר מכן יישון בחביות עץ אלון או במכלי נירוסטה בהתאם למה שמתאים לסגנון היין.</p>
-      <p>מבחינת טעם ומרקם, אנחנו מכוונים לאיזון: יינות אדומים עם גוף בינוני-מלא, טאנין נעים וסיומת ארוכה; יינות לבנים עם חומציות נקייה, רעננות ומרקם קרמי עדין; ורוזה קליל עם פרי אדום חי וסיום יבש ומדויק.</p>
-      <p>לכל יין יש אצלנו דף אפיון ברור: מאיפה הגיעו הענבים, כמה זמן היין התיישן, אילו ארומות צפויות בכוס, מה הטמפרטורה המומלצת להגשה, ולאילו מנות כדאי לצוות אותו.</p>
-      <p>המטרה שלנו פשוטה: לתת לכם יין איכותי עם מידע מלא, שירות ברור ומשלוח מסודר עד הבית — כדי שתדעו בדיוק מה אתם שותים ולמה הוא טעים כמו שהוא טעים.</p>
+      <h3>יקב דורות הוא בית יין ישראלי שמחבר מסורת, חדשנות ואירוח מכל הלב.</h3>
+      <p>אנחנו עובדים כצוות משפחתי עם אנשי מקצוע שמלווים את היין משלב הקרקע ועד השלב שבו הבקבוק נפתח בבית שלכם. כל עונה מתחילה בעבודה מדויקת בכרם: ניהול עומסים, בדיקות הבשלה, ובחירה נקודתית של זמן הבציר לכל חלקה.</p>
+      <p>במרכז העבודה שלנו עומדת המחשבה על איזון. אנחנו רוצים שהיין יהיה עשיר אבל לא כבד, עמוק אבל נגיש, חגיגי אבל כזה שנעים לפתוח גם באמצע השבוע. לכן כל סדרה נבנית אחרי טעימות רבות, התאמות ודיוקים קטנים.</p>
+      <p>במרתף, כל זן מקבל טיפול שונה: זמני השריה משתנים, תסיסה מבוקרת ומעקב יומי אחר טמפרטורה ומיצוי. בחלק מהסדרות אנחנו בוחרים יישון בעץ אלון לקבלת מורכבות, ובאחרות שומרים על פרופיל רענן ונקי במכלי נירוסטה.</p>
+      <p>מעבר לטעם, חשוב לנו שתהיה שקיפות מלאה. אנחנו מספקים מידע ברור על מקור הענבים, סגנון היין, טמפרטורת הגשה והמלצות לשילוב עם מנות. כך קל לבחור בקבוק שמתאים בדיוק לאירוע שלכם.</p>
+      <p>אנחנו מאמינים שיין טוב הוא חוויה שלמה: שירות אדיב, זמינות אמיתית, משלוח מסודר והקשבה לכל לקוח. זו הסיבה שדורות גדל דרך לקוחות שחוזרים אלינו שוב ושוב — לא רק בגלל היין, אלא בגלל הדרך.</p>
     </section>
 
     <section id="faq">
-      <h2>שאלות נפוצות</h2>
+      <h2>שאלות ותשובות</h2>
       <div class="faq-grid">
         <div class="faq-item">
-          <h3>תוך כמה זמן המשלוח מגיע?</h3>
-          <p>ברוב האזורים בארץ בין 2 ל-5 ימי עסקים, עם הודעת עדכון לפני הגעה.</p>
+          <h3>מתי ההזמנה מגיעה אליי?</h3>
+          <p>ברוב אזורי הארץ המשלוח מגיע תוך 2–5 ימי עסקים עם עדכון לפני מסירה.</p>
         </div>
         <div class="faq-item">
-          <h3>אפשר לקבל המלצה לפי ארוחה?</h3>
-          <p>כן. כתבו לנו בתיבת יצירת הקשר ואנחנו נתאים בקבוק לסגנון הבישול ולתקציב.</p>
+          <h3>אפשר לקבל המלצה אישית?</h3>
+          <p>בהחלט. שלחו לנו מה אתם מגישים, ואנחנו נתאים בקבוק לסגנון, לתקציב ולאופי האירוח.</p>
         </div>
         <div class="faq-item">
-          <h3>היינות כשרים?</h3>
-          <p>כן - כל היינות כשרים ומהדרים.</p>
+          <h3>היינות מתאימים לאירועים?</h3>
+          <p>כן. ניתן להזמין גם לכמויות גדולות לאירוח פרטי, אירועים עסקיים ומתנות.</p>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>דברו איתנו</h2>
-      <p>רוצים לקפוץ לטעימות? לקבל המלצה לבקבוק מתנה? השאירו פרטים ונחזור עם התאמה מדויקת.</p>
+      <h2>נשמח לשוחח</h2>
+      <p>מחפשים יין לאירוח? רוצים להתייעץ לפני הזמנה? השאירו פרטים ונחזור אליכם עם מענה אישי ומהיר.</p>
       <form action="https://formspree.io/f/moqglqrr" method="POST">
         <input type="text" name="name" placeholder="שם מלא" required>
         <input type="email" name="email" placeholder="אימייל" required>
@@ -706,7 +727,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       </div>
       <div>
         <h3>כתובת היקב</h3>
-        <p>דרך הכרמים 18, אזור תעשייה צפוני, אשקלון</p>
+        <p>רבי עקיבא, בני ברק</p>
       </div>
       <div>
         <h3>יצירת קשר</h3>
