@@ -1,354 +1,228 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 <head>
   <meta charset="UTF-8">
+  <title>יקב דורות |האתר הרשמי</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>יקב דורות | יין יוקרתי בטעם משובח</title>
-  <style>
-    :root {
-      --bg: #f6f1eb;
-      --surface: #fffaf5;
-      --ink: #2b1719;
-      --muted: #6b4a4d;
-      --accent: #6f1d31;
-      --accent-soft: #8f3a4f;
-      --gold: #b78a46;
-      --line: #e9dccc;
-      --shadow: 0 20px 45px rgba(33, 10, 16, 0.14);
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Assistant", "Heebo", Arial, sans-serif;
-      background: radial-gradient(circle at 20% 0%, #fff8f0 0%, var(--bg) 45%, #efe4d7 100%);
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    .container {
-      width: min(1100px, 92%);
-      margin-inline: auto;
-    }
-
-    .hero {
-      padding: 34px 0 70px;
-      border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, #fff6ed 0%, rgba(255,246,237,0.55) 55%, transparent 100%);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 50px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: 0.3px;
-    }
-
-    .brand img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid rgba(111, 29, 49, 0.24);
-      object-fit: cover;
-      background: white;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: .2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-      border-color: var(--line);
-      background: #fff;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 28px;
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4.6vw, 3.3rem);
-      line-height: 1.2;
-      color: var(--accent);
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 65ch;
-      color: #4d3336;
-      font-size: 1.08rem;
-    }
-
-    .cta-row {
-      margin-top: 24px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 14px;
-      padding: 13px 24px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: .25s;
-      display: inline-block;
-    }
-
-    .btn.primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
-    .btn.primary:hover { background: var(--accent-soft); transform: translateY(-1px); }
-    .btn.ghost { color: var(--accent); background: #fff; border: 1px solid #dcc4b2; }
-    .btn.ghost:hover { background: #fff6ee; }
-
-    .hero-card {
-      background: linear-gradient(160deg, #fffdfb 0%, #f9efe6 100%);
-      border: 1px solid #e7d9cc;
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      color: #5f2031;
-    }
-
-    .hero-card ul { margin: 0; padding: 0; list-style: none; }
-    .hero-card li {
-      padding: 10px 0;
-      border-bottom: 1px dashed #e5d7c8;
-      font-weight: 600;
-      color: #583e41;
-    }
-
-    .hero-card li:last-child { border-bottom: none; }
-
-    section { padding: 60px 0; }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.55rem, 3vw, 2.2rem);
-      color: #5f2031;
-    }
-
-    .lead {
-      margin: 0 0 28px;
-      color: #66494b;
-      max-width: 70ch;
-    }
-
-    .wines {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .wine-card {
-      background: var(--surface);
-      border: 1px solid #e9dccc;
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow: 0 14px 30px rgba(39,14,19,0.07);
-    }
-
-    .wine-card img {
-      width: 100%;
-      height: 320px;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 14px;
-      border: 1px solid #f0e4d6;
-    }
-
-    .wine-card h3 { margin: 14px 0 6px; color: #4f1b2a; }
-    .wine-card p { margin: 0; color: #624447; }
-    .wine-card .price { margin-top: 10px; font-size: 1.25rem; font-weight: 800; color: var(--accent); }
-
-    .story {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .story img {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid #e5d6c6;
-      background: #fff;
-      padding: 20px;
-    }
-
-    .info-box {
-      margin-top: 20px;
-      background: #fff;
-      border: 1px solid #ebddcf;
-      border-right: 4px solid var(--gold);
-      border-radius: 14px;
-      padding: 14px 16px;
-      color: #5b3e42;
-      font-weight: 600;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 42px;
-      color: #624548;
-      background: #f3e9de;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(180px, 1fr));
-      gap: 18px;
-    }
-
-    .footer-title { font-weight: 800; color: #54202f; margin-bottom: 6px; }
-
-    @media (max-width: 900px) {
-      .hero-grid, .story, .footer-grid { grid-template-columns: 1fr; }
-      .wines { grid-template-columns: 1fr; }
-      .nav { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Heebo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero" id="top">
-    <div class="container">
-      <nav class="nav">
-        <div class="brand">
-          <img src="1000.png" alt="סמל יקב דורות">
-          <span>יקב דורות</span>
+
+  <div id="background-container">
+    <div class="background-slide" style="background-image: url('bg1.jpg');"></div>
+    <div class="background-slide" style="background-image: url('bg2.jpg');"></div>
+    <div class="background-slide" style="background-image: url('bg3.jpg');"></div>
+    <div class="background-slide" style="background-image: url('bg4.jpg');"></div>
+  </div>
+
+  <header class="hero">
+    <div class="nav-bar">
+      <div class="brand-mark">
+        <img src="1000.png" alt="לוגו יקב בוטיק דורות" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-small">יקב בוטיק</span>
+          <span class="brand-name">דורות</span>
         </div>
-        <div class="nav-links">
-          <a href="#wines">היינות</a>
-          <a href="#about">על היקב</a>
-          <a href="#values">הערכים שלנו</a>
-          <a href="#contact">יצירת קשר</a>
-        </div>
+      </div>
+      <nav>
+        <a href="#shop">היינות שלנו</a>
+        <a href="#story">סיפור היין</a>
+        <a href="#experience">חוויית אירוח</a>
+        <a href="#testimonials">ביקורות</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#about">עלינו</a>
+        <a href="#faq">שאלות נפוצות</a>
+        <a href="#contact">יצירת קשר</a>
       </nav>
+      <button id="cart-toggle" class="cart-toggle" aria-label="פתיחת סל הקניות">🛒 <span id="nav-cart-count">0</span></button>
+    </div>
 
-      <div class="hero-grid">
-        <div>
-          <h1>יין אלגנטי, יוקרתי ובטעם משובח</h1>
-          <p>
-            ברוכים הבאים ליקב דורות. אנו מגישים יינות מוקפדים עם עומק, איזון וסיומת נעימה,
-            המתאימים לשולחן מכובד, לשבת ולשמחות משפחתיות.
-          </p>
-          <div class="cta-row">
-            <a class="btn primary" href="#wines">לצפייה בקולקציית היין</a>
-            <a class="btn ghost" href="#about">לקריאה על היקב</a>
-          </div>
+    <div class="header-content">
+      <div class="hero-copy">
+        <p class="eyebrow">COLLECTION PRIVÉE • יקב משפחתי מאז 1989</p>
+        <h1>יין אלגנטי, איטי ומדויק<br>לרגעים שמבקשים יוקרה שקטה</h1>
+        <p class="subtitle">ברוכים הבאים ליקב דורות. יינות פרימיום שנבנים בשכבות של ארומה, עומק וסיומת ארוכה — בדיוק כמו חוויה מקצועית של יקב מוביל.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#shop">לרכישת קולקציית היקב</a>
+          <a class="ghost-btn" href="#story">לקרוא את סיפור היין</a>
         </div>
-
-        <aside class="hero-card" id="values">
-          <h3>איכות ללא פשרות</h3>
-          <ul>
-            <li>בחירת ענבים מדויקת מכל בציר</li>
-            <li>כשרות מהודרת והשגחה מוקפדת</li>
-            <li>התאמת יין לסעודות שבת וחג</li>
-            <li>שירות אדיב וליווי אישי</li>
-          </ul>
-        </aside>
+        <div class="hero-badges">
+          <span>חביות עץ אלון צרפתי</span>
+          <span>משלוח פרימיום בקירור</span>
+          <span>התאמת יין לארוחה</span>
+          <span>תמיכה אישית לסומלייה ביתי</span>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
-    <section id="wines">
-      <div class="container">
-        <h2>קולקציית היינות</h2>
-        <p class="lead">שלושה יינות נבחרים המשלבים ארומה עשירה, גוף מאוזן וטעם יוקרתי שמתאים לכל אירוח מכובד.</p>
-        <div class="wines">
-          <article class="wine-card">
-            <img src="קברנה 25.png" alt="בקבוק יין קברנה 25">
-            <h3>קברנה 25</h3>
-            <p>יין אדום עמוק עם ניחוחות פרי בשל, תבלינים עדינים וסיומת חלקה ומרשימה.</p>
-            <div class="price">₪80</div>
-          </article>
-          <article class="wine-card">
-            <img src="מרלו 25.png" alt="בקבוק יין מרלו 25">
-            <h3>מרלו 25</h3>
-            <p>מרלו קטיפתי ונעים, עם איזון נכון בין מתיקות טבעית לחמיצות עדינה.</p>
-            <div class="price">₪80</div>
-          </article>
-          <article class="wine-card">
-            <img src="קברנה 24.png" alt="בקבוק יין קברנה 24">
-            <h3>קברנה 24</h3>
-            <p>בציר מובחר בעל מורכבות עשירה, עומק טעמים ונוכחות יוקרתית בכוס.</p>
-            <div class="price">₪100</div>
-          </article>
+    <section id="shop">
+      <h2>קולקציית יינות פרימיום</h2>
+      <p class="section-intro">כל בקבוק בקולקציה שלנו נבחר לייצר איזון בין אלגנטיות, גוף ודיוק. הוסיפו מוצרים — והסל החכם יופיע בצד באופן מיידי.</p>
+      <div class="grid">
+        <div class="card">
+          <img src="קברנה 25.png" alt="קברנה 25">
+          <h3>קברנה 25</h3>
+          <p>יין אדום מלא גוף עם ארומות של פירות אדומים, תבלינים ונגיעות של עץ אלון. סיומת ארוכה ואלגנטית.</p>
+          <p class="price">₪80</p>
+          <button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">הוסף לסל</button>
+        </div>
+        <div class="card">
+          <img src="מרלו 25.png" alt="מרלו 25">
+          <h3>מרלו 25</h3>
+          <p>יין אדום רך ומאוזן עם טעמי שזיף, פירות יער ושוקולד מריר. מושלם לארוחות מיוחדות.</p>
+          <p class="price">₪80</p>
+          <button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">הוסף לסל</button>
+        </div>
+        <div class="card">
+          <img src="קברנה 24.png" alt="קברנה 24">
+          <h3>קברנה 24</h3>
+          <p>יין אדום עמוק ומורכב עם טעמי דובדבן שחור, טבק וניחוחות של וניל. בציר מעולה וייחודי.</p>
+          <p class="price">₪100</p>
+          <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">הוסף לסל</button>
         </div>
       </div>
     </section>
 
-    <section id="about">
-      <div class="container story">
-        <div>
-          <h2>הסיפור שלנו</h2>
-          <p>
-            היקב שלנו נבנה מתוך אהבה ליין איכותי ומתוך רצון להעניק לציבור שומר תורה ומצוות
-            חוויית שתייה מכובדת ומדויקת. כל שלב בתהליך הייצור נעשה במקצועיות, בניקיון,
-            ובתשומת לב לכל פרט.
-          </p>
-          <p>
-            אנו מקפידים על יין בעל אופי ברור: אלגנטי, עשיר ומאוזן — כזה שמשתלב היטב בסעודת שבת,
-            בשמחה משפחתית ובאירוח יוקרתי.
-          </p>
-          <div class="info-box">
-            היין שלנו מיועד למי שמחפש איכות אמיתית, טעם מדויק ושירות שמכבד את הלקוח.
-          </div>
-        </div>
-        <img src="1000.png" alt="סמל יקב דורות">
+    <section id="story" class="text-section">
+      <h2>סיפור היין שלנו</h2>
+      <img src="1000.png" alt="יקב דורות" class="story-image">
+      <p>היין שלנו מתחיל במסע ארוך ומדוקדק – מן הכרמים היפים שלנו, דרך תהליך ייצור מקצועי ומסור, ועד לבקבוק המוגמר שמגיע לידיכם. כל שלב בדרך נעשה מתוך תשומת לב אישית, מקצועיות וחיבור עמוק לאדמה ולמסורת.</p>
+      <p><strong>הבציר:</strong> הענבים נבצרים בשעות הבוקר המוקדמות, כאשר האוויר עדיין קריר והטמפרטורה נמוכה. כך אנו שומרים על רעננות הפרי, על ריכוז הסוכרים והחומציות הטבעית, ומבטיחים שכל אשכול יגיע ליקב במצבו האופטימלי.</p>
+      <p><strong>המיון והתסיסה:</strong> לאחר הבציר, כל אשכול עובר מיון קפדני פעמיים – פעם בכרם ופעם נוספת ביקב. רק הענבים המשובחים ביותר ממשיכים לשלב התסיסה. כל זן מטופל בנפרד, במכלי נירוסטה או בחביות פתוחות, בהתאם לפרופיל הארומטי שאנו שואפים להשיג. כבר כאן נוצרות שכבות הטעם הראשונות: ארומות של פרי שחור עמוק ביינות האדומים, וניחוחות פרי הדר ותפוח ירוק ביינות הלבנים.</p>
+      <p><strong>היישון והבשלה:</strong> לאחר התסיסה, היין מועבר לחביות עץ אלון צרפתי איכותיות, שם הוא מתיישן במשך חודשים רבים. תהליך זה מוסיף עומק, מורכבות ושכבות נוספות של טעם: וניל עדין, קקאו, תבלינים ונגיעות של עץ. כל חבית תורמת את אופייה הייחודי ליין, ואנחנו מקפידים לעקוב אחר התהליך צעד אחר צעד.</p>
+      <p><strong>התוצאה:</strong> יין מאוזן, אלגנטי ומורכב – עם גוף מלא או בינוני, טאנינים עדינים או מודגשים, וסיומת ארוכה ומרשימה. כל בקבוק מגיע עם תיאור מפורט שמסביר בדיוק מה תמצאו בכוס – הארומות, הטעמים, ההמלצות לאוכל מתאים, והטמפרטורה האידיאלית להגשה.</p>
+    </section>
+
+    <section id="experience" class="feature-section">
+      <div class="feature-card">
+        <h3>חוויית טעימה מקצועית</h3>
+        <p>אירוח ביקב עם מדריך טעימה, כוסות פרימיום ודיון על כל שכבת ארומה.</p>
       </div>
+      <div class="feature-card">
+        <h3>מועדון אספנים</h3>
+        <p>גישה מוקדמת לבצירים מוגבלים, הטבות לחברים וערבי יין פרטיים.</p>
+      </div>
+      <div class="feature-card">
+        <h3>ייעוץ התאמה קולינרי</h3>
+        <p>מתאימים יין לתפריט האירוח שלכם — בשר, דגים, גבינות וקינוחים.</p>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2>ביקורות לקוחות</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="quote">"האתר מרגיש כמו מגזין יין יוקרתי. הזמנו בלנד מורשת, והכול היה מדויק — מאריזה ועד טעמים."</p>
+          <div class="name">שירי, תל אביב</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="quote">"הסל בצד נוח מאוד. מוסיפים בקבוקים, משווים מחירים, ומסיימים הזמנה בלי בלגן."</p>
+          <div class="name">אלעד, חיפה</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="rating">★★★★★</div>
+          <p class="quote">"העיצוב עדין, נקי ומקצועי. ממש מרגישים שהמותג מדבר בשפה של יין איכותי."</p>
+          <div class="name">נועה, ירושלים</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>רגעים מהיקב</h2>
+      <div class="gallery-grid">
+        <img src="gallery1.jpg" alt="תמונה מהיקב 1">
+        <img src="gallery2.jpg" alt="תמונה מהיקב 2">
+        <img src="gallery3.jpg" alt="תמונה מהיקב 3">
+        <img src="bg1.jpg" alt="כרמים זהובים">
+        <img src="bg2.jpg" alt="חביות יין">
+      </div>
+    </section>
+
+    <section id="about" class="text-section"></section>
+
+    <section id="faq">
+      <h2>שאלות נפוצות</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>תוך כמה זמן המשלוח מגיע?</h3>
+          <p>ברוב האזורים בארץ בין 2 ל-5 ימי עסקים, עם הודעת עדכון לפני הגעה.</p>
+        </div>
+        <div class="faq-item">
+          <h3>אפשר לקבל המלצה לפי ארוחה?</h3>
+          <p>כן. כתבו לנו בתיבת יצירת הקשר ואנחנו נתאים בקבוק לסגנון הבישול ולתקציב.</p>
+        </div>
+        <div class="faq-item">
+          <h3>היינות כשרים?</h3>
+          <p>כן - כל היינות כשרים ומהדרים.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>דברו איתנו</h2>
+      <p>רוצים לקפוץ לטעימות? לקבל המלצה לבקבוק מתנה? השאירו פרטים ונחזור עם התאמה מדויקת.</p>
+      <form action="https://formspree.io/f/moqglqrr" method="POST">
+        <input type="text" name="name" placeholder="שם מלא" required>
+        <input type="email" name="email" placeholder="אימייל" required>
+        <textarea name="message" placeholder="מה תרצו להגיד לנו?" required></textarea>
+        <button type="submit">שליחה</button>
+      </form>
     </section>
   </main>
 
-  <footer id="contact">
-    <div class="container footer-grid">
+  <aside id="cart" class="cart-drawer" aria-live="polite">
+    <div class="cart-header">
       <div>
-        <div class="footer-title">יקב דורות</div>
-        <div>יין יוקרתי בטעם משובח לכל שולחן מכובד.</div>
+        <h2>סל הקניות</h2>
+        <p>הסל מופיע רק כשמוסיפים מוצרים.</p>
+      </div>
+      <button id="cart-close" class="cart-close" aria-label="סגירת סל">✕</button>
+    </div>
+    <span class="cart-pill" id="cart-count">0 פריטים</span>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-message" class="cart-message" aria-live="polite"></div>
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>סה"כ</span>
+        <strong id="cart-total">₪0</strong>
+      </div>
+      <button id="checkout-btn" type="button">סיום הזמנה</button>
+    </div>
+  </aside>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>יקב בוטיק דורות</h3>
+        <p>© כל הזכויות שמורות, 2025</p>
       </div>
       <div>
-        <div class="footer-title">כתובת</div>
-        <div>רבי עקיבא, בני ברק</div>
+        <h3>כתובת היקב</h3>
+        <p>דרך הכרמים 18, אזור תעשייה צפוני, אשקלון</p>
       </div>
       <div>
-        <div class="footer-title">שעות מענה</div>
-        <div>א׳–ה׳: 09:00–18:00</div>
-        <div>ו׳ וערבי חג: 09:00–13:00</div>
+        <h3>יצירת קשר</h3>
+        <p>טלפון: 08-6001234</p>
+        <p>אימייל: hello@dorot-winery.co.il</p>
+      </div>
+      <div>
+        <h3>שעות פעילות</h3>
+        <p>א׳-ה׳: 09:00-18:00</p>
+        <p>ו׳: 09:00-13:00</p>
       </div>
     </div>
   </footer>
+
+  <div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
