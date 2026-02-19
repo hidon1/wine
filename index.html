@@ -1520,11 +1520,7 @@ const setupLightbox = () => {
     const closeModal = document.querySelector(".close-modal");
     const prevButtons = [document.getElementById("modalPrev"), document.getElementById("modalPrevMobile")].filter(Boolean);
     const nextButtons = [document.getElementById("modalNext"), document.getElementById("modalNextMobile")].filter(Boolean);
-    const zoomableImages = Array.from(document.querySelectorAll("img")).filter((img) =>
-      !img.closest("#imageModal")
-      && !img.closest("#background-container")
-      && img.classList.contains("brand-logo") === false,
-    );
+    const zoomableImages = Array.from(document.querySelectorAll(".gallery-grid img"));
 
     if (!modal || !modalImg || !closeModal || !modalCaption || !modalCounter || !zoomableImages.length) return;
 
