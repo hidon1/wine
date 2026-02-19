@@ -143,7 +143,9 @@ nav a {
 nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px); }
 
 .cart-toggle {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   background: var(--wine);
   color: #fff;
   border: none;
@@ -152,7 +154,6 @@ nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px);
   cursor: pointer;
   font-weight: 700;
 }
-.cart-toggle.visible { display: inline-flex; align-items: center; gap: 0.35em; }
 
 .header-content { margin-top: 2em; }
 .hero-copy { max-width: 760px; }
@@ -279,41 +280,7 @@ footer p {
   box-shadow: 0 4px 12px rgba(95, 29, 47, 0.2);
 }
 
-.card-purchase {
-  margin-top: auto;
-  background: linear-gradient(160deg, #fff, #fbf5ef);
-  border: 1px solid rgba(95, 29, 47, 0.12);
-  border-radius: 12px;
-  padding: 0.7em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6em;
-}
 
-.qty-picker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-}
-
-.qty-chip {
-  min-width: 36px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--wine-deep);
-}
-
-.qty-control-btn {
-  border: 1px solid rgba(95, 29, 47, 0.2);
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 1.15rem;
-  color: var(--wine-deep);
-}
 .buy-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(95, 29, 47, 0.3);
@@ -439,15 +406,6 @@ form button {
 }
 .cart-info { display: flex; flex-direction: column; }
 .cart-meta { color: var(--muted); font-size: 0.88em; }
-.qty-controls { display: flex; align-items: center; gap: 0.28em; }
-.qty-btn {
-  border: 1px solid rgba(95, 29, 47, 0.2);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #fff;
-  cursor: pointer;
-}
 .line-total { color: var(--wine-deep); font-weight: 700; }
 .cart-summary { margin-top: auto; border-top: 1px solid rgba(95, 29, 47, 0.1); padding-top: 0.7em; }
 .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.6em; }
@@ -822,6 +780,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <nav>
         <a href="#shop">היינות שלנו</a>
         <a href="#story">הסיפור שלנו</a>
+        <a href="#" id="nav-cart-link">סל קניות</a>
         <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
         <a href="#about">עלינו</a>
@@ -859,42 +818,21 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
           <h3>קברנה 25</h3>
           <p>בלנד עשיר עם ניחוחות פטל, דובדבן ותבלין עדין. בחירה נהדרת לארוחות ערב חגיגיות ולשולחן של שישי.</p>
           <p class="price">₪80</p>
-          <div class="card-purchase">
-            <div class="qty-picker">
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="decrease" aria-label="הפחת כמות">−</button>
-              <span class="qty-chip card-qty" aria-live="polite">1</span>
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="increase" aria-label="הוסף כמות">+</button>
-            </div>
-            <button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">רכישה לסל</button>
-          </div>
+          <button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">רכישה לסל</button>
         </div>
         <div class="card">
           <img src="מרלו 25.png" alt="מרלו 25">
           <h3>מרלו 25</h3>
           <p>מרלו עגול, רך ומלטף עם פרי בשל וסיום נקי. מתאים במיוחד לפסטות עשירות, גבינות קשות ובשרים קלים.</p>
           <p class="price">₪80</p>
-          <div class="card-purchase">
-            <div class="qty-picker">
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="decrease" aria-label="הפחת כמות">−</button>
-              <span class="qty-chip card-qty" aria-live="polite">1</span>
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="increase" aria-label="הוסף כמות">+</button>
-            </div>
-            <button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">רכישה לסל</button>
-          </div>
+          <button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">רכישה לסל</button>
         </div>
         <div class="card">
           <img src="קברנה 24.png" alt="קברנה 24">
           <h3>קברנה 24</h3>
           <p>יין מורכב לבעלי חיך שאוהבים עומק: פרי כהה, קקאו ומגע עץ מדויק. מומלץ לסטייקים ולארוחות חג משפחתיות.</p>
           <p class="price">₪100</p>
-          <div class="card-purchase">
-            <div class="qty-picker">
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="decrease" aria-label="הפחת כמות">−</button>
-              <span class="qty-chip card-qty" aria-live="polite">1</span>
-              <button class="qty-control-btn card-qty-btn" type="button" data-action="increase" aria-label="הוסף כמות">+</button>
-            </div>
-            <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">רכישה לסל</button>
-          </div>
+          <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">רכישה לסל</button>
         </div>
       </div>
     </section>
@@ -1034,7 +972,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <span>סה"כ</span>
         <strong id="cart-total">₪0</strong>
       </div>
-      <button id="checkout-btn" type="button">סיום הזמנה</button>
+      <button id="checkout-btn" type="button">רכוש עכשיו</button>
     </div>
   </aside>
 
@@ -1277,10 +1215,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartTotalEl = document.getElementById("cart-total");
   const cartCountEl = document.getElementById("cart-count");
   const navCartCountEl = document.getElementById("nav-cart-count");
+  const navCartLink = document.getElementById("nav-cart-link");
   const cartToggle = document.getElementById("cart-toggle");
   const cartClose = document.getElementById("cart-close");
   const checkoutBtn = document.getElementById("checkout-btn");
   const cartMessage = document.getElementById("cart-message");
+  const supplierEmail = "d0556775956@gmail.com";
 
   const truncateBody = (text) => (text.length <= BODY_TRUNCATION_LENGTH ? text : `${text.slice(0, BODY_TRUNCATION_LENGTH)}${TRUNCATION_SUFFIX}`);
 
@@ -1302,7 +1242,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateCartBadge = (qty) => {
     if (cartCountEl) cartCountEl.textContent = `${qty} פריטים`;
     if (navCartCountEl) navCartCountEl.textContent = String(qty);
-    cartToggle?.classList.toggle("visible", qty > 0);
   };
 
   const renderCart = () => {
@@ -1339,51 +1278,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       info.append(nameEl, metaEl);
 
-      const controls = document.createElement("div");
-      controls.className = "qty-controls";
-
-      const decBtn = document.createElement("button");
-      decBtn.className = "qty-btn";
-      decBtn.setAttribute("aria-label", "הפחת כמות");
-      decBtn.dataset.index = String(index);
-      decBtn.dataset.action = "decrease";
-      decBtn.textContent = "-";
-
-      const qtySpan = document.createElement("span");
-      qtySpan.textContent = String(item.qty);
-
-      const incBtn = document.createElement("button");
-      incBtn.className = "qty-btn";
-      incBtn.setAttribute("aria-label", "הוסף כמות");
-      incBtn.dataset.index = String(index);
-      incBtn.dataset.action = "increase";
-      incBtn.textContent = "+";
-
-      controls.append(decBtn, qtySpan, incBtn);
-
       const priceEl = document.createElement("span");
       priceEl.className = "line-total";
       priceEl.textContent = currency.format(item.price * item.qty);
 
-      row.append(info, controls, priceEl);
+      row.append(info, priceEl);
       cartItemsEl.appendChild(row);
     });
 
     cartTotalEl.textContent = currency.format(total);
     updateCartBadge(qty);
   };
-
-  cartItemsEl?.addEventListener("click", (event) => {
-    const btn = event.target.closest(".qty-btn");
-    if (!btn) return;
-    const index = Number(btn.dataset.index);
-    const action = btn.dataset.action;
-    if (Number.isNaN(index)) return;
-    if (action === "increase") cartState[index].qty += 1;
-    if (action === "decrease") cartState[index].qty = Math.max(0, cartState[index].qty - 1);
-    if (cartState[index].qty === 0) cartState.splice(index, 1);
-    renderCart();
-  });
 
   const addToCart = (name, price) => {
     const existing = cartState.find((item) => item.name === name);
@@ -1394,37 +1299,19 @@ document.addEventListener("DOMContentLoaded", () => {
     announce("הפריט נוסף לסל");
   };
 
-  document.querySelectorAll(".card-purchase").forEach((purchase) => {
-    const qtyLabel = purchase.querySelector(".card-qty");
-    const plusMinusButtons = purchase.querySelectorAll(".card-qty-btn");
-    const addBtn = purchase.querySelector(".add-to-cart");
-    let selectedQty = 1;
-
-    const updateSelectedQty = () => {
-      if (qtyLabel) qtyLabel.textContent = String(selectedQty);
-    };
-
-    plusMinusButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const action = btn.dataset.action;
-        if (action === "increase") selectedQty += 1;
-        if (action === "decrease") selectedQty = Math.max(1, selectedQty - 1);
-        updateSelectedQty();
-      });
-    });
-
-    addBtn?.addEventListener("click", () => {
+  document.querySelectorAll(".add-to-cart").forEach((addBtn) => {
+    addBtn.addEventListener("click", () => {
       const { name, price } = addBtn.dataset;
       if (!name || !price) return;
-      for (let i = 0; i < selectedQty; i += 1) {
-        addToCart(name, Number(price));
-      }
-      selectedQty = 1;
-      updateSelectedQty();
+      addToCart(name, Number(price));
     });
   });
 
   cartToggle?.addEventListener("click", openCart);
+  navCartLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    openCart();
+  });
   cartClose?.addEventListener("click", closeCart);
 
   checkoutBtn?.addEventListener("click", () => {
@@ -1445,20 +1332,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "נשמח לאישור הזמנה וחיוב.",
     ].join("\n");
 
-    const supplierEmail = "d0556775956@gmail.com";
     const encodedSubject = encodeURIComponent("הזמנת ספק חדשה מאתר יקב דורות");
     let encodedBody = encodeURIComponent(body);
     let gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(supplierEmail)}&su=${encodedSubject}&body=${encodedBody}`;
-    let mailtoUrl = `mailto:${supplierEmail}?subject=${encodedSubject}&body=${encodedBody}`;
 
-    if (gmailUrl.length > MAX_GMAIL_URL_LENGTH || mailtoUrl.length > MAX_GMAIL_URL_LENGTH) {
+    if (gmailUrl.length > MAX_GMAIL_URL_LENGTH) {
       encodedBody = encodeURIComponent(truncateBody(body));
       gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(supplierEmail)}&su=${encodedSubject}&body=${encodedBody}`;
-      mailtoUrl = `mailto:${supplierEmail}?subject=${encodedSubject}&body=${encodedBody}`;
     }
 
-    const targetUrl = gmailUrl.length > MAX_GMAIL_URL_LENGTH ? mailtoUrl : gmailUrl;
-    window.open(targetUrl, "_blank", "noopener");
+    window.open(gmailUrl, "_blank", "noopener");
     announce("פותחים מייל חדש עם פרטי ההזמנה.");
   });
 
