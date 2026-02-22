@@ -31,6 +31,10 @@ body {
   padding-bottom: 88px;
 }
 
+body.age-gate-locked {
+  overflow: hidden;
+}
+
 h1, h2, h3 {
   font-family: 'Noto Serif Hebrew', 'Cormorant Garamond', 'Heebo', serif;
   letter-spacing: 0.03em;
@@ -725,6 +729,92 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   display: none;
 }
 
+.age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  background: radial-gradient(circle at 25% 20%, rgba(122, 46, 71, 0.3), rgba(17, 6, 10, 0.9));
+  backdrop-filter: blur(8px);
+}
+
+.age-gate.open {
+  display: flex;
+}
+
+.age-gate-card {
+  width: min(700px, 96vw);
+  background: linear-gradient(160deg, #fffdf8, #f8eee4 55%, #f4e8dd);
+  border-radius: 24px;
+  border: 1px solid rgba(95, 29, 47, 0.16);
+  box-shadow: 0 24px 60px rgba(24, 8, 14, 0.45);
+  padding: 2em 1.4em;
+  text-align: center;
+}
+
+.age-gate-card h2 {
+  margin: 0;
+  color: var(--wine-deep);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+}
+
+.age-gate-card p {
+  margin: 0.9em 0 0;
+  color: #5a453f;
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.age-gate-actions {
+  margin-top: 1.4em;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85em;
+}
+
+.age-btn {
+  border: none;
+  border-radius: 14px;
+  padding: 0.95em;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.age-btn.adult {
+  color: #fff;
+  background: linear-gradient(120deg, #5f1d2f, #7a3046);
+  box-shadow: 0 10px 20px rgba(95, 29, 47, 0.25);
+}
+
+.age-btn.minor {
+  color: #4f3e37;
+  background: #fff;
+  border: 1px solid rgba(95, 29, 47, 0.2);
+}
+
+.age-btn:hover {
+  transform: translateY(-2px);
+}
+
+.age-gate-note {
+  margin-top: 1em;
+  font-size: 0.9rem;
+  color: #7a655e;
+}
+
+.age-gate-feedback {
+  margin-top: 1em;
+  min-height: 48px;
+  color: #4f141f;
+  font-weight: 600;
+}
+
 
 @media (max-width: 960px) {
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
@@ -741,6 +831,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   .hero-badges span { width: 100%; text-align: center; }
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
   .cookie-banner button { width: 100%; }
+  .age-gate-actions { grid-template-columns: 1fr; }
 }
 
 
@@ -785,6 +876,19 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     <div class="background-slide" style="background-image: url('קברנה 25.png');"></div>
     <div class="background-slide" style="background-image: url('מרלו 25.png');"></div>
     <div class="background-slide" style="background-image: url('קברנה 24.png');"></div>
+  </div>
+
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title" aria-describedby="age-gate-description">
+    <div class="age-gate-card">
+      <h2 id="age-gate-title">ברוכים הבאים ליקב דורות</h2>
+      <p id="age-gate-description">האתר מכיל תכנים ומידע על משקאות אלכוהוליים ולכן מיועד לגילאי 18 ומעלה בלבד. אנא בחרו את קבוצת הגיל שלכם כדי להמשיך.</p>
+      <div class="age-gate-actions">
+        <button id="age-confirm" class="age-btn adult" type="button">מעל גיל 18</button>
+        <button id="age-decline" class="age-btn minor" type="button">מתחת לגיל 18</button>
+      </div>
+      <p class="age-gate-note">שתייה אחראית ומודעת. מומלץ להימנע משתייה מופרזת.</p>
+      <p id="age-gate-feedback" class="age-gate-feedback" aria-live="polite"></p>
+    </div>
   </div>
 
   <header class="hero">
@@ -1422,12 +1526,39 @@ const setupLightbox = () => {
     });
   };
 
+  const setupAgeGate = () => {
+    const ageGate = document.getElementById("age-gate");
+    const confirmBtn = document.getElementById("age-confirm");
+    const declineBtn = document.getElementById("age-decline");
+    const feedbackEl = document.getElementById("age-gate-feedback");
+    const ageStorageKey = "dorot_age_verified";
+
+    if (!ageGate || !confirmBtn || !declineBtn || !feedbackEl) return;
+
+    const isAllowed = localStorage.getItem(ageStorageKey) === "accepted";
+    if (isAllowed) return;
+
+    ageGate.classList.add("open");
+    document.body.classList.add("age-gate-locked");
+
+    confirmBtn.addEventListener("click", () => {
+      localStorage.setItem(ageStorageKey, "accepted");
+      ageGate.classList.remove("open");
+      document.body.classList.remove("age-gate-locked");
+    });
+
+    declineBtn.addEventListener("click", () => {
+      feedbackEl.textContent = "הכניסה לאתר זה מותרת רק לבני 18 ומעלה. נשמח לראותכם כאן בעתיד.";
+    });
+  };
+
   renderCart();
   setupFaqAccordion();
   setupLightbox();
   setupBackgroundSlideshow();
   setupScrollReveal();
   setupCookieBanner();
+  setupAgeGate();
 });
 
   </script>
