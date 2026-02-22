@@ -28,6 +28,7 @@ body {
   background: linear-gradient(170deg, #f8f4ef, #fdfbf8 35%, #f7f2eb);
   color: var(--ink);
   line-height: 1.75;
+  padding-bottom: 88px;
 }
 
 h1, h2, h3 {
@@ -678,6 +679,52 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   color: #5d4a44;
 }
 
+.cookie-banner {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.85em 1.2em;
+  background: rgba(43, 16, 24, 0.96);
+  color: #f7eee6;
+  border-top: 1px solid rgba(255, 223, 196, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.cookie-banner p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.cookie-banner strong {
+  color: #fff;
+}
+
+.cookie-banner button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55em 1.05em;
+  background: #fff;
+  color: var(--wine-deep);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cookie-banner button:hover {
+  background: #f8ebdf;
+}
+
+.cookie-banner.hidden {
+  display: none;
+}
+
 
 @media (max-width: 960px) {
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
@@ -692,6 +739,8 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   nav a { width: 100%; text-align: center; }
   .hero-actions .primary-btn, .hero-actions .ghost-btn { width: 100%; text-align: center; }
   .hero-badges span { width: 100%; text-align: center; }
+  .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+  .cookie-banner button { width: 100%; }
 }
 
 
@@ -974,6 +1023,11 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <button class="modal-nav modal-next" id="modalNextMobile" type="button" aria-label="תמונה הבאה">&#10094;</button>
       </div>
     </div>
+  </div>
+
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="הודעת שימוש בעוגיות">
+    <p><strong>הפרטיות שלכם חשובה לנו.</strong> האתר עושה שימוש בקובצי Cookie ובטכנולוגיות דומות כדי לשפר את חוויית הגלישה, להתאים תוכן ולהבין כיצד ניתן להמשיך לשפר את השירות.</p>
+    <button id="cookie-approve" type="button">מאשר/ת שימוש בעוגיות</button>
   </div>
 
   <script>
@@ -1347,11 +1401,33 @@ const setupLightbox = () => {
     }, 10000);
   };
 
+  const setupCookieBanner = () => {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieApproveBtn = document.getElementById("cookie-approve");
+    const cookieStorageKey = "dorot_cookie_consent";
+
+    if (!cookieBanner || !cookieApproveBtn) return;
+
+    const hasConsent = localStorage.getItem(cookieStorageKey) === "accepted";
+    if (hasConsent) {
+      cookieBanner.classList.add("hidden");
+      document.body.style.paddingBottom = "";
+      return;
+    }
+
+    cookieApproveBtn.addEventListener("click", () => {
+      localStorage.setItem(cookieStorageKey, "accepted");
+      cookieBanner.classList.add("hidden");
+      document.body.style.paddingBottom = "";
+    });
+  };
+
   renderCart();
   setupFaqAccordion();
   setupLightbox();
   setupBackgroundSlideshow();
   setupScrollReveal();
+  setupCookieBanner();
 });
 
   </script>
