@@ -318,7 +318,8 @@ footer p {
 .name { margin-top: 0.8em; font-weight: 700; color: var(--wine-deep); }
 
 .gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-.gallery-grid img {
+.gallery-grid img,
+.gallery-grid video {
   width: 210px;
   height: 132px;
   object-fit: cover;
@@ -328,7 +329,8 @@ footer p {
   box-shadow: 0 10px 22px rgba(53, 18, 29, 0.2);
   transition: transform 0.28s ease, filter 0.28s ease, box-shadow 0.28s ease;
 }
-.gallery-grid img:hover {
+.gallery-grid img:hover,
+.gallery-grid video:hover {
   transform: translateY(-4px) scale(1.04);
   filter: brightness(1.05);
   box-shadow: 0 18px 28px rgba(53, 18, 29, 0.24);
@@ -996,6 +998,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <h2>תמונות מהכרם והיקב</h2>
       <div class="gallery-grid">
         <img src="gallery3.jpg" alt="תמונה מהכרם 1">
+        <video src="1.mp4" controls preload="metadata" aria-label="וידאו מהיקב 2"></video>
         <img src="1000.png" alt="מותג דורות 2">
         <img src="קברנה 25.png" alt="בקבוק דורות 3">
         <img src="מרלו 25.png" alt="בקבוק דורות 4">
@@ -1119,6 +1122,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <span class="close-modal" role="button" tabindex="0" aria-label="סגירת תצוגת תמונה">&times;</span>
       <button class="modal-nav modal-prev" id="modalPrev" type="button" aria-label="תמונה קודמת">&#10095;</button>
       <img class="modal-content" id="modalImage" alt="תמונה מוגדלת">
+      <video class="modal-content" id="modalVideo" controls style="display:none;" aria-label="וידאו מוגדל"></video>
       <button class="modal-nav modal-next" id="modalNext" type="button" aria-label="תמונה הבאה">&#10094;</button>
       <p id="modalCaption" class="modal-caption"></p>
       <p id="modalCounter" class="modal-counter"></p>
@@ -1405,24 +1409,41 @@ const setupFaqAccordion = () => {
 const setupLightbox = () => {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
+    const modalVideo = document.getElementById("modalVideo");
     const modalCaption = document.getElementById("modalCaption");
     const modalCounter = document.getElementById("modalCounter");
     const closeModal = document.querySelector(".close-modal");
     const prevButtons = [document.getElementById("modalPrev"), document.getElementById("modalPrevMobile")].filter(Boolean);
     const nextButtons = [document.getElementById("modalNext"), document.getElementById("modalNextMobile")].filter(Boolean);
-    const zoomableImages = Array.from(document.querySelectorAll(".gallery-grid img"));
+    const galleryItems = Array.from(document.querySelectorAll(".gallery-grid img, .gallery-grid video"));
 
-    if (!modal || !modalImg || !closeModal || !modalCaption || !modalCounter || !zoomableImages.length) return;
+    if (!modal || !modalImg || !modalVideo || !closeModal || !modalCaption || !modalCounter || !galleryItems.length) return;
 
     let currentIndex = 0;
 
     const renderImage = (index) => {
-      currentIndex = (index + zoomableImages.length) % zoomableImages.length;
-      const activeImage = zoomableImages[currentIndex];
-      modalImg.src = activeImage.src;
-      modalImg.alt = activeImage.alt || "תמונה מהגלריה";
-      modalCaption.textContent = activeImage.alt || "תמונה מהגלריה";
-      modalCounter.textContent = `${currentIndex + 1} / ${zoomableImages.length}`;
+      currentIndex = (index + galleryItems.length) % galleryItems.length;
+      const activeItem = galleryItems[currentIndex];
+      const isVideo = activeItem.tagName.toLowerCase() === "video";
+      const itemSrc = activeItem.currentSrc || activeItem.src;
+      const itemLabel = activeItem.getAttribute("aria-label") || activeItem.alt || "פריט מהגלריה";
+
+      modalImg.style.display = isVideo ? "none" : "block";
+      modalVideo.style.display = isVideo ? "block" : "none";
+
+      if (isVideo) {
+        modalImg.removeAttribute("src");
+        modalVideo.src = itemSrc;
+        modalVideo.setAttribute("aria-label", itemLabel);
+      } else {
+        modalVideo.pause();
+        modalVideo.removeAttribute("src");
+        modalImg.src = itemSrc;
+        modalImg.alt = itemLabel;
+      }
+
+      modalCaption.textContent = itemLabel;
+      modalCounter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
     };
 
     const openLightbox = (index) => {
@@ -1436,14 +1457,16 @@ const setupLightbox = () => {
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       modalImg.removeAttribute("src");
+      modalVideo.pause();
+      modalVideo.removeAttribute("src");
       modalCaption.textContent = "";
       modalCounter.textContent = "";
       document.body.style.overflow = "";
     };
 
-    zoomableImages.forEach((img, index) => {
-      img.style.cursor = "zoom-in";
-      img.addEventListener("click", () => openLightbox(index));
+    galleryItems.forEach((item, index) => {
+      item.style.cursor = "zoom-in";
+      item.addEventListener("click", () => openLightbox(index));
     });
 
     const showPrev = () => renderImage(currentIndex - 1);
