@@ -818,6 +818,113 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 }
 
 
+.experience-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75em;
+  margin-top: 1.4em;
+}
+
+.experience-item {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(95, 29, 47, 0.15);
+  border-radius: 14px;
+  padding: 0.85em;
+  text-align: center;
+}
+
+.experience-item strong {
+  display: block;
+  color: var(--wine-deep);
+  font-size: 1.35rem;
+}
+
+.experience-item span {
+  color: #5e4c46;
+  font-size: 0.92rem;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.9em;
+}
+
+.timeline-card {
+  background: linear-gradient(160deg, #fff, #fdf6f1);
+  border-radius: 16px;
+  border: 1px solid rgba(95, 29, 47, 0.1);
+  padding: 1.1em;
+  box-shadow: 0 8px 25px rgba(53, 18, 29, 0.08);
+}
+
+.timeline-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.timeline-card h3 {
+  margin: 0 0 0.35em;
+  color: var(--wine-deep);
+}
+
+.timeline-card p {
+  margin: 0;
+  color: #5d4a44;
+}
+
+.pairing-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.pairing-btn {
+  border: 1px solid rgba(95, 29, 47, 0.2);
+  background: #fff;
+  color: var(--wine-deep);
+  border-radius: 999px;
+  padding: 0.52em 1em;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pairing-btn.active {
+  background: var(--wine);
+  color: #fff;
+}
+
+.pairing-result {
+  max-width: 780px;
+  margin: 0 auto;
+  background: linear-gradient(130deg, rgba(95, 29, 47, 0.08), rgba(255, 255, 255, 0.7));
+  border: 1px solid rgba(95, 29, 47, 0.12);
+  border-radius: 14px;
+  padding: 1em;
+}
+
+.pairing-result h3 {
+  margin: 0 0 0.3em;
+  color: var(--wine-deep);
+}
+
+.pairing-result p {
+  margin: 0;
+  color: #4c3a34;
+}
+
+
 @media (max-width: 960px) {
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
   .brand-logo { width: clamp(96px, 24vw, 128px); height: clamp(96px, 24vw, 128px); }
@@ -908,6 +1015,8 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <a href="#" id="nav-cart-link">סל קניות</a>
         <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
+        <a href="#experience">חוויה ביקב</a>
+        <a href="#pairings">התאמות יין</a>
         <a href="#about">עלינו</a>
         <a href="#faq">שאלות נפוצות</a>
         <a href="#contact">יצירת קשר</a>
@@ -928,6 +1037,12 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
           <span>משלוח מאובטח עד הבית</span>
           <span>התאמה אישית לתפריט ואירוח</span>
           <span>ליווי מקצועי בכל הזמנה</span>
+        </div>
+        <div class="experience-strip">
+          <div class="experience-item"><strong>98%</strong><span>לקוחות חוזרים להזמנה נוספת</span></div>
+          <div class="experience-item"><strong>24-48 ש׳</strong><span>זמן אספקה ממוצע במרכז</span></div>
+          <div class="experience-item"><strong>3 דורות</strong><span>משפחה, כרם ואירוח סביב שולחן אחד</span></div>
+          <div class="experience-item"><strong>כשרות מהודרת</strong><span>ייצור בהקפדה מלאה בכל שלב</span></div>
         </div>
       </div>
     </div>
@@ -1008,6 +1123,43 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <img src="קברנה 25.png" alt="בקבוק דורות 8">
         <img src="מרלו 25.png" alt="בקבוק דורות 9">
         <img src="קברנה 24.png" alt="בקבוק דורות 10">
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>החוויה של דורות - צעד אחר צעד</h2>
+      <p class="section-intro">לקחנו את הדרך שלנו ביקב והפכנו אותה למסלול ברור: מהכרם ועד הכוס, עם שקיפות מלאה וטעם מדויק.</p>
+      <div class="timeline-grid">
+        <article class="timeline-card">
+          <span class="timeline-step">1</span>
+          <h3>בחירת חלקות ובציר מדויק</h3>
+          <p>בדיקות הבשלה שבועיות, בחירת ענבים ידנית ותזמון בציר לפי אופי כל זן - כדי לשמור על איזון וניקיון טעמים.</p>
+        </article>
+        <article class="timeline-card">
+          <span class="timeline-step">2</span>
+          <h3>יישון וטעימות לאורך הדרך</h3>
+          <p>כל סדרה עוברת טעימות פנימיות, התאמות טכניות ועדינות ביישון כדי להגיע לתוצאה עגולה ונעימה לשתייה.</p>
+        </article>
+        <article class="timeline-card">
+          <span class="timeline-step">3</span>
+          <h3>התאמה אישית לפני משלוח</h3>
+          <p>לפני יציאה ללקוח אנחנו ממליצים על הרכב בקבוקים, טמפרטורת הגשה ושילובי אוכל לפי אופי האירוח שלכם.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pairings" class="text-section">
+      <h2>התאמת יין חכמה לארוחה</h2>
+      <p class="section-intro">בחרו סגנון אירוח וקבלו המלצה מהירה. אפשר לשלב כמה סוגים באותה הזמנה כדי לבנות חוויה עשירה סביב השולחן.</p>
+      <div class="pairing-controls" role="tablist" aria-label="בחירת סגנון ארוחה">
+        <button class="pairing-btn active" type="button" data-pairing="שישי">שולחן שישי</button>
+        <button class="pairing-btn" type="button" data-pairing="בשרים">בשרים</button>
+        <button class="pairing-btn" type="button" data-pairing="גבינות">גבינות ופסטות</button>
+        <button class="pairing-btn" type="button" data-pairing="אירוח">אירוח קליל</button>
+      </div>
+      <div class="pairing-result" id="pairing-result" aria-live="polite">
+        <h3>שולחן שישי</h3>
+        <p>המלצה: להתחיל עם מרלו 25 לפתיחה רכה ונעימה, ולעבור לקברנה 24 לצד המנה המרכזית לקבלת עומק וטעם עשיר.</p>
       </div>
     </section>
 
@@ -1575,6 +1727,45 @@ const setupLightbox = () => {
     });
   };
 
+
+  const setupPairingAdvisor = () => {
+    const buttons = document.querySelectorAll(".pairing-btn");
+    const result = document.getElementById("pairing-result");
+    if (!buttons.length || !result) return;
+
+    const pairings = {
+      "שישי": {
+        title: "שולחן שישי",
+        text: "המלצה: להתחיל עם מרלו 25 לפתיחה רכה ונעימה, ולעבור לקברנה 24 לצד המנה המרכזית לקבלת עומק וטעם עשיר.",
+      },
+      "בשרים": {
+        title: "בשרים",
+        text: "המלצה: קברנה 24 יתאים לנתחים עשירים וצלייה ארוכה, ובמידה ורוצים רעננות נוספת אפשר לשלב קברנה 25 בכוס הראשונה.",
+      },
+      "גבינות": {
+        title: "גבינות ופסטות",
+        text: "המלצה: מרלו 25 עם גבינות קשות ופסטות ברוטב שמנת או עגבניות, בזכות פרופיל פירותי עגול וסיומת נקייה.",
+      },
+      "אירוח": {
+        title: "אירוח קליל",
+        text: "המלצה: קברנה 25 כמוביל הערב - מאוזן, ורסטילי ונעים לשיחה ארוכה עם נשנושים ומנות פתיחה.",
+      },
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.pairing;
+        const selected = pairings[key];
+        if (!selected) return;
+
+        buttons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        result.innerHTML = `<h3>${selected.title}</h3><p>${selected.text}</p>`;
+      });
+    });
+  };
+
+
   renderCart();
   setupFaqAccordion();
   setupLightbox();
@@ -1582,6 +1773,7 @@ const setupLightbox = () => {
   setupScrollReveal();
   setupCookieBanner();
   setupAgeGate();
+  setupPairingAdvisor();
 });
 
   </script>
