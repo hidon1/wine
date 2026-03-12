@@ -191,17 +191,6 @@ nav a:hover { background: var(--wine); color: #fff; transform: translateY(-1px);
 .primary-btn { background: var(--wine); color: #fff; box-shadow: 0 12px 25px rgba(95, 29, 47, 0.24); }
 .ghost-btn { color: var(--wine); border: 1px solid rgba(95, 29, 47, 0.25); }
 .primary-btn:hover, .ghost-btn:hover { transform: translateY(-2px); }
-
-.hero-badges { display: flex; flex-wrap: wrap; gap: 0.55em; margin-top: 1.2em; animation: fadeSlideIn 1s ease 0.65s both; }
-.hero-badges span {
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(95, 29, 47, 0.12);
-  color: #523a34;
-  border-radius: 999px;
-  padding: 0.45em 0.9em;
-  font-size: 0.9em;
-}
-
 section {
   max-width: 1120px;
   margin: 1.5em auto;
@@ -255,10 +244,11 @@ footer p {
   padding: 1.3em;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, filter 0.45s ease;
   box-shadow: 0 4px 12px rgba(95, 29, 47, 0.08);
+  animation: gentleFloat 7.2s ease-in-out infinite;
 }
-.card:hover { transform: translateY(-8px); box-shadow: 0 20px 32px rgba(95, 29, 47, 0.18); }
+.card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 22px 34px rgba(95, 29, 47, 0.2); filter: saturate(1.05); }
 .card img {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -327,11 +317,12 @@ footer p {
   cursor: pointer;
   border: 1px solid rgba(95, 29, 47, 0.18);
   box-shadow: 0 10px 22px rgba(53, 18, 29, 0.2);
-  transition: transform 0.28s ease, filter 0.28s ease, box-shadow 0.28s ease;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease, box-shadow 0.5s ease;
+  animation: gentleFloat 6.8s ease-in-out infinite;
 }
 .gallery-grid img:hover,
 .gallery-grid video:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: translateY(-7px) scale(1.06);
   filter: brightness(1.05);
   box-shadow: 0 18px 28px rgba(53, 18, 29, 0.24);
 }
@@ -817,33 +808,6 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   font-weight: 600;
 }
 
-
-.experience-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0.75em;
-  margin-top: 1.4em;
-}
-
-.experience-item {
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid rgba(95, 29, 47, 0.15);
-  border-radius: 14px;
-  padding: 0.85em;
-  text-align: center;
-}
-
-.experience-item strong {
-  display: block;
-  color: var(--wine-deep);
-  font-size: 1.35rem;
-}
-
-.experience-item span {
-  color: #5e4c46;
-  font-size: 0.92rem;
-}
-
 .timeline-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -851,11 +815,44 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
 }
 
 .timeline-card {
+  perspective: 1200px;
+  min-height: 220px;
+}
+
+.timeline-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: gentleFloat 7.4s ease-in-out infinite;
+}
+
+.timeline-card:hover .timeline-card-inner {
+  transform: rotateY(180deg) translateY(-6px);
+}
+
+.timeline-face {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(160deg, #fff, #fdf6f1);
   border-radius: 16px;
   border: 1px solid rgba(95, 29, 47, 0.1);
   padding: 1.1em;
   box-shadow: 0 8px 25px rgba(53, 18, 29, 0.08);
+  backface-visibility: hidden;
+}
+
+.timeline-face.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(150deg, rgba(95, 29, 47, 0.96), rgba(70, 23, 36, 0.93));
+  color: #fff;
+}
+
+.timeline-face.back h3,
+.timeline-face.back p {
+  color: #fff;
 }
 
 .timeline-step {
@@ -881,49 +878,22 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   color: #5d4a44;
 }
 
-.pairing-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6em;
-  justify-content: center;
-  margin-bottom: 1em;
+header.hero,
+section,
+.testimonial-card,
+.feature-card,
+.faq-item,
+.timeline-face {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
 
-.pairing-btn {
-  border: 1px solid rgba(95, 29, 47, 0.2);
-  background: #fff;
-  color: var(--wine-deep);
-  border-radius: 999px;
-  padding: 0.52em 1em;
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
+header.hero:hover,
+section:hover,
+.testimonial-card:hover,
+.feature-card:hover,
+.faq-item:hover {
+  transform: translateY(-4px);
 }
-
-.pairing-btn.active {
-  background: var(--wine);
-  color: #fff;
-}
-
-.pairing-result {
-  max-width: 780px;
-  margin: 0 auto;
-  background: linear-gradient(130deg, rgba(95, 29, 47, 0.08), rgba(255, 255, 255, 0.7));
-  border: 1px solid rgba(95, 29, 47, 0.12);
-  border-radius: 14px;
-  padding: 1em;
-}
-
-.pairing-result h3 {
-  margin: 0 0 0.3em;
-  color: var(--wine-deep);
-}
-
-.pairing-result p {
-  margin: 0;
-  color: #4c3a34;
-}
-
 
 @media (max-width: 960px) {
   .nav-bar { position: static; flex-direction: column; align-items: flex-start; }
@@ -937,7 +907,6 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   nav { width: 100%; }
   nav a { width: 100%; text-align: center; }
   .hero-actions .primary-btn, .hero-actions .ghost-btn { width: 100%; text-align: center; }
-  .hero-badges span { width: 100%; text-align: center; }
   .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
   .cookie-banner button { width: 100%; }
   .age-gate-actions { grid-template-columns: 1fr; }
@@ -974,6 +943,11 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
   </style>
@@ -1016,7 +990,6 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
         <a href="#experience">חוויה ביקב</a>
-        <a href="#pairings">התאמות יין</a>
         <a href="#about">עלינו</a>
         <a href="#faq">שאלות נפוצות</a>
         <a href="#contact">יצירת קשר</a>
@@ -1028,22 +1001,6 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <div class="hero-copy">
         <h1>יין ישראלי איכותי וטעים בכשרות מהודרת<br>שנוצר לאירוח מרגש וזיכרונות טובים</h1>
         <p class="subtitle">ברוכים הבאים ליקב דורות — בית ליינות בעבודת יד, לשירות אישי, ולחוויה חמה שמחברת בין כרם, משפחה ושולחן אחד מלא שמחה.</p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#shop">לצפייה בקולקציה החדשה</a>
-          <a class="ghost-btn" href="#story">להכיר את הדרך שלנו</a>
-        </div>
-        <div class="hero-badges">
-          <span>בציר מוקפד מהחלקות הטובות</span>
-          <span>משלוח מאובטח עד הבית</span>
-          <span>התאמה אישית לתפריט ואירוח</span>
-          <span>ליווי מקצועי בכל הזמנה</span>
-        </div>
-        <div class="experience-strip">
-          <div class="experience-item"><strong>98%</strong><span>לקוחות חוזרים להזמנה נוספת</span></div>
-          <div class="experience-item"><strong>24-48 ש׳</strong><span>זמן אספקה ממוצע במרכז</span></div>
-          <div class="experience-item"><strong>3 דורות</strong><span>משפחה, כרם ואירוח סביב שולחן אחד</span></div>
-          <div class="experience-item"><strong>כשרות מהודרת</strong><span>ייצור בהקפדה מלאה בכל שלב</span></div>
-        </div>
       </div>
     </div>
   </header>
@@ -1116,6 +1073,7 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
         <img src="gallery5.jpg" alt="תמונה מהכרם 2">
         <img src="gallery6.jpg" alt="תמונה מהכרם 3">
         <video src="1.mp4" controls preload="metadata" aria-label="וידאו מהיקב 2"></video>
+        <video src="גפן.mp4" controls preload="metadata" aria-label="וידאו מהיקב גפן"></video>
         <img src="1000.png" alt="מותג דורות 2">
         <img src="קברנה 25.png" alt="בקבוק דורות 3">
         <img src="מרלו 25.png" alt="בקבוק דורות 4">
@@ -1133,35 +1091,47 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
       <p class="section-intro">לקחנו את הדרך שלנו ביקב והפכנו אותה למסלול ברור: מהכרם ועד הכוס, עם שקיפות מלאה וטעם מדויק.</p>
       <div class="timeline-grid">
         <article class="timeline-card">
-          <span class="timeline-step">1</span>
-          <h3>בחירת חלקות ובציר מדויק</h3>
-          <p>בדיקות הבשלה שבועיות, בחירת ענבים ידנית ותזמון בציר לפי אופי כל זן - כדי לשמור על איזון וניקיון טעמים.</p>
+          <div class="timeline-card-inner">
+            <div class="timeline-face front">
+              <span class="timeline-step">1</span>
+              <h3>בחירת חלקות ובציר מדויק</h3>
+              <p>בדיקות הבשלה שבועיות, בחירת ענבים ידנית ותזמון בציר לפי אופי כל זן - כדי לשמור על איזון וניקיון טעמים.</p>
+            </div>
+            <div class="timeline-face back">
+              <span class="timeline-step">1</span>
+              <h3>דיוק שנולד מהשטח</h3>
+              <p>מאחורי כל בציר עומדות מדידות בשטח והקשבה לפרי - כך כל בקבוק מתחיל בסיס מאוזן ונקי כבר מהכרם.</p>
+            </div>
+          </div>
         </article>
         <article class="timeline-card">
-          <span class="timeline-step">2</span>
-          <h3>יישון וטעימות לאורך הדרך</h3>
-          <p>כל סדרה עוברת טעימות פנימיות, התאמות טכניות ועדינות ביישון כדי להגיע לתוצאה עגולה ונעימה לשתייה.</p>
+          <div class="timeline-card-inner">
+            <div class="timeline-face front">
+              <span class="timeline-step">2</span>
+              <h3>יישון וטעימות לאורך הדרך</h3>
+              <p>כל סדרה עוברת טעימות פנימיות, התאמות טכניות ועדינות ביישון כדי להגיע לתוצאה עגולה ונעימה לשתייה.</p>
+            </div>
+            <div class="timeline-face back">
+              <span class="timeline-step">2</span>
+              <h3>איזון בכל לגימה</h3>
+              <p>הטעימות הרציפות שומרות על הרמוניה בין פרי, גוף וסיומת - לחוויה נעימה שמרגישה מדויקת ועדינה.</p>
+            </div>
+          </div>
         </article>
         <article class="timeline-card">
-          <span class="timeline-step">3</span>
-          <h3>התאמה אישית לפני משלוח</h3>
-          <p>לפני יציאה ללקוח אנחנו ממליצים על הרכב בקבוקים, טמפרטורת הגשה ושילובי אוכל לפי אופי האירוח שלכם.</p>
+          <div class="timeline-card-inner">
+            <div class="timeline-face front">
+              <span class="timeline-step">3</span>
+              <h3>התאמה אישית לפני משלוח</h3>
+              <p>לפני יציאה ללקוח אנחנו ממליצים על הרכב בקבוקים, טמפרטורת הגשה ושילובי אוכל לפי אופי האירוח שלכם.</p>
+            </div>
+            <div class="timeline-face back">
+              <span class="timeline-step">3</span>
+              <h3>חוויה תפורה לאירוח שלכם</h3>
+              <p>בצד האחורי מסתתר השירות האישי שלנו: המלצות הגשה ושילובים שיעזרו להפוך כל שולחן למדויק וחגיגי.</p>
+            </div>
+          </div>
         </article>
-      </div>
-    </section>
-
-    <section id="pairings" class="text-section">
-      <h2>התאמת יין חכמה לארוחה</h2>
-      <p class="section-intro">בחרו סגנון אירוח וקבלו המלצה מהירה. אפשר לשלב כמה סוגים באותה הזמנה כדי לבנות חוויה עשירה סביב השולחן.</p>
-      <div class="pairing-controls" role="tablist" aria-label="בחירת סגנון ארוחה">
-        <button class="pairing-btn active" type="button" data-pairing="שישי">שולחן שישי</button>
-        <button class="pairing-btn" type="button" data-pairing="בשרים">בשרים</button>
-        <button class="pairing-btn" type="button" data-pairing="גבינות">גבינות ופסטות</button>
-        <button class="pairing-btn" type="button" data-pairing="אירוח">אירוח קליל</button>
-      </div>
-      <div class="pairing-result" id="pairing-result" aria-live="polite">
-        <h3>שולחן שישי</h3>
-        <p>המלצה: להתחיל עם מרלו 25 לפתיחה רכה ונעימה, ולעבור לקברנה 24 לצד המנה המרכזית לקבלת עומק וטעם עשיר.</p>
       </div>
     </section>
 
@@ -1651,7 +1621,7 @@ const setupLightbox = () => {
 
 
   const setupScrollReveal = () => {
-    const revealItems = document.querySelectorAll("header.hero, section, .card, .testimonial-card, .faq-item, .footer-grid > div, .hero-copy > *, .hero-badges span");
+    const revealItems = document.querySelectorAll("header.hero, section, .card, .testimonial-card, .faq-item, .footer-grid > div, .hero-copy > *");
     revealItems.forEach((item) => item.classList.add("reveal-on-scroll"));
 
     const observer = new IntersectionObserver(
@@ -1729,45 +1699,6 @@ const setupLightbox = () => {
     });
   };
 
-
-  const setupPairingAdvisor = () => {
-    const buttons = document.querySelectorAll(".pairing-btn");
-    const result = document.getElementById("pairing-result");
-    if (!buttons.length || !result) return;
-
-    const pairings = {
-      "שישי": {
-        title: "שולחן שישי",
-        text: "המלצה: להתחיל עם מרלו 25 לפתיחה רכה ונעימה, ולעבור לקברנה 24 לצד המנה המרכזית לקבלת עומק וטעם עשיר.",
-      },
-      "בשרים": {
-        title: "בשרים",
-        text: "המלצה: קברנה 24 יתאים לנתחים עשירים וצלייה ארוכה, ובמידה ורוצים רעננות נוספת אפשר לשלב קברנה 25 בכוס הראשונה.",
-      },
-      "גבינות": {
-        title: "גבינות ופסטות",
-        text: "המלצה: מרלו 25 עם גבינות קשות ופסטות ברוטב שמנת או עגבניות, בזכות פרופיל פירותי עגול וסיומת נקייה.",
-      },
-      "אירוח": {
-        title: "אירוח קליל",
-        text: "המלצה: קברנה 25 כמוביל הערב - מאוזן, ורסטילי ונעים לשיחה ארוכה עם נשנושים ומנות פתיחה.",
-      },
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const key = button.dataset.pairing;
-        const selected = pairings[key];
-        if (!selected) return;
-
-        buttons.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        result.innerHTML = `<h3>${selected.title}</h3><p>${selected.text}</p>`;
-      });
-    });
-  };
-
-
   renderCart();
   setupFaqAccordion();
   setupLightbox();
@@ -1775,7 +1706,6 @@ const setupLightbox = () => {
   setupScrollReveal();
   setupCookieBanner();
   setupAgeGate();
-  setupPairingAdvisor();
 });
 
   </script>
