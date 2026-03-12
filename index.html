@@ -213,6 +213,45 @@ section h2 { text-align: center; margin: 0 0 0.6em; font-size: clamp(2.1rem, 3.2
   animation: textSoftDrop 1.15s ease both;
 }
 
+.text-banner {
+  display: inline-block;
+  background: rgba(255, 250, 244, 0.3);
+  border: 1px solid rgba(95, 29, 47, 0.14);
+  border-radius: 14px;
+  padding: 0.5em 0.8em;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 18px rgba(41, 14, 22, 0.08);
+}
+
+#story p,
+#about h3,
+#about p,
+#experience .section-intro,
+#experience .timeline-face h3,
+#experience .timeline-face p,
+#testimonials .rating,
+#testimonials .quote,
+#testimonials .name,
+#faq .faq-answer p,
+#faq .fact-item strong,
+#faq .fact-item span {
+  display: inline-block;
+  background: rgba(255, 250, 244, 0.3);
+  border: 1px solid rgba(95, 29, 47, 0.14);
+  border-radius: 14px;
+  padding: 0.5em 0.8em;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 18px rgba(41, 14, 22, 0.08);
+}
+
+#story p,
+#about p,
+#experience .timeline-face p,
+#faq .faq-answer p {
+  width: fit-content;
+  max-width: 100%;
+}
+
 .section-intro,
 .card p,
 .feature-card p,
@@ -627,6 +666,11 @@ footer { padding: 1.8em 1.2em; color: #f7ecdf; background: var(--wine-deep); mar
   justify-content: space-between;
   align-items: center;
   color: var(--wine-deep);
+}
+
+.faq-question .text-banner {
+  margin-inline-end: auto;
+  text-align: right;
 }
 
 .faq-question::before {
@@ -1146,31 +1190,31 @@ section:hover,
       <h2>שאלות ותשובות</h2>
       <div class="faq-grid">
         <div class="faq-item">
-          <button class="faq-question" type="button">האם היין כשר?</button>
+          <button class="faq-question" type="button"><span class="text-banner">האם היין כשר?</span></button>
           <div class="faq-answer"><p>כן. היינות כשרים למהדרין, ומיוצרים ביקב תוך הקפדה מלאה על ההלכה ועל תהליך עבודה מוקפד על ידי אברכים יראי שמיים.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">אפשר לקבל המלצה אישית?</button>
+          <button class="faq-question" type="button"><span class="text-banner">אפשר לקבל המלצה אישית?</span></button>
           <div class="faq-answer"><p>בוודאי. ספרו לנו מה מגישים, כמה סועדים יש ומה סגנון הארוחה, ואנחנו נתאים לכם יין מדויק ונעים לכל שולחן.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">היינות מתאימים לאירועים?</button>
+          <button class="faq-question" type="button"><span class="text-banner">היינות מתאימים לאירועים?</span></button>
           <div class="faq-answer"><p>כן. ניתן להזמין לאירועים משפחתיים, שבת חתן, בר מצווה, חינה, אירועי קהילה ומתנות מכובדות לאורחים.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">איך בוחרים יין לשבת או לחג?</button>
+          <button class="faq-question" type="button"><span class="text-banner">איך בוחרים יין לשבת או לחג?</span></button>
           <div class="faq-answer"><p>אנחנו ממליצים לפי סוג המנות, מספר האורחים והעדפה אישית — יין קליל לפתיחה, ויין עמוק יותר למנה מרכזית.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">אפשר להזמין כמה סוגים יחד?</button>
+          <button class="faq-question" type="button"><span class="text-banner">אפשר להזמין כמה סוגים יחד?</span></button>
           <div class="faq-answer"><p>בהחלט. רבים מהלקוחות בוחרים שילוב של כמה יינות כדי ליצור חוויה מגוונת, ואנחנו נשמח לבנות עבורכם מארז מאוזן.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">איך מומלץ להגיש את היין?</button>
+          <button class="faq-question" type="button"><span class="text-banner">איך מומלץ להגיש את היין?</span></button>
           <div class="faq-answer"><p>כדאי לפתוח יין אדום כ-20 דקות לפני ההגשה ולהגיש בכוס מתאימה. נשמח לשלוח הנחיות קצרות לכל בקבוק שתזמינו.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" type="button">יש לכם מארזים למתנה?</button>
+          <button class="faq-question" type="button"><span class="text-banner">יש לכם מארזים למתנה?</span></button>
           <div class="faq-answer"><p>כן, יש אפשרות למארזי מתנה מסודרים ומכובדים עם ברכה אישית — מתאים למשפחה, לרבנים, לשכנים ולמארחים.</p></div>
         </div>
       </div>
