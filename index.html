@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 <head>
   <meta charset="UTF-8">
   <title>יקב דורות | האתר הרשמי</title>
@@ -8,199 +8,2503 @@
   <link rel="apple-touch-icon" href="1000.png">
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Heebo:wght@400;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Rubik:wght@400;500;700&family=Varela+Round&family=Noto+Serif+Hebrew:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-/* variables */
+
+/* ============================================================
+   1. CSS VARIABLES
+============================================================ */
 :root {
-  --clr-bordeaux-900: #291018;
-  --clr-bordeaux-800: #35121d;
-  --clr-bordeaux-700: #5f1d2f;
-  --clr-bordeaux-500: #7a3147;
-  --clr-gold-500: #c5a16a;
-  --clr-ivory-100: #fffdf9;
-  --clr-ivory-200: #faf4eb;
-  --clr-ink-900: #241714;
-  --clr-ink-700: #4c3a34;
-  --glass-bg: rgba(255, 250, 243, 0.62);
-  --glass-strong: rgba(255, 251, 245, 0.76);
-  --glass-border: rgba(255, 229, 201, 0.4);
-  --overlay: rgba(36, 14, 22, 0.5);
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 26px;
-  --blur-sm: blur(8px);
-  --blur-md: blur(14px);
-  --shadow-sm: 0 10px 24px rgba(41, 16, 24, 0.16);
-  --shadow-md: 0 18px 45px rgba(41, 16, 24, 0.22);
-  --space-1: .5rem; --space-2: .75rem; --space-3: 1rem; --space-4: 1.4rem; --space-5: 2rem; --space-6: 2.8rem;
-  --fs-sm: .92rem; --fs-md: 1rem; --fs-lg: 1.1rem; --fs-xl: clamp(2.2rem, 4vw, 3.8rem);
-  --grad-main: linear-gradient(130deg, rgba(95,29,47,.93), rgba(53,18,29,.92));
+  --wine:          #6b1e33;
+  --wine-dark:     #3d0f1c;
+  --wine-deep:     #2a0c15;
+  --wine-light:    #8b3252;
+  --gold:          #c9a96e;
+  --gold-light:    #e8d5a3;
+  --cream:         #fdf8f2;
+  --ink:           #1e1209;
+  --ink-soft:      #3d2d25;
+  --muted:         #7a665e;
+  --text-light:    #f5ede6;
+
+  --glass-bg:           rgba(255, 252, 248, 0.78);
+  --glass-bg-dark:      rgba(43, 12, 22, 0.75);
+  --glass-border:       rgba(201, 169, 110, 0.35);
+  --glass-blur:         blur(16px);
+
+  --shadow-sm:   0 4px 14px rgba(42,12,21,0.10);
+  --shadow-md:   0 10px 30px rgba(42,12,21,0.18);
+  --shadow-lg:   0 22px 52px rgba(42,12,21,0.24);
+  --shadow-card: 0 8px 26px rgba(42,12,21,0.14);
+  --shadow-gold: 0 6px 22px rgba(201,169,110,0.35);
+
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   22px;
+  --radius-xl:   32px;
+  --radius-full: 999px;
+
+  --font-body:    'Varela Round','Heebo','Rubik',sans-serif;
+  --font-heading: 'Noto Serif Hebrew','Cormorant Garamond',serif;
+
+  --tr-fast: 0.2s ease;
+  --tr-base: 0.38s cubic-bezier(0.22,1,0.36,1);
+  --tr-slow: 0.7s  cubic-bezier(0.22,1,0.36,1);
+
+  --grad-wine:  linear-gradient(135deg,#6b1e33,#3d0f1c);
+  --grad-gold:  linear-gradient(135deg,#c9a96e,#a87d40);
+  --grad-cream: linear-gradient(160deg,#fdf8f2,#f5ede3);
+  --grad-border: linear-gradient(135deg,#c9a96e,#6b1e33,#c9a96e);
 }
-/* reset/base */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0; font-family: 'Varela Round','Rubik','Heebo','Assistant',sans-serif; direction: rtl;
-  color: var(--clr-ink-900); line-height: 1.75; overflow-x: hidden; background: var(--clr-ivory-200);
-  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; padding-bottom: 88px;
+
+/* ============================================================
+   2. RESET / BASE
+============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  font-weight:500;
+  direction:rtl;
+  background:#e8ddd1;
+  color:var(--ink);
+  line-height:1.75;
+  padding-bottom:80px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
 }
-body.age-gate-locked { overflow: hidden; }
-h1,h2,h3 { font-family: 'Noto Serif Hebrew', 'Cormorant Garamond', serif; margin: 0; letter-spacing: .02em; }
-p,li,label,input,textarea,button,a { font-weight: 600; }
-a,button,input,textarea { font: inherit; }
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible { outline: 3px solid var(--clr-gold-500); outline-offset: 2px; }
-/* layout */
-#background-container { position: fixed; inset: 0; z-index: -2; }
-.background-slide { position:absolute; inset:0; background: center/cover no-repeat; filter: saturate(.9) brightness(.88); }
-#background-container::after { content:""; position:absolute; inset:0; background: linear-gradient(to bottom, rgba(255,250,244,.2), var(--overlay)); z-index:1; }
-main, .hero, footer > * { position: relative; z-index: 2; }
-section, .hero { width: min(1140px, calc(100% - 1.4rem)); margin: 1.1rem auto; }
-/* components */
-.content-panel, .glass-panel {
-  background: var(--glass-bg); backdrop-filter: var(--blur-md); border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+body.age-gate-locked{overflow:hidden;}
+h1,h2,h3,h4{font-family:var(--font-heading);font-weight:700;line-height:1.2;}
+a{text-decoration:none;color:inherit;}
+img,video{max-width:100%;display:block;}
+button,input,textarea{font-family:inherit;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* ============================================================
+   3. SCROLL PROGRESS BAR
+============================================================ */
+#scroll-progress{
+  position:fixed;top:0;right:0;left:0;
+  height:3px;z-index:9999;
+  background:var(--grad-border);
+  transform-origin:right;
+  transform:scaleX(0);
+  transition:transform 0.1s linear;
 }
-.nav-shell { position: sticky; top: 10px; z-index: 50; }
-.nav-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: .75rem 1rem;
-  background: rgba(62,19,33,.72); border: 1px solid rgba(246,224,203,.3); backdrop-filter: blur(12px); border-radius: var(--radius-md);
+
+/* ============================================================
+   4. FLOATING SPARKLES (hero decoration)
+============================================================ */
+.sparkle-wrap{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;
 }
-.brand-mark { display: flex; align-items: center; gap: .9rem; }
-.brand-logo { width: clamp(88px,9vw,124px); aspect-ratio: 1; border-radius: 16px; padding: .35rem; background: #fff; }
-.brand-name { font-size: clamp(1.8rem,3vw,2.5rem); color: #fff8ef; }
-.brand-small { color: #f6d9b3; font-size: .95rem; letter-spacing: .1em; }
-nav { display: flex; flex-wrap: wrap; gap: .4rem; }
-nav a { color: #fff; text-decoration: none; border-radius: 999px; padding: .45rem .8rem; border: 1px solid rgba(255,255,255,.24); transition: .25s ease; }
-nav a:hover { background: rgba(255,255,255,.14); transform: translateY(-1px); }
-.cart-toggle { border:none; border-radius: 999px; background: #fff; color: var(--clr-bordeaux-800); padding: .55rem .95rem; cursor: pointer; font-weight:700; }
-.hero { padding: 1rem 0 2rem; }
-.hero-panel { padding: clamp(1.2rem,2.8vw,2rem); }
-.hero-copy h1 { font-size: var(--fs-xl); color: #fff; line-height: 1.2; max-width: 20ch; display:grid; gap:.25rem; text-wrap:balance; }
-.hero-copy h1 .hero-line{display:block;}
-.hero-copy h1 .hero-line--accent{color:#f6d9b3;font-size:clamp(1.15rem,2vw,1.55rem);font-family:'Assistant','Heebo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
-.subtitle-panel { margin-top: 1rem; padding: 1rem 1.2rem; background: rgba(255,251,246,.74); border:1px solid rgba(255,228,196,.45); border-radius: var(--radius-md); backdrop-filter: var(--blur-sm); max-width: 780px; }
-.subtitle { margin: 0; color: var(--clr-ink-700); }
-.hero-actions { margin-top: 1rem; display:flex; flex-wrap:wrap; gap:.7rem; }
-.primary-btn,.ghost-btn { border-radius: 12px; text-decoration:none; padding:.75rem 1.2rem; transition:.22s ease; font-weight:700; }
-.primary-btn { background: var(--grad-main); color:#fff; box-shadow: var(--shadow-sm); }
-.ghost-btn { color:#fff; border:1px solid rgba(255,255,255,.45); }
-.primary-btn:hover,.ghost-btn:hover { transform: translateY(-2px); }
-.section-box { padding: clamp(1rem,2.5vw,2rem); }
-section h2 { color: var(--clr-bordeaux-800); text-align:center; font-size: clamp(2rem,3vw,2.8rem); margin-bottom:.7rem; }
-.section-intro { max-width: 760px; margin: 0 auto 1.2rem; text-align:center; color: var(--clr-ink-700); }
-.grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-.card { background: var(--glass-strong); border:1px solid var(--glass-border); border-radius: var(--radius-md); padding:1rem; box-shadow: var(--shadow-sm); display:flex; flex-direction:column; transition: .25s ease; }
-.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.card img { width:100%; aspect-ratio:1/1; object-fit: contain; background:#fff; border-radius:12px; padding:.4rem; }
-.card h3 { color: var(--clr-bordeaux-800); margin:.7rem 0 .4rem; }
-.card p { margin:0; color: var(--clr-ink-700); font-size: .96rem; }
-.price { margin:.65rem 0; font-size:1.3rem; color:var(--clr-bordeaux-700); font-weight:800; }
-.buy-btn { margin-top:auto; border:none; border-radius: 10px; padding:.72rem; background: var(--grad-main); color:#fff; cursor:pointer; }
-.text-group { padding: 1rem 1.1rem; }
-.text-group p { margin: .6rem 0; }
-.story-image { max-width: 340px; width:100%; display:block; margin: 0 auto 1rem; border-radius: 14px; box-shadow: var(--shadow-sm); }
-.testimonial-grid,.gallery-grid,.timeline-grid,.faq-grid { display:grid; gap:1rem; }
-.testimonial-grid { grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
-.testimonial-card,.faq-item,.fact-item,.feature-card,.timeline-face,.about-banner { background: var(--glass-strong); border:1px solid var(--glass-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
-.testimonial-card { padding:1rem; }
-.rating { color: var(--clr-gold-500); }
-.gallery-grid { grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); }
-.gallery-grid img,.gallery-grid video { width:100%; height:145px; object-fit:cover; border-radius:12px; border:1px solid rgba(95,29,47,.15); box-shadow: var(--shadow-sm); cursor: zoom-in; transition:.22s ease; }
-.gallery-grid img:hover,.gallery-grid video:hover { transform: translateY(-4px); }
-.timeline-grid { grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); }
-.timeline-card-inner { min-height:220px; position:relative; transform-style:preserve-3d; transition:.7s ease; }
-.timeline-card:hover .timeline-card-inner { transform: rotateY(180deg); }
-.timeline-face { position:absolute; inset:0; padding:1rem; backface-visibility:hidden; }
-.timeline-face.back { transform: rotateY(180deg); background: var(--grad-main); color:#fff; }
-.faq-shell { padding: 1rem; }
-.faq-item { overflow: hidden; }
-.faq-question { width:100%; border:none; background:transparent; padding:1rem; text-align:right; display:flex; justify-content:space-between; cursor:pointer; color: var(--clr-bordeaux-800); }
-.faq-question::before { content:'+'; }
-.faq-item.open .faq-question::before { content:'−'; }
-.faq-answer { display:none; padding: 0 1rem 1rem; color: var(--clr-ink-700); }
-.faq-item.open .faq-answer { display:block; }
-.site-facts { margin-top:1rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.8rem; }
-.fact-item { padding: .9rem; text-align:center; }
-.contact-banner{margin-bottom:1rem;padding:1rem 1.1rem;background:linear-gradient(120deg,rgba(95,29,47,.9),rgba(53,18,29,.86));color:#fff8ef;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);border:1px solid rgba(246,217,179,.35);}
-.contact-banner h3{font-size:clamp(1.2rem,2.4vw,1.6rem);margin-bottom:.35rem;}
-.contact-banner p{margin:0;color:#f8ead7;}
-#contact form{display:grid;gap:.7rem;}
-#contact input,#contact textarea{width:100%;border:1px solid rgba(95,29,47,.24);border-radius:10px;padding:.72rem .9rem;background:rgba(255,255,255,.92);color:var(--clr-ink-900);}
-#contact textarea{min-height:130px;resize:vertical;}
-/* cart */
-.cart-drawer{position:fixed;top:0;right:0;width:min(390px,94vw);height:100vh;background:rgba(255,253,248,.95);backdrop-filter:blur(10px);border-left:1px solid rgba(95,29,47,.14);box-shadow:-16px 0 36px rgba(35,16,20,.22);z-index:100;padding:1rem;display:flex;flex-direction:column;transform:translateX(102%);transition:.34s ease}
-.cart-drawer.open{transform:translateX(0)} .cart-item{display:grid;grid-template-columns:auto 1fr auto auto;gap:.45rem;align-items:center;background:#fff;border:1px solid rgba(95,29,47,.08);padding:.6rem;border-radius:10px}
-.cart-items{overflow:auto;display:flex;flex-direction:column;gap:.6rem;min-height:140px}
-/* modal */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;padding:1rem;align-items:center;justify-content:center}.modal.open{display:flex}.modal-inner{position:relative;width:min(95vw,1120px);padding:1rem;border-radius:16px;background:rgba(28,11,17,.74);border:1px solid rgba(255,255,255,.25)}
-.modal-content{display:block;margin:0 auto;width:min(90vw,980px);max-height:75vh;object-fit:contain;border-radius:12px}.modal-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.45);color:#fff;cursor:pointer}.modal-prev{right:calc(100% + 12px)}.modal-next{left:calc(100% + 12px)}
-/* sections */
-footer { margin-top:1.5rem; padding:1.8rem 1.2rem; color:#f7ecdf; background: var(--clr-bordeaux-800); }
-.footer-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-.cookie-banner{position:fixed;inset-inline:0;bottom:0;z-index:1100;display:flex;gap:1rem;justify-content:space-between;align-items:center;padding:.85rem 1.2rem;background:rgba(43,16,24,.95);color:#f7eee6;backdrop-filter:blur(8px)}.cookie-banner.hidden{display:none}
-.age-gate{position:fixed;inset:0;z-index:1300;display:none;align-items:center;justify-content:center;padding:1rem;background:radial-gradient(circle at 25% 20%, rgba(122,46,71,.3), rgba(17,6,10,.9));backdrop-filter:blur(8px)}.age-gate.open{display:flex}
-.age-gate-card{width:min(700px,96vw);padding:1.8rem 1.3rem;border-radius:24px;background:linear-gradient(160deg,#fffdf8,#f8eee4 55%,#f4e8dd);border:1px solid rgba(95,29,47,.16);text-align:center}
-/* responsive */
-@media (max-width: 960px){.nav-bar{flex-direction:column;align-items:flex-start}.nav-shell{position:static}.modal-prev,.modal-next{display:none}}
-@media (max-width: 640px){section,.hero{width:min(1140px,calc(100% - .8rem))}nav,nav a,.hero-actions a,.hero-actions button{width:100%;text-align:center}.cookie-banner{flex-direction:column;align-items:stretch;text-align:center}.age-gate-actions{display:grid;grid-template-columns:1fr;gap:.8rem}}
-/* animations */
-.reveal-on-scroll{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal-on-scroll.visible{opacity:1;transform:translateY(0)}
+.sparkle{
+  position:absolute;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,110,0.9),transparent 70%);
+  animation:sparkleFly var(--dur,6s) ease-in-out infinite var(--delay,0s);
+  opacity:0;
+}
+
+/* ============================================================
+   5. BACKGROUND
+============================================================ */
+#background-container{position:fixed;inset:0;z-index:-2;}
+#background-container::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(253,248,242,0.22) 0%,rgba(236,227,216,0.28) 100%);
+}
+.background-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:0.82;filter:saturate(1.0);
+  transition:opacity 1s ease;
+}
+
+/* ============================================================
+   6. LAYOUT — sections wrapped in section-frame
+============================================================ */
+section{max-width:1140px;margin:2.5em auto;padding:0;}
+
+/* ── THE BEAUTIFUL FRAME ── */
+.section-frame{
+  position:relative;
+  background:linear-gradient(160deg,rgba(255,252,248,0.28),rgba(250,243,234,0.22));
+  backdrop-filter:var(--glass-blur);
+  -webkit-backdrop-filter:var(--glass-blur);
+  border-radius:var(--radius-xl);
+  padding:3.2em 2.8em 3em;
+  /* layered shadow: soft lift + deep wine glow */
+  box-shadow:
+    0 2px 0 rgba(201,169,110,0.35),
+    0 12px 35px rgba(42,12,21,0.16),
+    0 32px 70px rgba(42,12,21,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  border:1px solid rgba(201,169,110,0.22);
+  overflow:hidden;
+}
+
+/* animated shimmer gradient border ring */
+.section-frame::before{
+  content:"";
+  position:absolute;inset:-2px;
+  border-radius:calc(var(--radius-xl) + 2px);
+  background:linear-gradient(135deg,#c9a96e 0%,#6b1e33 35%,#3d0f1c 55%,#c9a96e 80%,#e8d5a3 100%);
+  background-size:400% 400%;
+  animation:borderShimmer 7s ease infinite;
+  z-index:-1;
+  opacity:0.6;
+}
+
+/* inner top accent stripe */
+.section-frame::after{
+  content:"";
+  position:absolute;top:0;right:0;left:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#c9a96e 30%,#e8d5a3 50%,#c9a96e 70%,transparent);
+  background-size:200% 100%;
+  animation:shimmerText 3.5s ease infinite;
+  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* decorative corner ornaments */
+.frame-corner{
+  pointer-events:none;
+  position:absolute;
+  width:28px;height:28px;
+  opacity:0.5;
+}
+.frame-corner::before,.frame-corner::after{
+  content:"";position:absolute;
+  background:var(--gold);border-radius:2px;
+}
+.frame-corner.tl{top:14px;right:18px;}
+.frame-corner.tl::before{width:18px;height:2px;top:0;right:0;}
+.frame-corner.tl::after{width:2px;height:18px;top:0;right:0;}
+.frame-corner.br{bottom:14px;left:18px;}
+.frame-corner.br::before{width:18px;height:2px;bottom:0;left:0;}
+.frame-corner.br::after{width:2px;height:18px;bottom:0;left:0;}
+.frame-corner.tr{top:14px;left:18px;}
+.frame-corner.tr::before{width:18px;height:2px;top:0;left:0;}
+.frame-corner.tr::after{width:2px;height:18px;top:0;left:0;}
+.frame-corner.bl{bottom:14px;right:18px;}
+.frame-corner.bl::before{width:18px;height:2px;bottom:0;right:0;}
+.frame-corner.bl::after{width:2px;height:18px;bottom:0;right:0;}
+
+section h2{
+  text-align:center;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--wine-deep);
+  margin-bottom:0.5em;
+}
+.section-intro{
+  text-align:center;max-width:760px;
+  margin:0 auto 2em;
+  color:var(--ink-soft);font-size:1.06em;line-height:1.8;
+}
+.text-section{max-width:920px;}
+
+/* ============================================================
+   7. SECTION TITLE WITH SHIMMER HEADING
+============================================================ */
+.section-title{text-align:center;margin-bottom:1.8em;}
+.section-title h2{margin-bottom:0.3em;position:relative;display:inline-block;}
+.section-title h2::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(201,169,110,0.55) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmerText 3s ease infinite;
+  mix-blend-mode:overlay;
+  border-radius:14px;
+  pointer-events:none;
+}
+.section-title h2{
+  background:rgba(201,169,110,0.10);
+  border-radius:14px;
+  padding:0.12em 0.55em;
+  border:1px solid rgba(201,169,110,0.20);
+}
+.gold-line{
+  display:block;width:60px;height:3px;
+  background:var(--grad-gold);
+  border-radius:var(--radius-full);
+  margin:0.5em auto 0;
+  animation:goldLinePulse 2.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   8. GLASS PANEL (inner content panels)
+============================================================ */
+.glass-panel{
+  background:rgba(255,252,248,0.68);
+  backdrop-filter:var(--glass-blur);
+  -webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);
+  padding:2em 2.4em;
+  box-shadow:var(--shadow-card);
+}
+.glass-panel h3{color:var(--wine-deep);margin-bottom:0.8em;font-size:1.3rem;}
+.glass-panel p{color:var(--ink-soft);line-height:1.85;margin-bottom:1em;font-size:1.04em;}
+.glass-panel p:last-child{margin-bottom:0;}
+
+/* ============================================================
+   9. BUTTONS
+============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:0.4em;padding:0.82em 1.7em;
+  border-radius:var(--radius-sm);
+  font-weight:700;font-size:1em;
+  border:none;cursor:pointer;
+  text-decoration:none;
+  position:relative;overflow:hidden;
+  transition:transform var(--tr-fast),box-shadow var(--tr-fast);
+}
+.btn::after{/* ripple layer */
+  content:"";position:absolute;border-radius:50%;
+  width:0;height:0;
+  background:rgba(255,255,255,0.35);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  transition:width 0.5s ease,height 0.5s ease,opacity 0.5s ease;
+  opacity:0;
+}
+.btn:active::after{width:200px;height:200px;opacity:1;}
+.btn:hover{transform:translateY(-3px);}
+.btn-primary{background:var(--grad-wine);color:#fff;box-shadow:0 8px 22px rgba(107,30,51,0.28);}
+.btn-primary:hover{box-shadow:0 14px 34px rgba(107,30,51,0.42);}
+.btn-ghost{background:transparent;color:var(--wine);border:1.5px solid rgba(107,30,51,0.3);}
+.btn-ghost:hover{background:rgba(107,30,51,0.07);}
+
+/* ============================================================
+   10. NAVIGATION
+============================================================ */
+.nav-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:1em;
+  position:sticky;top:12px;z-index:200;
+  padding:0.7em 1.2em;
+  background:rgba(38,10,20,0.9);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid rgba(201,169,110,0.25);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);
+  margin:1em;
+}
+.brand-mark{display:flex;align-items:center;gap:0.9em;flex-shrink:0;}
+.logo-flip-card{
+  width:clamp(88px,11vw,118px);height:clamp(88px,11vw,118px);
+  perspective:1200px;cursor:pointer;
+  margin-top:-18px;margin-bottom:-18px;
+  filter:drop-shadow(0 8px 22px rgba(42,12,21,0.35));
+  z-index:10;position:relative;
+}
+.logo-flip-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform var(--tr-slow);
+  animation:logoFloat 5s ease-in-out infinite;
+}
+.logo-flip-card:hover .logo-flip-inner,
+.logo-flip-card:focus-within .logo-flip-inner{transform:rotateY(180deg);}
+.logo-face{position:absolute;inset:0;border-radius:var(--radius-sm);backface-visibility:hidden;}
+.brand-logo{
+  width:100%;height:100%;object-fit:contain;
+  border-radius:var(--radius-sm);padding:0.35em;
+  background:rgba(255,255,255,0.93);
+  box-shadow:var(--shadow-sm);
+}
+.logo-back{
+  transform:rotateY(180deg);
+  display:grid;place-items:center;text-align:center;padding:0.65em;
+  background:var(--grad-wine);border-radius:var(--radius-sm);
+  border:1px solid rgba(255,240,225,0.4);
+}
+.logo-back p{margin:0;color:#fff;font-size:0.72rem;line-height:1.5;font-weight:600;}
+.brand-text{display:flex;flex-direction:column;line-height:1.1;}
+.brand-small{font-size:0.76em;font-weight:600;color:var(--gold-light);letter-spacing:0.1em;}
+.brand-name{
+  font-size:clamp(1.35rem,2.8vw,1.95rem);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;color:#fff;letter-spacing:0.04em;
+}
+nav{display:flex;align-items:center;gap:0.25em;flex-wrap:wrap;justify-content:center;}
+nav a{
+  color:rgba(255,255,255,0.82);font-weight:600;font-size:0.86em;
+  padding:0.38em 0.8em;border-radius:var(--radius-full);
+  border:1px solid transparent;
+  transition:all var(--tr-fast);
+}
+nav a:hover{background:rgba(255,255,255,0.14);color:#fff;border-color:rgba(255,255,255,0.2);}
+.cart-toggle{
+  display:inline-flex;align-items:center;gap:0.35em;
+  background:rgba(201,169,110,0.16);color:var(--gold-light);
+  border:1px solid rgba(201,169,110,0.32);
+  border-radius:var(--radius-sm);padding:0.48em 0.9em;
+  cursor:pointer;font-weight:700;font-size:0.93em;flex-shrink:0;
+  transition:all var(--tr-fast);
+}
+.cart-toggle:hover{background:rgba(201,169,110,0.3);color:#fff;}
+.cart-toggle.pulse-anim{animation:cartPulse 0.4s ease;}
+
+/* ============================================================
+   11. HERO
+============================================================ */
+header.hero{
+  padding:1.2em 1.4em 1.8em;
+  margin:0.6em;
+  border-radius:var(--radius-xl);
+  position:relative;
+  min-height:calc(100vh - 100px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.header-content{margin-top:0.8em;position:relative;z-index:1;flex:1;display:flex;align-items:center;}
+
+/* ── Hero two-column layout: ימין = טקסט  |  שמאל = תמונות ── */
+.hero-layout{
+  display:grid;
+  /* RTL: עמודה ראשונה = ימין, שנייה = שמאל */
+  grid-template-columns:55% 45%;
+  gap:2em;
+  align-items:center;
+  width:100%;
+}
+/* טקסט — עמודה ימנית (ראשונה ב-RTL) */
+.hero-copy{
+  grid-column:1;
+}
+/* תמונות — עמודה שמאלית (שנייה ב-RTL) */
+.hero-images-col{
+  grid-column:2;
+  position:relative;
+  height:min(55vh, 420px);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* h1 קטן יותר כדי שהכל ייכנס */
+.hero-copy h1{
+  font-size:clamp(2rem,4.2vw,3.6rem) !important;
+  line-height:1.18 !important;
+  margin-bottom:0.55em !important;
+}
+.hero-subtitle-panel{
+  padding:0.7em 1.1em !important;
+  margin-bottom:1em !important;
+}
+.hero-subtitle-panel p{font-size:0.97em !important;line-height:1.65 !important;}
+.hero-eyebrow{margin-bottom:0.6em !important;font-size:0.75em !important;}
+.hero-actions{gap:0.6em !important;}
+
+/* Floating image stack */
+.hero-img-slot{
+  position:absolute;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  opacity:0;
+  transition:opacity 1.1s ease, transform 1.1s ease;
+  pointer-events:none;
+  filter:drop-shadow(0 14px 36px rgba(42,12,21,0.42));
+}
+.hero-img-slot img{
+  width:100%;height:100%;
+  object-fit:contain;
+  background:transparent;
+  display:block;
+}
+.hero-img-slot.hi-main{
+  width:min(180px, 38%);
+  height:min(300px, 56vh);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0.92);
+}
+.hero-img-slot.hi-left{
+  width:min(120px, 26%);
+  height:min(195px, 37vh);
+  top:22%;left:8%;
+  transform:translateY(20px) rotate(-9deg);
+}
+.hero-img-slot.hi-right{
+  width:min(120px, 26%);
+  height:min(195px, 37vh);
+  top:22%;right:8%;
+  transform:translateY(20px) rotate(9deg);
+}
+.hero-img-slot.hi-bottom{
+  width:min(100px, 22%);
+  height:min(165px, 31vh);
+  bottom:3%;left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+}
+.hero-img-slot.visible{opacity:1;}
+.hero-img-slot.hi-main.visible{transform:translate(-50%,-50%) scale(1);}
+.hero-img-slot.hi-left.visible{transform:translateY(0) rotate(-9deg);}
+.hero-img-slot.hi-right.visible{transform:translateY(0) rotate(9deg);}
+.hero-img-slot.hi-bottom.visible{transform:translateX(-50%) rotate(-4deg);}
+
+/* floating glow particles */
+.hero-glow{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,169,110,0.35) 0%, transparent 70%);
+  pointer-events:none;
+  animation:heroGlow var(--dur,6s) ease-in-out infinite var(--delay,0s);
+}
+
+@media(max-width:820px){
+  header.hero{min-height:auto;padding:1.2em 1em 1.8em;}
+  .header-content{display:block;margin-top:0.5em;}
+  .hero-layout{grid-template-columns:1fr;gap:1.2em;}
+  .hero-copy{grid-column:1;}
+  .hero-images-col{grid-column:1;height:230px;order:-1;}
+  .hero-copy h1{font-size:clamp(1.5rem,5vw,2.2rem) !important;}
+}
+.hero-eyebrow{
+  display:inline-block;
+  background:rgba(201,169,110,0.14);color:var(--gold);
+  border:1px solid rgba(201,169,110,0.35);
+  border-radius:var(--radius-full);
+  padding:0.32em 1em;font-size:0.8em;font-weight:700;letter-spacing:0.1em;
+  margin-bottom:0.9em;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-copy h1{
+  font-size:clamp(2.9rem,5.8vw,5rem);
+  color:var(--wine-deep);line-height:1.12;margin-bottom:0.7em;
+  text-shadow:0 2px 14px rgba(255,255,255,0.7);
+  animation:fadeUp 0.9s ease 0.1s both;
+}
+.hero-subtitle-panel{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-md);
+  padding:1em 1.5em;max-width:680px;margin-bottom:1.6em;
+  box-shadow:var(--shadow-sm);
+  animation:fadeUp 1s ease 0.2s both;
+}
+.hero-subtitle-panel p{color:var(--ink-soft);font-size:1.12em;line-height:1.75;font-weight:600;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:0.85em;animation:fadeUp 1s ease 0.35s both;}
+
+/* ============================================================
+   12. PRODUCT CARDS
+============================================================ */
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5em;
+}
+.product-card{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);
+  padding:1.4em;display:flex;flex-direction:column;gap:0.6em;
+  box-shadow:var(--shadow-card);
+  transition:transform var(--tr-base),box-shadow var(--tr-base);
+  overflow:hidden;position:relative;
+}
+.product-card::before{/* top shimmer sweep */
+  content:"";position:absolute;top:0;right:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,0.22),transparent);
+  transition:right 0.6s ease;
+}
+.product-card:hover::before{right:120%;}
+.product-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);}
+.product-card-img-wrap{
+  position:relative;border-radius:var(--radius-md);overflow:hidden;
+  background:linear-gradient(160deg,#fff8f2,#fff);aspect-ratio:1/1;
+}
+.product-card-img-wrap img{
+  width:100%;height:100%;object-fit:contain;padding:1em;
+  transition:transform var(--tr-base),filter var(--tr-base);
+}
+.product-card:hover .product-card-img-wrap img{transform:scale(1.08);filter:drop-shadow(0 8px 18px rgba(107,30,51,0.2));}
+.product-badge{
+  position:absolute;top:10px;right:10px;
+  background:var(--grad-wine);color:#fff;
+  font-size:0.72em;font-weight:700;padding:0.22em 0.65em;
+  border-radius:var(--radius-full);
+  animation:badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.product-card h3{font-size:1.42rem;color:var(--wine-deep);margin-top:0.2em;}
+.product-card p{color:var(--muted);font-size:0.94em;line-height:1.6;flex-grow:1;}
+.product-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:0.4em;}
+.product-price{font-size:1.5em;font-weight:800;color:var(--wine);font-family:var(--font-heading);}
+.buy-btn{
+  border:none;border-radius:var(--radius-sm);
+  padding:0.65em 1.15em;
+  background:var(--grad-wine);color:#fff;
+  cursor:pointer;font-weight:700;font-size:0.93em;
+  box-shadow:0 4px 14px rgba(107,30,51,0.22);
+  position:relative;overflow:hidden;
+  transition:transform var(--tr-fast),box-shadow var(--tr-fast);
+}
+.buy-btn::after{/* ripple */
+  content:"";position:absolute;border-radius:50%;
+  width:0;height:0;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(255,255,255,0.3);
+  transition:width 0.45s ease,height 0.45s ease,opacity 0.45s ease;opacity:0;
+}
+.buy-btn:active::after{width:150px;height:150px;opacity:1;}
+.buy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(107,30,51,0.38);}
+
+/* ============================================================
+   13. STORY
+============================================================ */
+.story-image{
+  max-width:360px;border-radius:var(--radius-lg);
+  margin:1.5em auto;box-shadow:var(--shadow-md);
+  transition:transform var(--tr-base),box-shadow var(--tr-base);
+}
+.story-image:hover{transform:scale(1.03) rotate(-1deg);box-shadow:var(--shadow-lg);}
+
+/* ============================================================
+   14. TESTIMONIALS
+============================================================ */
+.testimonial-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3em;
+}
+.testimonial-card{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);padding:1.8em;
+  box-shadow:var(--shadow-card);
+  transition:transform var(--tr-base),box-shadow var(--tr-base);
+  position:relative;overflow:hidden;
+}
+.testimonial-card::before{
+  content:""";position:absolute;top:-10px;left:16px;
+  font-size:5rem;color:var(--gold);opacity:0.12;
+  font-family:'Cormorant Garamond',serif;line-height:1;
+}
+.testimonial-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.rating{color:var(--gold);font-size:1.15em;letter-spacing:0.1em;margin-bottom:0.8em;}
+.quote{color:var(--ink-soft);font-size:1.04em;line-height:1.75;font-style:italic;margin-bottom:1em;}
+.name{font-weight:700;color:var(--wine-deep);font-size:0.93em;}
+
+/* ============================================================
+   15. GALLERY CAROUSEL
+============================================================ */
+.carousel-wrap{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:var(--wine-dark);
+  aspect-ratio:16/7;
+  box-shadow:var(--shadow-lg);
+  user-select:none;
+}
+.carousel-track{
+  display:flex;
+  height:100%;
+  will-change:transform;
+  transition:transform 0.75s cubic-bezier(0.77,0,0.18,1);
+}
+.car-slide{
+  min-width:100%;height:100%;
+  position:relative;overflow:hidden;
+  cursor:zoom-in;
+}
+.car-slide img,.car-slide video{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 7s ease;
+  pointer-events:none;
+}
+.car-slide.is-active img{transform:scale(1.06);}
+/* slide caption overlay */
+.car-caption{
+  position:absolute;bottom:0;right:0;left:0;
+  padding:1em 1.5em;
+  background:linear-gradient(to top,rgba(42,12,21,0.72) 0%,transparent 100%);
+  color:#fff;font-size:0.92rem;font-weight:600;
+  transform:translateY(100%);
+  transition:transform 0.4s ease;
+}
+.car-slide:hover .car-caption{transform:translateY(0);}
+
+/* nav arrows */
+.car-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.35);
+  background:rgba(42,12,21,0.55);
+  backdrop-filter:blur(6px);
+  color:#fff;font-size:1.4rem;
+  cursor:pointer;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--tr-fast),transform var(--tr-fast),border-color var(--tr-fast);
+}
+.car-btn:hover{
+  background:rgba(107,30,51,0.8);
+  border-color:var(--gold);
+  transform:translateY(-50%) scale(1.1);
+}
+.car-prev{right:16px;}
+.car-next{left:16px;}
+
+/* dots */
+.car-dots{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;gap:7px;z-index:10;
+}
+.car-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.4);
+  border:1px solid rgba(255,255,255,0.5);
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.car-dot.active{
+  background:var(--gold);
+  border-color:var(--gold);
+  width:22px;
+  border-radius:4px;
+}
+
+/* counter */
+.car-counter{
+  position:absolute;top:14px;left:16px;
+  background:rgba(42,12,21,0.6);
+  backdrop-filter:blur(4px);
+  color:rgba(255,255,255,0.85);
+  font-size:0.8rem;font-weight:700;
+  padding:0.28em 0.75em;
+  border-radius:var(--radius-full);
+  border:1px solid rgba(201,169,110,0.3);
+  z-index:10;
+}
+
+/* thumbnail strip below carousel */
+.car-thumbs{
+  display:flex;gap:8px;margin-top:10px;
+  overflow-x:auto;padding-bottom:4px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(201,169,110,0.4) transparent;
+}
+.car-thumbs::-webkit-scrollbar{height:4px;}
+.car-thumbs::-webkit-scrollbar-thumb{background:rgba(201,169,110,0.4);border-radius:4px;}
+.car-thumb{
+  min-width:72px;height:50px;
+  border-radius:8px;overflow:hidden;
+  border:2px solid transparent;
+  cursor:pointer;flex-shrink:0;
+  transition:border-color 0.25s ease,transform 0.25s ease,opacity 0.25s ease;
+  opacity:0.55;
+}
+.car-thumb img{width:100%;height:100%;object-fit:cover;}
+.car-thumb.active{border-color:var(--gold);opacity:1;transform:scale(1.06);}
+.car-thumb:hover{opacity:0.85;}
+
+/* ============================================================
+   16. TIMELINE / EXPERIENCE
+============================================================ */
+.timeline-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.3em;
+}
+.timeline-card{perspective:1200px;min-height:240px;}
+.timeline-card-inner{
+  position:relative;width:100%;height:100%;min-height:240px;
+  transform-style:preserve-3d;
+  transition:transform var(--tr-slow);
+}
+.timeline-card:hover .timeline-card-inner{transform:rotateY(180deg) translateY(-6px);}
+.timeline-face{
+  position:absolute;inset:0;
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);padding:1.4em;
+  box-shadow:var(--shadow-card);backface-visibility:hidden;
+}
+.timeline-face.back{
+  transform:rotateY(180deg);
+  background:rgba(42,12,21,0.9);
+  border-color:rgba(201,169,110,0.25);
+}
+.timeline-face.back h3,.timeline-face.back p{color:#fff;}
+.timeline-step{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--grad-wine);color:#fff;font-weight:700;
+  margin-bottom:0.7em;box-shadow:0 4px 14px rgba(107,30,51,0.28);
+}
+.timeline-card h3{margin-bottom:0.45em;color:var(--wine-deep);font-size:1.08rem;}
+.timeline-card p{color:var(--muted);font-size:0.94em;line-height:1.65;}
+
+/* ============================================================
+   17. FAQ
+============================================================ */
+.faq-wrapper{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md);overflow:hidden;
+  max-width:860px;margin:0 auto;
+}
+.faq-item{border-bottom:1px solid rgba(201,169,110,0.18);}
+.faq-item:last-of-type{border-bottom:none;}
+.faq-question{
+  width:100%;border:none;background:transparent;
+  font-family:inherit;font-size:1.01rem;font-weight:700;
+  text-align:right;padding:1.15em 1.5em;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  color:var(--wine-deep);gap:0.8em;
+  transition:background var(--tr-fast),padding-right var(--tr-fast);
+}
+.faq-question:hover{background:rgba(107,30,51,0.04);padding-right:2em;}
+.faq-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(107,30,51,0.08);color:var(--wine);
+  font-size:1.18rem;font-weight:700;flex-shrink:0;
+  transition:transform var(--tr-base),background var(--tr-fast);
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(107,30,51,0.16);}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.45s cubic-bezier(0.22,1,0.36,1),padding 0.3s ease;
+  padding:0 1.5em;
+}
+.faq-item.open .faq-answer{max-height:300px;padding:0 1.5em 1.3em;}
+.faq-answer p{color:var(--ink-soft);line-height:1.8;font-size:1.03em;}
+
+/* FACTS with counter animation */
+.site-facts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+  gap:1em;margin-top:2em;
+}
+.fact-item{
+  background:var(--glass-bg);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-md);padding:1.2em;text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform var(--tr-base),box-shadow var(--tr-base);
+}
+.fact-item:hover{transform:translateY(-4px) scale(1.03);box-shadow:var(--shadow-md);}
+.fact-item strong{display:block;font-size:1.08rem;color:var(--wine-deep);margin-bottom:0.3em;}
+.fact-item span{font-size:0.89rem;color:var(--muted);}
+
+/* ============================================================
+   18. CONTACT
+============================================================ */
+#contact .contact-inner{max-width:580px;margin:0 auto;}
+#contact .contact-inner>p{text-align:center;color:var(--ink-soft);margin-bottom:1.5em;}
+form{display:flex;flex-direction:column;gap:0.7em;}
+input,textarea{
+  width:100%;border:1.5px solid rgba(107,30,51,0.15);
+  border-radius:var(--radius-sm);padding:0.9em 1em;
+  font-family:inherit;font-size:1em;
+  background:rgba(255,255,255,0.85);color:var(--ink);outline:none;
+  transition:border-color var(--tr-fast),box-shadow var(--tr-fast),transform var(--tr-fast);
+}
+input:focus,textarea:focus{
+  border-color:rgba(107,30,51,0.44);
+  box-shadow:0 0 0 3px rgba(107,30,51,0.08);
+  transform:translateY(-1px);
+}
+textarea{resize:vertical;min-height:130px;}
+form button[type="submit"]{
+  border:none;border-radius:var(--radius-sm);padding:0.9em;
+  background:var(--grad-wine);color:#fff;
+  font-weight:700;font-size:1em;cursor:pointer;
+  position:relative;overflow:hidden;
+  box-shadow:0 6px 18px rgba(107,30,51,0.25);
+  transition:transform var(--tr-fast),box-shadow var(--tr-fast);
+}
+form button[type="submit"]:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(107,30,51,0.38);}
+
+/* ============================================================
+   18b. MAP WIDGET
+============================================================ */
+.map-widget{
+  margin-top:1.8em;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  border:1.5px solid rgba(201,169,110,0.3);
+  box-shadow:var(--shadow-md);
+  transition:all var(--tr-base);
+  cursor:pointer;
+  position:relative;
+}
+.map-preview{
+  display:flex;align-items:center;gap:0.9em;
+  padding:1em 1.4em;
+  background:rgba(255,252,248,0.82);
+  transition:background var(--tr-fast);
+}
+.map-preview:hover{background:rgba(255,248,240,0.95);}
+.map-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--grad-wine);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(107,30,51,0.28);
+  transition:transform var(--tr-fast);
+}
+.map-widget:hover .map-icon{transform:scale(1.12) rotate(-5deg);}
+.map-preview-text h4{color:var(--wine-deep);margin-bottom:0.2em;font-size:1.05rem;}
+.map-preview-text p{color:var(--muted);font-size:0.9em;margin:0;}
+.map-expand-hint{
+  margin-right:auto;font-size:0.8em;color:var(--gold);
+  font-weight:700;letter-spacing:0.05em;
+  transition:transform var(--tr-fast);
+}
+.map-widget.open .map-expand-hint{transform:rotate(180deg);}
+.map-iframe-wrap{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.map-widget.open .map-iframe-wrap{max-height:360px;}
+.map-iframe-wrap iframe{
+  width:100%;height:360px;border:none;display:block;
+  filter:saturate(0.85) contrast(1.05);
+}
+
+/* Contact info cards */
+.contact-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1em;margin-bottom:1.5em;
+}
+.contact-card{
+  background:rgba(255,252,248,0.78);
+  border:1px solid rgba(201,169,110,0.22);
+  border-radius:var(--radius-md);
+  padding:1em;text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform var(--tr-base),box-shadow var(--tr-base);
+}
+.contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.contact-card .cc-icon{font-size:1.8rem;margin-bottom:0.4em;display:block;}
+.contact-card h4{color:var(--wine-deep);font-size:0.95rem;margin-bottom:0.3em;}
+.contact-card p,.contact-card a{color:var(--muted);font-size:0.88em;text-decoration:none;}
+.contact-card a:hover{color:var(--wine);}
+
+/* Social links strip */
+.social-strip{
+  display:flex;gap:0.8em;flex-wrap:wrap;justify-content:center;
+  margin-top:1.4em;
+}
+.social-btn{
+  display:inline-flex;align-items:center;gap:0.45em;
+  padding:0.55em 1.1em;border-radius:var(--radius-full);
+  font-weight:700;font-size:0.88em;
+  border:1.5px solid rgba(107,30,51,0.2);
+  background:rgba(255,252,248,0.8);
+  color:var(--wine-deep);
+  transition:all var(--tr-fast);text-decoration:none;
+}
+.social-btn:hover{background:var(--grad-wine);color:#fff;border-color:transparent;transform:translateY(-2px);}
+
+/* ============================================================
+   19. CART
+============================================================ */
+.cart-drawer{
+  position:fixed;top:0;right:0;
+  width:min(400px,96vw);height:100vh;z-index:300;
+  background:rgba(253,248,242,0.97);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border-left:1px solid rgba(107,30,51,0.12);
+  box-shadow:-20px 0 50px rgba(42,12,21,0.22);
+  display:flex;flex-direction:column;gap:0.8em;padding:1.3em;
+  transform:translateX(102%);
+  transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.cart-drawer.open{transform:translateX(0);}
+.cart-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding-bottom:0.8em;border-bottom:1px solid rgba(107,30,51,0.1);
+}
+.cart-header h2{font-size:1.65rem;color:var(--wine-deep);}
+.cart-header p{margin:0.2em 0 0;color:var(--muted);font-size:0.87em;}
+.cart-close{
+  border:none;width:36px;height:36px;border-radius:50%;
+  background:rgba(107,30,51,0.07);color:var(--wine-deep);
+  cursor:pointer;font-size:1.1em;
+  transition:background var(--tr-fast),transform var(--tr-fast);
+}
+.cart-close:hover{background:rgba(107,30,51,0.14);transform:rotate(90deg);}
+.cart-pill{
+  align-self:flex-start;background:rgba(107,30,51,0.08);
+  color:var(--wine);border-radius:var(--radius-full);
+  padding:0.22em 0.82em;font-size:0.87em;font-weight:700;
+}
+.cart-items{overflow-y:auto;display:flex;flex-direction:column;gap:0.6em;flex:1;min-height:100px;}
+.cart-item{
+  display:grid;grid-template-columns:auto 1fr auto auto;
+  align-items:center;gap:0.5em;
+  background:#fff;border:1px solid rgba(107,30,51,0.08);
+  border-radius:var(--radius-sm);padding:0.75em;
+  animation:slideInCart 0.3s ease both;
+}
+.cart-select{width:18px;height:18px;accent-color:var(--wine);cursor:pointer;}
+.cart-info{display:flex;flex-direction:column;gap:0.14em;}
+.cart-info strong{color:var(--wine-deep);font-size:0.94em;}
+.cart-meta{color:var(--muted);font-size:0.8em;}
+.line-total{color:var(--wine-deep);font-weight:700;font-size:0.94em;}
+.qty-controls{
+  display:inline-flex;align-items:center;gap:0.22em;
+  background:rgba(107,30,51,0.05);border-radius:var(--radius-sm);padding:0.12em;
+}
+.qty-btn{
+  border:none;background:transparent;color:var(--wine);
+  width:28px;height:28px;border-radius:6px;
+  font-size:1.1rem;font-weight:700;cursor:pointer;
+  transition:background var(--tr-fast),transform var(--tr-fast);
+}
+.qty-btn:hover{background:rgba(107,30,51,0.1);transform:scale(1.15);}
+.qty-value{min-width:22px;text-align:center;font-weight:700;color:var(--wine-deep);font-size:0.93em;}
+.cart-summary{border-top:1px solid rgba(107,30,51,0.1);padding-top:0.9em;}
+.summary-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7em;}
+.summary-row strong{color:var(--wine-deep);font-size:1.08em;}
+.cart-summary button{
+  width:100%;border:none;border-radius:var(--radius-sm);
+  padding:0.9em;background:var(--grad-wine);
+  color:#fff;font-weight:700;font-size:1em;cursor:pointer;
+  box-shadow:0 6px 18px rgba(107,30,51,0.24);
+  transition:transform var(--tr-fast),box-shadow var(--tr-fast);
+}
+.cart-summary button:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(107,30,51,0.38);}
+.cart-empty{color:var(--muted);text-align:center;padding:1.5em 0;font-size:0.94em;}
+.cart-message{
+  min-height:24px;color:var(--wine);font-weight:700;
+  font-size:0.9em;text-align:center;
+  opacity:0;transition:opacity 0.3s;
+}
+.cart-message.show{opacity:1;}
+
+/* ============================================================
+   20. MODAL
+============================================================ */
+.modal{
+  display:none;position:fixed;z-index:500;inset:0;
+  background:rgba(0,0,0,0.92);padding:1em;
+  align-items:center;justify-content:center;
+}
+.modal.open{display:flex;}
+.modal-inner{
+  position:relative;width:min(96vw,1100px);padding:1.2em;
+  border-radius:var(--radius-lg);
+  background:rgba(18,6,12,0.72);
+  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+  border:1px solid rgba(255,255,255,0.14);
+  box-shadow:0 32px 64px rgba(0,0,0,0.5);
+  animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.modal-content{
+  display:block;margin:0 auto;
+  width:min(90vw,960px);max-height:74vh;
+  object-fit:contain;border-radius:var(--radius-md);
+}
+.close-modal{
+  position:absolute;top:10px;right:14px;
+  color:#fff;font-size:36px;cursor:pointer;
+  opacity:0.8;line-height:1;
+  transition:opacity var(--tr-fast),transform var(--tr-fast);
+}
+.close-modal:hover{opacity:1;transform:rotate(90deg) scale(1.2);}
+.modal-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.45);
+  color:#fff;width:44px;height:44px;border-radius:50%;
+  font-size:1.5rem;cursor:pointer;
+  transition:background var(--tr-fast),transform var(--tr-fast);
+}
+.modal-nav:hover{background:rgba(0,0,0,0.65);transform:translateY(-50%) scale(1.1);}
+.modal-prev{right:calc(100% + 12px);}
+.modal-next{left:calc(100% + 12px);}
+.modal-actions{display:none;}
+.modal-counter{margin:0.6em 0 0;color:rgba(255,255,255,0.68);text-align:center;font-size:0.87rem;}
+.modal-caption{color:rgba(255,255,255,0.88);text-align:center;margin-top:0.3em;font-size:0.94rem;}
+
+/* ============================================================
+   21. FOOTER
+============================================================ */
+footer{
+  padding:3em 1.5em 2em;
+  background:linear-gradient(160deg,#2a0c15,#1a0810);
+  color:var(--text-light);margin-top:2em;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,169,110,0.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.footer-brand{
+  text-align:center;margin-bottom:2em;
+  padding-bottom:1.5em;border-bottom:1px solid rgba(201,169,110,0.15);
+}
+.footer-brand h2{
+  font-family:var(--font-heading);font-size:2.2rem;
+  color:var(--gold-light);margin-bottom:0.3em;
+}
+.footer-brand p{color:rgba(245,237,230,0.65);font-size:0.95em;}
+.footer-grid{
+  max-width:1140px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2em;
+}
+.footer-grid h3{
+  font-size:1.05rem;color:var(--gold-light);
+  margin-bottom:0.8em;
+  padding-bottom:0.4em;
+  border-bottom:1px solid rgba(201,169,110,0.18);
+}
+.footer-grid p{color:rgba(245,237,230,0.72);font-size:0.91em;margin:0.3em 0;line-height:1.6;}
+.footer-grid a{color:var(--gold-light);text-decoration:none;transition:color var(--tr-fast);}
+.footer-grid a:hover{color:#fff;}
+.footer-hours-row{display:flex;justify-content:space-between;gap:0.5em;}
+.footer-badge{
+  display:inline-block;
+  background:rgba(201,169,110,0.15);
+  color:var(--gold-light);
+  border:1px solid rgba(201,169,110,0.3);
+  border-radius:var(--radius-full);
+  padding:0.22em 0.75em;font-size:0.82em;font-weight:700;
+  margin-top:0.5em;
+}
+.footer-social{
+  display:flex;gap:0.6em;margin-top:0.8em;flex-wrap:wrap;
+}
+.footer-social a{
+  display:inline-flex;align-items:center;gap:0.3em;
+  font-size:0.85em;font-weight:700;
+  padding:0.32em 0.75em;border-radius:var(--radius-full);
+  background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.22);
+  color:var(--gold-light);text-decoration:none;
+  transition:all var(--tr-fast);
+}
+.footer-social a:hover{background:rgba(201,169,110,0.28);color:#fff;}
+.footer-divider{border:none;border-top:1px solid rgba(201,169,110,0.15);margin:1.8em auto;max-width:1140px;}
+.site-credit{text-align:center;font-size:0.87rem;color:rgba(245,237,230,0.48);}
+.site-credit a{color:var(--gold-light);text-decoration:underline;text-underline-offset:2px;}
+.footer-kosher-badge{
+  display:flex;align-items:center;justify-content:center;gap:0.6em;
+  margin-top:1em;font-size:0.92em;color:var(--gold-light);font-weight:700;
+}
+.footer-kosher-badge span{font-size:1.4rem;}
+
+/* ============================================================
+   22. AGE GATE
+============================================================ */
+.age-gate{
+  position:fixed;inset:0;z-index:1300;
+  display:none;align-items:center;justify-content:center;padding:1em;
+  background:radial-gradient(circle at 30% 30%,rgba(107,30,51,0.35),rgba(18,5,12,0.96));
+  backdrop-filter:blur(12px);
+}
+.age-gate.open{display:flex;}
+.age-gate-card{
+  width:min(680px,96vw);background:var(--grad-cream);
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(107,30,51,0.14);
+  box-shadow:0 32px 72px rgba(18,5,12,0.5);
+  padding:2.5em 1.8em;text-align:center;
+  animation:modalIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.age-gate-card h2{color:var(--wine-deep);font-size:clamp(1.85rem,4vw,2.55rem);margin-bottom:0.7em;}
+.age-gate-card p{color:var(--ink-soft);font-size:1em;line-height:1.8;}
+.age-gate-actions{margin-top:1.6em;display:grid;grid-template-columns:repeat(2,1fr);gap:0.9em;}
+.age-btn{
+  border:none;border-radius:var(--radius-md);padding:1em;
+  font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer;
+  transition:transform var(--tr-fast),box-shadow var(--tr-fast);
+}
+.age-btn.adult{background:var(--grad-wine);color:#fff;box-shadow:0 10px 24px rgba(107,30,51,0.28);}
+.age-btn.minor{background:#fff;color:var(--ink-soft);border:1.5px solid rgba(107,30,51,0.18);}
+.age-btn:hover{transform:translateY(-3px);}
+.age-gate-note{margin-top:1.2em;font-size:0.87rem;color:var(--muted);}
+.age-gate-feedback{margin-top:0.8em;min-height:44px;color:var(--wine);font-weight:600;font-size:0.94em;}
+
+/* ============================================================
+   23. COOKIE BANNER
+============================================================ */
+.cookie-banner{
+  position:fixed;inset-inline:0;bottom:0;z-index:1100;
+  display:flex;align-items:center;justify-content:space-between;gap:1em;
+  padding:0.88em 1.4em;
+  background:rgba(42,12,21,0.96);color:rgba(245,237,230,0.9);
+  border-top:1px solid rgba(201,169,110,0.2);
+  backdrop-filter:blur(6px);
+}
+.cookie-banner p{margin:0;font-size:0.89rem;line-height:1.6;}
+.cookie-banner strong{color:#fff;}
+.cookie-banner button{
+  border:none;border-radius:var(--radius-full);
+  padding:0.52em 1.2em;background:var(--gold);color:var(--wine-deep);
+  font-family:inherit;font-weight:700;font-size:0.88em;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;
+  transition:background var(--tr-fast),transform var(--tr-fast);
+}
+.cookie-banner button:hover{background:var(--gold-light);transform:scale(1.04);}
+.cookie-banner.hidden{display:none;}
+
+/* ============================================================
+   24. SCROLL REVEAL — staggered
+============================================================ */
+.reveal{
+  opacity:0;transform:translateY(32px) scale(0.98);
+  transition:opacity 0.85s ease,transform 0.85s ease;
+}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-left{
+  opacity:0;transform:translateX(40px);
+  transition:opacity 0.85s ease,transform 0.85s ease;
+}
+.reveal-left.visible{opacity:1;transform:none;}
+/* stagger delays */
+.stagger-1{transition-delay:0.08s;}
+.stagger-2{transition-delay:0.18s;}
+.stagger-3{transition-delay:0.28s;}
+
+/* ============================================================
+   25. ANIMATIONS KEYFRAMES
+============================================================ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+@keyframes borderShimmer{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+@keyframes shimmerText{
+  0%{background-position:200% center;}
+  100%{background-position:-200% center;}
+}
+@keyframes goldLinePulse{
+  0%,100%{width:60px;opacity:1;}
+  50%{width:80px;opacity:0.75;}
+}
+@keyframes pulse{
+  0%,100%{opacity:0.45;transform:scale(1);}
+  50%{opacity:0.8;transform:scale(1.3);}
+}
+@keyframes sparkleFly{
+  0%{opacity:0;transform:translateY(0) scale(0);}
+  20%{opacity:0.9;}
+  80%{opacity:0.6;}
+  100%{opacity:0;transform:translateY(-120px) translateX(var(--dx,20px)) scale(1.5);}
+}
+@keyframes badgePop{
+  0%{transform:scale(0);opacity:0;}
+  70%{transform:scale(1.2);}
+  100%{transform:scale(1);opacity:1;}
+}
+@keyframes cartPulse{
+  0%{transform:scale(1);}
+  40%{transform:scale(1.25);}
+  70%{transform:scale(0.95);}
+  100%{transform:scale(1);}
+}
+@keyframes slideInCart{
+  from{opacity:0;transform:translateX(20px);}
+  to{opacity:1;transform:none;}
+}
+@keyframes modalIn{
+  from{opacity:0;transform:scale(0.88) translateY(20px);}
+  to{opacity:1;transform:none;}
+}
+@keyframes heroGlow{
+  0%,100%{transform:scale(1);opacity:0.5;}
+  50%{transform:scale(1.4);opacity:0.2;}
+}
+@keyframes heroImgFloat{
+  0%,100%{transform:translate(-50%,-50%) scale(1) rotate(0deg);}
+  33%{transform:translate(-50%,-52%) scale(1.04) rotate(1deg);}
+  66%{transform:translate(-50%,-48%) scale(0.97) rotate(-1deg);}
+}
+@keyframes wineRise{
+  0%{opacity:0;transform:translateY(40px) scale(0.8);}
+  100%{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes rotateIn{
+  from{opacity:0;transform:rotateX(40deg) translateY(30px);}
+  to{opacity:1;transform:rotateX(0) translateY(0);}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(-60px);}
+  to{opacity:1;transform:translateX(0);}
+}
+@keyframes scaleUp{
+  from{opacity:0;transform:scale(0.7);}
+  to{opacity:1;transform:scale(1);}
+}
+@keyframes borderGlow{
+  0%,100%{box-shadow:0 0 18px rgba(201,169,110,0.25);}
+  50%{box-shadow:0 0 40px rgba(201,169,110,0.55);}
+}
+/* section frame border gradient must be re-declared with background-size */
+.section-frame::before{background-size:300% 300%;}
+
+/* Animated section-frame border glow */
+.section-frame{animation:borderGlow 5s ease-in-out infinite;}
+
+/* Stagger reveal animations */
+.reveal{animation-play-state:paused;}
+.reveal.visible{animation:wineRise 0.85s cubic-bezier(0.22,1,0.36,1) both;}
+.reveal-left.visible{animation:slideInRight 0.85s cubic-bezier(0.22,1,0.36,1) both;}
+.stagger-1.visible{animation-delay:0.08s;}
+.stagger-2.visible{animation-delay:0.18s;}
+.stagger-3.visible{animation-delay:0.28s;}
+
+/* Product card 3D tilt effect */
+.product-card{transition:transform 0.3s ease,box-shadow 0.3s ease;}
+
+/* Fact item count-up animation */
+.fact-item.visible strong{animation:scaleUp 0.6s cubic-bezier(0.34,1.56,0.64,1) both;}
+
+/* Testimonial card entrance */
+.testimonial-card{
+  transition:transform var(--tr-base),box-shadow var(--tr-base),opacity 0.8s ease;
+}
+.testimonial-card.reveal.visible{animation:rotateIn 0.75s cubic-bezier(0.22,1,0.36,1) both;}
+
+/* Timeline flip card animated entrance */
+.timeline-card.reveal.visible{animation:wineRise 0.8s ease both;}
+
+/* Gold pulse on product badges */
+.product-badge{animation:badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) both, borderGlow 3s ease-in-out 1s infinite;}
+
+/* Animated underline for nav links */
+nav a{position:relative;}
+nav a::after{
+  content:"";position:absolute;bottom:0;right:0;left:0;
+  height:2px;background:var(--gold);border-radius:2px;
+  transform:scaleX(0);transition:transform 0.25s ease;
+  transform-origin:left;
+}
+nav a:hover::after{transform:scaleX(1);}
+
+/* Floating wine drops decoration */
+.wine-drops{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+}
+.wine-drop{
+  position:absolute;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  background:radial-gradient(circle at 40% 35%,rgba(139,50,82,0.55),rgba(107,30,51,0.25) 70%,transparent);
+  animation:dropFall var(--ddur,8s) ease-in-out infinite var(--ddelay,0s);
+  opacity:0;
+}
+@keyframes dropFall{
+  0%{opacity:0;transform:translateY(-20px) scale(0.5) rotate(0deg);}
+  15%{opacity:0.7;}
+  85%{opacity:0.5;}
+  100%{opacity:0;transform:translateY(120px) scale(1.2) rotate(15deg);}
+}
+
+/* ============================================================
+   26. RESPONSIVE
+============================================================ */
+@media(max-width:980px){
+  .nav-bar{position:static;flex-direction:column;align-items:flex-start;margin:0.5em;}
+  nav{width:100%;}
+  .modal-prev,.modal-next{display:none;}
+  .modal-actions{display:flex;justify-content:center;gap:0.8em;margin-top:0.8em;}
+  .modal-inner{padding:2.8em 0.8em 1em;}
+}
+@media(max-width:640px){
+  .section-frame{padding:2em 1.2em;}
+  header.hero{margin:0.5em;padding:1.8em 1em 2.5em;}
+  nav a{text-align:center;flex:1;min-width:78px;}
+  .hero-actions .btn{width:100%;text-align:center;}
+  .products-grid{grid-template-columns:1fr 1fr;}
+  .cookie-banner{flex-direction:column;text-align:center;}
+  .cookie-banner button{width:100%;}
+  .age-gate-actions{grid-template-columns:1fr;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .glass-panel{padding:1.4em 1.2em;}
+}
+@media(max-width:420px){
+  .products-grid{grid-template-columns:1fr;}
+}
+
+
+/* ============================================================
+   FLOATING WHATSAPP BUTTON
+============================================================ */
+.float-wa-btn{
+  position:fixed;
+  bottom:90px;
+  left:20px;
+  z-index:400;
+  background:#25D366;
+  border-radius:50px;
+  width:58px;height:58px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 22px rgba(37,211,102,0.45);
+  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration:none;
+  overflow:hidden;
+}
+.float-wa-btn:hover{
+  width:160px;
+  border-radius:50px;
+  box-shadow:0 8px 30px rgba(37,211,102,0.6);
+}
+.float-wa-label{
+  color:#fff;font-weight:700;font-size:0.9em;
+  white-space:nowrap;
+  max-width:0;overflow:hidden;
+  transition:max-width 0.3s ease, margin 0.3s ease;
+  margin-right:0;
+}
+.float-wa-btn:hover .float-wa-label{
+  max-width:100px;
+  margin-right:8px;
+}
+@keyframes waPulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,0.6);}
+  70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+}
+.float-wa-btn{animation:waPulse 2.5s ease-in-out infinite;}
+.float-wa-btn:hover{animation:none;}
+
+/* ============================================================
+   MOBILE / TABLET IMPROVEMENTS
+============================================================ */
+@media(max-width:768px){
+  /* nav שטוח במובייל */
+  .nav-bar{flex-wrap:wrap;gap:0.5em;padding:0.6em 0.8em;}
+  nav{gap:0.15em;}
+  nav a{font-size:0.78em;padding:0.3em 0.55em;}
+  /* hero */
+  .hero-actions .btn{padding:0.7em 1.2em;font-size:0.92em;}
+  /* product grid - שתי עמודות */
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:1em;}
+  /* section frame padding */
+  .section-frame{padding:1.6em 1em 1.8em;}
+  /* footer */
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-brand h2{font-size:1.6rem;}
+  /* map */
+  .map-iframe-wrap iframe{height:280px;}
+  .map-widget.open .map-iframe-wrap{max-height:280px;}
+  /* contact cards */
+  .contact-cards{grid-template-columns:repeat(2,1fr);}
+  /* float wa */
+  .float-wa-btn{bottom:80px;left:14px;width:52px;height:52px;}
+}
+@media(max-width:480px){
+  .products-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .contact-cards{grid-template-columns:1fr 1fr;}
+  section h2{font-size:clamp(1.6rem,5vw,2.2rem);}
+  .hero-copy h1{font-size:clamp(1.6rem,6vw,2.4rem) !important;}
+  .timeline-grid{grid-template-columns:1fr;}
+  .testimonial-grid{grid-template-columns:1fr;}
+}
+/* cc-icon SVG sizing */
+.contact-card .cc-icon svg{
+  width:28px;height:28px;
+}
+.contact-card .cc-icon{
+  display:flex;align-items:center;justify-content:center;
+  height:36px;margin-bottom:0.5em;
+}
+/* map icon */
+.map-icon svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));}
+/* social btn SVG */
+.social-btn svg{flex-shrink:0;}
+
   </style>
 </head>
 <body>
-  <div id="background-container"><div class="background-slide active" style="background-image: url('gallery3.jpg');"></div></div>
-  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title" aria-describedby="age-gate-description"><div class="age-gate-card"><h2 id="age-gate-title">ברוכים הבאים ליקב דורות</h2><p id="age-gate-description">האתר מכיל תכנים ומידע על משקאות אלכוהוליים ולכן מיועד לגילאי 18 ומעלה בלבד. אנא בחרו את קבוצת הגיל שלכם כדי להמשיך.</p><div class="age-gate-actions"><button id="age-confirm" class="age-btn adult" type="button">מעל גיל 18</button><button id="age-decline" class="age-btn minor" type="button">מתחת לגיל 18</button></div><p class="age-gate-note">שתייה אחראית ומודעת. מומלץ להימנע משתייה מופרזת.</p><p id="age-gate-feedback" class="age-gate-feedback" aria-live="polite"></p></div></div>
-  <header class="hero"><div class="nav-shell"><div class="nav-bar"><div class="brand-mark"><img src="1000.png" alt="לוגו יקב בוטיק דורות" class="brand-logo"><div class="brand-text"><span class="brand-small">יקב בוטיק</span><span class="brand-name">דורות</span></div></div><nav aria-label="ניווט ראשי"><a href="#shop">היינות שלנו</a><a href="#story">הסיפור שלנו</a><a href="#" id="nav-cart-link">סל קניות</a><a href="#testimonials">ביקורות</a><a href="#gallery">גלריה</a><a href="#experience">חוויה ביקב</a><a href="#about">עלינו</a><a href="#faq">שאלות נפוצות</a><a href="#contact">יצירת קשר</a></nav><button id="cart-toggle" class="cart-toggle" aria-label="פתיחת סל הקניות">🛒 <span id="nav-cart-count">0</span></button></div></div>
-  <div class="hero-panel content-panel"><div class="hero-copy"><h1><span class="hero-line hero-line--accent">יקב בוטיק דורות</span><span class="hero-line">יין ישראלי איכותי בכשרות מהודרת</span><span class="hero-line">לאירוח מרגש וזיכרונות טובים</span></h1><div class="subtitle-panel"><p class="subtitle">ברוכים הבאים ליקב דורות — בית ליינות בעבודת יד, לשירות אישי, ולחוויה חמה שמחברת בין כרם, משפחה ושולחן אחד מלא שמחה.</p></div><div class="hero-actions"><a class="primary-btn" href="#shop">לרכישה מהירה</a><a class="ghost-btn" href="#story">להכיר את היקב</a></div></div></div></header>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- BACKGROUND -->
+  <div id="background-container">
+    <div class="background-slide active" style="background-image:url('gallery3.jpg');"></div>
+  </div>
+
+  <!-- AGE GATE -->
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true"
+       aria-labelledby="age-gate-title" aria-describedby="age-gate-description">
+    <div class="age-gate-card">
+      <h2 id="age-gate-title">ברוכים הבאים ליקב דורות</h2>
+      <p id="age-gate-description">האתר מכיל תכנים ומידע על משקאות אלכוהוליים ולכן מיועד לגילאי 18 ומעלה בלבד. אנא בחרו את קבוצת הגיל שלכם כדי להמשיך.</p>
+      <div class="age-gate-actions">
+        <button id="age-confirm" class="age-btn adult" type="button">מעל גיל 18</button>
+        <button id="age-decline" class="age-btn minor"  type="button">מתחת לגיל 18</button>
+      </div>
+      <p class="age-gate-note">שתייה אחראית ומודעת. מומלץ להימנע משתייה מופרזת.</p>
+      <p id="age-gate-feedback" class="age-gate-feedback" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="hero">
+    <!-- floating sparkles -->
+    <div class="sparkle-wrap" aria-hidden="true" id="sparkle-wrap"></div>
+
+    <div class="nav-bar">
+      <div class="brand-mark">
+        <div class="logo-flip-card" tabindex="0" aria-label="לוגו יקב דורות">
+          <div class="logo-flip-inner">
+            <div class="logo-face">
+              <img src="1000.png" alt="לוגו יקב בוטיק דורות" class="brand-logo">
+            </div>
+            <div class="logo-face logo-back">
+              <p>יין ישראלי כשר, מדויק ומרגש, לאירוח משפחתי חם.</p>
+            </div>
+          </div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-small">יקב בוטיק</span>
+          <span class="brand-name">דורות</span>
+        </div>
+      </div>
+
+      <nav aria-label="ניווט ראשי">
+        <a href="#shop">היינות שלנו</a>
+        <a href="#story">הסיפור שלנו</a>
+        <a href="#" id="nav-cart-link">סל קניות</a>
+        <a href="#testimonials">ביקורות</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#experience">חוויה ביקב</a>
+        <a href="#about">עלינו</a>
+        <a href="#faq">שאלות נפוצות</a>
+        <a href="#contact">יצירת קשר</a>
+      </nav>
+
+      <button id="cart-toggle" class="cart-toggle" aria-label="פתיחת סל הקניות">
+        🛒 <span id="nav-cart-count">0</span>
+      </button>
+    </div>
+
+    <div class="header-content">
+      <div class="hero-layout">
+
+        <!-- עמודה ימנית: טקסט -->
+        <div class="hero-copy">
+          <p class="hero-eyebrow">✦ יקב בוטיק ישראלי · כשרות מהדרין</p>
+          <h1>יין ישראלי<br>איכותי וטעים<br><span style="font-size:0.72em;color:var(--wine-light);">בכשרות מהודרת · לאירוח מרגש</span></h1>
+
+          <div class="hero-actions">
+            <a href="#shop"    class="btn btn-primary">לקולקציה שלנו</a>
+            <a href="#contact" class="btn btn-ghost">יצירת קשר</a>
+          </div>
+        </div>
+
+        <!-- עמודה שמאלית: תמונות מתחלפות ללא רקע -->
+        <div class="hero-images-col" id="heroImagesCol" aria-hidden="true">
+          <div class="hero-glow" style="width:200px;height:200px;top:30%;left:20%;--dur:7s;--delay:0s;opacity:0.5;"></div>
+          <div class="hero-glow" style="width:120px;height:120px;bottom:15%;right:15%;--dur:5s;--delay:1.5s;opacity:0.35;"></div>
+          <div class="hero-img-slot hi-main"  id="heroMain"><img src="קברנה 25.png"  alt="יין קברנה"></div>
+          <div class="hero-img-slot hi-left"  id="heroLeft"><img src="מרלו 25.png"   alt="יין מרלו"></div>
+          <div class="hero-img-slot hi-right" id="heroRight"><img src="קברנה 24.png" alt="יין קברנה 24"></div>
+          <div class="hero-img-slot hi-bottom" id="heroBottom"><img src="1000.png"   alt="לוגו יקב דורות"></div>
+        </div>
+
+      </div><!-- /hero-layout -->
+    </div>
+  </header>
+
   <main>
-    <section id="shop" class="content-panel section-box"><h2>קולקציית דורות</h2><p class="section-intro">שלושה יינות דגל שנבנו כדי לתת חוויה אחרת בכל פתיחה: עשיר, נעים ומדויק. הוסיפו לסל ותוכלו לסגור הזמנה בקלות ובמהירות.</p><div class="grid"><div class="card"><img src="קברנה 25.png" alt="קברנה 25"><h3>קברנה 25</h3><p>בלנד עשיר עם ניחוחות פטל, דובדבן ותבלין עדין. בחירה נהדרת לארוחות ערב חגיגיות ולשולחן של שישי.</p><p class="price">₪80</p><button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">הוסף לסל</button></div><div class="card"><img src="מרלו 25.png" alt="מרלו 25"><h3>מרלו 25</h3><p>מרלו עגול, רך ומלטף עם פרי בשל וסיום נקי. מתאים במיוחד לפסטות עשירות, גבינות קשות ובשרים קלים.</p><p class="price">₪80</p><button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">הוסף לסל</button></div><div class="card"><img src="קברנה 24.png" alt="קברנה 24"><h3>קברנה 24</h3><p>יין מורכב לבעלי חיך שאוהבים עומק: פרי כהה, קקאו ומגע עץ מדויק. מומלץ לסטייקים ולארוחות חג משפחתיות.</p><p class="price">₪100</p><button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">הוסף לסל</button></div></div></section>
-    <section id="story" class="content-panel section-box text-section"><h2>הסיפור שלנו</h2><div class="text-group"><img src="1000.png" alt="יקב דורות" class="story-image"><p>ביקב דורות היין נולד מתוך תפיסת עולם של בית יהודי חם...</p><p><strong>הכרם והאדמה:</strong> כל חלקה נבחנת לאורך השנה בעין מקצועית ובסבלנות.</p><p><strong>הבציר והעבודה ביקב:</strong> הענבים נבצרים בעדינות, ממוינים בקפדנות ומטופלים בכבוד גדול לחומר הגלם.</p><p><strong>כשרות למהדרין:</strong> היקב פועל ברוח עולם התורה וההלכה, עם הקפדה על כל פרטי הכשרות.</p><p><strong>ליווי אישי מכל הלב:</strong> חשוב לנו לא רק מה יש בבקבוק, אלא גם מה מרגישים כשמזמינים.</p><p>זו הדרך שלנו בדורות: לקחת מסורת עתיקה של יין, לחבר אותה לעבודה מקצועית מודרנית.</p></div></section>
-    <section id="testimonials" class="content-panel section-box"><h2>מה מספרים עלינו</h2><div class="testimonial-grid"><div class="testimonial-card"><div class="rating">★★★★★</div><p class="quote">"היין הגיע ארוז מעולה..."</p><div class="name">שירי, תל אביב</div></div><div class="testimonial-card"><div class="rating">★★★★★</div><p class="quote">"האתר קל לשימוש..."</p><div class="name">אלעד, חיפה</div></div><div class="testimonial-card"><div class="rating">★★★★★</div><p class="quote">"יש תחושה של מותג בוטיק אמיתי..."</p><div class="name">נועה, ירושלים</div></div></div></section>
-    <section id="gallery" class="content-panel section-box"><h2>תמונות מהכרם והיקב</h2><div class="gallery-grid"><img src="gallery3.jpg" alt="תמונה מהכרם 1"><img src="gallery5.jpg" alt="תמונה מהכרם 2"><img src="gallery6.jpg" alt="תמונה מהכרם 3"><video src="1.mp4" controls preload="metadata" aria-label="וידאו מהיקב 2"></video><video src="גפן.mp4" controls preload="metadata" aria-label="וידאו מהיקב גפן"></video><img src="1000.png" alt="מותג דורות 2"><img src="קברנה 25.png" alt="בקבוק דורות 3"><img src="מרלו 25.png" alt="בקבוק דורות 4"><img src="קברנה 24.png" alt="בקבוק דורות 5"><img src="gallery3.jpg" alt="תמונה מהכרם 6"><img src="1000.png" alt="מותג דורות 7"><img src="קברנה 25.png" alt="בקבוק דורות 8"><img src="מרלו 25.png" alt="בקבוק דורות 9"><img src="קברנה 24.png" alt="בקבוק דורות 10"></div></section>
-    <section id="experience" class="content-panel section-box"><h2>החוויה של דורות - צעד אחר צעד</h2><p class="section-intro">לקחנו את הדרך שלנו ביקב והפכנו אותה למסלול ברור: מהכרם ועד הכוס, עם שקיפות מלאה וטעם מדויק.</p><div class="timeline-grid"><article class="timeline-card"><div class="timeline-card-inner"><div class="timeline-face front"><span class="timeline-step">1</span><h3>בחירת חלקות ובציר מדויק</h3><p>בדיקות הבשלה שבועיות...</p></div><div class="timeline-face back"><span class="timeline-step">1</span><h3>דיוק שנולד מהשטח</h3><p>מאחורי כל בציר עומדות מדידות בשטח...</p></div></div></article><article class="timeline-card"><div class="timeline-card-inner"><div class="timeline-face front"><span class="timeline-step">2</span><h3>יישון וטעימות לאורך הדרך</h3><p>כל סדרה עוברת טעימות פנימיות...</p></div><div class="timeline-face back"><span class="timeline-step">2</span><h3>איזון בכל לגימה</h3><p>הטעימות הרציפות שומרות על הרמוניה...</p></div></div></article><article class="timeline-card"><div class="timeline-card-inner"><div class="timeline-face front"><span class="timeline-step">3</span><h3>התאמה אישית לפני משלוח</h3><p>לפני יציאה ללקוח אנחנו ממליצים...</p></div><div class="timeline-face back"><span class="timeline-step">3</span><h3>חוויה תפורה לאירוח שלכם</h3><p>בצד האחורי מסתתר השירות האישי שלנו...</p></div></div></article></div></section>
-    <section id="about" class="content-panel section-box text-section"><h2>עלינו</h2><div class="about-banner text-group"><h3>יקב דורות הוא בית יין משפחתי עם לב יהודי חם, שירות עדין ויחס אישי.</h3><p>אנחנו עובדים כצוות משפחתי עם אנשי מקצוע...</p><p>במרכז העבודה שלנו עומדת המחשבה על איזון...</p><p>במרתף, כל זן מקבל טיפול שונה...</p><p>מעבר לטעם, חשוב לנו שתהיה שקיפות מלאה...</p><p>אנחנו מאמינים שיין טוב הוא חוויה שלמה...</p></div></section>
-    <section id="faq" class="content-panel section-box"><h2>שאלות ותשובות</h2><div class="faq-shell glass-panel"><div class="faq-grid"><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">האם היין כשר?</button><div class="faq-answer"><p>כן. היינות כשרים למהדרין...</p></div></div><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">אפשר לקבל המלצה אישית?</button><div class="faq-answer"><p>בוודאי. ספרו לנו מה מגישים...</p></div></div><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">היינות מתאימים לאירועים?</button><div class="faq-answer"><p>כן. ניתן להזמין לאירועים...</p></div></div></div><div class="site-facts"><div class="fact-item"><strong>כשרות</strong><span>מהדרין, בהקפדה מלאה</span></div><div class="fact-item"><strong>שירות אישי</strong><span>ייעוץ התאמה לכל ארוחה</span></div><div class="fact-item"><strong>בציר מוקפד</strong><span>בחירה מדויקת מכל חלקה</span></div><div class="fact-item"><strong>מארזים</strong><span>אפשרות למתנה מכובדת</span></div></div></div></section>
-    <section id="contact" class="content-panel section-box"><h2>נשמח לשוחח</h2><div class="contact-banner"><h3>אנחנו כאן בשבילכם לכל שאלה</h3><p>מחפשים יין לאירוח? רוצים להתייעץ לפני הזמנה? השאירו פרטים ונחזור אליכם עם מענה אישי ומהיר.</p></div><div class="text-group"><form action="https://formspree.io/f/moqglqrr" method="POST"><input type="text" name="name" placeholder="שם מלא" required><input type="email" name="email" placeholder="אימייל" required><textarea name="message" placeholder="מה תרצו להגיד לנו?" required></textarea><button type="submit" class="buy-btn">שליחה</button></form></div></section>
+
+    <!-- SHOP -->
+    <section id="shop">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>קולקציית דורות</h2>
+          <span class="gold-line"></span>
+        </div>
+        <p class="section-intro">שלושה יינות דגל שנבנו כדי לתת חוויה אחרת בכל פתיחה: עשיר, נעים ומדויק. הוסיפו לסל ותוכלו לסגור הזמנה בקלות ובמהירות.</p>
+        <div class="products-grid">
+          <div class="product-card reveal stagger-1">
+            <div class="product-card-img-wrap">
+              <img src="קברנה 25.png" alt="קברנה 25">
+              <span class="product-badge">בוטיק</span>
+            </div>
+            <h3>קברנה 25</h3>
+            <p>בלנד עשיר עם ניחוחות פטל, דובדבן ותבלין עדין. בחירה נהדרת לארוחות ערב חגיגיות ולשולחן של שישי.</p>
+            <div class="product-price-row">
+              <span class="product-price">₪80</span>
+              <button class="buy-btn add-to-cart" data-name="קברנה 25" data-price="80">+ הוסף לסל</button>
+            </div>
+          </div>
+          <div class="product-card reveal stagger-2">
+            <div class="product-card-img-wrap">
+              <img src="מרלו 25.png" alt="מרלו 25">
+              <span class="product-badge">בוטיק</span>
+            </div>
+            <h3>מרלו 25</h3>
+            <p>מרלו עגול, רך ומלטף עם פרי בשל וסיום נקי. מתאים במיוחד לפסטות עשירות, גבינות קשות ובשרים קלים.</p>
+            <div class="product-price-row">
+              <span class="product-price">₪80</span>
+              <button class="buy-btn add-to-cart" data-name="מרלו 25" data-price="80">+ הוסף לסל</button>
+            </div>
+          </div>
+          <div class="product-card reveal stagger-3">
+            <div class="product-card-img-wrap">
+              <img src="קברנה 24.png" alt="קברנה 24">
+              <span class="product-badge">פרמיום</span>
+            </div>
+            <h3>קברנה 24</h3>
+            <p>יין מורכב לבעלי חיך שאוהבים עומק: פרי כהה, קקאו ומגע עץ מדויק. מומלץ לסטייקים ולארוחות חג משפחתיות.</p>
+            <div class="product-price-row">
+              <span class="product-price">₪100</span>
+              <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">+ הוסף לסל</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="text-section">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>הסיפור שלנו</h2>
+          <span class="gold-line"></span>
+        </div>
+        <img src="1000.png" alt="יקב דורות" class="story-image reveal">
+        <div class="glass-panel reveal" style="text-align:right;margin-top:1.5em;">
+          <p>ביקב דורות היין נולד מתוך תפיסת עולם של בית יהודי חם: קדושה לצד שמחה, הקפדה לצד לב רחב. אנחנו מאמינים שבקבוק יין טוב אינו רק טעם, אלא דרך לחבר בין אנשים סביב שולחן של שבת, סעודת מצווה, אירוסין, או ערב משפחתי פשוט ומלא הודיה.</p>
+          <p><strong>הכרם והאדמה:</strong> כל חלקה נבחנת לאורך השנה בעין מקצועית ובסבלנות. אנחנו עוקבים אחר ההבשלה, האקלים והאיזון הטבעי של הגפן כדי לבחור את רגע הבציר המדויק.</p>
+          <p><strong>הבציר והעבודה ביקב:</strong> הענבים נבצרים בעדינות, ממוינים בקפדנות ומטופלים בכבוד גדול לחומר הגלם. התסיסה מנוהלת בצורה מבוקרת, וכל זן מקבל את הזמן והמסלול שמתאים לו.</p>
+          <p><strong>כשרות למהדרין:</strong> היקב פועל ברוח עולם התורה וההלכה, עם הקפדה על כל פרטי הכשרות. היין מיוצר בכשרות מהודרת, בעבודה של אברכים יראי שמיים.</p>
+          <p><strong>ליווי אישי מכל הלב:</strong> חשוב לנו לא רק מה יש בבקבוק, אלא גם מה מרגישים כשמזמינים. לכן אנחנו מלווים כל לקוח בעצה טובה, בהקשבה ובשירות נעים ומכבד.</p>
+          <p>זו הדרך שלנו בדורות: לקחת מסורת עתיקה של יין, לחבר אותה לעבודה מקצועית מודרנית, ולהגיש לכם תוצאה נקייה, מאוזנת ומרגשת — יין שמוסיף כבוד לשולחן, עומק לשיחה, ונועם לכל רגע של ביחד.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>מה מספרים עלינו</h2>
+          <span class="gold-line"></span>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial-card reveal stagger-1">
+            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
+            <p class="quote">"היין הגיע ארוז מעולה, והטעם היה בדיוק מה שחיפשנו לארוחת שישי. שירות מדהים."</p>
+            <div class="name">שירי, תל אביב</div>
+          </div>
+          <div class="testimonial-card reveal stagger-2">
+            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
+            <p class="quote">"האתר קל לשימוש, המשלוח הגיע מהר והבקבוקים קיבלו מחמאות מכל האורחים."</p>
+            <div class="name">אלעד, חיפה</div>
+          </div>
+          <div class="testimonial-card reveal stagger-3">
+            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
+            <p class="quote">"יש תחושה של מותג בוטיק אמיתי — הכל נקי, מדויק, ובעיקר יין מצוין בכוס."</p>
+            <div class="name">נועה, ירושלים</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>תמונות מהכרם והיקב</h2>
+          <span class="gold-line"></span>
+        </div>
+
+        <!-- CAROUSEL -->
+        <div class="carousel-wrap" id="carouselWrap" aria-label="גלריית יקב דורות" role="region">
+          <div class="carousel-track" id="carouselTrack">
+
+            <div class="car-slide is-active">
+              <img src="gallery3.jpg" alt="תמונה מהכרם 1">
+              <div class="car-caption">נוף הכרם — יקב דורות</div>
+            </div>
+            <div class="car-slide">
+              <img src="gallery5.jpg" alt="תמונה מהכרם 2">
+              <div class="car-caption">עונת הבציר</div>
+            </div>
+            <div class="car-slide">
+              <img src="gallery6.jpg" alt="תמונה מהכרם 3">
+              <div class="car-caption">חלקות הגפן</div>
+            </div>
+            <div class="car-slide">
+              <img src="1000.png" alt="מותג דורות">
+              <div class="car-caption">יקב בוטיק דורות</div>
+            </div>
+            <div class="car-slide">
+              <img src="קברנה 25.png" alt="קברנה 25">
+              <div class="car-caption">קברנה 25 — יין אדום עשיר</div>
+            </div>
+            <div class="car-slide">
+              <img src="מרלו 25.png" alt="מרלו 25">
+              <div class="car-caption">מרלו 25 — עגול ומלטף</div>
+            </div>
+            <div class="car-slide">
+              <img src="קברנה 24.png" alt="קברנה 24">
+              <div class="car-caption">קברנה 24 — עומק ומורכבות</div>
+            </div>
+            <div class="car-slide">
+              <img src="gallery3.jpg" alt="תמונה מהכרם נוספת">
+              <div class="car-caption">הכרם בשלהי הקיץ</div>
+            </div>
+
+          </div><!-- /track -->
+
+          <button class="car-btn car-prev" id="carPrev" aria-label="שקופית קודמת">&#8249;</button>
+          <button class="car-btn car-next" id="carNext" aria-label="שקופית הבאה">&#8250;</button>
+          <div class="car-counter" id="carCounter">1 / 8</div>
+          <div class="car-dots"    id="carDots"></div>
+        </div><!-- /carousel-wrap -->
+
+        <!-- THUMBNAIL STRIP -->
+        <div class="car-thumbs" id="carThumbs" aria-label="תמונות ממוזערות"></div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>החוויה של דורות — צעד אחר צעד</h2>
+          <span class="gold-line"></span>
+        </div>
+        <p class="section-intro">לקחנו את הדרך שלנו ביקב והפכנו אותה למסלול ברור: מהכרם ועד הכוס, עם שקיפות מלאה וטעם מדויק.</p>
+        <div class="timeline-grid">
+          <article class="timeline-card reveal stagger-1">
+            <div class="timeline-card-inner">
+              <div class="timeline-face front">
+                <span class="timeline-step">1</span>
+                <h3>בחירת חלקות ובציר מדויק</h3>
+                <p>בדיקות הבשלה שבועיות, בחירת ענבים ידנית ותזמון בציר לפי אופי כל זן — כדי לשמור על איזון וניקיון טעמים.</p>
+              </div>
+              <div class="timeline-face back">
+                <span class="timeline-step">1</span>
+                <h3>דיוק שנולד מהשטח</h3>
+                <p>מאחורי כל בציר עומדות מדידות בשטח והקשבה לפרי — כך כל בקבוק מתחיל בסיס מאוזן ונקי כבר מהכרם.</p>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-card reveal stagger-2">
+            <div class="timeline-card-inner">
+              <div class="timeline-face front">
+                <span class="timeline-step">2</span>
+                <h3>יישון וטעימות לאורך הדרך</h3>
+                <p>כל סדרה עוברת טעימות פנימיות, התאמות טכניות ועדינות ביישון כדי להגיע לתוצאה עגולה ונעימה לשתייה.</p>
+              </div>
+              <div class="timeline-face back">
+                <span class="timeline-step">2</span>
+                <h3>איזון בכל לגימה</h3>
+                <p>הטעימות הרציפות שומרות על הרמוניה בין פרי, גוף וסיומת — לחוויה נעימה שמרגישה מדויקת ועדינה.</p>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-card reveal stagger-3">
+            <div class="timeline-card-inner">
+              <div class="timeline-face front">
+                <span class="timeline-step">3</span>
+                <h3>התאמה אישית לפני משלוח</h3>
+                <p>לפני יציאה ללקוח אנחנו ממליצים על הרכב בקבוקים, טמפרטורת הגשה ושילובי אוכל לפי אופי האירוח שלכם.</p>
+              </div>
+              <div class="timeline-face back">
+                <span class="timeline-step">3</span>
+                <h3>חוויה תפורה לאירוח שלכם</h3>
+                <p>בצד האחורי מסתתר השירות האישי שלנו: המלצות הגשה ושילובים שיהפכו כל שולחן למדויק וחגיגי.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="text-section">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>עלינו</h2>
+          <span class="gold-line"></span>
+        </div>
+        <div class="glass-panel reveal" style="text-align:right;">
+          <h3>יקב דורות הוא בית יין משפחתי עם לב יהודי חם, שירות עדין ויחס אישי.</h3>
+          <p>אנחנו עובדים כצוות משפחתי עם אנשי מקצוע שמלווים את היין משלב הקרקע ועד השלב שבו הבקבוק נפתח בבית שלכם. כל עונה מתחילה בעבודה מדויקת בכרם: ניהול עומסים, בדיקות הבשלה, ובחירה נקודתית של זמן הבציר לכל חלקה.</p>
+          <p>במרכז העבודה שלנו עומדת המחשבה על איזון. אנחנו רוצים שהיין יהיה עשיר אבל לא כבד, עמוק אבל נגיש, חגיגי אבל כזה שנעים לפתוח גם באמצע השבוע.</p>
+          <p>במרתף, כל זן מקבל טיפול שונה: זמני השריה משתנים, תסיסה מבוקרת ומעקב יומי אחר טמפרטורה ומיצוי. בחלק מהסדרות אנחנו בוחרים יישון בעץ אלון לקבלת מורכבות, ובאחרות שומרים על פרופיל רענן ונקי במכלי נירוסטה.</p>
+          <p>מעבר לטעם, חשוב לנו שתהיה שקיפות מלאה. אנחנו מספקים מידע ברור על מקור הענבים, סגנון היין, טמפרטורת הגשה והמלצות לשילוב עם מנות.</p>
+          <p>אנחנו מאמינים שיין טוב הוא חוויה שלמה: שירות אדיב, זמינות אמיתית, משלוח מסודר והקשבה לכל לקוח. זו הסיבה שדורות גדל דרך לקוחות שחוזרים אלינו שוב ושוב — לא רק בגלל היין, אלא בגלל הדרך.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>שאלות ותשובות</h2>
+          <span class="gold-line"></span>
+        </div>
+
+        <div class="faq-wrapper reveal">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              האם היין כשר?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>כן. היינות כשרים למהדרין, ומיוצרים ביקב תוך הקפדה מלאה על ההלכה ועל תהליך עבודה מוקפד על ידי אברכים יראי שמיים.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              אפשר לקבל המלצה אישית?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>בוודאי. ספרו לנו מה מגישים, כמה סועדים יש ומה סגנון הארוחה, ואנחנו נתאים לכם יין מדויק ונעים לכל שולחן.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              היינות מתאימים לאירועים?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>כן. ניתן להזמין לאירועים משפחתיים, שבת חתן, בר מצווה, חינה, אירועי קהילה ומתנות מכובדות לאורחים.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              איך בוחרים יין לשבת או לחג?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>אנחנו ממליצים לפי סוג המנות, מספר האורחים והעדפה אישית — יין קליל לפתיחה, ויין עמוק יותר למנה מרכזית.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              אפשר להזמין כמה סוגים יחד?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>בהחלט. רבים מהלקוחות בוחרים שילוב של כמה יינות כדי ליצור חוויה מגוונת, ואנחנו נשמח לבנות עבורכם מארז מאוזן.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              איך מומלץ להגיש את היין?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>כדאי לפתוח יין אדום כ-20 דקות לפני ההגשה ולהגיש בכוס מתאימה. נשמח לשלוח הנחיות קצרות לכל בקבוק שתזמינו.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              יש לכם מארזים למתנה?<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>כן, יש אפשרות למארזי מתנה מסודרים ומכובדים עם ברכה אישית — מתאים למשפחה, לרבנים, לשכנים ולמארחים.</p></div>
+          </div>
+        </div>
+
+        <div class="site-facts">
+          <div class="fact-item reveal stagger-1"><strong>כשרות</strong><span>מהדרין, בהקפדה מלאה</span></div>
+          <div class="fact-item reveal stagger-2"><strong>שירות אישי</strong><span>ייעוץ התאמה לכל ארוחה</span></div>
+          <div class="fact-item reveal stagger-3"><strong>בציר מוקפד</strong><span>בחירה מדויקת מכל חלקה</span></div>
+          <div class="fact-item reveal stagger-1"><strong>מארזים</strong><span>אפשרות למתנה מכובדת</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>נשמח לשוחח</h2>
+          <span class="gold-line"></span>
+        </div>
+        <div class="contact-inner">
+          <p>מחפשים יין לאירוח? רוצים להתייעץ לפני הזמנה? השאירו פרטים ונחזור אליכם עם מענה אישי ומהיר.</p>
+
+          <!-- כרטיסי פרטי קשר -->
+          <div class="contact-cards reveal">
+            <div class="contact-card">
+              <span class="cc-icon">📞</span>
+              <h4>טלפון</h4>
+              <a href="tel:0556775956">055-677-5956</a>
+            </div>
+            <div class="contact-card">
+              <span class="cc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+              <h4>וואטסאפ</h4>
+              <a href="https://wa.me/972556775956" target="_blank">שלח הודעה</a>
+            </div>
+            <div class="contact-card">
+              <span class="cc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/></svg></span>
+              <h4>אימייל</h4>
+              <a href="mailto:d0556775956@gmail.com">שלח מייל</a>
+            </div>
+            <div class="contact-card">
+              <span class="cc-icon">📍</span>
+              <h4>כתובת</h4>
+              <p>רבי עקיבא, בני ברק</p>
+            </div>
+          </div>
+
+          <div class="glass-panel reveal">
+            <form action="https://formspree.io/f/moqglqrr" method="POST">
+              <input type="text"  name="name"    placeholder="שם מלא"                    required aria-label="שם מלא">
+              <input type="email" name="email"   placeholder="אימייל"                    required aria-label="אימייל">
+              <textarea           name="message" placeholder="מה תרצו להגיד לנו?" required aria-label="הודעה"></textarea>
+              <button type="submit">שליחה</button>
+            </form>
+          </div>
+
+          <!-- מפה ניתנת להרחבה -->
+          <div class="map-widget reveal" id="mapWidget" role="button" tabindex="0" aria-expanded="false" aria-label="לחצו להצגת מפה">
+            <div class="map-preview">
+              <div class="map-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="none" stroke="#34A853" stroke-width="0.5"/></svg></div>
+              <div class="map-preview-text">
+                <h4>רבי עקיבא, בני ברק</h4>
+                <p>לחצו להצגת המפה המלאה</p>
+              </div>
+              <span class="map-expand-hint">▼</span>
+            </div>
+            <div class="map-iframe-wrap">
+              <iframe
+                src="https://maps.google.com/maps?q=Rabbi+Akiva+Street,+Bnei+Brak,+Israel&output=embed&hl=he&z=15"
+                title="מפת יקב דורות — רבי עקיבא בני ברק"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- לינקים חברתיים -->
+          <div class="social-strip reveal">
+            <a href="https://wa.me/972556775956" class="social-btn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> וואטסאפ</a>
+            <a href="mailto:d0556775956@gmail.com" class="social-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/></svg> אימייל</a>
+            <a href="tel:0556775956" class="social-btn">📞 התקשרו</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
-  <aside id="cart" class="cart-drawer" aria-live="polite"> <div class="cart-header"><div><h2>סל הקניות</h2><p>בחרו מוצרים עם וי לחישוב הסכום והרכישה.</p></div><button id="cart-close" class="cart-close" aria-label="סגירת סל">✕</button></div><span class="cart-pill" id="cart-count">0 פריטים</span><div id="cart-items" class="cart-items"></div><div id="cart-message" class="cart-message" aria-live="polite"></div><div class="cart-summary"><div class="summary-row"><span>סה"כ</span><strong id="cart-total">₪0</strong></div><button id="checkout-btn" type="button">רכוש</button></div></aside>
-  <footer><div class="footer-grid"><div><h3>יקב בוטיק דורות</h3><p>© כל הזכויות שמורות, 2025</p></div><div><h3>כתובת היקב</h3><p>רבי עקיבא, בני ברק</p></div><div><h3>יצירת קשר</h3><p>טלפון: 0556775956</p><p id="contact-email" data-email="d0556775956@gmail.com">אימייל: d0556775956@gmail.com</p></div><div><h3>שעות פעילות</h3><p>א׳-ה׳: 09:00-18:00</p><p>ו׳: 09:00-13:00</p></div></div></footer>
-  <div id="imageModal" class="modal" aria-hidden="true"><div class="modal-inner"><span class="close-modal" role="button" tabindex="0" aria-label="סגירת תצוגת תמונה">&times;</span><button class="modal-nav modal-prev" id="modalPrev" type="button" aria-label="תמונה קודמת">&#10095;</button><img class="modal-content" id="modalImage" alt="תמונה מוגדלת"><video class="modal-content" id="modalVideo" controls style="display:none;" aria-label="וידאו מוגדל"></video><button class="modal-nav modal-next" id="modalNext" type="button" aria-label="תמונה הבאה">&#10094;</button><p id="modalCaption" class="modal-caption"></p><p id="modalCounter" class="modal-counter"></p></div></div>
-  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="הודעת שימוש בעוגיות"><p><strong>הפרטיות שלכם חשובה לנו.</strong> האתר עושה שימוש בקובצי Cookie ובטכנולוגיות דומות כדי לשפר את חוויית הגלישה, להתאים תוכן ולהבין כיצד ניתן להמשיך לשפר את השירות.</p><button id="cookie-approve" type="button">מאשר/ת שימוש בעוגיות</button></div>
+
+
+  <!-- כפתור וואטסאפ צף -->
+  <a href="https://wa.me/972556775956" id="float-wa" class="float-wa-btn" target="_blank" rel="noopener" aria-label="שלח הודעת וואטסאפ">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="float-wa-label">שלח הודעה</span>
+  </a>
+
+  <!-- CART DRAWER -->
+  <aside id="cart" class="cart-drawer" aria-live="polite" aria-label="סל קניות">
+    <div class="cart-header">
+      <div>
+        <h2>סל הקניות</h2>
+        <p>בחרו מוצרים עם וי לחישוב הסכום.</p>
+      </div>
+      <button id="cart-close" class="cart-close" aria-label="סגירת סל">✕</button>
+    </div>
+    <span class="cart-pill" id="cart-count">0 פריטים</span>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-message" class="cart-message" aria-live="polite"></div>
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>סה"כ לתשלום</span>
+        <strong id="cart-total">₪0</strong>
+      </div>
+      <button id="checkout-btn" type="button">לרכישה</button>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <h2>🍷 יקב בוטיק דורות</h2>
+      <p>יין ישראלי כשר, מדויק ומרגש, לכל שולחן של שמחה.</p>
+      <div class="footer-kosher-badge">
+        <span>✡</span> כשרות מהדרין — יין בעבודת יד
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="reveal stagger-1">
+        <h3>אודות היקב</h3>
+        <p>יקב בוטיק דורות — בית יין משפחתי עם לב יהודי חם ויחס אישי לכל לקוח.</p>
+        <div class="footer-badge">🏅 בוטיק ישראלי</div>
+        <div class="footer-badge">🌿 ענבים מובחרים</div>
+      </div>
+      <div class="reveal stagger-2">
+        <h3>📍 מיקום</h3>
+        <p>רחוב רבי עקיבא</p>
+        <p>בני ברק, ישראל</p>
+        <p style="margin-top:0.6em;">
+          <a href="https://maps.google.com/maps?q=Rabbi+Akiva+Street,+Bnei+Brak" target="_blank" rel="noopener">
+            🗺️ פתח במפה
+          </a>
+        </p>
+      </div>
+      <div class="reveal stagger-3">
+        <h3>📞 יצירת קשר</h3>
+        <p><a href="tel:0556775956">055-677-5956</a></p>
+        <p id="contact-email" data-email="d0556775956@gmail.com">
+          <a href="mailto:d0556775956@gmail.com">d0556775956@gmail.com</a>
+        </p>
+        <div class="footer-social">
+          <a href="https://wa.me/972556775956" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+          <a href="mailto:d0556775956@gmail.com">✉️ מייל</a>
+        </div>
+      </div>
+      <div class="reveal stagger-1">
+        <h3>🕐 שעות פעילות</h3>
+        <div class="footer-hours-row"><span>א׳–ה׳</span><span>09:00–18:00</span></div>
+        <div class="footer-hours-row"><span>ו׳</span><span>09:00–13:00</span></div>
+        <div class="footer-hours-row" style="color:rgba(245,237,230,0.45);margin-top:0.4em;"><span>שבת</span><span>סגור</span></div>
+        <p style="margin-top:0.7em;font-size:0.84em;color:rgba(245,237,230,0.5);">
+          * ניתן לפנות בכל עת בוואטסאפ
+        </p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <p class="site-credit">© 2025 יקב בוטיק דורות · כל הזכויות שמורות · נבנה על ידי
+      <a href="mailto:hidonim123@gmail.com">י.ז.מ. אתרים</a> ·
+      <a href="https://yazamatarem.click" target="_blank" rel="noopener noreferrer">yazamatarem.click</a>
+    </p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="imageModal" class="modal" aria-hidden="true" role="dialog" aria-label="תצוגת גלריה">
+    <div class="modal-inner">
+      <span class="close-modal" role="button" tabindex="0" aria-label="סגירת תצוגה">&times;</span>
+      <button class="modal-nav modal-prev" id="modalPrev"       type="button" aria-label="תמונה קודמת">&#10095;</button>
+      <img    class="modal-content"        id="modalImage"      alt="תמונה מוגדלת">
+      <video  class="modal-content"        id="modalVideo"      controls style="display:none;" aria-label="וידאו מוגדל"></video>
+      <button class="modal-nav modal-next" id="modalNext"       type="button" aria-label="תמונה הבאה">&#10094;</button>
+      <p id="modalCaption" class="modal-caption"></p>
+      <p id="modalCounter" class="modal-counter"></p>
+      <div class="modal-actions">
+        <button class="modal-nav modal-prev" id="modalPrevMobile" type="button" aria-label="תמונה קודמת">&#10095;</button>
+        <button class="modal-nav modal-next" id="modalNextMobile" type="button" aria-label="תמונה הבאה">&#10094;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COOKIE -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="הודעת שימוש בעוגיות">
+    <p><strong>הפרטיות שלכם חשובה לנו.</strong> האתר עושה שימוש בקובצי Cookie לשיפור חוויית הגלישה.</p>
+    <button id="cookie-approve" type="button">מאשר/ת</button>
+  </div>
+
   <script>
+/* ── מנע קפיצה ל-hash ב-URL בטעינה ── */
+if (window.location.hash) {
+  history.replaceState(null, '', location.pathname);
+  window.scrollTo(0, 0);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll("nav a");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#" || !targetId.startsWith("#")) return;
-      let targetElement;
-      try { targetElement = document.querySelector(targetId); } catch { return; }
-      if (!targetElement) return;
+
+  /* ── Scroll progress bar ── */
+  const prog = document.getElementById("scroll-progress");
+  window.addEventListener("scroll", () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (prog) prog.style.transform = `scaleX(${Math.min(pct,1)})`;
+  }, { passive: true });
+
+  /* ── Sparkle generator in hero ── */
+  const wrap = document.getElementById("sparkle-wrap");
+  if (wrap) {
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      const size = 4 + Math.random() * 8;
+      s.style.cssText = `
+        width:${size}px;height:${size}px;
+        bottom:${10 + Math.random() * 70}%;
+        right:${Math.random() * 90}%;
+        --dur:${4 + Math.random() * 5}s;
+        --delay:${Math.random() * 4}s;
+        --dx:${(Math.random() - 0.5) * 60}px;
+      `;
+      wrap.appendChild(s);
+    }
+  }
+
+  /* ── Smooth nav ── */
+  document.querySelectorAll("nav a").forEach(a => {
+    a.addEventListener("click", e => {
+      const href = a.getAttribute("href");
+      if (!href || href === "#" || !href.startsWith("#")) return;
+      let el; try { el = document.querySelector(href); } catch { return; }
+      if (!el) return;
       e.preventDefault();
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
-  const cartState=[];const MESSAGE_DURATION=3200;const currency=new Intl.NumberFormat("he-IL",{style:"currency",currency:"ILS"});
-  const MAX_URL_SAFE_LENGTH=2000,URL_HEADROOM=200,MAX_GMAIL_URL_LENGTH=MAX_URL_SAFE_LENGTH-URL_HEADROOM,TRUNCATION_SUFFIX="\\n(המשך הפרטים קוצר לצורך שליחה)",URL_PARAM_BUFFER=300,BODY_TRUNCATION_LENGTH=MAX_GMAIL_URL_LENGTH-URL_PARAM_BUFFER-TRUNCATION_SUFFIX.length;
-  const formatPerUnit=(price,qty)=>`${qty} × ${currency.format(price)} ליחידה`;const getSelectedItems=()=>cartState.filter((item)=>item.selected);
-  const cartEl=document.getElementById("cart"),cartItemsEl=document.getElementById("cart-items"),cartTotalEl=document.getElementById("cart-total"),cartCountEl=document.getElementById("cart-count"),navCartCountEl=document.getElementById("nav-cart-count"),navCartLink=document.getElementById("nav-cart-link"),cartToggle=document.getElementById("cart-toggle"),cartClose=document.getElementById("cart-close"),checkoutBtn=document.getElementById("checkout-btn"),cartMessage=document.getElementById("cart-message");
-  const supplierEmail=document.querySelector("#contact-email")?.dataset.email||"d0556775956@gmail.com";
-  const truncateBody=(text)=>(text.length<=BODY_TRUNCATION_LENGTH?text:`${text.slice(0,BODY_TRUNCATION_LENGTH)}${TRUNCATION_SUFFIX}`);
-  const announce=(message)=>{if(!cartMessage)return;cartMessage.textContent=message;cartMessage.classList.add("show");setTimeout(()=>cartMessage.classList.remove("show"),MESSAGE_DURATION)};
-  const openCart=()=>cartEl?.classList.add("open"),closeCart=()=>cartEl?.classList.remove("open");
-  const updateCartBadge=(qty)=>{if(cartCountEl)cartCountEl.textContent=`${qty} פריטים`;if(navCartCountEl)navCartCountEl.textContent=String(qty)};
-  const changeQty=(index,delta)=>{const item=cartState[index];if(!item)return;item.qty+=delta;if(item.qty<=0){cartState.splice(index,1);announce("המוצר הוסר מהסל")}renderCart();};
-  const renderCart=()=>{if(!cartItemsEl||!cartTotalEl)return;cartItemsEl.innerHTML="";if(cartState.length===0){cartItemsEl.innerHTML='<p class="cart-empty">הסל ריק - הוסיפו יינות טעימים</p>';cartTotalEl.textContent="₪0";updateCartBadge(0);closeCart();return;}let total=0,qty=0,selectedTotal=0,selectedQty=0;cartState.forEach((item,index)=>{total+=item.price*item.qty;qty+=item.qty;if(item.selected){selectedTotal+=item.price*item.qty;selectedQty+=item.qty;}const row=document.createElement("div");row.className="cart-item";const selectInput=document.createElement("input");selectInput.type="checkbox";selectInput.className="cart-select";selectInput.checked=Boolean(item.selected);selectInput.setAttribute("aria-label",`בחירת ${item.name} לחישוב סופי`);selectInput.addEventListener("change",()=>{item.selected=selectInput.checked;renderCart();});const info=document.createElement("div");info.className="cart-info";const nameEl=document.createElement("strong");nameEl.textContent=item.name;const metaEl=document.createElement("span");metaEl.className="cart-meta";metaEl.textContent=formatPerUnit(item.price,item.qty);info.append(nameEl,metaEl);const qtyControls=document.createElement("div");qtyControls.className="qty-controls";const minusBtn=document.createElement("button");minusBtn.type="button";minusBtn.className="qty-btn";minusBtn.textContent="−";minusBtn.setAttribute("aria-label",`הפחתת כמות עבור ${item.name}`);minusBtn.addEventListener("click",()=>changeQty(index,-1));const qtyValue=document.createElement("span");qtyValue.className="qty-value";qtyValue.textContent=String(item.qty);const plusBtn=document.createElement("button");plusBtn.type="button";plusBtn.className="qty-btn";plusBtn.textContent="+";plusBtn.setAttribute("aria-label",`הוספת כמות עבור ${item.name}`);plusBtn.addEventListener("click",()=>changeQty(index,1));qtyControls.append(minusBtn,qtyValue,plusBtn);const priceEl=document.createElement("span");priceEl.className="line-total";priceEl.textContent=currency.format(item.price*item.qty);row.append(selectInput,info,qtyControls,priceEl);cartItemsEl.appendChild(row);});cartTotalEl.textContent=currency.format(selectedTotal);cartTotalEl.title=`סכום כל המוצרים בסל: ${currency.format(total)}`;updateCartBadge(qty);const selectedInfo=document.createElement("small");selectedInfo.textContent=`נבחרו ${selectedQty} פריטים לחישוב`;const summaryRow=cartTotalEl.closest('.summary-row');summaryRow?.querySelector('small')?.remove();summaryRow?.appendChild(selectedInfo);};
-  const addToCart=(name,price)=>{const existing=cartState.find((item)=>item.name===name);if(existing)existing.qty+=1;else cartState.push({name,price,qty:1,selected:true});renderCart();openCart();announce("הפריט נוסף לסל");};
-  document.querySelectorAll('.add-to-cart').forEach((b)=>b.addEventListener('click',()=>{const {name,price}=b.dataset;if(name&&price)addToCart(name,Number(price));}));
-  cartToggle?.addEventListener('click',openCart);navCartLink?.addEventListener('click',(e)=>{e.preventDefault();openCart();});cartClose?.addEventListener('click',closeCart);
-  checkoutBtn?.addEventListener('click',()=>{if(cartState.length===0)return announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה.");const selectedItems=getSelectedItems();if(!selectedItems.length)return announce("יש לבחור לפחות מוצר אחד (עם וי) לפני רכישה.");const total=selectedItems.reduce((s,i)=>s+i.price*i.qty,0),qty=selectedItems.reduce((s,i)=>s+i.qty,0),itemsSummary=selectedItems.map((i)=>`${i.name} — כמות: ${i.qty} (סה״כ ${currency.format(i.price*i.qty)})`).join("\\n");const body=["ברוכים הבאים, שלום וברכה,",`אני מעוניין לרכוש ${qty} פריטים מהמוצרים הבאים:`,itemsSummary,"",`סכום סופי לתשלום: ${currency.format(total)}`,"תודה רבה!"].join("\\n");const sub=encodeURIComponent("בקשת רכישה מאתר יקב דורות");let enc=encodeURIComponent(body),url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(supplierEmail)}&su=${sub}&body=${enc}`;if(url.length>MAX_GMAIL_URL_LENGTH){enc=encodeURIComponent(truncateBody(body));url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(supplierEmail)}&su=${sub}&body=${enc}`;}window.open(url,"_blank","noopener");announce("פותחים מייל Gmail חדש עם פרטי ההזמנה.");});
-  const contactForm=document.querySelector('#contact form');contactForm?.addEventListener('submit',(e)=>{e.preventDefault();const data=new FormData(contactForm);fetch(contactForm.action,{method:'POST',body:data,headers:{Accept:'application/json'}}).then((r)=>{if(r.ok){alert('ההודעה נשלחה בהצלחה! ניצור קשר בקרוב.');contactForm.reset();}else alert('אירעה שגיאה בשליחת ההודעה. אנא נסו שוב.');}).catch(()=>alert('שגיאת רשת. אנא בדקו את חיבור האינטרנט שלכם.'));});
-  const setupFaqAccordion=()=>document.querySelectorAll('.faq-question').forEach((btn)=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');if(!item)return;const open=item.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}));
-  const setupLightbox=()=>{const modal=document.getElementById('imageModal'),modalImg=document.getElementById('modalImage'),modalVideo=document.getElementById('modalVideo'),modalCaption=document.getElementById('modalCaption'),modalCounter=document.getElementById('modalCounter'),closeModal=document.querySelector('.close-modal'),prevButtons=[document.getElementById('modalPrev')].filter(Boolean),nextButtons=[document.getElementById('modalNext')].filter(Boolean),galleryItems=Array.from(document.querySelectorAll('.gallery-grid img, .gallery-grid video'));if(!modal||!modalImg||!modalVideo||!closeModal||!modalCaption||!modalCounter||!galleryItems.length)return;let currentIndex=0;const render=(index)=>{currentIndex=(index+galleryItems.length)%galleryItems.length;const item=galleryItems[currentIndex],isVideo=item.tagName.toLowerCase()==='video',src=item.currentSrc||item.src,label=item.getAttribute('aria-label')||item.alt||'פריט מהגלריה';modalImg.style.display=isVideo?'none':'block';modalVideo.style.display=isVideo?'block':'none';if(isVideo){modalImg.removeAttribute('src');modalVideo.src=src;modalVideo.setAttribute('aria-label',label);}else{modalVideo.pause();modalVideo.removeAttribute('src');modalImg.src=src;modalImg.alt=label;}modalCaption.textContent=label;modalCounter.textContent=`${currentIndex+1} / ${galleryItems.length}`;};const open=(i)=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';render(i)};const close=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');modalImg.removeAttribute('src');modalVideo.pause();modalVideo.removeAttribute('src');modalCaption.textContent='';modalCounter.textContent='';document.body.style.overflow='';};galleryItems.forEach((item,i)=>item.addEventListener('click',()=>open(i)));const prev=()=>render(currentIndex-1),next=()=>render(currentIndex+1);prevButtons.forEach((b)=>b.addEventListener('click',prev));nextButtons.forEach((b)=>b.addEventListener('click',next));closeModal.addEventListener('click',close);window.addEventListener('click',(e)=>{if(e.target===modal)close();});window.addEventListener('keydown',(e)=>{if(!modal.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')next();if(e.key==='ArrowRight')prev();});};
-  const setupScrollReveal=()=>{const items=document.querySelectorAll('header.hero, section, .card, .testimonial-card, .faq-item, .footer-grid > div, .hero-copy > *');items.forEach((i)=>i.classList.add('reveal-on-scroll'));const obs=new IntersectionObserver((entries)=>entries.forEach((e)=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.14,rootMargin:'0px 0px -20px 0px'});items.forEach((i)=>obs.observe(i));};
-  const setupCookieBanner=()=>{const b=document.getElementById('cookie-banner'),a=document.getElementById('cookie-approve'),k='dorot_cookie_consent';if(!b||!a)return;if(localStorage.getItem(k)==='accepted'){b.classList.add('hidden');document.body.style.paddingBottom='';return;}a.addEventListener('click',()=>{localStorage.setItem(k,'accepted');b.classList.add('hidden');document.body.style.paddingBottom='';});};
-  const setupAgeGate=()=>{const g=document.getElementById('age-gate'),c=document.getElementById('age-confirm'),d=document.getElementById('age-decline'),f=document.getElementById('age-gate-feedback'),k='dorot_age_verified';if(!g||!c||!d||!f)return;if(localStorage.getItem(k)==='accepted')return;g.classList.add('open');document.body.classList.add('age-gate-locked');c.addEventListener('click',()=>{localStorage.setItem(k,'accepted');g.classList.remove('open');document.body.classList.remove('age-gate-locked');});d.addEventListener('click',()=>{f.textContent='הכניסה לאתר זה מותרת רק לבני 18 ומעלה. נשמח לראותכם כאן בעתיד.';});};
-  renderCart();setupFaqAccordion();setupLightbox();setupScrollReveal();setupCookieBanner();setupAgeGate();
+
+  /* ── Scroll reveal with IntersectionObserver ── */
+  const revealAll = document.querySelectorAll(".reveal, .reveal-left");
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+  revealAll.forEach(el => io.observe(el));
+
+  /* ── Cart state ── */
+  const cartState = [];
+  const MSG_DUR  = 3200;
+  const currency = new Intl.NumberFormat("he-IL", { style: "currency", currency: "ILS" });
+  const MAX_GMAIL = 1800;
+  const TRUNC_SFX = "\n(קוצר לצורך שליחה)";
+  const BODY_MAX  = MAX_GMAIL - 300 - TRUNC_SFX.length;
+  const truncBody = t => t.length <= BODY_MAX ? t : t.slice(0, BODY_MAX) + TRUNC_SFX;
+  const getSelected = () => cartState.filter(i => i.selected);
+
+  const cartEl      = document.getElementById("cart");
+  const cartItemsEl = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
+  const cartCountEl = document.getElementById("cart-count");
+  const navCntEl    = document.getElementById("nav-cart-count");
+  const navCartLink = document.getElementById("nav-cart-link");
+  const cartToggle  = document.getElementById("cart-toggle");
+  const cartClose   = document.getElementById("cart-close");
+  const checkoutBtn = document.getElementById("checkout-btn");
+  const cartMsg     = document.getElementById("cart-message");
+  const suppEmail   = document.querySelector("#contact-email")?.dataset.email || "d0556775956@gmail.com";
+
+  const announce = msg => {
+    if (!cartMsg) return;
+    cartMsg.textContent = msg; cartMsg.classList.add("show");
+    setTimeout(() => cartMsg.classList.remove("show"), MSG_DUR);
+  };
+  const openCart  = () => cartEl?.classList.add("open");
+  const closeCart = () => cartEl?.classList.remove("open");
+  const updateBadge = qty => {
+    if (cartCountEl) cartCountEl.textContent = `${qty} פריטים`;
+    if (navCntEl)    navCntEl.textContent    = String(qty);
+  };
+
+  const renderCart = () => {
+    if (!cartItemsEl || !cartTotalEl) return;
+    cartItemsEl.innerHTML = "";
+    if (!cartState.length) {
+      cartItemsEl.innerHTML = '<p class="cart-empty">הסל ריק — הוסיפו יינות טעימים</p>';
+      cartTotalEl.textContent = "₪0"; updateBadge(0); closeCart(); return;
+    }
+    let total=0,qty=0,selTotal=0,selQty=0;
+    cartState.forEach((item,idx) => {
+      total += item.price*item.qty; qty += item.qty;
+      if (item.selected) { selTotal += item.price*item.qty; selQty += item.qty; }
+      const row = document.createElement("div"); row.className = "cart-item";
+      const chk = document.createElement("input");
+      chk.type="checkbox"; chk.className="cart-select"; chk.checked=Boolean(item.selected);
+      chk.setAttribute("aria-label",`בחירת ${item.name}`);
+      chk.addEventListener("change",() => { item.selected=chk.checked; renderCart(); });
+      const info = document.createElement("div"); info.className="cart-info";
+      const nm = document.createElement("strong"); nm.textContent=item.name;
+      const mt = document.createElement("span"); mt.className="cart-meta";
+      mt.textContent=`${item.qty} × ${currency.format(item.price)} ליחידה`;
+      info.append(nm,mt);
+      const qc = document.createElement("div"); qc.className="qty-controls";
+      const minus = document.createElement("button");
+      minus.type="button"; minus.className="qty-btn"; minus.textContent="−";
+      minus.setAttribute("aria-label",`הפחתת כמות ${item.name}`);
+      minus.addEventListener("click",() => changeQty(idx,-1));
+      const qv = document.createElement("span"); qv.className="qty-value"; qv.textContent=String(item.qty);
+      const plus = document.createElement("button");
+      plus.type="button"; plus.className="qty-btn"; plus.textContent="+";
+      plus.setAttribute("aria-label",`הוספת כמות ${item.name}`);
+      plus.addEventListener("click",() => changeQty(idx,1));
+      qc.append(minus,qv,plus);
+      const pr = document.createElement("span"); pr.className="line-total";
+      pr.textContent=currency.format(item.price*item.qty);
+      row.append(chk,info,qc,pr); cartItemsEl.appendChild(row);
+    });
+    cartTotalEl.textContent=currency.format(selTotal);
+    cartTotalEl.title=`סכום כל הסל: ${currency.format(total)}`;
+    updateBadge(qty);
+    const si=document.createElement("small"); si.textContent=`נבחרו ${selQty} פריטים`;
+    const sr=cartTotalEl.closest(".summary-row");
+    sr?.querySelector("small")?.remove(); sr?.appendChild(si);
+  };
+
+  const changeQty = (idx,delta) => {
+    const item=cartState[idx]; if(!item) return;
+    item.qty+=delta;
+    if(item.qty<=0){ cartState.splice(idx,1); announce("המוצר הוסר מהסל"); }
+    renderCart();
+  };
+
+  const addToCart = (name,price) => {
+    const ex=cartState.find(i=>i.name===name);
+    if(ex) ex.qty+=1; else cartState.push({name,price,qty:1,selected:true});
+    renderCart(); openCart(); announce("הפריט נוסף לסל ✓");
+    /* pulse animation on cart icon */
+    cartToggle?.classList.remove("pulse-anim");
+    void cartToggle?.offsetWidth;
+    cartToggle?.classList.add("pulse-anim");
+    cartToggle?.addEventListener("animationend",() => cartToggle.classList.remove("pulse-anim"),{once:true});
+  };
+
+  document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click",() => {
+      const {name,price}=btn.dataset;
+      if(name&&price) addToCart(name,Number(price));
+    });
+  });
+
+  cartToggle?.addEventListener("click",openCart);
+  navCartLink?.addEventListener("click",e=>{ e.preventDefault(); openCart(); });
+  cartClose?.addEventListener("click",closeCart);
+
+  checkoutBtn?.addEventListener("click",() => {
+    if(!cartState.length){ announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה."); return; }
+    const sel=getSelected();
+    if(!sel.length){ announce("יש לבחור לפחות מוצר אחד לפני רכישה."); return; }
+    const total=sel.reduce((s,i)=>s+i.price*i.qty,0);
+    const qty  =sel.reduce((s,i)=>s+i.qty,0);
+    const lines=sel.map(i=>`${i.name} — כמות: ${i.qty} (${currency.format(i.price*i.qty)})`).join("\n");
+    const body =["ברוכים הבאים, שלום וברכה,",`אני מעוניין לרכוש ${qty} פריטים:`,lines,"",`סכום סופי: ${currency.format(total)}`,"תודה רבה!"].join("\n");
+    const su=encodeURIComponent("בקשת רכישה מאתר יקב דורות");
+    let eb=encodeURIComponent(body);
+    let url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(suppEmail)}&su=${su}&body=${eb}`;
+    if(url.length>MAX_GMAIL){ eb=encodeURIComponent(truncBody(body)); url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(suppEmail)}&su=${su}&body=${eb}`; }
+    window.open(url,"_blank","noopener");
+    announce("פותחים Gmail עם פרטי ההזמנה.");
+  });
+
+  /* ── Contact form ── */
+  const form=document.querySelector("#contact form");
+  form?.addEventListener("submit",e=>{
+    e.preventDefault();
+    fetch(form.action,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}})
+      .then(r=>{ if(r.ok){alert("ההודעה נשלחה בהצלחה!");form.reset();}else alert("אירעה שגיאה. נסו שוב."); })
+      .catch(()=>alert("שגיאת רשת."));
+  });
+
+  /* ── FAQ accordion (smooth max-height) ── */
+  document.querySelectorAll(".faq-question").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item=btn.closest(".faq-item");
+      const isOpen=item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(el=>{
+        el.classList.remove("open");
+        el.querySelector(".faq-question")?.setAttribute("aria-expanded","false");
+      });
+      if(!isOpen){ item.classList.add("open"); btn.setAttribute("aria-expanded","true"); }
+    });
+  });
+
+  /* ── Lightbox ── */
+  const modal    =document.getElementById("imageModal");
+  const modalImg =document.getElementById("modalImage");
+  const modalVid =document.getElementById("modalVideo");
+  const modalCap =document.getElementById("modalCaption");
+  const modalCnt =document.getElementById("modalCounter");
+  const closBtn  =document.querySelector(".close-modal");
+  const prevBtns =[document.getElementById("modalPrev"),document.getElementById("modalPrevMobile")].filter(Boolean);
+  const nextBtns =[document.getElementById("modalNext"),document.getElementById("modalNextMobile")].filter(Boolean);
+  const galItems =Array.from(document.querySelectorAll(".gallery-grid img,.gallery-grid video"));
+  let curIdx=0;
+  if(modal&&galItems.length){
+    const show=idx=>{
+      curIdx=(idx+galItems.length)%galItems.length;
+      const el=galItems[curIdx]; const isV=el.tagName.toLowerCase()==="video";
+      const src=el.currentSrc||el.src; const lbl=el.getAttribute("aria-label")||el.alt||"פריט";
+      modalImg.style.display=isV?"none":"block"; modalVid.style.display=isV?"block":"none";
+      if(isV){modalImg.removeAttribute("src");modalVid.src=src;modalVid.setAttribute("aria-label",lbl);}
+      else{modalVid.pause();modalVid.removeAttribute("src");modalImg.src=src;modalImg.alt=lbl;}
+      if(modalCap)modalCap.textContent=lbl;
+      if(modalCnt)modalCnt.textContent=`${curIdx+1} / ${galItems.length}`;
+    };
+    const open=idx=>{modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";show(idx);};
+    const close=()=>{modal.classList.remove("open");modal.setAttribute("aria-hidden","true");modalImg.removeAttribute("src");modalVid.pause();modalVid.removeAttribute("src");if(modalCap)modalCap.textContent="";if(modalCnt)modalCnt.textContent="";document.body.style.overflow="";};
+    galItems.forEach((el,i)=>el.addEventListener("click",()=>open(i)));
+    prevBtns.forEach(b=>b.addEventListener("click",()=>show(curIdx-1)));
+    nextBtns.forEach(b=>b.addEventListener("click",()=>show(curIdx+1)));
+    closBtn?.addEventListener("click",close);
+    closBtn?.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();close();}});
+    window.addEventListener("click",e=>{if(e.target===modal)close();});
+    window.addEventListener("keydown",e=>{
+      if(!modal.classList.contains("open"))return;
+      if(e.key==="Escape")close();
+      if(e.key==="ArrowLeft")show(curIdx+1);
+      if(e.key==="ArrowRight")show(curIdx-1);
+    });
+  }
+
+  /* ── Cookie banner ── */
+  const banner =document.getElementById("cookie-banner");
+  const approve=document.getElementById("cookie-approve");
+  if(banner&&approve){
+    if(localStorage.getItem("dorot_cookie_consent")==="accepted"){banner.classList.add("hidden");document.body.style.paddingBottom="";}
+    else approve.addEventListener("click",()=>{localStorage.setItem("dorot_cookie_consent","accepted");banner.classList.add("hidden");document.body.style.paddingBottom="";});
+  }
+
+  /* ── Age gate ── */
+  const gate    =document.getElementById("age-gate");
+  const confirm =document.getElementById("age-confirm");
+  const decline =document.getElementById("age-decline");
+  const feedback=document.getElementById("age-gate-feedback");
+  if(gate&&confirm&&decline&&feedback){
+    if(localStorage.getItem("dorot_age_verified")!=="accepted"){
+      gate.classList.add("open"); document.body.classList.add("age-gate-locked");
+      confirm.addEventListener("click",()=>{localStorage.setItem("dorot_age_verified","accepted");gate.classList.remove("open");document.body.classList.remove("age-gate-locked");});
+      decline.addEventListener("click",()=>{feedback.textContent="הכניסה לאתר זה מותרת רק לבני 18 ומעלה. נשמח לראותכם כאן בעתיד.";});
+    }
+  }
+
+  renderCart();
+
+  /* ══════════════════════════════════════════
+     HERO IMAGES — תמונות מתחלפות בגיבור
+  ══════════════════════════════════════════ */
+  (function initHeroImages() {
+    const heroImages = [
+      { src: 'קברנה 25.png',  alt: 'קברנה 25' },
+      { src: 'מרלו 25.png',   alt: 'מרלו 25' },
+      { src: 'קברנה 24.png',  alt: 'קברנה 24' },
+      { src: '1000.png',       alt: 'לוגו יקב דורות' },
+    ];
+    const slots = [
+      document.getElementById('heroMain'),
+      document.getElementById('heroLeft'),
+      document.getElementById('heroRight'),
+      document.getElementById('heroBottom'),
+    ];
+    if (!slots[0]) return;
+
+    /* הצג את כל הסלוטים */
+    setTimeout(() => slots.forEach(s => s && s.classList.add('visible')), 400);
+
+    /* החלף תמונה ראשית כל 2.5 שניות */
+    let heroIdx = 0;
+    const heroMain = slots[0];
+    if (!heroMain) return;
+    setInterval(() => {
+      heroMain.classList.remove('visible');
+      setTimeout(() => {
+        heroIdx = (heroIdx + 1) % heroImages.length;
+        const img = heroMain.querySelector('img');
+        if (img) { img.src = heroImages[heroIdx].src; img.alt = heroImages[heroIdx].alt; }
+        heroMain.classList.add('visible');
+      }, 600);
+    }, 2800);
+  })();
+
+  /* ══════════════════════════════════════════
+     MAP WIDGET — מפה ניתנת להרחבה
+  ══════════════════════════════════════════ */
+  const mapWidget = document.getElementById('mapWidget');
+  if (mapWidget) {
+    const toggleMap = () => {
+      const isOpen = mapWidget.classList.toggle('open');
+      mapWidget.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+    mapWidget.addEventListener('click', toggleMap);
+    mapWidget.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMap(); }
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     WINE DROPS — חלקיקי יין ויזואליים
+  ══════════════════════════════════════════ */
+  (function initWineDrops() {
+    const frames = document.querySelectorAll('.section-frame');
+    frames.forEach(frame => {
+      const drops = document.createElement('div');
+      drops.className = 'wine-drops';
+      drops.setAttribute('aria-hidden', 'true');
+      for (let i = 0; i < 6; i++) {
+        const d = document.createElement('div');
+        d.className = 'wine-drop';
+        const size = 6 + Math.random() * 10;
+        d.style.cssText = `
+          width:${size}px;height:${size * 1.3}px;
+          top:${Math.random() * 80}%;
+          right:${Math.random() * 92}%;
+          --ddur:${6 + Math.random() * 7}s;
+          --ddelay:${Math.random() * 5}s;
+          opacity:0;
+        `;
+        drops.appendChild(d);
+      }
+      frame.appendChild(drops);
+    });
+    /* הפעל drop animation רק כשהסקציה גלויה */
+    const dropObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        e.target.querySelectorAll('.wine-drop').forEach((d, i) => {
+          d.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+        });
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.wine-drops').forEach(el => dropObserver.observe(el));
+  })();
+
+  /* ══════════════════════════════════════════
+     3D TILT on product cards
+  ══════════════════════════════════════════ */
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x*12}deg) rotateX(${-y*12}deg) translateY(-10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  /* ══════════════════════════════════════════
+     GALLERY CAROUSEL
+  ══════════════════════════════════════════ */
+  (function initCarousel() {
+    const wrap    = document.getElementById("carouselWrap");
+    const track   = document.getElementById("carouselTrack");
+    const counter = document.getElementById("carCounter");
+    const dotsWrap= document.getElementById("carDots");
+    const thumbsW = document.getElementById("carThumbs");
+    const prevBtn = document.getElementById("carPrev");
+    const nextBtn = document.getElementById("carNext");
+    if (!wrap || !track) return;
+
+    const slides   = Array.from(track.querySelectorAll(".car-slide"));
+    const total    = slides.length;
+    let   current  = 0;
+    let   autoTimer= null;
+    let   isHovered= false;
+    let   touchStartX = 0;
+
+    /* build dots */
+    slides.forEach((_,i) => {
+      const d = document.createElement("button");
+      d.className = "car-dot" + (i===0?" active":"");
+      d.setAttribute("aria-label", `שקופית ${i+1}`);
+      d.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    /* build thumbnails */
+    slides.forEach((sl,i) => {
+      const img = sl.querySelector("img");
+      if (!img) return;
+      const th  = document.createElement("div");
+      th.className = "car-thumb" + (i===0?" active":"");
+      th.setAttribute("aria-label", `תמונה ממוזערת ${i+1}`);
+      const tImg = document.createElement("img");
+      tImg.src = img.src; tImg.alt = img.alt;
+      th.appendChild(tImg);
+      th.addEventListener("click", () => goTo(i));
+      thumbsW.appendChild(th);
+    });
+
+    function goTo(idx, dir) {
+      const prev = current;
+      current = (idx + total) % total;
+
+      /* update active slide class for Ken Burns */
+      slides[prev].classList.remove("is-active");
+      slides[current].classList.add("is-active");
+
+      /* move track */
+      track.style.transform = `translateX(${current * 100}%)`;
+
+      /* update dots */
+      dotsWrap.querySelectorAll(".car-dot").forEach((d,i) =>
+        d.classList.toggle("active", i===current));
+
+      /* update thumbs */
+      const thumbEls = thumbsW.querySelectorAll(".car-thumb");
+      thumbEls.forEach((t,i) => t.classList.toggle("active", i===current));
+      /* scroll active thumb into view — only inside the thumb strip, never scroll the page */
+      if (thumbEls[current] && thumbsW) {
+        const th = thumbEls[current];
+        const targetLeft = th.offsetLeft - (thumbsW.offsetWidth / 2) + (th.offsetWidth / 2);
+        thumbsW.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+      }
+
+      /* counter */
+      counter.textContent = `${current+1} / ${total}`;
+    }
+
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
+
+    /* auto-play */
+    function startAuto(){ autoTimer = setInterval(next, 4200); }
+    function stopAuto() { clearInterval(autoTimer); }
+    startAuto();
+
+    wrap.addEventListener("mouseenter", () => { isHovered=true; stopAuto(); });
+    wrap.addEventListener("mouseleave", () => { isHovered=false; startAuto(); });
+
+    prevBtn?.addEventListener("click", () => { prev(); stopAuto(); startAuto(); });
+    nextBtn?.addEventListener("click", () => { next(); stopAuto(); startAuto(); });
+
+    /* keyboard */
+    wrap.addEventListener("keydown", e => {
+      if (e.key==="ArrowLeft")  { next(); stopAuto(); startAuto(); }
+      if (e.key==="ArrowRight") { prev(); stopAuto(); startAuto(); }
+    });
+
+    /* touch / swipe */
+    wrap.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    wrap.addEventListener("touchend",   e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) < 40) return;
+      dx < 0 ? next() : prev();
+      stopAuto(); startAuto();
+    }, {passive:true});
+
+    /* open lightbox on slide click */
+    slides.forEach((sl,i) => {
+      sl.addEventListener("click", () => {
+        const img = sl.querySelector("img");
+        if (!img) return;
+        const modal    = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalVid = document.getElementById("modalVideo");
+        const modalCap = document.getElementById("modalCaption");
+        const modalCnt = document.getElementById("modalCounter");
+        if (!modal || !modalImg) return;
+        modalVid.style.display="none"; modalImg.style.display="block";
+        modalImg.src=img.src; modalImg.alt=img.alt;
+        if(modalCap) modalCap.textContent = img.alt;
+        if(modalCnt) modalCnt.textContent = `${i+1} / ${total}`;
+        modal.classList.add("open"); modal.setAttribute("aria-hidden","false");
+        document.body.style.overflow="hidden";
+      });
+    });
+  })();
+
 });
-</script>
+  </script>
 </body>
 </html>
