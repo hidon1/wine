@@ -413,31 +413,31 @@ header.hero{
   display:block;
 }
 .hero-img-slot.hi-main{
-  width:min(180px, 38%);
-  height:min(300px, 56vh);
-  top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(0.92);
+  width:min(170px, 34%);
+  height:min(280px, 52vh);
+  top:48%;left:50%;
+  transform:translate(-50%,-50%) scale(0.95) rotate(-1deg);
 }
 .hero-img-slot.hi-left{
-  width:min(120px, 26%);
-  height:min(195px, 37vh);
-  top:22%;left:8%;
-  transform:translateY(20px) rotate(-9deg);
+  width:min(130px, 28%);
+  height:min(210px, 39vh);
+  top:25%;left:19%;
+  transform:translateY(16px) rotate(-8deg);
 }
 .hero-img-slot.hi-right{
-  width:min(120px, 26%);
-  height:min(195px, 37vh);
-  top:22%;right:8%;
-  transform:translateY(20px) rotate(9deg);
+  width:min(130px, 28%);
+  height:min(210px, 39vh);
+  top:25%;right:19%;
+  transform:translateY(16px) rotate(8deg);
 }
 .hero-img-slot.hi-bottom{
-  width:min(100px, 22%);
-  height:min(165px, 31vh);
-  bottom:3%;left:50%;
-  transform:translateX(-50%) rotate(-3deg);
+  width:min(102px, 22%);
+  height:min(168px, 31vh);
+  bottom:4%;left:50%;
+  transform:translateX(-50%) rotate(-4deg);
 }
 .hero-img-slot.visible{opacity:1;}
-.hero-img-slot.hi-main.visible{transform:translate(-50%,-50%) scale(1);}
+.hero-img-slot.hi-main.visible{transform:translate(-50%,-50%) scale(1) rotate(-1deg);}
 .hero-img-slot.hi-left.visible{transform:translateY(0) rotate(-9deg);}
 .hero-img-slot.hi-right.visible{transform:translateY(0) rotate(9deg);}
 .hero-img-slot.hi-bottom.visible{transform:translateX(-50%) rotate(-4deg);}
@@ -1478,7 +1478,6 @@ nav a:hover::after{transform:scaleX(1);}
         <a href="#experience">חוויה ביקב</a>
         <a href="#about">עלינו</a>
         <a href="#faq">שאלות נפוצות</a>
-        <a href="#contact">יצירת קשר</a>
       </nav>
 
       <button id="cart-toggle" class="cart-toggle" aria-label="פתיחת סל הקניות">
@@ -1494,10 +1493,6 @@ nav a:hover::after{transform:scaleX(1);}
           <p class="hero-eyebrow">✦ יקב בוטיק ישראלי · כשרות מהדרין</p>
           <h1>יין ישראלי<br>איכותי וטעים<br><span style="font-size:0.72em;color:var(--wine-light);">בכשרות מהודרת · לאירוח מרגש</span></h1>
 
-          <div class="hero-actions">
-            <a href="#shop"    class="btn btn-primary">לקולקציה שלנו</a>
-            <a href="#contact" class="btn btn-ghost">יצירת קשר</a>
-          </div>
         </div>
 
         <!-- עמודה שמאלית: תמונות מתחלפות ללא רקע -->
@@ -1864,11 +1859,6 @@ nav a:hover::after{transform:scaleX(1);}
               <h4>אימייל</h4>
               <a href="mailto:d0556775956@gmail.com">שלח מייל</a>
             </div>
-            <div class="contact-card">
-              <span class="cc-icon">📍</span>
-              <h4>כתובת</h4>
-              <p>רבי עקיבא, בני ברק</p>
-            </div>
           </div>
 
           <div class="glass-panel reveal">
@@ -1886,7 +1876,7 @@ nav a:hover::after{transform:scaleX(1);}
               <div class="map-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="none" stroke="#34A853" stroke-width="0.5"/></svg></div>
               <div class="map-preview-text">
                 <h4>רבי עקיבא, בני ברק</h4>
-                <p>לחצו להצגת המפה המלאה</p>
+                <p>לחצו על המפה המלאה</p>
               </div>
               <span class="map-expand-hint">▼</span>
             </div>
@@ -2301,19 +2291,24 @@ document.addEventListener("DOMContentLoaded", () => {
     /* הצג את כל הסלוטים */
     setTimeout(() => slots.forEach(s => s && s.classList.add('visible')), 400);
 
-    /* החלף תמונה ראשית כל 2.5 שניות */
+    /* החלף את כל התמונות בין כל הסלוטים */
     let heroIdx = 0;
-    const heroMain = slots[0];
-    if (!heroMain) return;
     setInterval(() => {
-      heroMain.classList.remove('visible');
+      slots.forEach(slot => slot && slot.classList.remove('visible'));
       setTimeout(() => {
         heroIdx = (heroIdx + 1) % heroImages.length;
-        const img = heroMain.querySelector('img');
-        if (img) { img.src = heroImages[heroIdx].src; img.alt = heroImages[heroIdx].alt; }
-        heroMain.classList.add('visible');
-      }, 600);
-    }, 2800);
+        slots.forEach((slot, i) => {
+          if (!slot) return;
+          const img = slot.querySelector('img');
+          const next = heroImages[(heroIdx + i) % heroImages.length];
+          if (img && next) {
+            img.src = next.src;
+            img.alt = next.alt;
+          }
+          slot.classList.add('visible');
+        });
+      }, 420);
+    }, 3000);
   })();
 
   /* ══════════════════════════════════════════
