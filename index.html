@@ -1373,6 +1373,117 @@ nav a:hover::after{transform:scaleX(1);}
 .float-wa-btn:hover{animation:none;}
 
 /* ============================================================
+   HERO RESPONSIVE IMAGE TUNING
+============================================================ */
+@media (max-width:1024px){
+  header.hero{
+    min-height:auto;
+    padding:1em 1em 1.4em;
+  }
+  .hero-layout{
+    grid-template-columns:58% 42%;
+    gap:1.25em;
+  }
+  .hero-images-col{
+    height:clamp(250px, 34vw, 340px);
+  }
+  .hero-img-slot{
+    filter:drop-shadow(0 10px 26px rgba(42,12,21,0.34));
+  }
+  .hero-img-slot.hi-main{
+    width:min(132px, 30%);
+    height:min(218px, 38vh);
+  }
+  .hero-img-slot.hi-left,
+  .hero-img-slot.hi-right{
+    width:min(96px, 23%);
+    height:min(158px, 28vh);
+    top:27%;
+  }
+  .hero-img-slot.hi-left{left:24%;}
+  .hero-img-slot.hi-right{right:24%;}
+  .hero-img-slot.hi-bottom{
+    width:min(74px, 18%);
+    height:min(112px, 20vh);
+    bottom:8%;
+  }
+  .hero-glow{
+    transform:scale(0.72);
+    opacity:0.32 !important;
+  }
+}
+
+@media (max-width:820px){
+  header.hero{
+    padding:0.85em 0.75em 1.3em;
+    margin:0.45em;
+  }
+  .hero-layout{
+    grid-template-columns:1fr;
+    gap:0.75em;
+  }
+  .hero-copy{grid-column:1;}
+  .hero-images-col{
+    grid-column:1;
+    order:-1;
+    height:clamp(150px, 30vh, 205px);
+    max-width:520px;
+    margin:0 auto;
+    width:100%;
+  }
+  .hero-img-slot.hi-main{
+    width:min(96px, 24vw);
+    height:min(158px, 29vh);
+  }
+  .hero-img-slot.hi-left,
+  .hero-img-slot.hi-right{
+    width:min(72px, 18vw);
+    height:min(118px, 21vh);
+    top:29%;
+  }
+  .hero-img-slot.hi-left{left:27%;}
+  .hero-img-slot.hi-right{right:27%;}
+  .hero-img-slot.hi-bottom{
+    width:min(58px, 15vw);
+    height:min(84px, 15vh);
+    bottom:9%;
+  }
+  .hero-copy{
+    text-align:center;
+  }
+  .hero-eyebrow{
+    margin-bottom:0.45em !important;
+  }
+  .hero-actions{
+    justify-content:center;
+  }
+}
+
+@media (max-width:480px){
+  .hero-images-col{
+    height:clamp(128px, 26vh, 170px);
+    max-width:360px;
+  }
+  .hero-img-slot.hi-main{
+    width:min(78px, 23vw);
+    height:min(126px, 25vh);
+  }
+  .hero-img-slot.hi-left,
+  .hero-img-slot.hi-right{
+    width:min(56px, 16vw);
+    height:min(92px, 18vh);
+    top:31%;
+  }
+  .hero-img-slot.hi-left{left:29%;}
+  .hero-img-slot.hi-right{right:29%;}
+  .hero-img-slot.hi-bottom{
+    width:min(46px, 13vw);
+    height:min(66px, 13vh);
+    bottom:10%;
+  }
+}
+
+/* ============================================================
    MOBILE / TABLET IMPROVEMENTS
 ============================================================ */
 @media(max-width:768px){
