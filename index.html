@@ -551,6 +551,58 @@ header.hero{
 .buy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(107,30,51,0.38);}
 
 /* ============================================================
+   12b. POINTS OF SALE
+============================================================ */
+.stockists-note{
+  display:flex;align-items:flex-start;gap:.75em;
+  max-width:820px;margin:0 auto 1.8em;padding:.9em 1.15em;
+  color:var(--ink-soft);background:rgba(201,169,110,.13);
+  border:1px solid rgba(201,169,110,.32);border-radius:var(--radius-md);
+  font-size:.92em;line-height:1.65;
+}
+.stockists-note strong{color:var(--wine-deep);}
+.stockists-note .line-icon{color:var(--wine);flex:0 0 auto;margin-top:.18em;}
+.stockists-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2em;
+}
+.stockist-card{
+  position:relative;display:flex;flex-direction:column;min-height:295px;
+  padding:1.45em;background:rgba(255,252,248,.82);
+  border:1px solid rgba(201,169,110,.32);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);overflow:hidden;
+  transition:transform var(--tr-base),box-shadow var(--tr-base),border-color var(--tr-fast);
+}
+.stockist-card::before{
+  content:"";position:absolute;top:0;right:0;bottom:0;width:4px;
+  background:var(--grad-gold);
+}
+.stockist-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(201,169,110,.65);}
+.stockist-top{display:flex;align-items:center;justify-content:space-between;gap:.7em;margin-bottom:.9em;}
+.stockist-region,.stockist-status{
+  display:inline-flex;align-items:center;gap:.35em;padding:.24em .7em;
+  border-radius:var(--radius-full);font-size:.76em;font-weight:700;
+}
+.stockist-region{color:var(--wine);background:rgba(107,30,51,.08);}
+.stockist-status{color:#35623f;background:rgba(83,141,95,.12);}
+.stockist-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#538d5f;box-shadow:0 0 0 3px rgba(83,141,95,.12);}
+.stockist-card h3{font-size:1.3rem;color:var(--wine-deep);margin-bottom:.55em;}
+.stockist-address{display:flex;gap:.55em;color:var(--ink-soft);font-style:normal;line-height:1.65;margin-bottom:.8em;}
+.stockist-address .line-icon{width:1.2rem;height:1.2rem;color:var(--gold);flex:0 0 auto;margin-top:.22em;}
+.stockist-details{display:grid;gap:.45em;padding-top:.75em;border-top:1px solid rgba(201,169,110,.2);}
+.stockist-detail{display:flex;align-items:center;gap:.55em;color:var(--muted);font-size:.87em;}
+.stockist-detail .line-icon{width:1.05rem;height:1.05rem;color:var(--wine);}
+.stockist-products{margin-top:auto;padding-top:1em;color:var(--wine-deep);font-size:.84em;font-weight:700;}
+.stockists-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:1em;
+  margin-top:1.5em;padding:1.1em 1.3em;border-radius:var(--radius-md);
+  color:#fff;background:linear-gradient(125deg,rgba(61,15,28,.96),rgba(107,30,51,.92));
+  box-shadow:var(--shadow-md);
+}
+.stockists-cta strong{display:block;color:var(--gold-light);font-family:var(--font-heading);font-size:1.15rem;}
+.stockists-cta p{font-size:.88em;color:rgba(255,255,255,.75);}
+.stockists-cta .btn{flex-shrink:0;background:var(--gold);color:var(--wine-deep);}
+
+/* ============================================================
    13. STORY
 ============================================================ */
 .story-image{
@@ -1313,6 +1365,7 @@ nav a:hover::after{transform:scaleX(1);}
   .modal-prev,.modal-next{display:none;}
   .modal-actions{display:flex;justify-content:center;gap:0.8em;margin-top:0.8em;}
   .modal-inner{padding:2.8em 0.8em 1em;}
+  .stockists-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media(max-width:640px){
   .section-frame{padding:2em 1.2em;}
@@ -1325,6 +1378,9 @@ nav a:hover::after{transform:scaleX(1);}
   .age-gate-actions{grid-template-columns:1fr;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .glass-panel{padding:1.4em 1.2em;}
+  .stockists-grid{grid-template-columns:1fr;}
+  .stockists-cta{align-items:stretch;flex-direction:column;}
+  .stockists-cta .btn{width:100%;}
 }
 @media(max-width:420px){
   .products-grid{grid-template-columns:1fr;}
@@ -1650,6 +1706,7 @@ nav a:hover::after{transform:scaleX(1);}
 
       <nav aria-label="ניווט ראשי">
         <a href="#shop">היינות שלנו</a>
+        <a href="#stockists">נקודות מכירה</a>
         <a href="#story">הסיפור שלנו</a>
         <a href="#" id="nav-cart-link">סל קניות</a>
         <a href="#testimonials">ביקורות</a>
@@ -1739,6 +1796,92 @@ nav a:hover::after{transform:scaleX(1);}
               <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">+ הוסף לסל</button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POINTS OF SALE -->
+    <section id="stockists">
+      <div class="section-frame">
+        <div class="frame-corner tl" aria-hidden="true"></div>
+        <div class="frame-corner br" aria-hidden="true"></div>
+        <div class="frame-corner tr" aria-hidden="true"></div>
+        <div class="frame-corner bl" aria-hidden="true"></div>
+        <div class="section-title">
+          <h2>קרוב אליכם</h2>
+          <span class="gold-line"></span>
+        </div>
+        <p class="section-intro">נקודות המכירה של דורות מסודרות לפי אזור, כדי שתוכלו למצוא בקלות את הבקבוק שמתאים לשולחן שלכם.</p>
+        <div class="stockists-note" role="note">
+          <svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          <p><strong>שימו לב:</strong> הכתובות והשעות המופיעות כרגע הן להמחשה בלבד ואינן נקודות מכירה פעילות. הרשימה תעודכן בפרטים מאומתים בקרוב.</p>
+        </div>
+
+        <div class="stockists-grid">
+          <article class="stockist-card reveal stagger-1">
+            <div class="stockist-top"><span class="stockist-region">אזור המרכז</span><span class="stockist-status">מלאי מגוון</span></div>
+            <h3>בית היין הדרים</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ הגפן 18, שכונת נווה גנים<br>פתח תקווה, 4958124</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:00–20:00 · ו׳ 08:00–14:00</p>
+            </div>
+            <p class="stockist-products">במקום: קברנה 24 · קברנה 25 · מרלו 25</p>
+          </article>
+
+          <article class="stockist-card reveal stagger-2">
+            <div class="stockist-top"><span class="stockist-region">גוש דן</span><span class="stockist-status">איסוף מהיר</span></div>
+            <h3>מרתף העיר</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ פנינת הכרם 7, מרכז מסחרי הדר<br>בני ברק, 5126431</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–21:00 · ו׳ 08:30–13:30</p>
+            </div>
+            <p class="stockist-products">במקום: קברנה 25 · מרלו 25 · מארזי מתנה</p>
+          </article>
+
+          <article class="stockist-card reveal stagger-3">
+            <div class="stockist-top"><span class="stockist-region">ירושלים</span><span class="stockist-status">מארזים במקום</span></div>
+            <h3>יין בשער</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>שד׳ מורדות יהודה 42, קומה 1<br>ירושלים, 9437816</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:30–19:30 · ו׳ 08:00–13:00</p>
+            </div>
+            <p class="stockist-products">במקום: כל הקולקציה · אריזות שי מהודרות</p>
+          </article>
+
+          <article class="stockist-card reveal stagger-1">
+            <div class="stockist-top"><span class="stockist-region">השרון</span><span class="stockist-status">כל הקולקציה</span></div>
+            <h3>הבקבוק מהשרון</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ אשכולות 11, מתחם השדות<br>רעננה, 4362905</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–20:00 · ו׳ 08:30–14:30</p>
+            </div>
+            <p class="stockist-products">במקום: כל הקולקציה · ייעוץ להתאמת יין</p>
+          </article>
+
+          <article class="stockist-card reveal stagger-2">
+            <div class="stockist-top"><span class="stockist-region">צפון</span><span class="stockist-status">מלאי מתחדש</span></div>
+            <h3>טעמי הגליל</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>דרך כרמי הצפון 26, מרכז פסגות<br>חיפה, 3498752</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:00–19:00 · ו׳ 08:00–13:30</p>
+            </div>
+            <p class="stockist-products">במקום: קברנה 24 · מרלו 25</p>
+          </article>
+
+          <article class="stockist-card reveal stagger-3">
+            <div class="stockist-top"><span class="stockist-region">דרום</span><span class="stockist-status">איסוף בתיאום</span></div>
+            <h3>אוצר הנגב</h3>
+            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ תלמי הבציר 9, רובע הנחל<br>באר שבע, 8457319</span></address>
+            <div class="stockist-details">
+              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–19:30 · ו׳ 08:30–13:00</p>
+            </div>
+            <p class="stockist-products">במקום: קברנה 25 · מרלו 25 · מארזי אירוח</p>
+          </article>
+        </div>
+
+        <div class="stockists-cta reveal">
+          <div><strong>רוצים לוודא שיש מלאי לפני שמגיעים?</strong><p>דברו איתנו ונשמח לעזור למצוא את נקודת המכירה המתאימה.</p></div>
+          <a class="btn" href="https://wa.me/972556775956" target="_blank" rel="noopener">בדיקת מלאי בוואטסאפ</a>
         </div>
       </div>
     </section>
