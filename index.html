@@ -1664,6 +1664,43 @@ nav a:hover::after{transform:scaleX(1);}
 .hero-menu-arrow{font-size:1.7rem;color:#e8d5a3;line-height:1;}
 @media(max-width:820px){.hero-menu-col{height:245px;min-height:245px;}.hero-menu-circle{width:135px;}}
 @media(prefers-reduced-motion:reduce){.hero-menu-circle{transition:none;}}
+
+/* LUXURY PREVIEW: new visual system, original site background remains unchanged */
+:root{--wine:#59182c;--wine-dark:#310c1b;--wine-deep:#310c1b;--gold:#b99455;--gold-light:#ead4aa;--cream:#faf5ed;--ink:#251a18;--font-heading:'Noto Serif Hebrew',serif;}
+body{background:#eee5d8;line-height:1.9;}
+section{max-width:1180px;margin:5.5rem auto;}
+.section-frame{background:rgba(250,246,239,.92);border:1px solid rgba(185,148,85,.24);border-radius:5px;padding:clamp(2rem,5vw,5rem);box-shadow:0 22px 70px rgba(35,14,19,.12);backdrop-filter:blur(10px);}
+.section-frame::before,.section-frame::after,.frame-corner,.gold-line{display:none!important;}
+.section-title h2{background:none;border:0;border-radius:0;padding:0;font-size:clamp(2.3rem,5vw,4.1rem);letter-spacing:-.035em;}
+.section-title h2::after{display:none;}
+.section-title{margin-bottom:2rem;}
+.section-intro{font-size:1.12rem;max-width:560px;line-height:2;}
+.nav-bar{background:rgba(39,11,22,.96);border-radius:3px;border-color:rgba(234,212,170,.2);padding:1rem 1.5rem;box-shadow:0 12px 35px rgba(30,5,13,.24);}
+nav a{border-radius:2px;letter-spacing:.015em;}
+header.hero{min-height:85vh;margin:.7rem;padding:2rem clamp(1rem,5vw,5rem);background:linear-gradient(110deg,rgba(250,246,239,.6),rgba(250,246,239,.12));}
+.hero-copy h1{font-size:clamp(2.6rem,5.5vw,5.5rem)!important;line-height:1.4!important;letter-spacing:-.045em;}
+.hero-eyebrow{background:transparent;border:0;border-bottom:1px solid var(--gold);border-radius:0;padding:.2rem 0;color:var(--wine);letter-spacing:.22em;}
+.hero-menu-circle{background:radial-gradient(circle at 30% 20%,#8b4057,#59182c 65%,#310c1b);border-color:#d6b77f;}
+.products-grid{gap:2rem;}
+.product-card{border-radius:3px;padding:1.3rem;background:#fffaf3;border:1px solid rgba(185,148,85,.25);box-shadow:0 12px 35px rgba(35,14,19,.08);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(35,14,19,.17);}
+.product-card-img-wrap{border-radius:2px;background:linear-gradient(150deg,#f8f1e7,#fffaf3);}
+.product-card h3{font-size:1.7rem;}
+.buy-btn,.btn-primary{border-radius:2px;background:#59182c;box-shadow:none;letter-spacing:.02em;}
+.buy-btn:hover{box-shadow:0 10px 25px rgba(89,24,44,.22);}
+.luxury-story{max-width:none;padding:clamp(4rem,10vw,9rem) 1.5rem;margin:5rem 0;background:linear-gradient(135deg,rgba(37,8,19,.96),rgba(89,24,44,.96));color:#f9f1e7;text-align:center;position:relative;overflow:hidden;}
+.luxury-story::before{content:"";position:absolute;inset:20px;border:1px solid rgba(234,212,170,.28);pointer-events:none;}
+.luxury-story-inner{position:relative;max-width:760px;margin:auto;}
+.luxury-kicker{font-family:'Cormorant Garamond',serif;color:#d9bb84;font-size:1.15rem;letter-spacing:.22em;}
+.luxury-story h2{color:#fff7ec;font-size:clamp(2.5rem,6vw,5rem);font-weight:600;line-height:1.5;margin:1.1rem 0 1.5rem;}
+.luxury-story h2 em{font-style:normal;color:#d9bb84;}
+.luxury-rule{height:1px;width:85px;background:#c6a36b;margin:0 auto 2.4rem;}
+.luxury-story p{font-size:clamp(1rem,1.6vw,1.2rem);line-height:2.2;color:#f0e5d7;margin:0 auto 1.3rem;max-width:650px;}
+.luxury-text-link{display:inline-block;margin-top:2rem;border-bottom:1px solid #d9bb84;padding:.3rem .1rem;color:#f3d6a0;font-size:1.1rem;transition:letter-spacing .3s;}
+.luxury-text-link:hover{letter-spacing:.08em;}
+.glass-panel,.testimonial-card,.contact-card{border-radius:3px;background:rgba(255,250,243,.92);box-shadow:0 10px 35px rgba(35,14,19,.08);}
+@media(max-width:820px){section{margin:3rem auto}.section-frame{padding:2rem 1.25rem}header.hero{min-height:auto}.luxury-story::before{inset:10px}.luxury-story{padding:5rem 1.5rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -1725,13 +1762,13 @@ nav a:hover::after{transform:scaleX(1);}
 
       <nav aria-label="ניווט ראשי">
         <a href="#shop">היינות שלנו</a>
-        <a href="#stockists">נקודות מכירה</a>
+        
         <a href="#story">הסיפור שלנו</a>
         <a href="#" id="nav-cart-link">סל קניות</a>
         <a href="#testimonials">ביקורות</a>
         <a href="#gallery">גלריה</a>
-        <a href="#experience">חוויה ביקב</a>
-        <a href="#about">עלינו</a>
+        
+        
         <a href="#faq">שאלות נפוצות</a>
       </nav>
 
@@ -1745,8 +1782,8 @@ nav a:hover::after{transform:scaleX(1);}
 
         <!-- עמודה ימנית: טקסט -->
         <div class="hero-copy">
-          <p class="hero-eyebrow">✦ יקב בוטיק ישראלי · כשרות מהדרין</p>
-          <h1>יין ישראלי<br>איכותי וטעים<br><span style="font-size:0.72em;color:var(--wine-light);">בכשרות מהודרת · לאירוח מרגש</span></h1>
+          <p class="hero-eyebrow">DOROT · BOUTIQUE WINERY</p>
+          <h1>מסורת של טעם.<br>רגעים של דורות.<br><span style="font-size:0.52em;color:var(--wine-light);">קולקציית יינות לאירוח שיש בו משמעות</span></h1>
 
         </div>
 
@@ -1773,10 +1810,10 @@ nav a:hover::after{transform:scaleX(1);}
         <div class="frame-corner tr" aria-hidden="true"></div>
         <div class="frame-corner bl" aria-hidden="true"></div>
         <div class="section-title">
-          <h2>קולקציית דורות</h2>
+          <h2>הקולקציה שלנו</h2>
           <span class="gold-line"></span>
         </div>
-        <p class="section-intro">שלושה יינות דגל שנבנו כדי לתת חוויה אחרת בכל פתיחה: עשיר, נעים ומדויק. הוסיפו לסל ותוכלו לסגור הזמנה בקלות ובמהירות.</p>
+        <p class="section-intro">שלושה יינות. שלוש בחירות לאירוח בלתי נשכח. בחרו את הבקבוק שלכם.</p>
         <div class="products-grid">
           <div class="product-card reveal stagger-1">
             <div class="product-card-img-wrap">
@@ -1819,113 +1856,19 @@ nav a:hover::after{transform:scaleX(1);}
     </section>
 
     <!-- POINTS OF SALE -->
-    <section id="stockists">
-      <div class="section-frame">
-        <div class="frame-corner tl" aria-hidden="true"></div>
-        <div class="frame-corner br" aria-hidden="true"></div>
-        <div class="frame-corner tr" aria-hidden="true"></div>
-        <div class="frame-corner bl" aria-hidden="true"></div>
-        <div class="section-title">
-          <h2>קרוב אליכם</h2>
-          <span class="gold-line"></span>
-        </div>
-        <p class="section-intro">נקודות המכירה של דורות מסודרות לפי אזור, כדי שתוכלו למצוא בקלות את הבקבוק שמתאים לשולחן שלכם.</p>
-        <div class="stockists-note" role="note">
-          <svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg>
-          <p><strong>שימו לב:</strong> הכתובות והשעות המופיעות כרגע הן להמחשה בלבד ואינן נקודות מכירה פעילות. הרשימה תעודכן בפרטים מאומתים בקרוב.</p>
-        </div>
-
-        <div class="stockists-grid">
-          <article class="stockist-card reveal stagger-1">
-            <div class="stockist-top"><span class="stockist-region">אזור המרכז</span><span class="stockist-status">מלאי מגוון</span></div>
-            <h3>בית היין הדרים</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ הגפן 18, שכונת נווה גנים<br>פתח תקווה, 4958124</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:00–20:00 · ו׳ 08:00–14:00</p>
-            </div>
-            <p class="stockist-products">במקום: קברנה 24 · קברנה 25 · מרלו 25</p>
-          </article>
-
-          <article class="stockist-card reveal stagger-2">
-            <div class="stockist-top"><span class="stockist-region">גוש דן</span><span class="stockist-status">איסוף מהיר</span></div>
-            <h3>מרתף העיר</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ פנינת הכרם 7, מרכז מסחרי הדר<br>בני ברק, 5126431</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–21:00 · ו׳ 08:30–13:30</p>
-            </div>
-            <p class="stockist-products">במקום: קברנה 25 · מרלו 25 · מארזי מתנה</p>
-          </article>
-
-          <article class="stockist-card reveal stagger-3">
-            <div class="stockist-top"><span class="stockist-region">ירושלים</span><span class="stockist-status">מארזים במקום</span></div>
-            <h3>יין בשער</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>שד׳ מורדות יהודה 42, קומה 1<br>ירושלים, 9437816</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:30–19:30 · ו׳ 08:00–13:00</p>
-            </div>
-            <p class="stockist-products">במקום: כל הקולקציה · אריזות שי מהודרות</p>
-          </article>
-
-          <article class="stockist-card reveal stagger-1">
-            <div class="stockist-top"><span class="stockist-region">השרון</span><span class="stockist-status">כל הקולקציה</span></div>
-            <h3>הבקבוק מהשרון</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ אשכולות 11, מתחם השדות<br>רעננה, 4362905</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–20:00 · ו׳ 08:30–14:30</p>
-            </div>
-            <p class="stockist-products">במקום: כל הקולקציה · ייעוץ להתאמת יין</p>
-          </article>
-
-          <article class="stockist-card reveal stagger-2">
-            <div class="stockist-top"><span class="stockist-region">צפון</span><span class="stockist-status">מלאי מתחדש</span></div>
-            <h3>טעמי הגליל</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>דרך כרמי הצפון 26, מרכז פסגות<br>חיפה, 3498752</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 09:00–19:00 · ו׳ 08:00–13:30</p>
-            </div>
-            <p class="stockist-products">במקום: קברנה 24 · מרלו 25</p>
-          </article>
-
-          <article class="stockist-card reveal stagger-3">
-            <div class="stockist-top"><span class="stockist-region">דרום</span><span class="stockist-status">איסוף בתיאום</span></div>
-            <h3>אוצר הנגב</h3>
-            <address class="stockist-address"><svg class="line-icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>רח׳ תלמי הבציר 9, רובע הנחל<br>באר שבע, 8457319</span></address>
-            <div class="stockist-details">
-              <p class="stockist-detail"><svg class="line-icon" aria-hidden="true"><use href="#i-clock"></use></svg>א׳–ה׳ 10:00–19:30 · ו׳ 08:30–13:00</p>
-            </div>
-            <p class="stockist-products">במקום: קברנה 25 · מרלו 25 · מארזי אירוח</p>
-          </article>
-        </div>
-
-        <div class="stockists-cta reveal">
-          <div><strong>רוצים לוודא שיש מלאי לפני שמגיעים?</strong><p>דברו איתנו ונשמח לעזור למצוא את נקודת המכירה המתאימה.</p></div>
-          <a class="btn" href="https://wa.me/972556775956" target="_blank" rel="noopener">בדיקת מלאי בוואטסאפ</a>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- STORY -->
-    <section id="story" class="text-section">
-      <div class="section-frame">
-        <div class="frame-corner tl" aria-hidden="true"></div>
-        <div class="frame-corner br" aria-hidden="true"></div>
-        <div class="frame-corner tr" aria-hidden="true"></div>
-        <div class="frame-corner bl" aria-hidden="true"></div>
-        <div class="section-title">
-          <h2>הסיפור שלנו</h2>
-          <span class="gold-line"></span>
-        </div>
-        <img src="1000.png" alt="יקב דורות" class="story-image reveal">
-        <div class="glass-panel reveal" style="text-align:right;margin-top:1.5em;">
-          <p>ביקב דורות היין נולד מתוך תפיסת עולם של בית יהודי חם: קדושה לצד שמחה, הקפדה לצד לב רחב. אנחנו מאמינים שבקבוק יין טוב אינו רק טעם, אלא דרך לחבר בין אנשים סביב שולחן של שבת, סעודת מצווה, אירוסין, או ערב משפחתי פשוט ומלא הודיה.</p>
-          <p><strong>הכרם והאדמה:</strong> כל חלקה נבחנת לאורך השנה בעין מקצועית ובסבלנות. אנחנו עוקבים אחר ההבשלה, האקלים והאיזון הטבעי של הגפן כדי לבחור את רגע הבציר המדויק.</p>
-          <p><strong>הבציר והעבודה ביקב:</strong> הענבים נבצרים בעדינות, ממוינים בקפדנות ומטופלים בכבוד גדול לחומר הגלם. התסיסה מנוהלת בצורה מבוקרת, וכל זן מקבל את הזמן והמסלול שמתאים לו.</p>
-          <p><strong>כשרות למהדרין:</strong> היקב פועל ברוח עולם התורה וההלכה, עם הקפדה על כל פרטי הכשרות. היין מיוצר בכשרות מהודרת, בעבודה של אברכים יראי שמיים.</p>
-          <p><strong>ליווי אישי מכל הלב:</strong> חשוב לנו לא רק מה יש בבקבוק, אלא גם מה מרגישים כשמזמינים. לכן אנחנו מלווים כל לקוח בעצה טובה, בהקשבה ובשירות נעים ומכבד.</p>
-          <p>זו הדרך שלנו בדורות: לקחת מסורת עתיקה של יין, לחבר אותה לעבודה מקצועית מודרנית, ולהגיש לכם תוצאה נקייה, מאוזנת ומרגשת — יין שמוסיף כבוד לשולחן, עומק לשיחה, ונועם לכל רגע של ביחד.</p>
-        </div>
-      </div>
-    </section>
+    <section id="story" class="luxury-story">
+  <div class="luxury-story-inner reveal">
+    <span class="luxury-kicker">DOROT · THE STORY</span>
+    <h2>יש יינות שמגישים.<br><em>ויש יינות שזוכרים.</em></h2>
+    <div class="luxury-rule"></div>
+    <p>יש רגעים שלא צריך להוסיף להם דבר. שולחן ערוך, אנשים קרובים, שיחה טובה — ויין שנבחר בקפידה.</p>
+    <p>דורות נולד מתוך אהבה למסורת האירוח ולרגעים שמחברים בין אנשים. אנחנו מזמינים אתכם לגלות קולקציה של יינות עם אופי, נוכחות וטעם שנשאר בזיכרון.</p>
+    <a href="#shop" class="luxury-text-link">לגלות את הקולקציה <span aria-hidden="true">←</span></a>
+  </div>
+</section>
 
     <!-- TESTIMONIALS -->
     <section id="testimonials">
@@ -2022,86 +1965,10 @@ nav a:hover::after{transform:scaleX(1);}
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="section-frame">
-        <div class="frame-corner tl" aria-hidden="true"></div>
-        <div class="frame-corner br" aria-hidden="true"></div>
-        <div class="frame-corner tr" aria-hidden="true"></div>
-        <div class="frame-corner bl" aria-hidden="true"></div>
-        <div class="section-title">
-          <h2>החוויה של דורות — צעד אחר צעד</h2>
-          <span class="gold-line"></span>
-        </div>
-        <p class="section-intro">לקחנו את הדרך שלנו ביקב והפכנו אותה למסלול ברור: מהכרם ועד הכוס, עם שקיפות מלאה וטעם מדויק.</p>
-        <div class="timeline-grid">
-          <article class="timeline-card reveal stagger-1">
-            <div class="timeline-card-inner">
-              <div class="timeline-face front">
-                <span class="timeline-step">1</span>
-                <h3>בחירת חלקות ובציר מדויק</h3>
-                <p>בדיקות הבשלה שבועיות, בחירת ענבים ידנית ותזמון בציר לפי אופי כל זן — כדי לשמור על איזון וניקיון טעמים.</p>
-              </div>
-              <div class="timeline-face back">
-                <span class="timeline-step">1</span>
-                <h3>דיוק שנולד מהשטח</h3>
-                <p>מאחורי כל בציר עומדות מדידות בשטח והקשבה לפרי — כך כל בקבוק מתחיל בסיס מאוזן ונקי כבר מהכרם.</p>
-              </div>
-            </div>
-          </article>
-          <article class="timeline-card reveal stagger-2">
-            <div class="timeline-card-inner">
-              <div class="timeline-face front">
-                <span class="timeline-step">2</span>
-                <h3>יישון וטעימות לאורך הדרך</h3>
-                <p>כל סדרה עוברת טעימות פנימיות, התאמות טכניות ועדינות ביישון כדי להגיע לתוצאה עגולה ונעימה לשתייה.</p>
-              </div>
-              <div class="timeline-face back">
-                <span class="timeline-step">2</span>
-                <h3>איזון בכל לגימה</h3>
-                <p>הטעימות הרציפות שומרות על הרמוניה בין פרי, גוף וסיומת — לחוויה נעימה שמרגישה מדויקת ועדינה.</p>
-              </div>
-            </div>
-          </article>
-          <article class="timeline-card reveal stagger-3">
-            <div class="timeline-card-inner">
-              <div class="timeline-face front">
-                <span class="timeline-step">3</span>
-                <h3>התאמה אישית לפני משלוח</h3>
-                <p>לפני יציאה ללקוח אנחנו ממליצים על הרכב בקבוקים, טמפרטורת הגשה ושילובי אוכל לפי אופי האירוח שלכם.</p>
-              </div>
-              <div class="timeline-face back">
-                <span class="timeline-step">3</span>
-                <h3>חוויה תפורה לאירוח שלכם</h3>
-                <p>בצד האחורי מסתתר השירות האישי שלנו: המלצות הגשה ושילובים שיהפכו כל שולחן למדויק וחגיגי.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- ABOUT -->
-    <section id="about" class="text-section">
-      <div class="section-frame">
-        <div class="frame-corner tl" aria-hidden="true"></div>
-        <div class="frame-corner br" aria-hidden="true"></div>
-        <div class="frame-corner tr" aria-hidden="true"></div>
-        <div class="frame-corner bl" aria-hidden="true"></div>
-        <div class="section-title">
-          <h2>עלינו</h2>
-          <span class="gold-line"></span>
-        </div>
-        <div class="glass-panel heritage-paper reveal" style="text-align:right;">
-          <span class="heritage-kicker">DOROT · ESTATE WINES</span>
-          <h3>יקב דורות הוא בית יין משפחתי עם לב יהודי חם, שירות עדין ויחס אישי.</h3>
-          <p>אנחנו עובדים כצוות משפחתי עם אנשי מקצוע שמלווים את היין משלב הקרקע ועד השלב שבו הבקבוק נפתח בבית שלכם. כל עונה מתחילה בעבודה מדויקת בכרם: ניהול עומסים, בדיקות הבשלה, ובחירה נקודתית של זמן הבציר לכל חלקה.</p>
-          <p>במרכז העבודה שלנו עומדת המחשבה על איזון. אנחנו רוצים שהיין יהיה עשיר אבל לא כבד, עמוק אבל נגיש, חגיגי אבל כזה שנעים לפתוח גם באמצע השבוע.</p>
-          <p>במרתף, כל זן מקבל טיפול שונה: זמני השריה משתנים, תסיסה מבוקרת ומעקב יומי אחר טמפרטורה ומיצוי. בחלק מהסדרות אנחנו בוחרים יישון בעץ אלון לקבלת מורכבות, ובאחרות שומרים על פרופיל רענן ונקי במכלי נירוסטה.</p>
-          <p>מעבר לטעם, חשוב לנו שתהיה שקיפות מלאה. אנחנו מספקים מידע ברור על מקור הענבים, סגנון היין, טמפרטורת הגשה והמלצות לשילוב עם מנות.</p>
-          <p>אנחנו מאמינים שיין טוב הוא חוויה שלמה: שירות אדיב, זמינות אמיתית, משלוח מסודר והקשבה לכל לקוח. זו הסיבה שדורות גדל דרך לקוחות שחוזרים אלינו שוב ושוב — לא רק בגלל היין, אלא בגלל הדרך.</p>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- FAQ -->
     <section id="faq">
