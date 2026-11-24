@@ -1803,6 +1803,27 @@ body.full-catalog #shop{min-height:65vh}
 .detail-info .buy-btn{width:100%;min-height:48px}
 .detail-note{font-size:.85rem;color:#e1cdd0!important}
 @media(max-width:650px){.detail-layout{grid-template-columns:1fr;padding:1rem;gap:1rem}.detail-main-image{height:230px}.detail-info h2{font-size:1.6rem}}
+
+/* Layered wine tones and stationary photo reveal */
+body,main{background:#641e38}
+main>section{position:relative;background:linear-gradient(135deg,#481326 0%,#702640 48%,#58182e 100%);padding-block:clamp(3.5rem,8vw,7rem)}
+main>section:nth-of-type(even),#story.luxury-story{background:linear-gradient(145deg,#71283f,#50172c 65%,#682039)}
+.section-frame{background:transparent}
+.product-card{background:linear-gradient(150deg,#80334e,#59192f 65%,#481326);border:1px solid #d4b477;box-shadow:0 12px 28px #26071244}
+main>.photo-band{position:relative;height:clamp(380px,85vh,900px);height:clamp(380px,85svh,900px);background-attachment:fixed;background-position:center;background-size:cover;overflow:hidden}
+.photo-band.vineyard{background-image:url('gallery3.jpg')}
+.photo-band.harvest{background-image:url('gallery5.jpg')}
+@supports (clip-path:inset(0)){main>.photo-band{clip-path:inset(0);background:none}.photo-band::before{content:"";position:fixed;inset:0;background-position:center;background-size:cover;pointer-events:none}.photo-band.vineyard::before{background-image:url('gallery3.jpg')}.photo-band.harvest::before{background-image:url('gallery5.jpg')}}
+.product-detail{position:fixed;inset:0;margin:auto;width:min(1050px,94vw);max-height:90dvh;background:linear-gradient(135deg,#752b46,#481326);border:1px solid #d4b477}
+.detail-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);padding:clamp(1rem,3vw,2.5rem);align-items:start}
+.detail-main-image{height:clamp(260px,48vh,460px)}
+.detail-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1.2rem 0}
+.detail-specs div{padding:12px;border:1px solid #d4b47766;border-radius:8px;background:#ffffff08}
+.detail-specs dt{color:#f0d9a5;font-size:.85rem}.detail-specs dd{margin:5px 0 0;color:#fff9f2}
+.detail-info h3{color:#f0d9a5;margin-top:1.2rem}
+.product-detail [hidden]{display:none!important}
+@media(max-width:650px){.detail-layout{grid-template-columns:1fr}.detail-main-image{height:250px}.detail-specs div{padding:9px}}
+@media(prefers-reduced-motion:reduce){main>.photo-band{background-attachment:scroll;clip-path:none}.photo-band::before{position:absolute}}
 </style>
 </head>
 <body>
@@ -2821,13 +2842,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
   </script>
-<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><p class="detail-note">מידע להשלמה: שנת בציר, מאפייני טעם, אחוז אלכוהול והמלצות הגשה.</p><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></div></dialog>
+<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>כאן יוצג הסיפור המלא של המוצר, החל מבחירת הענבים והכרם, דרך תהליך הייצור והיישון ועד לחוויית הטעימה וההגשה. התיאור המקצועי יעודכן לאחר קבלת פרטי היקב.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage">להשלמה</dd></div><div><dt>אחוז אלכוהול</dt><dd>להשלמה</dd></div><div><dt>זן ענבים</dt><dd>להשלמה</dd></div><div><dt>נפח בקבוק</dt><dd>להשלמה</dd></div><div><dt>אזור גידול</dt><dd>להשלמה</dd></div><div><dt>תקופת יישון</dt><dd>להשלמה</dd></div><div><dt>כשרות</dt><dd>להשלמה</dd></div><div><dt>טמפרטורת הגשה</dt><dd>להשלמה</dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>פרופיל הארומות, גוף היין, הסיומת והתאמה למאכלים יפורטו כאן בהמשך.</p><p class="detail-note">מפרט זמני — הנתונים המקצועיים טרם התקבלו מהיקב.</p><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></div></dialog>
 <script>
 (function(){
 const dialog=document.getElementById('productDetail'), main=dialog.querySelector('.detail-main-image'), thumbs=dialog.querySelector('.detail-thumbs'), add=dialog.querySelector('.detail-add');let source=null;
-function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal()}
-document.querySelectorAll('.product-card').forEach(card=>{card.querySelectorAll('h3,.product-card-img-wrap').forEach(el=>{el.tabIndex=0;el.setAttribute('role','button');el.addEventListener('click',()=>open(card));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card)}})})});
-dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
+function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-vintage').textContent=/\b(24|25)$/.test(name)?'20'+name.slice(-2):'להשלמה';dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden'}
+document.querySelectorAll('.product-card').forEach(card=>{card.addEventListener('click',e=>{if(!e.target.closest('button,a,h3,.product-card-img-wrap'))open(card)});card.querySelectorAll('h3,.product-card-img-wrap').forEach(el=>{el.tabIndex=0;el.setAttribute('role','button');el.addEventListener('click',()=>open(card));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card)}})})});
+dialog.addEventListener('close',()=>{document.body.style.overflow=''});dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
 })();
 </script>
 </body>
