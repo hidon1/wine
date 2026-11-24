@@ -1897,7 +1897,7 @@ footer .footer-grid>div{background:#ffffff08;border-radius:22px;padding:22px;ove
 footer h3,footer h2{color:#f0d9a5!important}footer p,footer a{color:#fff9f2!important}
 footer .footer-social a{border-radius:16px!important}
 @media(max-width:700px){footer .footer-grid{grid-template-columns:1fr}}
-</style>
+[hidden],.product-card[hidden],main>section[hidden]{display:none!important}</style>
 </head>
 <body>
 <script>if(new URLSearchParams(location.search).get("view")==="catalog")document.body.classList.add("full-catalog");</script>
@@ -1962,7 +1962,7 @@ footer .footer-social a{border-radius:16px!important}
         
         <a href="#story">הסיפור שלנו</a>
         <a href="#" id="nav-cart-link">סל קניות</a>
-        <a href="#testimonials">ביקורות</a>
+        <a href="#testimonials" hidden>ביקורות</a>
         <a href="#gallery">גלריה</a>
         
         
@@ -2048,10 +2048,10 @@ footer .footer-social a{border-radius:16px!important}
               <button class="buy-btn add-to-cart" data-name="קברנה 24" data-price="100">+ הוסף להזמנה</button>
             </div>
           </div>
-<div class="product-card catalog-only"><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">◇</div><h3>יין נוסף</h3><p>פרטים ותמונה יתווספו בהמשך</p><div class="product-price-row"><span class="catalog-pending">מחיר וזמינות יעודכנו</span></div></div>
-<div class="product-card catalog-only"><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅱ</div><h3>מארז זוגי</h3><p>שני בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending">מחיר וזמינות יעודכנו</span></div></div>
-<div class="product-card catalog-only"><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅲ</div><h3>מארז שלישייה</h3><p>שלושה בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending">מחיר וזמינות יעודכנו</span></div></div>
-<div class="product-card catalog-only"><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅳ</div><h3>מארז רביעייה</h3><p>ארבעה בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending">מחיר וזמינות יעודכנו</span></div></div>
+<div class="product-card catalog-only" data-unpublished="true" hidden><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">◇</div><h3>יין נוסף</h3><p>יין נוסף בקולקציית דורות</p><div class="product-price-row"><span class="catalog-pending"></span></div></div>
+<div class="product-card catalog-only" data-unpublished="true" hidden><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅱ</div><h3>מארז זוגי</h3><p>שני בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending"></span></div></div>
+<div class="product-card catalog-only" data-unpublished="true" hidden><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅲ</div><h3>מארז שלישייה</h3><p>שלושה בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending"></span></div></div>
+<div class="product-card catalog-only" data-unpublished="true" hidden><div class="product-card-img-wrap catalog-placeholder" aria-hidden="true">Ⅳ</div><h3>מארז רביעייה</h3><p>ארבעה בקבוקים במארז</p><div class="product-price-row"><span class="catalog-pending"></span></div></div>
         </div><div class="collection-more"><a class="btn-primary" href="?view=catalog#shop">לצפייה בכל היינות ←</a></div>
       </div>
     </section>
@@ -2073,7 +2073,7 @@ footer .footer-social a{border-radius:16px!important}
 
 <div class="photo-band harvest" role="img" aria-label="תמונה מהכרם"></div>
     <!-- TESTIMONIALS -->
-    <section id="testimonials">
+    <section id="testimonials" hidden><!-- Publish only after replacing sample reviews with verified customer reviews. -->
       <div class="section-frame">
         <div class="frame-corner tl" aria-hidden="true"></div>
         <div class="frame-corner br" aria-hidden="true"></div>
@@ -2083,7 +2083,7 @@ footer .footer-social a{border-radius:16px!important}
           <h2>מה מספרים עלינו</h2>
           <span class="gold-line"></span>
         </div>
-        <p class="review-disclaimer">תצוגה לדוגמה בלבד — חוות דעת אמיתיות יתווספו בהמשך.</p><div class="review-shell"><div class="testimonial-grid" id="reviewTrack"><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״יין עם טעם עשיר, מתאים מאוד לשולחן שבת.״</p><div class="name">דוד ל. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מארז שנראה מכובד ומתאים למתנה.״</p><div class="name">משה א. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אהבתי את האיזון ואת הסיומת של היין.״</p><div class="name">יוסף כ. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״חוויית אירוח נעימה עם יין איכותי.״</p><div class="name">אברהם מ. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״טעם מלא וניחוח נעים.״</p><div class="name">שמואל ר. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מבחר מעניין ושירות אישי.״</p><div class="name">יעקב ש. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אריזה יפה ומראה מוקפד.״</p><div class="name">אליהו ב. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״בחירה מוצלחת לארוחה משפחתית.״</p><div class="name">חיים ד. · דוגמה בדיונית</div></div></div><div class="review-nav"><button type="button" id="reviewRight" aria-label="גלילה ימינה">→</button><button type="button" id="reviewLeft" aria-label="גלילה שמאלה">←</button></div></div>
+        <div class="review-shell"><div class="testimonial-grid" id="reviewTrack"><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״יין עם טעם עשיר, מתאים מאוד לשולחן שבת.״</p><div class="name">דוד ל.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מארז שנראה מכובד ומתאים למתנה.״</p><div class="name">משה א.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אהבתי את האיזון ואת הסיומת של היין.״</p><div class="name">יוסף כ.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״חוויית אירוח נעימה עם יין איכותי.״</p><div class="name">אברהם מ.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״טעם מלא וניחוח נעים.״</p><div class="name">שמואל ר.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מבחר מעניין ושירות אישי.״</p><div class="name">יעקב ש.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אריזה יפה ומראה מוקפד.״</p><div class="name">אליהו ב.</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״בחירה מוצלחת לארוחה משפחתית.״</p><div class="name">חיים ד.</div></div></div><div class="review-nav"><button type="button" id="reviewRight" aria-label="גלילה ימינה">→</button><button type="button" id="reviewLeft" aria-label="גלילה שמאלה">←</button></div></div>
       </div>
     </section>
 
@@ -2173,7 +2173,7 @@ footer .footer-social a{border-radius:16px!important}
             <button class="faq-question" type="button" aria-expanded="false">
               האם היין כשר?<span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer"><p>פרטי הכשרות המדויקים ותעודת הכשרות יפורסמו לאחר קבלת המסמכים העדכניים מהיקב.</p></div>
+            <div class="faq-answer"><p>לבירור פרטי הכשרות ניתן לפנות אלינו ישירות.</p></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" aria-expanded="false">
@@ -2222,7 +2222,7 @@ footer .footer-social a{border-radius:16px!important}
       </div>
     </section>
 
-<section id="kosher"><div class="kosher-panel"><span class="luxury-kicker">DOROT · KASHRUT</span><h2>כשרות היקב</h2><div class="kosher-placeholder">בד״ץ בית יוסף<br><small style="font-size:.7em">מקום שמור לסמל הכשרות</small></div><p>פרטי ההכשר ותעודת הכשרות יפורסמו לאחר קבלת אישור ותעודה עדכנית מהיקב. אין לראות בתצוגה זו אישור כשרות.</p></div></section>
+<section id="kosher" hidden><!-- Publish after verification of certificate. --><div class="kosher-panel"><span class="luxury-kicker">DOROT · KASHRUT</span><h2>כשרות היקב</h2><div class="kosher-placeholder">בד״ץ בית יוסף<br><small style="font-size:.7em"></small></div><p></p></div></section>
     <!-- CONTACT -->
     <section id="contact">
       <div class="section-frame">
@@ -2332,7 +2332,7 @@ footer .footer-social a{border-radius:16px!important}
       <img src="1000.png" alt="יקב דורות" loading="lazy"><h2>יין שמחבר בין דורות.</h2>
       <p>יין ישראלי כשר, מדויק ומרגש, לכל שולחן של שמחה.</p>
       <div class="footer-kosher-badge">
-        <a href="index.html#kosher">פרטי כשרות היקב</a>
+        <a href="index.html#kosher" hidden>פרטי כשרות היקב</a>
       </div>
     </div>
     <div class="footer-grid">
@@ -2882,14 +2882,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
   </script>
-<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>כאן יוצג הסיפור המלא של המוצר, החל מבחירת הענבים והכרם, דרך תהליך הייצור והיישון ועד לחוויית הטעימה וההגשה. התיאור המקצועי יעודכן לאחר קבלת פרטי היקב.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage">להשלמה</dd></div><div><dt>אחוז אלכוהול</dt><dd>להשלמה</dd></div><div><dt>זן ענבים</dt><dd>להשלמה</dd></div><div><dt>נפח בקבוק</dt><dd>להשלמה</dd></div><div><dt>אזור גידול</dt><dd>להשלמה</dd></div><div><dt>תקופת יישון</dt><dd>להשלמה</dd></div><div><dt>כשרות</dt><dd>להשלמה</dd></div><div><dt>טמפרטורת הגשה</dt><dd>להשלמה</dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>פרופיל הארומות, גוף היין, הסיומת והתאמה למאכלים יפורטו כאן בהמשך.</p><p class="detail-note">מפרט זמני — הנתונים המקצועיים טרם התקבלו מהיקב.</p></div></div><div class="detail-order-bar"><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></dialog>
+<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>יין לאירוח, לארוחות חג ולרגעים של מפגש סביב השולחן. גלו את קולקציית דורות ובחרו את היין המתאים לאירוע שלכם.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage"></dd></div><div hidden><dt>אחוז אלכוהול</dt><dd></dd></div><div hidden><dt>זן ענבים</dt><dd></dd></div><div hidden><dt>נפח בקבוק</dt><dd></dd></div><div hidden><dt>אזור גידול</dt><dd></dd></div><div hidden><dt>תקופת יישון</dt><dd></dd></div><div hidden><dt>כשרות</dt><dd></dd></div><div hidden><dt>טמפרטורת הגשה</dt><dd></dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>מומלץ לבחור את היין בהתאם לסגנון הארוחה ולהעדפות הטעם של האורחים.</p></div></div><div class="detail-order-bar"><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></dialog>
 <script>
 (function(){
 const dialog=document.getElementById('productDetail'), main=dialog.querySelector('.detail-main-image'), thumbs=dialog.querySelector('.detail-thumbs'), add=dialog.querySelector('.detail-add');let source=null;
-function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-vintage').textContent=/\b(24|25)$/.test(name)?'20'+name.slice(-2):'להשלמה';dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal();dialog.querySelector('.detail-layout').scrollTop=0;document.body.style.overflow='hidden'}
+function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-vintage').textContent=/\b(24|25)$/.test(name)?'20'+name.slice(-2):'';dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal();dialog.querySelector('.detail-layout').scrollTop=0;document.body.style.overflow='hidden'}
 document.querySelectorAll('.product-card').forEach(card=>{card.addEventListener('click',e=>{if(!e.target.closest('button,a,h3,.product-card-img-wrap'))open(card)});card.querySelectorAll('h3,.product-card-img-wrap').forEach(el=>{el.tabIndex=0;el.setAttribute('role','button');el.addEventListener('click',()=>open(card));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card)}})})});
 dialog.addEventListener('close',()=>{document.body.style.overflow=''});dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
 })();
 </script>
-<script>(()=>{const track=document.getElementById('reviewTrack');for(const [id,dir] of [['reviewRight',1],['reviewLeft',-1]])document.getElementById(id).onclick=()=>track.scrollBy({left:dir*(track.firstElementChild.offsetWidth+16),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.querySelectorAll('.catalog-filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.catalog-filters button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('#shop .product-card').forEach(card=>{const bundle=card.querySelector('h3').textContent.startsWith('מארז');card.hidden=b.dataset.filter!=='all'&&(b.dataset.filter==='bundle'?!bundle:bundle)})})})();</script></body>
+<script>(()=>{const track=document.getElementById('reviewTrack');for(const [id,dir] of [['reviewRight',1],['reviewLeft',-1]])document.getElementById(id).onclick=()=>track.scrollBy({left:dir*(track.firstElementChild.offsetWidth+16),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.querySelectorAll('.catalog-filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.catalog-filters button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('#shop .product-card').forEach(card=>{const bundle=card.querySelector('h3').textContent.startsWith('מארז');card.hidden=card.dataset.unpublished==='true'||b.dataset.filter!=='all'&&(b.dataset.filter==='bundle'?!bundle:bundle)})})})();</script></body>
 </html>
