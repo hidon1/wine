@@ -1852,6 +1852,33 @@ body.full-catalog .product-card[hidden]{display:none!important}
 #contact .social-btn svg{fill:currentColor!important}
 #contact .contact-card h4{color:#f0d9a5!important}
 @media(max-width:650px){#testimonials .testimonial-card{flex-basis:85%}.detail-order-bar{padding:12px}.detail-order-bar .detail-price{font-size:1.1rem}}
+
+.nav-bar{border-radius:24px!important}
+.logo-flip-card{width:150px!important;height:85px!important;perspective:none!important;animation:none!important;transform:none!important}
+.logo-flip-inner,.logo-flip-card:hover .logo-flip-inner,.logo-flip-card:focus-within .logo-flip-inner{transform:none!important;transition:none!important}
+.logo-face{border-radius:12px!important;overflow:hidden}.logo-back{display:none!important}
+.brand-logo{width:100%!important;height:100%!important;object-fit:contain!important;animation:none!important;transform:none!important}
+.hero-menu-circle{border-radius:22px!important}.hero-menu-circle .hero-menu-label{font-family:'Noto Serif Hebrew',serif!important;font-weight:700!important}
+.luxury-text-link{display:inline-flex;align-items:center;justify-content:center;border:1px solid #d4b477;border-radius:20px;padding:14px 32px;background:#ffffff09;font-family:'Noto Serif Hebrew',serif;font-weight:600;text-decoration:none}
+.luxury-text-link:hover{background:#d4b477;color:#481326;letter-spacing:normal}
+#gallery .carousel-wrap{border-radius:26px;overflow:hidden;border:1px solid #d4b477;box-shadow:0 20px 50px #26071266}
+#gallery .car-thumb{border-radius:12px;overflow:hidden}#gallery .car-btn{border-radius:50%;background:#481326dd;color:#f0d9a5;border:1px solid #d4b477}
+#imageModal{background:#18060eeF;z-index:99999}
+#imageModal .modal-inner{background:linear-gradient(145deg,#702640,#300b19);border:1px solid #d4b477;border-radius:24px;padding:clamp(12px,3vw,30px);position:relative}
+#imageModal .modal-content{border-radius:14px;max-height:72vh;object-fit:contain}
+#imageModal .close-modal,#imageModal .modal-nav{z-index:5;background:#481326;color:#f0d9a5;border:1px solid #d4b477;border-radius:50%;cursor:pointer}
+#imageModal .modal-caption,#imageModal .modal-counter{color:#fff9f2}
+.review-shell{position:relative;padding-inline:48px}
+#testimonials .testimonial-grid{scrollbar-width:none;direction:rtl}
+#testimonials .testimonial-grid::-webkit-scrollbar{display:none}
+#testimonials .testimonial-card{border-radius:24px!important}
+.review-nav{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;align-items:center;margin:0;direction:rtl}
+.review-nav button{pointer-events:auto;border-radius:50%;width:40px;height:40px;padding:0;font-size:22px}
+#contact .contact-card,#contact .glass-panel{border-radius:22px!important}
+#contact .cc-icon,#contact .map-icon{border-radius:18px!important}
+#contact .social-btn,#contact .contact-card a,#contact form button{border-radius:18px!important}
+#contact input,#contact textarea{border-radius:14px!important}
+@media(max-width:650px){.logo-flip-card{width:115px!important;height:65px!important}.review-shell{padding-inline:34px}.review-nav button{width:30px;height:36px}#testimonials .testimonial-card{flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -1943,7 +1970,7 @@ body.full-catalog .product-card[hidden]{display:none!important}
         <div class="hero-images-col hero-menu-col">
           <a class="hero-menu-circle" href="#shop" aria-label="גלו את הקולקציה">
             
-            <span class="hero-menu-label">גלו את הקולקציה ←</span>
+            <span class="hero-menu-label">גלו את הקולקציה</span>
             
           </a>
         </div>
@@ -2018,11 +2045,11 @@ body.full-catalog .product-card[hidden]{display:none!important}
     <section id="story" class="luxury-story">
   <div class="luxury-story-inner reveal">
     <span class="luxury-kicker">DOROT · THE STORY</span>
-    <h2>יש יינות שמגישים.<br><em>ויש יינות שזוכרים.</em></h2>
+    <h2>יין שמחבר <em>בין דורות.</em></h2>
     <div class="luxury-rule"></div>
     <p>יש רגעים שלא צריך להוסיף להם דבר. שולחן ערוך, אנשים קרובים, שיחה טובה — ויין שנבחר בקפידה.</p>
     <p>דורות נולד מתוך אהבה למסורת האירוח ולרגעים שמחברים בין אנשים. אנחנו מזמינים אתכם לגלות קולקציה של יינות עם אופי, נוכחות וטעם שנשאר בזיכרון.</p>
-    <a href="#shop" class="luxury-text-link">לגלות את הקולקציה <span aria-hidden="true">←</span></a>
+    <a href="#shop" class="luxury-text-link">לגלות את הקולקציה</a>
   </div>
 </section>
 
@@ -2038,7 +2065,7 @@ body.full-catalog .product-card[hidden]{display:none!important}
           <h2>מה מספרים עלינו</h2>
           <span class="gold-line"></span>
         </div>
-        <p class="review-disclaimer">תצוגה לדוגמה בלבד — חוות דעת אמיתיות יתווספו בהמשך.</p><div class="testimonial-grid" id="reviewTrack"><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">יין לארוחת שבת — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 1</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">מארז חגיגי למתנה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 2</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">בחירת יין לאירוח — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 3</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">חוויית הזמנה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 4</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">טעם וארומה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 5</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">שירות אישי — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 6</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">אריזה ומשלוח — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 7</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">יין לאירוע משפחתי — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 8</div></div></div><div class="review-nav"><button type="button" id="reviewRight" aria-label="גלילה ימינה">→</button><button type="button" id="reviewLeft" aria-label="גלילה שמאלה">←</button></div>
+        <p class="review-disclaimer">תצוגה לדוגמה בלבד — חוות דעת אמיתיות יתווספו בהמשך.</p><div class="review-shell"><div class="testimonial-grid" id="reviewTrack"><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״יין עם טעם עשיר, מתאים מאוד לשולחן שבת.״</p><div class="name">דוד ל. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מארז שנראה מכובד ומתאים למתנה.״</p><div class="name">משה א. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אהבתי את האיזון ואת הסיומת של היין.״</p><div class="name">יוסף כ. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״חוויית אירוח נעימה עם יין איכותי.״</p><div class="name">אברהם מ. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״טעם מלא וניחוח נעים.״</p><div class="name">שמואל ר. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״מבחר מעניין ושירות אישי.״</p><div class="name">יעקב ש. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״אריזה יפה ומראה מוקפד.״</p><div class="name">אליהו ב. · דוגמה בדיונית</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">״בחירה מוצלחת לארוחה משפחתית.״</p><div class="name">חיים ד. · דוגמה בדיונית</div></div></div><div class="review-nav"><button type="button" id="reviewRight" aria-label="גלילה ימינה">→</button><button type="button" id="reviewLeft" aria-label="גלילה שמאלה">←</button></div></div>
       </div>
     </section>
 
@@ -2360,7 +2387,7 @@ body.full-catalog .product-card[hidden]{display:none!important}
   <script>
 /* ── מנע קפיצה ל-hash ב-URL בטעינה ── */
 if (window.location.hash) {
-  history.replaceState(null, '', location.pathname);
+  history.replaceState(null, '', location.pathname+location.search);
   window.scrollTo(0, 0);
 }
 
@@ -2569,7 +2596,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closBtn  =document.querySelector(".close-modal");
   const prevBtns =[document.getElementById("modalPrev"),document.getElementById("modalPrevMobile")].filter(Boolean);
   const nextBtns =[document.getElementById("modalNext"),document.getElementById("modalNextMobile")].filter(Boolean);
-  const galItems =Array.from(document.querySelectorAll(".gallery-grid img,.gallery-grid video"));
+  const galItems =Array.from(document.querySelectorAll("#carouselTrack .car-slide img,.gallery-grid img,.gallery-grid video"));
   let curIdx=0;
   if(modal&&galItems.length){
     const show=idx=>{
@@ -2831,25 +2858,7 @@ document.addEventListener("DOMContentLoaded", () => {
       stopAuto(); startAuto();
     }, {passive:true});
 
-    /* open lightbox on slide click */
-    slides.forEach((sl,i) => {
-      sl.addEventListener("click", () => {
-        const img = sl.querySelector("img");
-        if (!img) return;
-        const modal    = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        const modalVid = document.getElementById("modalVideo");
-        const modalCap = document.getElementById("modalCaption");
-        const modalCnt = document.getElementById("modalCounter");
-        if (!modal || !modalImg) return;
-        modalVid.style.display="none"; modalImg.style.display="block";
-        modalImg.src=img.src; modalImg.alt=img.alt;
-        if(modalCap) modalCap.textContent = img.alt;
-        if(modalCnt) modalCnt.textContent = `${i+1} / ${total}`;
-        modal.classList.add("open"); modal.setAttribute("aria-hidden","false");
-        document.body.style.overflow="hidden";
-      });
-    });
+
   })();
 
 });
@@ -2858,7 +2867,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 (function(){
 const dialog=document.getElementById('productDetail'), main=dialog.querySelector('.detail-main-image'), thumbs=dialog.querySelector('.detail-thumbs'), add=dialog.querySelector('.detail-add');let source=null;
-function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-vintage').textContent=/\b(24|25)$/.test(name)?'20'+name.slice(-2):'להשלמה';dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden'}
+function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-vintage').textContent=/\b(24|25)$/.test(name)?'20'+name.slice(-2):'להשלמה';dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal();dialog.querySelector('.detail-layout').scrollTop=0;document.body.style.overflow='hidden'}
 document.querySelectorAll('.product-card').forEach(card=>{card.addEventListener('click',e=>{if(!e.target.closest('button,a,h3,.product-card-img-wrap'))open(card)});card.querySelectorAll('h3,.product-card-img-wrap').forEach(el=>{el.tabIndex=0;el.setAttribute('role','button');el.addEventListener('click',()=>open(card));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card)}})})});
 dialog.addEventListener('close',()=>{document.body.style.overflow=''});dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
 })();
