@@ -1824,6 +1824,34 @@ main>.photo-band{position:relative;height:clamp(380px,85vh,900px);height:clamp(3
 .product-detail [hidden]{display:none!important}
 @media(max-width:650px){.detail-layout{grid-template-columns:1fr}.detail-main-image{height:250px}.detail-specs div{padding:9px}}
 @media(prefers-reduced-motion:reduce){main>.photo-band{background-attachment:scroll;clip-path:none}.photo-band::before{position:absolute}}
+
+.hero-menu-circle{width:auto!important;height:auto!important;min-width:220px;aspect-ratio:auto!important;border-radius:6px!important;transform:none!important;padding:16px 28px!important;background:linear-gradient(120deg,#c49a50,#f0d9a5,#c49a50)!important;color:#481326!important}
+.hero-menu-circle .hero-menu-label{font-family:inherit!important;font-size:1.15rem!important;transform:none!important;color:#481326!important}
+.product-detail[open]{display:flex;flex-direction:column;overflow:hidden}
+.detail-close{flex-shrink:0;align-self:flex-start}
+.detail-layout{overflow:auto;min-height:0;overscroll-behavior:contain}
+.detail-order-bar{flex-shrink:0;display:flex;align-items:center;gap:16px;padding:14px 24px;background:#481326;border-top:1px solid #d4b47766}
+.detail-order-bar .detail-price{color:#f0d9a5;font-size:1.4rem;margin:0}
+.detail-order-bar .buy-btn{flex:1;min-height:48px}
+body.full-catalog #shop{max-width:none;background:radial-gradient(ellipse at top,#93445d,#50172c 65%);padding-top:2rem}
+.catalog-heading{display:none}
+body.full-catalog .catalog-heading{display:block;text-align:center;padding:3rem 1rem;margin-bottom:2rem;background:linear-gradient(#300b1977,#300b19bb),url('gallery3.jpg') center/cover;border-radius:14px;color:#fff9f2}
+.catalog-heading a{color:#f0d9a5}.catalog-heading h2{color:#f0d9a5;font-size:clamp(2rem,5vw,3.5rem)}
+.catalog-filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.catalog-filters button,.review-nav button{border:1px solid #d4b477;background:#50172c;color:#fff9f2;border-radius:6px;padding:10px 18px;cursor:pointer}
+.catalog-filters button[aria-pressed=true]{background:#d4b477;color:#481326}
+body.full-catalog .product-card[hidden]{display:none!important}
+#testimonials .testimonial-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;scrollbar-width:thin}
+#testimonials .testimonial-card{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;background:linear-gradient(140deg,#80334e,#50172c);color:#fff9f2;border:1px solid #d4b47777;opacity:1;transform:none}
+#testimonials .quote,#testimonials .name{color:#fff9f2}
+.review-nav{display:flex;justify-content:center;gap:12px;margin-top:18px}
+.review-disclaimer{text-align:center;color:#f0d9a5;font-size:.9rem}
+#contact .map-preview-text h4,#contact .map-preview-text p,#contact .map-expand-hint{color:#fff9f2!important}
+#contact .map-preview{background:#702640}
+#contact .social-btn,#contact .contact-card a{background:#896126!important;color:white!important;border:1px solid #d4b477!important;border-radius:8px;padding:10px 16px}
+#contact .social-btn svg{fill:currentColor!important}
+#contact .contact-card h4{color:#f0d9a5!important}
+@media(max-width:650px){#testimonials .testimonial-card{flex-basis:85%}.detail-order-bar{padding:12px}.detail-order-bar .detail-price{font-size:1.1rem}}
 </style>
 </head>
 <body>
@@ -1913,9 +1941,9 @@ main>.photo-band{position:relative;height:clamp(380px,85vh,900px);height:clamp(3
 
         <!-- קישור מעוצב לקולקציית היינות -->
         <div class="hero-images-col hero-menu-col">
-          <a class="hero-menu-circle" href="#shop" aria-label="לתפריט היינות">
+          <a class="hero-menu-circle" href="#shop" aria-label="גלו את הקולקציה">
             
-            <span class="hero-menu-label">לתפריט</span>
+            <span class="hero-menu-label">גלו את הקולקציה ←</span>
             
           </a>
         </div>
@@ -1928,7 +1956,7 @@ main>.photo-band{position:relative;height:clamp(380px,85vh,900px);height:clamp(3
 
     <!-- SHOP -->
     <section id="shop">
-      <div class="section-frame">
+      <div class="section-frame"><div class="catalog-heading"><a href="index.html">← חזרה לעמוד הבית</a><h2>עולם היין של דורות</h2><p>הקולקציה המלאה · יינות ומארזים</p><div class="catalog-filters"><button type="button" data-filter="all" aria-pressed="true">הכל</button><button type="button" data-filter="wine" aria-pressed="false">יינות</button><button type="button" data-filter="bundle" aria-pressed="false">מארזים</button></div></div>
         <div class="frame-corner tl" aria-hidden="true"></div>
         <div class="frame-corner br" aria-hidden="true"></div>
         <div class="frame-corner tr" aria-hidden="true"></div>
@@ -2010,23 +2038,7 @@ main>.photo-band{position:relative;height:clamp(380px,85vh,900px);height:clamp(3
           <h2>מה מספרים עלינו</h2>
           <span class="gold-line"></span>
         </div>
-        <div class="testimonial-grid">
-          <div class="testimonial-card reveal stagger-1">
-            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
-            <p class="quote">"היין הגיע ארוז מעולה, והטעם היה בדיוק מה שחיפשנו לארוחת שישי. שירות מדהים."</p>
-            <div class="name">שירי, תל אביב</div>
-          </div>
-          <div class="testimonial-card reveal stagger-2">
-            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
-            <p class="quote">"האתר קל לשימוש, המשלוח הגיע מהר והבקבוקים קיבלו מחמאות מכל האורחים."</p>
-            <div class="name">אלעד, חיפה</div>
-          </div>
-          <div class="testimonial-card reveal stagger-3">
-            <div class="rating" aria-label="5 כוכבים">★★★★★</div>
-            <p class="quote">"יש תחושה של מותג בוטיק אמיתי — הכל נקי, מדויק, ובעיקר יין מצוין בכוס."</p>
-            <div class="name">נועה, ירושלים</div>
-          </div>
-        </div>
+        <p class="review-disclaimer">תצוגה לדוגמה בלבד — חוות דעת אמיתיות יתווספו בהמשך.</p><div class="testimonial-grid" id="reviewTrack"><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">יין לארוחת שבת — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 1</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">מארז חגיגי למתנה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 2</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">בחירת יין לאירוח — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 3</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">חוויית הזמנה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 4</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">טעם וארומה — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 5</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">שירות אישי — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 6</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">אריזה ומשלוח — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 7</div></div><div class="testimonial-card"><div class="rating" aria-hidden="true">☆☆☆☆☆</div><p class="quote">יין לאירוע משפחתי — מקום לטקסט המלצה מאומתת.</p><div class="name">דוגמה 8</div></div></div><div class="review-nav"><button type="button" id="reviewRight" aria-label="גלילה ימינה">→</button><button type="button" id="reviewLeft" aria-label="גלילה שמאלה">←</button></div>
       </div>
     </section>
 
@@ -2842,7 +2854,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
   </script>
-<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>כאן יוצג הסיפור המלא של המוצר, החל מבחירת הענבים והכרם, דרך תהליך הייצור והיישון ועד לחוויית הטעימה וההגשה. התיאור המקצועי יעודכן לאחר קבלת פרטי היקב.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage">להשלמה</dd></div><div><dt>אחוז אלכוהול</dt><dd>להשלמה</dd></div><div><dt>זן ענבים</dt><dd>להשלמה</dd></div><div><dt>נפח בקבוק</dt><dd>להשלמה</dd></div><div><dt>אזור גידול</dt><dd>להשלמה</dd></div><div><dt>תקופת יישון</dt><dd>להשלמה</dd></div><div><dt>כשרות</dt><dd>להשלמה</dd></div><div><dt>טמפרטורת הגשה</dt><dd>להשלמה</dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>פרופיל הארומות, גוף היין, הסיומת והתאמה למאכלים יפורטו כאן בהמשך.</p><p class="detail-note">מפרט זמני — הנתונים המקצועיים טרם התקבלו מהיקב.</p><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></div></dialog>
+<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>כאן יוצג הסיפור המלא של המוצר, החל מבחירת הענבים והכרם, דרך תהליך הייצור והיישון ועד לחוויית הטעימה וההגשה. התיאור המקצועי יעודכן לאחר קבלת פרטי היקב.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage">להשלמה</dd></div><div><dt>אחוז אלכוהול</dt><dd>להשלמה</dd></div><div><dt>זן ענבים</dt><dd>להשלמה</dd></div><div><dt>נפח בקבוק</dt><dd>להשלמה</dd></div><div><dt>אזור גידול</dt><dd>להשלמה</dd></div><div><dt>תקופת יישון</dt><dd>להשלמה</dd></div><div><dt>כשרות</dt><dd>להשלמה</dd></div><div><dt>טמפרטורת הגשה</dt><dd>להשלמה</dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>פרופיל הארומות, גוף היין, הסיומת והתאמה למאכלים יפורטו כאן בהמשך.</p><p class="detail-note">מפרט זמני — הנתונים המקצועיים טרם התקבלו מהיקב.</p></div></div><div class="detail-order-bar"><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></dialog>
 <script>
 (function(){
 const dialog=document.getElementById('productDetail'), main=dialog.querySelector('.detail-main-image'), thumbs=dialog.querySelector('.detail-thumbs'), add=dialog.querySelector('.detail-add');let source=null;
@@ -2851,5 +2863,5 @@ document.querySelectorAll('.product-card').forEach(card=>{card.addEventListener(
 dialog.addEventListener('close',()=>{document.body.style.overflow=''});dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
 })();
 </script>
-</body>
+<script>(()=>{const track=document.getElementById('reviewTrack');for(const [id,dir] of [['reviewRight',1],['reviewLeft',-1]])document.getElementById(id).onclick=()=>track.scrollBy({left:dir*(track.firstElementChild.offsetWidth+16),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.querySelectorAll('.catalog-filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.catalog-filters button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('#shop .product-card').forEach(card=>{const bundle=card.querySelector('h3').textContent.startsWith('מארז');card.hidden=b.dataset.filter!=='all'&&(b.dataset.filter==='bundle'?!bundle:bundle)})})})();</script></body>
 </html>
