@@ -1922,6 +1922,12 @@ footer{position:relative;z-index:1}
 #checkoutSend,#checkoutBack{display:block;width:100%;cursor:pointer;font:inherit;border-radius:16px;padding:12px;margin-top:14px}
 #checkoutSend{background:linear-gradient(120deg,#c49a50,#f0d9a5);color:#481326;border:0;font-weight:700}
 #checkoutBack{background:transparent;color:#e8d5a3;border:1px solid #d4b47766}
+/* Keep the hero stationary while the collection covers it. */
+html,body{overflow-x:clip}
+body:not(.full-catalog) header.hero{position:sticky;top:0;z-index:0}
+body:not(.full-catalog) #shop{background:linear-gradient(180deg,#79334e 0%,#702a45 35%,#602039 75%,#52162d 100%)}
+body:not(.full-catalog) #shop::before{height:clamp(100px,22vh,230px);background:linear-gradient(to bottom,transparent 0%,#79334e20 20%,#79334e80 55%,#79334ed9 82%,#79334e 100%);bottom:calc(100% - 1px)}
+@media(prefers-reduced-motion:reduce){body:not(.full-catalog) header.hero{position:relative}}
 </style>
 </head>
 <body>
