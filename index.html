@@ -1904,6 +1904,24 @@ main>section:nth-of-type(even),#story.luxury-story{background:linear-gradient(14
 #gallery{background:linear-gradient(145deg,#481326,#702b46 55%,#62213b)}
 #contact{background:linear-gradient(135deg,#78334d,#591b33 70%,#6e2943)}
 body.full-catalog #shop{background:linear-gradient(145deg,#853d56,#65243e 55%,#481326)}
+/* Hero cover transition and checkout notice */
+body:not(.full-catalog) header.hero{position:sticky;top:0;z-index:0;min-height:82vh}
+body:not(.full-catalog) main{position:relative;z-index:1;background:#602039;overflow:visible}
+body:not(.full-catalog) #shop{max-width:none;width:100%;box-sizing:border-box;background:linear-gradient(155deg,#79334e,#602039 60%,#52162d);position:relative}
+body:not(.full-catalog) #shop::before{content:"";position:absolute;bottom:100%;left:0;right:0;height:clamp(60px,12vh,140px);background:linear-gradient(to bottom,transparent,#79334e);pointer-events:none}
+body:not(.full-catalog) #shop .section-frame{max-width:1180px;margin:auto;background:transparent!important;border:0;box-shadow:none}
+footer{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){body:not(.full-catalog) header.hero{position:relative}}
+#checkoutNotice{position:fixed;inset:0;margin:auto;width:min(92vw,460px);max-height:90dvh;overflow:auto;padding:0;border:1px solid #d4b477;border-radius:26px;background:linear-gradient(145deg,#79334e,#481326);color:#fff9f2;box-shadow:0 24px 100px #19050e99;text-align:center}
+#checkoutNotice::backdrop{background:#19050eb8;backdrop-filter:blur(5px)}
+.checkout-notice-inner{position:relative;padding:38px 25px 24px}
+.checkout-bag{width:48px;height:48px;color:#e8d5a3}
+#checkoutNotice h2{font-family:'Noto Serif Hebrew',serif;color:#f0d9a5;font-size:1.65rem;margin:12px 0}
+#checkoutNotice p{line-height:1.8;color:#fff9f2;margin:12px 0}
+#checkoutClose{position:absolute;top:10px;left:12px;border:0;background:transparent;color:#e8d5a3;font-size:28px;cursor:pointer}
+#checkoutSend,#checkoutBack{display:block;width:100%;cursor:pointer;font:inherit;border-radius:16px;padding:12px;margin-top:14px}
+#checkoutSend{background:linear-gradient(120deg,#c49a50,#f0d9a5);color:#481326;border:0;font-weight:700}
+#checkoutBack{background:transparent;color:#e8d5a3;border:1px solid #d4b47766}
 </style>
 </head>
 <body>
@@ -2575,7 +2593,12 @@ document.addEventListener("DOMContentLoaded", () => {
   navCartLink?.addEventListener("click",e=>{ e.preventDefault(); openCart(); });
   cartClose?.addEventListener("click",closeCart);
 
-  checkoutBtn?.addEventListener("click",() => {
+  const checkoutNotice=document.getElementById("checkoutNotice");
+  checkoutBtn?.addEventListener("click",()=>{if(!cartState.length){announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה.");return;}if(!getSelected().length){announce("יש לבחור לפחות מוצר אחד לפני רכישה.");return;}checkoutNotice.showModal();});
+  document.getElementById("checkoutBack").addEventListener("click",()=>checkoutNotice.close());
+  document.getElementById("checkoutClose").addEventListener("click",()=>checkoutNotice.close());
+  checkoutNotice.addEventListener("click",e=>{if(e.target===checkoutNotice)checkoutNotice.close()});
+  document.getElementById("checkoutSend").addEventListener("click",() => {
     if(!cartState.length){ announce("הסל ריק. הוסיפו יינות כדי לסיים הזמנה."); return; }
     const sel=getSelected();
     if(!sel.length){ announce("יש לבחור לפחות מוצר אחד לפני רכישה."); return; }
@@ -2587,6 +2610,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let eb=encodeURIComponent(body);
     let url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(suppEmail)}&su=${su}&body=${eb}`;
     if(url.length>MAX_GMAIL){ eb=encodeURIComponent(truncBody(body)); url=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(suppEmail)}&su=${su}&body=${eb}`; }
+    checkoutNotice.close();
     window.open(url,"_blank","noopener");
     announce("פותחים Gmail עם פרטי ההזמנה.");
   });
@@ -2889,6 +2913,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
   </script>
+<dialog id="checkoutNotice" aria-labelledby="checkoutNoticeTitle" dir="rtl"><div class="checkout-notice-inner"><button id="checkoutClose" type="button" aria-label="סגירה">×</button><svg class="checkout-bag" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="9" y="15" width="30" height="28" rx="5"/><path d="M17 17V11a7 7 0 0 1 14 0v6"/></svg><h2 id="checkoutNoticeTitle">עוד רגע והיין בדרך אליכם</h2><p>מערכת התשלום המקוונת שלנו נמצאת בשלבי הקמה.</p><p>בינתיים, ניתן לשלוח אלינו את פרטי ההזמנה באמצעות המייל. צוות יקב דורות יחזור אליכם בהקדם להשלמת ההזמנה, התשלום ותיאום המשלוח.</p><button id="checkoutSend" type="button">שליחת פרטי ההזמנה במייל</button><button id="checkoutBack" type="button">חזרה לסל הקניות</button></div></dialog>
 <dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><h3>על היין</h3><p>יין לאירוח, לארוחות חג ולרגעים של מפגש סביב השולחן. גלו את קולקציית דורות ובחרו את היין המתאים לאירוע שלכם.</p><h3>מפרט המוצר</h3><dl class="detail-specs"><div><dt>שנת בציר</dt><dd class="detail-vintage"></dd></div><div hidden><dt>אחוז אלכוהול</dt><dd></dd></div><div hidden><dt>זן ענבים</dt><dd></dd></div><div hidden><dt>נפח בקבוק</dt><dd></dd></div><div hidden><dt>אזור גידול</dt><dd></dd></div><div hidden><dt>תקופת יישון</dt><dd></dd></div><div hidden><dt>כשרות</dt><dd></dd></div><div hidden><dt>טמפרטורת הגשה</dt><dd></dd></div></dl><h3>מאפייני טעם והמלצות הגשה</h3><p>מומלץ לבחור את היין בהתאם לסגנון הארוחה ולהעדפות הטעם של האורחים.</p></div></div><div class="detail-order-bar"><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></dialog>
 <script>
 (function(){
