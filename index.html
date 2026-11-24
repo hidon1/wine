@@ -1786,6 +1786,23 @@ body.full-catalog #shop{min-height:65vh}
 .catalog-placeholder{min-height:230px;display:grid;place-items:center;color:#f0d9a5;font-size:3rem}
 .catalog-pending{color:#f0d9a5;font-size:.95rem}
 @media(max-width:520px){.products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}.product-card{padding:.55rem;gap:.5rem}.product-card-img-wrap,.catalog-placeholder{min-height:140px;height:160px}.product-card h3{font-size:1.15rem}.product-card p{font-size:.85rem}.product-price-row{flex-direction:column;align-items:stretch}.product-price-row .buy-btn{font-size:.85rem;padding:.5rem .25rem}.product-price{text-align:center}}
+
+/* Product quick view */
+.product-card h3,.product-card-img-wrap{cursor:pointer}
+.product-detail{width:min(850px,94vw);max-height:90dvh;overflow:auto;padding:0;border:1px solid #d4b477;border-radius:16px;background:#50172c;color:#fff9f2;box-shadow:0 25px 90px #0009}
+.product-detail::backdrop{background:#19050ecc}
+.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2rem}
+.detail-close{position:sticky;top:8px;margin:8px 12px 0;z-index:2;border:1px solid #d4b477;border-radius:50%;width:40px;height:40px;background:#300b19;color:#fff;font-size:24px;cursor:pointer}
+.detail-main-image{width:100%;height:310px;object-fit:contain;background:radial-gradient(ellipse,#92526a,#300b19);border-radius:10px}
+.detail-thumbs{display:flex;gap:8px;margin-top:10px}
+.detail-thumbs button{width:70px;height:70px;background:#621e36;border:1px solid #d4b477;border-radius:6px;cursor:pointer}
+.detail-thumbs img{width:100%;height:100%;object-fit:contain}
+.detail-info h2{color:#f0d9a5;font-size:2rem}
+.detail-info p{margin:.8rem 0;color:#fff9f2}
+.detail-info .detail-price{color:#f0d9a5;font-size:1.6rem;font-weight:700}
+.detail-info .buy-btn{width:100%;min-height:48px}
+.detail-note{font-size:.85rem;color:#e1cdd0!important}
+@media(max-width:650px){.detail-layout{grid-template-columns:1fr;padding:1rem;gap:1rem}.detail-main-image{height:230px}.detail-info h2{font-size:1.6rem}}
 </style>
 </head>
 <body>
@@ -2804,5 +2821,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
   </script>
+<dialog id="productDetail" class="product-detail" aria-labelledby="detailTitle"><button type="button" class="detail-close" aria-label="סגירה">×</button><div class="detail-layout"><div><img class="detail-main-image" alt=""><div class="detail-thumbs"></div></div><div class="detail-info"><h2 id="detailTitle"></h2><p class="detail-description"></p><p class="detail-note">מידע להשלמה: שנת בציר, מאפייני טעם, אחוז אלכוהול והמלצות הגשה.</p><p class="detail-price"></p><button type="button" class="buy-btn detail-add">+ הוסף להזמנה</button></div></div></dialog>
+<script>
+(function(){
+const dialog=document.getElementById('productDetail'), main=dialog.querySelector('.detail-main-image'), thumbs=dialog.querySelector('.detail-thumbs'), add=dialog.querySelector('.detail-add');let source=null;
+function open(card){source=card.querySelector('.add-to-cart');const img=card.querySelector('img'), name=card.querySelector('h3').textContent;dialog.querySelector('h2').textContent=name;dialog.querySelector('.detail-description').textContent=card.querySelector('p').textContent;dialog.querySelector('.detail-price').textContent=card.querySelector('.product-price')?.textContent||'מחיר וזמינות יעודכנו';add.hidden=!source;thumbs.replaceChildren();main.hidden=!img; if(img){main.src=img.getAttribute('src');main.alt=name;[ [img.getAttribute('src'),name],['gallery3.jpg','תמונת הכרם – להמחשה'],['gallery5.jpg','תמונת יקב – להמחשה'] ].forEach(([src,alt])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',alt);const i=document.createElement('img');i.src=src;i.alt=alt;i.loading='lazy';b.append(i);b.onclick=()=>{main.src=src;main.alt=alt};thumbs.append(b)})}dialog.showModal()}
+document.querySelectorAll('.product-card').forEach(card=>{card.querySelectorAll('h3,.product-card-img-wrap').forEach(el=>{el.tabIndex=0;el.setAttribute('role','button');el.addEventListener('click',()=>open(card));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card)}})})});
+dialog.querySelector('.detail-close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});add.onclick=()=>{dialog.close();source?.click()};
+})();
+</script>
 </body>
 </html>
